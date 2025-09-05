@@ -1,0 +1,55 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-vazir: "medium";
+  --color-background: #ffffff;
+  --color-title: #1f1f1f;
+  --color-text: #555555;
+  --color-header: #0d3b66;
+  --color-button1: #28a745;
+  --color-hover1:#218838;
+  --color-button2: #1e90ff;
+  --color-hover2:#187bcd;
+  --color-cart:#f8f9fa;
+  --color-shadow:#e0e0e0;
+  --color-link:#007bff;
+  --color-background-dark: #121212;
+  --color-title-dark: #ffffff;
+  --color-text-dark: #bbbbbb;
+  --color-header-dark: #0d3b66;
+  --color-button1-dark: #28a745;
+  --color-button2-dark: #1e90ff;
+  --color-cart-dark:#1e1e1e;
+  --color-shadow-dark:#2a2a2a;
+  --color-link-dark:#3399ff;
+}
+
+@font-face {
+  font-family: "light";
+  src: url(../font/Vazir-Light.woff);
+}
+@font-face {
+  font-family: "medium";
+  src: url(../font/Vazir-Medium.woff);
+}
+@font-face {
+  font-family: "bold";
+  src: url(../font/Vazir-Bold.woff);
+}
+@font-face {
+  font-family: "thin";
+  src: url(../font/Vazir-Thin.woff);
+}
+
+@layer base {
+  body {
+    font-family: var(--font-vazir);
+  }
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  
+}
