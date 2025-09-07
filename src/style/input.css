@@ -8,22 +8,22 @@
   --color-text: #555555;
   --color-header: #0d3b66;
   --color-button1: #28a745;
-  --color-hover1:#218838;
+  --color-hover1: #218838;
   --color-button2: #1e90ff;
-  --color-hover2:#187bcd;
-  --color-cart:#f8f9fa;
-  --color-shadow:#e0e0e0;
-  --color-link:#007bff;
+  --color-hover2: #187bcd;
+  --color-cart: #f8f9fa;
+  --color-shadow: #e0e0e0;
+  --color-link: #007bff;
   --color-background-dark: #121212;
   --color-title-dark: #ffffff;
   --color-text-dark: #bbbbbb;
   --color-header-dark: #0d3b66;
   --color-button1-dark: #28a745;
   --color-button2-dark: #1e90ff;
-  --color-cart-dark:#1e1e1e;
-  --color-shadow-dark:#2a2a2a;
-  --color-link-dark:#3399ff;
-  --breakpoint-2sm:470px;
+  --color-cart-dark: #1e1e1e;
+  --color-shadow-dark: #2a2a2a;
+  --color-link-dark: #3399ff;
+  --breakpoint-2sm: 473px;
 }
 
 @font-face {
@@ -52,5 +52,17 @@
 .container {
   margin-left: auto;
   margin-right: auto;
-  
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb{
+  background: #888;
+}
+::-webkit-scrollbar-thumb:hover{
+  background: #555;
 }
