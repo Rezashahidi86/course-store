@@ -49,6 +49,12 @@
   }
 }
 
+@layer utilities{
+  .after-before-filter{
+    @apply text-button2 dark:text-header after:absolute before:absolute before:w-full before:h-0.5 before:-bottom-[1.3rem] before:right-0 after:right-0 after:-top-[1.3rem] after:w-full after:h-0.5 after:bg-button2 dark:after:bg-header before:bg-button2 dark:before:bg-header
+  }
+}
+
 .container {
   margin-left: auto;
   margin-right: auto;
