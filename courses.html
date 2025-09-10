@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/style/input.css" />
+    <link rel="stylesheet" href="src/style/output.css" />
+    <link rel="stylesheet" href="vendor/fa/all.min.css" />
+    <link rel="icon" href="src/img/index/آرم شرکت تجارت_لب.png" />
+    <title>Document</title>
+  </head>
+  <body class="bg-background dark:bg-background-dark">
+    <!-- Start Header -->
+    <header class="container relative bg-cart dark:bg-cart-dark">
+      <!-- Start Mobile navbar -->
+
+      <nav class="hidden max-lg:block">
+        <div class="container flex items-center justify-between px-6 mb-6">
+          <i
+            class="fa fa-bars text-3xl p-4 px-[1.2rem] max-2sm:p-2 max-2sm:px-[0.7rem] rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
+          ></i>
+          <img
+            class="max-w-[20rem] h-[7rem] max-2sm:w-[18rem]"
+            src="src/img/index/آرم شرکت تجارت_لب.png"
+            alt="logo"
+          />
+          <i
+            class="fa fa-shopping-cart text-3xl p-4 max-2sm:p-2 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
+          ></i>
+        </div>
+      </nav>
+
+      <!-- Finish Mobile navbar  -->
+
+      <nav class="flex items-center justify-between max-lg:hidden">
+        <div
+          class="flex items-center justify-center gap-x-4 max-lg:gap-x-2 z-20"
+        >
+          <img
+            src="src/img/index/آرم شرکت تجارت_لب.png"
+            class="max-w-[7rem] max-h-[6rem]"
+            alt="logo"
+          />
+          <ul class="flex items-center gap-x-4 max-lg:gap-x-2 max-lg:ml10">
+            <li
+              class="relative group text-button2 dark:text-title-dark duration-20"
+            >
+              <a
+                href="#"
+                class="flex items-center gap-x-2 after:-bottom-2 after:h-0.5 after:w-0 after:absolute group-hover:after:w-full after:bg-text dark:after:bg-text after:duration-500 max-lg:gap-x-0"
+                ><span>بازار های مالی</span
+                ><i
+                  class="fa fa-arrow-left group-hover:-rotate-90 duration-200"
+                ></i
+              ></a>
+              <div
+                class="absolute right-0 top-6 duration-100 invisible group-hover:visible"
+              >
+                <div
+                  class="group-hover:mt-4 dark:text-text-dark bg-background dark:bg-cart-dark duration-300 shadow-md shadow-shadow dark:shadow-2xl dark:shadow-shadow-dark opacity-0 group-hover:opacity-100 divide-y-2 divide-text dark:divide-text flex flex-col border-2 p-2 gap-y-2 rounded-2xl"
+                >
+                  <a href="#" class="text-nowrap">آشنایی با بازار فارکس</a>
+                  <a href="#" class="text-nowrap"
+                    >آشنایی با بازار ارزهای دیجیتال</a
+                  >
+                  <a href="#" class="text-nowrap"
+                    >آشنایی با بازار بورس ایران و جهانی</a
+                  >
+                </div>
+              </div>
+            </li>
+            <li
+              class="relative group text-button2 dark:text-title-dark duration-200"
+            >
+              <a
+                href="#"
+                class="flex items-center gap-x-2 after:-bottom-2 after:bg-text dark:after:bg-text after:h-0.5 after:w-0 after:absolute group-hover:after:w-full after:duration-500 max-lg:gap-x-0"
+                ><span>تحلیل تکنیکال</span
+                ><i
+                  class="fa fa-arrow-left group-hover:-rotate-90 duration-200"
+                ></i
+              ></a>
+              <div
+                class="absolute right-0 top-6 duration-100 invisible group-hover:visible"
+              >
+                <div
+                  class="group-hover:mt-4 dark:text-text-dark bg-background dark:bg-cart-dark divide-text dark:divide-text shadow-md shadow-shadow dark:shadow-2xl dark:shadow-shadow-dark duration-300 opacity-0 group-hover:opacity-100 divide-y-2 flex flex-col border-2 p-2 gap-y-2 rounded-2xl"
+                >
+                  <a href="#" class="text-nowrap">مقدمات تحلیل تکنیکال</a>
+                  <a href="#" class="text-nowrap">الگوهای کلاسیک قیمتی</a>
+                  <a href="#" class="text-nowrap">اندیکاتورها و اوسیلاتورها</a>
+                  <a href="#" class="text-nowrap">پرایس اکشن حرفه‌ای</a>
+                </div>
+              </div>
+            </li>
+            <li
+              class="relative group text-button2 dark:text-title-dark duration-200"
+            >
+              <a
+                href="#"
+                class="flex items-center gap-x-2 after:bg-text dark:after:bg-text after:-bottom-2 after:h-0.5 after:w-0 after:absolute group-hover:after:w-full after:duration-500 max-lg:gap-x-0"
+                ><span>تحلیل فاندامنتال</span
+                ><i
+                  class="fa fa-arrow-left group-hover:-rotate-90 duration-200"
+                ></i
+              ></a>
+              <div
+                class="absolute right-0 top-6 duration-100 invisible group-hover:visible"
+              >
+                <div
+                  class="group-hover:mt-4 dark:text-text-dark bg-background dark:bg-cart-dark divide-text dark:divide-text shadow-md shadow-shadow dark:shadow-2xl dark:shadow-shadow-dark duration-300 opacity-0 group-hover:opacity-100 divide-y-2 flex flex-col border-2 p-2 gap-y-2 rounded-2xl"
+                >
+                  <a href="#" class="text-nowrap"
+                    >مبانی تحلیل فاندامنتال در فارکس</a
+                  >
+                  <a href="#" class="text-nowrap"
+                    >تحلیل اخبار و رویدادهای اقتصادی</a
+                  >
+                  <a href="#" class="text-nowrap"
+                    >تحلیل فاندامنتال ارزهای دیجیتال</a
+                  >
+                </div>
+              </div>
+            </li>
+            <li
+              class="relative group text-button2 dark:text-title-dark duration-200"
+            >
+              <a
+                href="#"
+                class="flex items-center gap-x-2 after:bg-text dark:after:bg-text after:-bottom-2 after:h-0.5 after:w-0 after:absolute group-hover:after:w-full after:duration-500 max-lg:gap-x-0"
+                ><span>ابزارها و پلتفرم‌ها</span
+                ><i
+                  class="fa fa-arrow-left group-hover:-rotate-90 duration-200"
+                ></i
+              ></a>
+              <div
+                class="absolute right-0 top-6 duration-100 invisible group-hover:visible"
+              >
+                <div
+                  class="group-hover:mt-4 dark:text-text-dark bg-background dark:bg-cart-dark divide-text dark:divide-text shadow-md shadow-shadow dark:shadow-2xl dark:shadow-shadow-dark duration-300 opacity-0 group-hover:opacity-100 divide-y-2 flex flex-col border-2 p-2 gap-y-2 rounded-2xl"
+                >
+                  <a href="#" class="text-nowrap"
+                    >آموزش کار با متاتریدر (MT4/MT5)</a
+                  >
+                  <a href="#" class="text-nowrap"
+                    >آموزش ترید در صرافی‌های ارز دیجیتال</a
+                  >
+                  <a href="#" class="text-nowrap"
+                    >آموزش استفاده از تریدینگ‌ویو</a
+                  >
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="flex items-center gap-x-6 ml-8 max-lg:gap-x-4">
+          <i
+            class="fa fa-moon text-2xl p-4 px-5 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
+          ></i>
+          <i
+            class="fa fa-shopping-cart text-2xl p-4 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
+          ></i>
+          <i
+            class="fa fa-user text-2xl p-4 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
+          ></i>
+        </div>
+      </nav>
+    </header>
+    <!-- Finish Header -->
+
+    <!-- Start breadcrumb -->
+
+    <section
+      class="container p-4 mt-16 flex items-center gap-x-14 rounded-lg bg-cart dark:bg-cart-dark overflow-x-auto scrollbar-hide overflow-y-hidden"
+    >
+      <a href="#">
+        <i
+          class="fa fa-house relative text-xl text-text dark:text-text-dark after:absolute"
+        ></i>
+      </a>
+      <a
+        href="#"
+        class="relative text-nowrap text-text dark:text-text-dark after:absolute after:w-[4.25rem] after:h-2 after:-top-3 after:-right-18 after:rotate-[140deg] after:bg-background dark:after:bg-background-dark before:absolute before:w-16 before:h-2 before:-bottom-3 before:-right-18 before:rotate-[-140deg] before:bg-background dark:before:bg-background-dark"
+        >همه دوره ها</a
+      >
+      <a
+        href="#"
+        class="relative text-nowrap text-text dark:text-text-dark after:absolute after:w-[4.25rem] after:h-2 after:-top-3 after:-right-18 after:rotate-[140deg] after:bg-background dark:after:bg-background-dark before:absolute before:w-16 before:h-2 before:-bottom-3 before:-right-18 before:rotate-[-140deg] before:bg-background dark:before:bg-background-dark"
+        >بازارهای مالی</a
+      >
+      <a
+        href="#"
+        class="relative text-nowrap text-text dark:text-text-dark after:absolute after:w-[4.25rem] after:h-2 after:-top-3 after:-right-18 after:rotate-[140deg] after:bg-background dark:after:bg-background-dark before:absolute before:w-16 before:h-2 before:-bottom-3 before:-right-18 before:rotate-[-140deg] before:bg-background dark:before:bg-background-dark"
+        >آموزش فارکس</a
+      >
+    </section>
+
+    <!-- Finish breadcrumb -->
+
+    <!-- Start Main -->
+
+    <main>
+      <!-- Start course box -->
+
+      <section
+        class="container p-8 max-2sm:p-4 rounded-lg flex max-lg:flex-col-reverse justify-between mt-24 gap-x-16 bg-cart dark:bg-cart-dark"
+      >
+        <div class="w-1/2 max-lg:w-full">
+          <div class="mt-8">
+            <h1 class="text-4xl text-title dark:text-title-dark">
+              آشنایی با بازار فارکس
+            </h1>
+            <p
+              class="text-lg text-text dark:text-text-dark mt-4 line-clamp-4 h-28"
+            >
+              معرفی ساختار فارکس، جفت‌ارزها، بروکرها و نحوه معامله در این بازار
+              بین‌المللی.
+            </p>
+          </div>
+          <div
+            class="hidden flex items-center justify-between mt-48 max-2xl:mt-28 max-xl:mt-8 max-2sm:flex-col-reverse"
+          >
+            <div
+              class="flex items-center gap-x-6 text-text dark:text-text-dark"
+            >
+              <i class="fa fa-user text-3xl max-sm:text-2xl"></i>
+              <span class="text-xl max-sm:text-lg">شما دانشجوی دوره هستید</span>
+            </div>
+            <div
+              class="flex items-center gap-x-2 text-background py-4 px-8 rounded-xl bg-button1 dark:bg-button1-dark max-sm:px-4 max-2sm:px-20 max-2sm:mb-4"
+            >
+              <i class="fa fa-book-open text-xl"></i>
+              <span>مشاهده دوره</span>
+            </div>
+          </div>
+          <!-- if the user did not have the course -->
+          <div
+            class="flex items-center flex-row-reverse justify-between mt-48 max-2xl:mt-28 max-xl:mt-8 max-2sm:flex-col-reverse"
+          >
+            <div
+              class="flex items-center gap-x-6 text-text dark:text-text-dark"
+            >
+              <span class="text-xl max-sm:text-lg">1.200.000 تومان</span>
+            </div>
+            <div
+              class="flex items-center gap-x-2 text-background py-4 px-8 rounded-xl bg-button1 dark:bg-button1-dark max-sm:px-4 max-2sm:px-20 max-2sm:mb-4"
+            >
+              <i class="fa fa-basket-shopping text-xl"></i>
+              <span>افزودن به سبد خرید</span>
+            </div>
+          </div>
+          <!-- if the user did not have the course -->
+        </div>
+        <div class="w-1/2 rounded-xl max-lg:w-full">
+          <video
+            class="rounded-xl"
+            src=""
+            poster="src/img/index/forex.png"
+            controls
+          ></video>
+        </div>
+      </section>
+
+      <!-- Finish course box -->
+
+      <!-- information course -->
+      <section
+        class="container grid grid-cols-13 max-lg:grid-cols-12 mt-18 gap-8"
+      >
+        <div class="col-span-9 max-lg:col-span-12">
+          <div
+            class="grid grid-cols-3 gap-4 max-lg:col-span-4 max-sm:grid-cols-2 max-2sm:gap-2"
+          >
+            <div
+              class="flex items-center gap-x-4 rounded-md p-4 bg-cart dark:bg-cart-dark max-md:flex-col"
+            >
+              <div class="">
+                <i
+                  class="fa fa-info-circle text-5xl text-button1 dark:text-button1-dark"
+                ></i>
+              </div>
+              <div
+                class="flex flex-col text-text dark:text-text-dark max-md:mt-2"
+              >
+                <span class="text-xl font-bold">وضعیت دوره</span>
+                <span class="mt-2 max-md:text-center">تکمیل شده</span>
+              </div>
+            </div>
+            <div
+              class="flex items-center gap-x-4 rounded-md p-4 bg-cart dark:bg-cart-dark max-md:flex-col"
+            >
+              <div class="">
+                <i
+                  class="fa fa-clock text-5xl text-button1 dark:text-button1-dark"
+                ></i>
+              </div>
+              <div
+                class="flex flex-col text-text dark:text-text-dark max-md:mt-2"
+              >
+                <span class="text-xl font-bold">مدت زمان دوره</span>
+                <span class="mt-2 max-md:text-center">23 ساعت</span>
+              </div>
+            </div>
+            <div
+              class="flex items-center gap-x-4 rounded-md p-4 bg-cart dark:bg-cart-dark max-md:flex-col"
+            >
+              <div class="">
+                <i
+                  class="fa fa-calendar-check text-5xl text-button1 dark:text-button1-dark"
+                ></i>
+              </div>
+              <div
+                class="flex flex-col text-text dark:text-text-dark max-md:mt-2"
+              >
+                <span class="text-xl font-bold">آخرین بروزرسانی</span>
+                <span class="mt-2 max-md:text-center">1403/12/3</span>
+              </div>
+            </div>
+            <div
+              class="flex items-center gap-x-4 rounded-md p-4 bg-cart dark:bg-cart-dark max-md:flex-col"
+            >
+              <div class="">
+                <i
+                  class="fa fa-user-friends text-5xl text-button1 dark:text-button1-dark"
+                ></i>
+              </div>
+              <div
+                class="flex flex-col text-text dark:text-text-dark max-md:mt-2"
+              >
+                <span class="text-xl font-bold">روش پشتیبانی</span>
+                <span class="mt-2 max-md:text-center">آنلاین</span>
+              </div>
+            </div>
+            <div
+              class="flex items-center gap-x-4 rounded-md p-4 bg-cart dark:bg-cart-dark max-md:flex-col"
+            >
+              <div class="">
+                <i
+                  class="fa fa-tools text-5xl text-button1 dark:text-button1-dark"
+                ></i>
+              </div>
+              <div
+                class="flex flex-col text-text dark:text-text-dark max-md:mt-2"
+              >
+                <span class="text-xl font-bold">پیشنیاز دوره</span>
+                <span class="mt-2 max-md:text-center">پیش نیاز ندارد</span>
+              </div>
+            </div>
+            <div
+              class="flex items-center gap-x-4 rounded-md p-4 bg-cart dark:bg-cart-dark max-md:flex-col"
+            >
+              <div class="">
+                <i
+                  class="fa fa-camera text-5xl text-button1 dark:text-button1-dark"
+                ></i>
+              </div>
+              <div
+                class="flex flex-col text-text dark:text-text-dark max-md:mt-2"
+              >
+                <span class="text-xl font-bold">نوع مشاهده</span>
+                <span class="mt-2 max-md:text-center">دوره/آنلاین</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="mt-8 flex flex-col p-6 bg-cart dark:bg-cart-dark rounded-lg"
+          >
+            <div class="flex items-center text-title dark:text-title-dark">
+              <div class="max-md:hidden">
+                <i class="fab fa-trade-federation text-6xl"></i>
+              </div>
+              <span class="text-4xl mr-4 max-md:text-2xl">توضیحات</span>
+            </div>
+            <p
+              class="mt-10 text-lg text-text dark:text-text-dark max-md:text-sm"
+            >
+              قبل از شروع آموزش بازار فارکس بذار اینو بهت بگیم: فارکس فقط یک
+              بازار مالی نیست، یک دنیای بی‌پایان از فرصت‌های سودآوریه که روزانه
+              میلیون‌ها نفر توی اون معامله می‌کنن. اصلاً اغراق نیست اگر بگیم
+              فارکس بزرگ‌ترین و پرهیجان‌ترین بازار دنیاست! بازاری ۲۴ ساعته،
+              بین‌المللی و همیشه زنده که حجم معاملاتش از تمام بورس‌های دنیا
+              بیشتره. یادگیری فارکس نقطه‌ی شروع مسیر حرفه‌ای هر معامله‌گره. شما
+              اینجا اصول پایه مثل جفت‌ارزها، بروکرها و ساختار کلی بازار رو یاد
+              می‌گیرید. همین مقدمات به ظاهر ساده، برگ برنده شما برای ورود مطمئن
+              و بدون ترس به دنیای ترید خواهد بود. اگر به درآمد دلاری، شناخت
+              اقتصاد جهانی و داشتن مهارتی که همیشه و همه‌جا قابل استفاده‌ست فکر
+              می‌کنید، این دوره اولین و مهم‌ترین قدم شماست.
+            </p>
+            <div
+              class="mt-10 h-full"
+            >
+              <img class="rounded-md" src="src/img/index/forex.png" alt="" />
+            </div>
+          </div>
+        </div>
+        <!-- Start Aside -->
+        <div class="col-span-4 max-lg:hidden">
+          <!--Start  more info -->
+          <div class="flex flex-col p-6 bg-cart dark:bg-cart-dark rounded-md">
+            <div class="flex items-center justify-between">
+              <div
+                class="flex items-center justify-around pr-2 pl-14 py-4 rounded-sm gap-x-3 bg-background dark:bg-background-dark"
+              >
+                <div class="text-button1 text-3xl">
+                  <i class="fa fa-users"></i>
+                </div>
+                <div class="flex flex-col text-title dark:text-title-dark">
+                  <span class="text-[0.8rem] font-bold">234</span>
+                  <span class="text-sm">دانشجو</span>
+                </div>
+              </div>
+              <div
+                class="flex items-center justify-around pr-2 pl-14 py-4 rounded-sm gap-x-3 bg-background dark:bg-background-dark"
+              >
+                <div class="text-yellow-300 text-3xl">
+                  <i class="fa fa-star"></i>
+                </div>
+                <div class="flex flex-col text-title dark:text-title-dark">
+                  <span class="text-[0.8rem] font-bold">5.0</span>
+                  <span class="text-sm">رضایت</span>
+                </div>
+              </div>
+            </div>
+            <div class="mt-8 px-2">
+              <div
+                class="flex items-center justify-between text-text dark:text-text-dark"
+              >
+                <span>درصد تکمیلی دوره</span>
+                <span>98%</span>
+              </div>
+              <div
+                class="relative w-full h-2 rounded-md bg-text dark:bg-text-dark mt-4 after:absolute after:w-[98%] after:h-2 after:bg-button1 dark:after:bg-button1-dark after:rounded-md after:left-0"
+              ></div>
+            </div>
+          </div>
+          <!-- Finish more info -->
+          <!-- Start information teacher -->
+          <div
+            class="flex flex-col justify-center items-center p-6 bg-cart dark:bg-cart-dark rounded-md mt-8"
+          >
+            <img
+              class="w-18 h-16 rounded-full"
+              src="src/img/index/forex.png"
+              alt="teacher"
+            />
+            <div class="text-text dark:text-text-dark mt-4 text-lg font-bold">
+              <span
+                class="relative after:absolute after:h-full after:w-0.5 after:bg-text dark:after:bg-text-dark after:-left-3"
+                >سعید سعیدی</span
+              >
+              <span class="mr-4">مدرس دوره</span>
+            </div>
+            <a
+              href="#"
+              class="mt-8 bg-button1 dark:bg-button1-dark hover:bg-hover1 dark:hover:bg-hover1 p-2 border-2 border-button1 dark:border-button1-dark rounded-md hover:border-hover1 duration-200 transition-all"
+            >
+              <span class="text-background dark:text-text-dark"
+                >مشاهده پروفایل من</span
+              >
+            </a>
+          </div>
+          <!-- Finish information teacher -->
+          <!-- Start short link -->
+          <div
+            class="flex flex-col mt-8 p-6 text-button2 dark:text-button2-dark bg-header dark:bg-header-dark rounded-md"
+          >
+            <span class="text-center block">لینک کوتاه آموزش</span>
+            <div
+              class="flex items-center justify-between mt-10 border-2 border-dashed border-blue-400 p-4 rounded-md"
+            >
+              <button class="cursor-pointer">
+                <i class="fa fa-link"></i>
+              </button>
+              <span>sabzlearn.ir/?p=82</span>
+            </div>
+          </div>
+          <!-- Finish short link -->
+        </div>
+        <!-- Finish Aside -->
+      </section>
+      <!-- information course -->
+    </main>
+
+    <!-- Finish Main -->
+
+    <script src="vendor/fa/all.min.js"></script>
+  </body>
+</html>

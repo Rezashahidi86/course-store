@@ -49,9 +49,16 @@
   }
 }
 
-@layer utilities{
-  .after-before-filter{
-    @apply text-button2 dark:text-header after:absolute before:absolute before:w-full before:h-0.5 before:-bottom-[1.3rem] before:right-0 after:right-0 after:-top-[1.3rem] after:w-full after:h-0.5 after:bg-button2 dark:after:bg-header before:bg-button2 dark:before:bg-header
+@layer utilities {
+  .after-before-filter {
+    @apply text-button2 dark:text-header after:absolute before:absolute before:w-full before:h-0.5 before:-bottom-[1.3rem] before:right-0 after:right-0 after:-top-[1.3rem] after:w-full after:h-0.5 after:bg-button2 dark:after:bg-header before:bg-button2 dark:before:bg-header;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -66,9 +73,9 @@
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background: #888;
 }
-::-webkit-scrollbar-thumb:hover{
+::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
