@@ -6,5 +6,21 @@
   },
   "scripts": {
     "tailwind": "npx @tailwindcss/cli -i ./src/style/input.css -o ./src/style/output.css --watch"
-  }
+  },
+  "name": "shop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rezashahidi86/course-store.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rezashahidi86/course-store/issues"
+  },
+  "homepage": "https://github.com/Rezashahidi86/course-store#readme",
+  "description": ""
 }
