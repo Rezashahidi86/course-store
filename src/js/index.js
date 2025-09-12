@@ -1,5 +1,40 @@
+import * as helper from "./helper.js"
+
+const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
+const titleElem = document.querySelector("#title");
+
+const modalBarsHandeler = () => {
+  if (modalBars.className.includes("right-0")) {
+    modalBars.classList.remove("right-0");
+    modalBars.classList.add("right-[-270px]");
+    closeModalBars.classList.remove("right-[270px]");
+    closeModalBars.classList.add("right-[700px]");
+  } else {
+    modalBars.classList.add("right-0");
+    modalBars.classList.remove("right-[-270px]");
+    closeModalBars.classList.add("right-[270px]");
+    closeModalBars.classList.remove("right-[700px]");
+  }
+};
+
+const typeWriteTitle = () => {
+  const text = "آماده برای یادگیری ترید از صفر هستی؟";
+  let indexText = 0;
+  const timer = setInterval(() => {
+    titleElem.innerHTML += text[indexText];
+    indexText++;
+    if (indexText >= text.length) {
+      clearInterval(timer);
+    }
+  }, 100);
+};
+
+helper.closeModalBars.addEventListener("click", helper.modalBarsHandeler);
+openModalBtnBars.addEventListener("click", helper.modalBarsHandeler);
+window.addEventListener("load", typeWriteTitle);
+
 const swiperLastCourses = new Swiper(".swiper-last-courses", {
-  loop:true,
+  loop: true,
   spaceBetween: 20,
   speed: 800,
   slidesPerView: 4,
@@ -62,7 +97,7 @@ const swiperPopularCourses = new Swiper(".swiper-popular-courses", {
 });
 
 const swiperFreeCourses = new Swiper(".swiper-free-courses", {
-  loop:true,
+  loop: true,
   spaceBetween: 20,
   speed: 800,
   slidesPerView: 4,

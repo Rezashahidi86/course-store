@@ -16,9 +16,11 @@
 
       <nav class="hidden max-lg:block">
         <div class="container flex items-center justify-between px-6 mb-6">
-          <i
-            class="fa fa-bars text-3xl p-4 px-[1.2rem] max-2sm:p-2 max-2sm:px-[0.7rem] rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
-          ></i>
+          <button id="open-modal-btn-bars">
+            <i
+              class="fa fa-bars text-3xl p-4 px-[1.2rem] max-2sm:p-2 max-2sm:px-[0.7rem] rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
+            ></i>
+          </button>
           <img
             class="max-w-[20rem] h-[7rem] max-2sm:w-[18rem]"
             src="src/img/index/آرم شرکت تجارت_لب.png"
@@ -28,6 +30,99 @@
             class="fa fa-shopping-cart text-3xl p-4 max-2sm:p-2 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
           ></i>
         </div>
+        <div
+          class="fixed w-[270px] h-full flex flex-col top-0 z-50 bg-cart dark:bg-cart-dark overflow-y-auto right-[-270px] duration-300"
+          id="modal-bars"
+        >
+          <!-- <a
+            class="text-xl block text-center py-4 w-full text-header dark:bg-header-dark bg-button2 dark:text-button2-dark"
+            href="#"
+          >
+            <span>ورود یا ثبت نام</span>
+          </a> -->
+          <!-- if user login -->
+          <div>
+            <a
+              href="#"
+              class="flex items-center justify-between px-2 py-4 bg-text dark:bg-text-dark text-title dark:text-title-dark"
+            >
+              <span>رضاشهیدی</span>
+              <i class="fa fa-angle-left"></i>
+            </a>
+          </div>
+          <div class="py-4 px-3 w-full">
+            <span class="mt-4 text-sm text-button1 dark:text-button1-dark"
+              >دسترسی سریع</span
+            >
+            <a
+              href="#"
+              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
+            >
+              <span class="">دوره های من</span>
+              <i class="fa fa-angle-left"></i>
+            </a>
+            <a
+              href="#"
+              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
+            >
+              <span class="">تیکت های من</span>
+              <i class="fa fa-angle-left"></i>
+            </a>
+          </div>
+          <!-- if user login -->
+          <div class="py-4 px-3 w-full">
+            <span class="mt-4 text-sm text-button1 dark:text-button1-dark"
+              >دسته بندی ها</span
+            >
+            <a
+              href="#"
+              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
+            >
+              <span class="">بازار های مالی</span>
+              <i class="fa fa-angle-left"></i>
+            </a>
+            <a
+              href="#"
+              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
+            >
+              <span class="">بازار های مالی</span>
+              <i class="fa fa-angle-left"></i>
+            </a>
+            <a
+              href="#"
+              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
+            >
+              <span class="">بازار های مالی</span>
+              <i class="fa fa-angle-left"></i>
+            </a>
+            <a
+              href="#"
+              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
+            >
+              <span class="">بازار های مالی</span>
+              <i class="fa fa-angle-left"></i>
+            </a>
+            <a
+              href="#"
+              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
+            >
+              <span class="">بازار های مالی</span>
+              <i class="fa fa-angle-left"></i>
+            </a>
+          </div>
+          <div>
+            <div
+              class="flex items-center gap-x-3 p-2 mt-8 pt-8 border-t-2 border-gray-300 text-text dark:text-text-dark"
+            >
+              <i class="fa fa-moon cursor-pointer"></i>
+              <span class="cursor-pointer">تم تیره</span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="fixed right-[700px] w-full h-full top-0 z-50 backdrop-blur-xs duration-150"
+          id="close-modal-bars"
+        ></div>
       </nav>
 
       <!-- Finish Mobile navbar  -->
@@ -160,9 +255,25 @@
           <i
             class="fa fa-shopping-cart text-2xl p-4 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
           ></i>
-          <i
+          <!-- <i
             class="fa fa-user text-2xl p-4 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
-          ></i>
+          ></i> -->
+          <!-- if user not login -->
+          <a
+            href="#"
+            class="flex items-center p-2 rounded-sm cursor-pointer bg-button2 dark:bg-button2-dark"
+          >
+            <div class="">
+              <i class="fa fa-user text-2xl text-background"></i>
+            </div>
+            <div class="text-background flex items-center">
+              <span>ورود</span>
+              <span class="mr-1 pr-1 border-r-2 border-background"
+                >ثبت نام</span
+              >
+            </div>
+          </a>
+          <!-- if user not login -->
         </div>
       </nav>
     </header>
@@ -402,27 +513,40 @@
             </div>
             <div>
               <div
-                class="mt-8 dark:bg-gray-700 bg-gray-400 rounded-t-md flex items-center justify-between px-8 py-4"
+                class="mt-8 dark:bg-gray-700 bg-gray-400 rounded-md flex items-center justify-between px-8 py-4"
+                id="box-course-information"
               >
                 <span class="text-xl text-background dark:text-background-dark"
                   >معرفی دوره</span
                 >
                 <i
-                  class="text-background dark:text-background-dark text-2xl fa fa-angle-down"
+                  class="text-background dark:text-background-dark text-2xl fa fa-angle-up duration-300"
                 ></i>
               </div>
-              <a href="#" class="bg-text dark:bg-text-dark rounded-b-md flex items-center justify-between p-4">
-                <div class="flex items-center gap-x-4 text-title dark:text-title-dark">
-                  <div class="dark:bg-background-dark bg-background px-2 py-0.5 rounded-sm">
+              <a
+                href="#"
+                class="bg-text dark:bg-text-dark rounded-b-md flex items-center justify-between p-4 hidden"
+              >
+                <div
+                  class="flex items-center gap-x-4 text-title dark:text-title-dark"
+                >
+                  <div
+                    class="dark:bg-background-dark bg-background px-2 py-0.5 rounded-sm"
+                  >
                     <span class="">1</span>
                   </div>
-                  <span class="text-background dark:text-background-dark">معرفی دوره</span>
+                  <span class="text-background dark:text-background-dark"
+                    >معرفی دوره</span
+                  >
                 </div>
-                <div class="text-background dark:text-background-dark flex items-center gap-x-2">
+                <div
+                  class="text-background dark:text-background-dark flex items-center gap-x-2"
+                >
                   <span>6:00</span>
                   <i class="fa fa-play"></i>
                 </div>
               </a>
+
             </div>
           </div>
           <!-- Finish Course headings -->
@@ -518,5 +642,6 @@
     <!-- Finish Main -->
 
     <script src="vendor/fa/all.min.js"></script>
+    <script src="src/js/courses.js" type="module"></script>
   </body>
 </html>

@@ -1,53 +1,153 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" class="">
+<html lang="fa" dir="rtl" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="src/style/input.css" />
-    <link rel="stylesheet" href="src/style/output.css" />
-    <link rel="stylesheet" href="vendor/fa/all.min.css" />
-    <link rel="stylesheet" href="vendor/swiper/swiper-bundle.min.css" />
-    <link rel="icon" href="src/img/index/آرم شرکت تجارت_لب.png">
+    <link rel="stylesheet" href="./src/style/input.css" />
+    <link rel="stylesheet" href="./src/style/output.css" />
+    <link rel="stylesheet" href="./vendor/fa/all.min.css" />
+    <link rel="stylesheet" href="./vendor/swiper/swiper-bundle.min.css" />
+    <link rel="icon" href="./src/img/index/آرم شرکت تجارت_لب.png" />
     <title>آکادمی آموزشی TradeLab</title>
   </head>
-  <body class="bg-background dark:bg-background-dark h-[100rem]">
+  <body class="bg-background dark:bg-background-dark">
     <!-- Start header -->
 
     <header
-      class="relative bg-[linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('/src/img/index/backgroundheader.jpeg')] bg-cover bg-center bg-no-repeat h-[45rem]"
+      class="bg-[linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('/src/img/index/backgroundheader.jpeg')] bg-cover bg-center bg-no-repeat h-[45rem]"
     >
       <!-- Start Mobile navbar -->
 
-      <nav class="hidden max-md:block">
+      <nav class="container hidden max-md:block">
         <div class="container flex items-center justify-between px-6 mb-6">
-          <i class="fa fa-bars text-background text-3xl"></i>
+          <button id="open-modal-btn-bars">
+            <i class="fa fa-bars text-background text-3xl cursor-pointer" id="open-modal-btn-bars"></i>
+          </button>
           <img
             class="max-w-[20rem] h-[7rem]"
             src="src/img/index/آرم شرکت تجارت_لب.png"
             alt="logo"
           />
-          <i class="fa fa-shopping-cart text-background text-3xl"></i>
+          <i
+            class="fa fa-shopping-cart text-background text-3xl cursor-pointer"
+          ></i>
+        </div>
+        <div
+          class="fixed w-[270px] h-full flex flex-col top-0 z-50 bg-cart dark:bg-cart-dark overflow-y-auto right-[-270px] duration-300" id="modal-bars"
+        >
+          <!-- <a
+            class="text-xl block text-center py-4 w-full text-header dark:bg-header-dark bg-button2 dark:text-button2-dark"
+            href="#"
+          >
+            <span>ورود یا ثبت نام</span>
+          </a> -->
+          <!-- if user login -->
+          <div>
+            <a
+              href="#"
+              class="flex items-center justify-between px-2 py-4 bg-text dark:bg-text-dark text-title dark:text-title-dark"
+            >
+              <span>رضاشهیدی</span>
+              <i class="fa fa-angle-left"></i>
+            </a>
+          </div>
+          <div class="py-4 px-3 w-full">
+            <span class="mt-4 text-sm text-button1 dark:text-button1-dark"
+              >دسترسی سریع</span
+            >
+            <a
+              href="#"
+              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
+            >
+              <span class="">دوره های من</span>
+              <i class="fa fa-angle-left"></i>
+            </a>
+            <a
+              href="#"
+              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
+            >
+              <span class="">تیکت های من</span>
+              <i class="fa fa-angle-left"></i>
+            </a>
+          </div>
+          <!-- if user login -->
+          <div class="py-4 px-3 w-full">
+            <span class="mt-4 text-sm text-button1 dark:text-button1-dark"
+              >دسته بندی ها</span
+            >
+            <a
+              href="#"
+              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
+            >
+              <span class="">بازار های مالی</span>
+              <i class="fa fa-angle-left"></i>
+            </a>
+            <a
+              href="#"
+              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
+            >
+              <span class="">بازار های مالی</span>
+              <i class="fa fa-angle-left"></i>
+            </a>
+            <a
+              href="#"
+              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
+            >
+              <span class="">بازار های مالی</span>
+              <i class="fa fa-angle-left"></i>
+            </a>
+            <a
+              href="#"
+              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
+            >
+              <span class="">بازار های مالی</span>
+              <i class="fa fa-angle-left"></i>
+            </a>
+            <a
+              href="#"
+              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
+            >
+              <span class="">بازار های مالی</span>
+              <i class="fa fa-angle-left"></i>
+            </a>
+          </div>
+          <div>
+            <div
+              class="flex items-center gap-x-3 p-2 mt-8 pt-8 border-t-2 border-gray-300 text-text dark:text-text-dark"
+            >
+              <i class="fa fa-moon cursor-pointer"></i>
+              <span class="cursor-pointer">تم تیره</span>
+            </div>
+          </div>
+        </div>
+        <div class="fixed right-[700px] w-full h-full top-0 z-50 backdrop-blur-xs duration-150" id="close-modal-bars">
+
         </div>
       </nav>
 
       <!-- Finish Mobile navbar  -->
 
-      <nav class="flex items-center justify-between max-md:hidden">
-        <div class="flex items-center justify-center gap-x-4 max-lg:gap-x-2 z-20">
+      <nav class="container flex items-center justify-between max-md:hidden">
+        <div
+          class="flex items-center justify-center gap-x-4 max-lg:gap-x-2 z-20"
+        >
           <img
             src="src/img/index/آرم شرکت تجارت_لب.png"
             class="max-w-[7rem] max-h-[6rem]"
             alt="logo"
           />
           <ul class="flex items-center gap-x-4 max-lg:gap-x-2 max-lg:ml10">
-            <li class="relative group text-button2 dark:text-header hover:text-button2-dark dark:hover:text-header-dark duration-20">
+            <li
+              class="relative group text-button2 dark:text-header hover:text-button2-dark dark:hover:text-header-dark duration-20"
+            >
               <a
                 href="#"
                 class="flex items-center gap-x-2 after:-bottom-2 after:h-0.5 after:w-0 after:absolute group-hover:after:w-full after:bg-background dark:after:bg-text after:duration-500 max-lg:gap-x-0"
-                ><span>بازار های مالی</span
-                ><i
-                  class="fa fa-arrow-left group-hover:-rotate-90 duration-200"
-                ></i
+                ><span>بازار های مالی</span>
+                <div class="max-lg:hidden">
+                  <i
+                    class="fa fa-arrow-left group-hover:-rotate-90 duration-200"
+                  ></i></div
               ></a>
               <div
                 class="absolute right-0 top-6 duration-100 invisible group-hover:visible"
@@ -65,14 +165,17 @@
                 </div>
               </div>
             </li>
-            <li class="relative group text-button2 dark:text-header hover:text-button2-dark dark:hover:text-header-dark duration-200">
+            <li
+              class="relative group text-button2 dark:text-header hover:text-button2-dark dark:hover:text-header-dark duration-200"
+            >
               <a
                 href="#"
                 class="flex items-center gap-x-2 after:-bottom-2 after:bg-background dark:after:bg-text after:h-0.5 after:w-0 after:absolute group-hover:after:w-full after:duration-500 max-lg:gap-x-0"
-                ><span>تحلیل تکنیکال</span
-                ><i
-                  class="fa fa-arrow-left group-hover:-rotate-90 duration-200"
-                ></i
+                ><span>تحلیل تکنیکال</span>
+                <div class="max-lg:hidden">
+                  <i
+                    class="fa fa-arrow-left group-hover:-rotate-90 duration-200"
+                  ></i></div
               ></a>
               <div
                 class="absolute right-0 top-6 duration-100 invisible group-hover:visible"
@@ -87,14 +190,17 @@
                 </div>
               </div>
             </li>
-            <li class="relative group text-button2 dark:text-header hover:text-button2-dark dark:hover:text-header-dark duration-200">
+            <li
+              class="relative group text-button2 dark:text-header hover:text-button2-dark dark:hover:text-header-dark duration-200"
+            >
               <a
                 href="#"
                 class="flex items-center gap-x-2 after:bg-background dark:after:bg-text after:-bottom-2 after:h-0.5 after:w-0 after:absolute group-hover:after:w-full after:duration-500 max-lg:gap-x-0"
-                ><span>تحلیل فاندامنتال</span
-                ><i
-                  class="fa fa-arrow-left group-hover:-rotate-90 duration-200"
-                ></i
+                ><span>تحلیل فاندامنتال</span>
+                <div class="max-lg:hidden">
+                  <i
+                    class="fa fa-arrow-left group-hover:-rotate-90 duration-200"
+                  ></i></div
               ></a>
               <div
                 class="absolute right-0 top-6 duration-100 invisible group-hover:visible"
@@ -114,14 +220,17 @@
                 </div>
               </div>
             </li>
-            <li class="relative group text-button2 dark:text-header hover:text-button2-dark dark:hover:text-header-dark duration-200">
+            <li
+              class="relative group text-button2 dark:text-header hover:text-button2-dark dark:hover:text-header-dark duration-200"
+            >
               <a
                 href="#"
                 class="flex items-center gap-x-2 after:bg-background dark:after:bg-text after:-bottom-2 after:h-0.5 after:w-0 after:absolute group-hover:after:w-full after:duration-500 max-lg:gap-x-0"
-                ><span>ابزارها و پلتفرم‌ها</span
-                ><i
-                  class="fa fa-arrow-left group-hover:-rotate-90 duration-200"
-                ></i
+                ><span>ابزارها و پلتفرم‌ها</span>
+                <div class="max-lg:hidden">
+                  <i
+                    class="fa fa-arrow-left group-hover:-rotate-90 duration-200"
+                  ></i></div
               ></a>
               <div
                 class="absolute right-0 top-6 duration-100 invisible group-hover:visible"
@@ -143,19 +252,34 @@
             </li>
           </ul>
         </div>
-        <div class="flex items-center gap-x-6 ml-8 max-lg:gap-x-4">
-          <i class="fa fa-moon text-2xl text-background cursor-pointer"></i>
+        <div class="flex items-center gap-x-6 ml-8 max-lg:gap-x-2">
+          <i class="fa fa-moon text-xl text-background cursor-pointer"></i>
           <i
-            class="fa fa-shopping-cart text-2xl text-background cursor-pointer"
+            class="fa fa-shopping-cart text-xl text-background cursor-pointer"
           ></i>
-          <i class="fa fa-user text-2xl text-background cursor-pointer"></i>
+          <!-- <i class="fa fa-user text-2xl text-background cursor-pointer"></i> -->
+          <!-- if user not login -->
+          <a
+            href="#"
+            class="flex items-center p-2 rounded-sm cursor-pointer bg-button1 dark:bg-button1-dark"
+          >
+            <div class="">
+              <i class="fa fa-user text-xl text-background"></i>
+            </div>
+            <div class="text-background flex items-center">
+              <span>ورود</span>
+              <span class="mr-1 pr-1 border-r-2 border-background"
+                >ثبت نام</span
+              >
+            </div>
+          </a>
+          <!-- if user not login -->
         </div>
       </nav>
       <div class="container mt-16">
         <h1
-          class="text-center text-background dark:text-text-dark text-4xl max-sm:text-[26px]"
+          class="text-center text-background dark:text-text-dark text-4xl max-sm:text-[26px]" id="title"
         >
-          آماده برای یادگیری ترید از صفر هستی؟
         </h1>
         <h2
           class="text-center text-background dark:text-text-dark text-2xl mt-8 max-sm:text-2xl"
@@ -178,7 +302,7 @@
         </div>
       </div>
       <div
-        class="flex items-center justify-center gap-x-50 mt-10 max-md:gap-x-24 max-sm:gap-x-10 max-2sm:ml-0 max-2sm:gap-x-16"
+        class="container flex items-center justify-center gap-x-50 mt-10 max-md:gap-x-24 max-sm:gap-x-10 max-2sm:ml-0 max-2sm:gap-x-16"
       >
         <div class="flex flex-col items-center justify-center">
           <img
@@ -187,16 +311,22 @@
             alt="clock"
           />
           <span class="text-background font-bold">1000</span>
-          <span class="text-background font-bold max-2sm:text-sm">ساعت آموزش</span>
+          <span class="text-background font-bold max-2sm:text-sm"
+            >ساعت آموزش</span
+          >
         </div>
-        <div class="flex flex-col items-center justify-center max-sm:ml-6 max-2sm:ml-0">
+        <div
+          class="flex flex-col items-center justify-center max-sm:ml-6 max-2sm:ml-0"
+        >
           <img
             class="max-sm:size-10"
             src="src/img/index/book-min.webp"
             alt="clock"
           />
           <span class="text-background font-bold">1000</span>
-          <span class="text-background font-bold max-2sm:text-sm">دوره آموزشی</span>
+          <span class="text-background font-bold max-2sm:text-sm"
+            >دوره آموزشی</span
+          >
         </div>
         <div class="flex flex-col items-center justify-center">
           <img
@@ -231,7 +361,7 @@
             </h3>
             <a href="#">
               <button
-                class="flex items-center gap-x-2 max-sm:gap-x-0.5 px-4 max-sm:px-1 max-sm:py-1 py-2 cursor-pointer text-text dark:text-text-dark border-2 bg-button1 dark:bg-button1-dark border-button1 dark:border-button1-dark rounded-lg"
+                class="flex items-center gap-x-2 max-sm:gap-x-0.5 px-4 max-sm:px-1 max-sm:py-1 py-2 cursor-pointer text-background border-2 bg-button1 dark:bg-button1-dark border-button1 dark:border-button1-dark rounded-lg"
               >
                 <span class="max-sm:text-[0.8rem]">همه دوره ها</span>
                 <i
@@ -250,7 +380,12 @@
                 <div
                   class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
                 >
-                  <a href="#"><img class="rounded-md mt-2" src="src/img/index/forex.png" alt="cover" /></a>
+                  <a href="#"
+                    ><img
+                      class="rounded-md mt-2"
+                      src="src/img/index/forex.png"
+                      alt="cover"
+                  /></a>
                   <a
                     class="text-lg text-title dark:text-title-dark max-md:text-2xl"
                     href="#"
@@ -303,7 +438,12 @@
                 <div
                   class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
                 >
-                  <a href="#"><img class="rounded-md mt-2" src="src/img/index/forex.png" alt="cover" /></a>
+                  <a href="#"
+                    ><img
+                      class="rounded-md mt-2"
+                      src="src/img/index/forex.png"
+                      alt="cover"
+                  /></a>
                   <a
                     class="text-lg text-title dark:text-title-dark max-md:text-2xl"
                     href="#"
@@ -356,7 +496,12 @@
                 <div
                   class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
                 >
-                  <a href="#"><img class="rounded-md mt-2" src="src/img/index/forex.png" alt="cover" /></a>
+                  <a href="#"
+                    ><img
+                      class="rounded-md mt-2"
+                      src="src/img/index/forex.png"
+                      alt="cover"
+                  /></a>
                   <a
                     class="text-lg text-title dark:text-title-dark max-md:text-2xl"
                     href="#"
@@ -409,7 +554,12 @@
                 <div
                   class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
                 >
-                  <a href="#"><img class="rounded-md mt-2" src="src/img/index/forex.png" alt="cover" /></a>
+                  <a href="#"
+                    ><img
+                      class="rounded-md mt-2"
+                      src="src/img/index/forex.png"
+                      alt="cover"
+                  /></a>
                   <a
                     class="text-lg text-title dark:text-title-dark max-md:text-2xl"
                     href="#"
@@ -462,7 +612,12 @@
                 <div
                   class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
                 >
-                  <a href="#"><img class="rounded-md mt-2" src="src/img/index/forex.png" alt="cover" /></a>
+                  <a href="#"
+                    ><img
+                      class="rounded-md mt-2"
+                      src="src/img/index/forex.png"
+                      alt="cover"
+                  /></a>
                   <a
                     class="text-lg text-title dark:text-title-dark max-md:text-2xl"
                     href="#"
@@ -600,7 +755,12 @@
                 <div
                   class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
                 >
-                  <a href="#"><img class="rounded-md mt-2" src="src/img/index/forex.png" alt="cover" /></a>
+                  <a href="#"
+                    ><img
+                      class="rounded-md mt-2"
+                      src="src/img/index/forex.png"
+                      alt="cover"
+                  /></a>
                   <a
                     class="text-lg text-title dark:text-title-dark max-md:text-2xl"
                     href="#"
@@ -653,7 +813,12 @@
                 <div
                   class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
                 >
-                  <a href="#"><img class="rounded-md mt-2" src="src/img/index/forex.png" alt="cover" /></a>
+                  <a href="#"
+                    ><img
+                      class="rounded-md mt-2"
+                      src="src/img/index/forex.png"
+                      alt="cover"
+                  /></a>
                   <a
                     class="text-lg text-title dark:text-title-dark max-md:text-2xl"
                     href="#"
@@ -706,7 +871,12 @@
                 <div
                   class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
                 >
-                  <a href="#"><img class="rounded-md mt-2" src="src/img/index/forex.png" alt="cover" /></a>
+                  <a href="#"
+                    ><img
+                      class="rounded-md mt-2"
+                      src="src/img/index/forex.png"
+                      alt="cover"
+                  /></a>
                   <a
                     class="text-lg text-title dark:text-title-dark max-md:text-2xl"
                     href="#"
@@ -759,7 +929,12 @@
                 <div
                   class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
                 >
-                  <a href="#"><img class="rounded-md mt-2" src="src/img/index/forex.png" alt="cover" /></a>
+                  <a href="#"
+                    ><img
+                      class="rounded-md mt-2"
+                      src="src/img/index/forex.png"
+                      alt="cover"
+                  /></a>
                   <a
                     class="text-lg text-title dark:text-title-dark max-md:text-2xl"
                     href="#"
@@ -812,7 +987,12 @@
                 <div
                   class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
                 >
-                  <a href="#"><img class="rounded-md mt-2" src="src/img/index/forex.png" alt="cover" /></a>
+                  <a href="#"
+                    ><img
+                      class="rounded-md mt-2"
+                      src="src/img/index/forex.png"
+                      alt="cover"
+                  /></a>
                   <a
                     class="text-lg text-title dark:text-title-dark max-md:text-2xl"
                     href="#"
@@ -886,12 +1066,10 @@
             </h3>
             <a href="#">
               <button
-                class="flex items-center gap-x-2 max-sm:gap-x-0.5 px-4 max-sm:px-1 max-sm:py-1 py-2 cursor-pointer text-text dark:text-text-dark border-2 bg-button1 dark:bg-button1-dark border-button1 dark:border-button1-dark rounded-lg"
+                class="flex items-center gap-x-2 max-sm:gap-x-0.5 px-4 max-sm:px-1 max-sm:py-1 py-2 cursor-pointer text-background border-2 bg-button1 dark:bg-button1-dark border-button1 dark:border-button1-dark rounded-lg"
               >
                 <span class="max-sm:text-sm">اولین قدم</span>
-                <i
-                  class="fa fa-arrow-left rotate-[22deg] max-sm:text-sm"
-                ></i>
+                <i class="fa fa-arrow-left rotate-[22deg] max-sm:text-sm"></i>
               </button>
             </a>
           </div>
@@ -989,7 +1167,7 @@
               </h3>
               <a href="#">
                 <button
-                  class="flex items-center gap-x-2 max-sm:gap-x-0.5 px-4 max-sm:px-1 max-sm:py-1 py-2 cursor-pointer text-text dark:text-text-dark border-2 bg-button1 dark:bg-button1-dark border-button1 dark:border-button1-dark rounded-lg"
+                  class="flex items-center gap-x-2 max-sm:gap-x-0.5 px-4 max-sm:px-1 max-sm:py-1 py-2 cursor-pointer text-background border-2 bg-button1 dark:bg-button1-dark border-button1 dark:border-button1-dark rounded-lg"
                 >
                   <span class="max-sm:text-[0.8rem]">همه دوره ها</span>
                   <i
@@ -1008,7 +1186,12 @@
               <div
                 class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
               >
-                <a href="#"><img class="rounded-md mt-2" src="src/img/index/forex.png" alt="cover" /></a>
+                <a href="#"
+                  ><img
+                    class="rounded-md mt-2"
+                    src="src/img/index/forex.png"
+                    alt="cover"
+                /></a>
                 <a
                   class="text-lg text-title dark:text-title-dark max-md:text-2xl"
                   href="#"
@@ -1061,7 +1244,12 @@
               <div
                 class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
               >
-                <a href="#"><img class="rounded-md mt-2" src="src/img/index/forex.png" alt="cover" /></a>
+                <a href="#"
+                  ><img
+                    class="rounded-md mt-2"
+                    src="src/img/index/forex.png"
+                    alt="cover"
+                /></a>
                 <a
                   class="text-lg text-title dark:text-title-dark max-md:text-2xl"
                   href="#"
@@ -1114,7 +1302,12 @@
               <div
                 class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
               >
-                <a href="#"><img class="rounded-md mt-2" src="src/img/index/forex.png" alt="cover" /></a>
+                <a href="#"
+                  ><img
+                    class="rounded-md mt-2"
+                    src="src/img/index/forex.png"
+                    alt="cover"
+                /></a>
                 <a
                   class="text-lg text-title dark:text-title-dark max-md:text-2xl"
                   href="#"
@@ -1167,7 +1360,12 @@
               <div
                 class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
               >
-                <a href="#"><img class="rounded-md mt-2" src="src/img/index/forex.png" alt="cover" /></a>
+                <a href="#"
+                  ><img
+                    class="rounded-md mt-2"
+                    src="src/img/index/forex.png"
+                    alt="cover"
+                /></a>
                 <a
                   class="text-lg text-title dark:text-title-dark max-md:text-2xl"
                   href="#"
@@ -1220,7 +1418,12 @@
               <div
                 class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
               >
-                <a href="#"><img class="rounded-md mt-2" src="src/img/index/forex.png" alt="cover" /></a>
+                <a href="#"
+                  ><img
+                    class="rounded-md mt-2"
+                    src="src/img/index/forex.png"
+                    alt="cover"
+                /></a>
                 <a
                   class="text-lg text-title dark:text-title-dark max-md:text-2xl"
                   href="#"
@@ -1286,36 +1489,55 @@
     <!-- Start Footer -->
 
     <footer class="bg-cart dark:bg-cart-dark mt-32">
-      <section class="flex items-center justify-between max-2sm:flex-col max-2sm:items-start">
+      <section
+        class="flex items-center justify-between max-2sm:flex-col max-2sm:items-start"
+      >
         <div class="mb-12 max-2sm:mb-4">
           <img
             class="w-40 h-32 -mr"
             src="src/img/index/آرم شرکت تجارت_لب.png"
             alt="logo"
           />
-          <div class="mr-8 flex items-center gap-x-8 max-sm:flex-col max-sm:items-start text-text dark:text-text-dark">
+          <div
+            class="mr-8 flex items-center gap-x-8 max-sm:flex-col max-sm:items-start text-text dark:text-text-dark"
+          >
             <div>
-              <a  class="hover:text-button2 dark:hover:text-header-dark duration-200" href="#">
+              <a
+                class="hover:text-button2 dark:hover:text-header-dark duration-200"
+                href="#"
+              >
                 <i class="fab fa-telegram"></i>
                 <span dir="ltr">@Rezashaidi0</span>
               </a>
             </div>
             <div>
-              <a  class="hover:text-button2 dark:hover:text-header-dark duration-200" href="#">
-                <i class="fab fa-google"></i>
+              <a
+                class="hover:text-button2 dark:hover:text-header-dark duration-200"
+                href="#"
+              >
+                <i class="fa fa-envelope"></i>
                 <span class="text-sm">rezashahidi861217@gmail.com</span>
               </a>
             </div>
           </div>
         </div>
         <div class="flex items-center gap-x-4 ml-8 max-2sm:ml-0 max-2sm:mr-8">
-          <a class="p-2 rounded-full duration-200 bg-text dark:bg-text-dark hover:bg-button2 dark:hover:bg-header-dark" href="#">
+          <a
+            class="p-2 rounded-full duration-200 bg-text dark:bg-text-dark hover:bg-button2 dark:hover:bg-header-dark"
+            href="#"
+          >
             <i class="fab fa-github text-3xl text-background"></i>
           </a>
-          <a class="p-2 rounded-full duration-200 bg-text dark:bg-text-dark hover:bg-button2 dark:hover:bg-header-dark" href="#">
+          <a
+            class="p-2 rounded-full duration-200 bg-text dark:bg-text-dark hover:bg-button2 dark:hover:bg-header-dark"
+            href="#"
+          >
             <i class="fab fa-instagram text-3xl text-background"></i>
           </a>
-          <a class="p-2 rounded-full duration-200 bg-text dark:bg-text-dark hover:bg-button2 dark:hover:bg-header-dark" href="#">
+          <a
+            class="p-2 rounded-full duration-200 bg-text dark:bg-text-dark hover:bg-button2 dark:hover:bg-header-dark"
+            href="#"
+          >
             <i class="fab fa-telegram text-3xl text-background"></i>
           </a>
         </div>
@@ -1324,8 +1546,8 @@
 
     <!-- Finish Footer -->
 
-    <script src="vendor/fa/all.min.js"></script>
-    <script src="vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="src/js/index.js"></script>
+    <script src="./vendor/fa/all.min.js"></script>
+    <script src="./vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="./src/js/index.js" type="module"></script>
   </body>
 </html>
