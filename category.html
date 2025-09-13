@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" class="dark">
+<html lang="fa" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,10 +18,9 @@
       <nav class="hidden max-lg:block">
         <div class="container flex items-center justify-between px-6 mb-6">
           <button id="open-modal-btn-bars">
-          <i
-            class="fa fa-bars text-3xl p-4 px-[1.2rem] max-2sm:p-2 max-2sm:px-[0.7rem] rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
-            
-          ></i>
+            <i
+              class="fa fa-bars text-3xl p-4 px-[1.2rem] max-2sm:p-2 max-2sm:px-[0.7rem] rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
+            ></i>
           </button>
 
           <img
@@ -787,6 +786,20 @@
     </footer>
 
     <!-- Finish Footer -->
+
+    <!-- toast box -->
+    <div
+      class="fixed top-10 left-20 flex items-center gap-x-4 bg-background dark:bg-background-dark p-6 rounded-md z-50 after:absolute after:w-[100%] after:h-1 after:bg-button1 after:bottom-0 after:right-0 duration-300"
+    >
+      <div>
+        <i class="fa fa-check-circle text-4xl text-button1"></i>
+        <!-- <i class="fa fa-close text-4xl text-red-600"></i> -->
+      </div>
+      <div class="text-title dark:text-title-dark">
+        <span>عملیات با موفقیت انجام شد</span>
+      </div>
+    </div>
+    <!-- toast box -->
 
     <script src="vendor/fa/all.min.js"></script>
     <script src="src/js/category.js" type="module"></script>

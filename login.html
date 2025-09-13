@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/style/input.css" />
+    <link rel="stylesheet" href="src/style/output.css" />
+    <link rel="stylesheet" href="vendor/fa/all.min.css" />
+    <link rel="icon" href="src/img/index/آرم شرکت تجارت_لب.png" />
+    <title>Document</title>
+  </head>
+  <body
+    class="flex items-center justify-center flex-col bg-cart dark:bg-cart-dark"
+  >
+    <img
+      class="w-96 absolute top-0 max-2sm:w-60 max-2sm:top-10 select-none"
+      src="src/img/index/آرم شرکت تجارت_لب.png"
+      alt="logo"
+    />
+    <form
+      action="#"
+      class="bg-background dark:bg-background-dark flex flex-col items-center justify-center mt-48 py-6 px-8 rounded-md max-2sm:px-4"
+    >
+      <span class="text-title dark:text-title-dark text-2xl font-bold"
+        >ورود با ایمیل</span
+      >
+      <span class="text-text dark:text-text-dark mt-4"
+        >حساب کاربری ندارید؟
+        <a
+          href="./singup.html"
+          class="text-button1 dark:text-button1-dark text-sm"
+        >
+          ثبت نام کنید</a
+        ></span
+      >
+      <div
+        class="flex items-center justify-between bg-cart dark:bg-cart-dark px-2 py-1 rounded-sm w-68 mt-6 text-text dark:text-text-dark"
+      >
+        <input
+          class="border-none outline-none w-full p-2 text-sm"
+          type="email"
+          placeholder="آدرس ایمیل"
+          required
+        />
+        <i class="fa fa-envelope p-2"></i>
+      </div>
+      <div
+        class="flex items-center justify-between bg-cart dark:bg-cart-dark px-2 py-1 rounded-sm w-68 mt-6 text-text dark:text-text-dark"
+      >
+        <input
+          class="border-none outline-none w-full p-2 text-sm"
+          type="email"
+          placeholder="رمز عبور"
+          required
+        />
+        <i class="fa fa-lock p-2"></i>
+      </div>
+      <button
+        class="mt-6 px-4 py-2 rounded-md bg-button1 dark:bg-button1-dark w-68 text-background"
+        type="submit"
+      >
+        ورود
+      </button>
+    </form>
+    <p class="text-text dark:text-text-dark text-sm max-w-96 text-center mt-4">
+      با عضویت در سایت، تمامی قوانین و شرایط استفاده از خدمات
+      <a href="#" class="text-button1 dark:text-button1-dark">Tradelab</a> را
+      پذیرفته اید.
+    </p>
+    <!-- toast box -->
+    <div
+      class="fixed top-10 left-20 flex items-center gap-x-4 bg-background dark:bg-background-dark p-6 rounded-md z-50 after:absolute after:w-[100%] after:h-1 after:bg-button1 after:bottom-0 after:right-0 duration-300"
+    >
+      <div>
+        <i class="fa fa-check-circle text-4xl text-button1"></i>
+        <!-- <i class="fa fa-close text-4xl text-red-600"></i> -->
+      </div>
+      <div class="text-title dark:text-title-dark">
+        <span>عملیات با موفقیت انجام شد</span>
+      </div>
+    </div>
+    <!-- toast box -->
+    <script src="vendor/fa/all.min.js"></script>
+  </body>
+</html>
