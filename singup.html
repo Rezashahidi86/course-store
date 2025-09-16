@@ -39,9 +39,10 @@
       >
         <input
           class="border-none outline-none w-full p-2 text-sm"
-          type="email"
-          placeholder="نام کاربری"
+          type="text"
+          placeholder="نام نام خانوادگی"
           required
+          id="input-name"
         />
         <i class="fa fa-user p-2"></i>
       </div>
@@ -50,9 +51,22 @@
       >
         <input
           class="border-none outline-none w-full p-2 text-sm"
-          type="email"
+          type="text"
+          placeholder="نام کاربری"
+          required
+          id="input-user-name"
+        />
+        <i class="fa fa-user p-2"></i>
+      </div>
+      <div
+        class="flex items-center justify-between bg-cart dark:bg-cart-dark px-2 py-1 rounded-sm w-68 mt-6 text-text dark:text-text-dark"
+      >
+        <input
+          class="border-none outline-none w-full p-2 text-sm"
+          type="number"
           placeholder="شماره موبایل"
           required
+          id="input-phone-number"
         />
         <i class="fa fa-phone p-2"></i>
       </div>
@@ -64,6 +78,7 @@
           type="email"
           placeholder="آدرس ایمیل"
           required
+          id="input-email"
         />
         <i class="fa fa-envelope p-2"></i>
       </div>
@@ -72,15 +87,17 @@
       >
         <input
           class="border-none outline-none w-full p-2 text-sm"
-          type="email"
+          type="password"
           placeholder="رمز عبور"
           required
+          id="input-password"
         />
         <i class="fa fa-lock p-2"></i>
       </div>
       <button
         class="mt-6 px-4 py-2 rounded-md bg-button1 dark:bg-button1-dark w-68 text-background"
         type="submit"
+        id="register-btn"
       >
         ورود
       </button>
@@ -92,18 +109,21 @@
     </p>
     <!-- toast box -->
     <div
-      class="fixed top-10 left-20 flex items-center gap-x-4 bg-background dark:bg-background-dark p-6 rounded-md z-50 after:absolute after:w-[100%] after:h-1 after:bg-button1 after:bottom-0 after:right-0 duration-300"
+      class="fixed top-10 -left-96 flex items-center gap-x-4 bg-background dark:bg-background-dark p-6 rounded-md z-50 after:absolute after:w-[100%] after:h-1 after:bg-button1 after:bottom-0 after:right-0 duration-300"
+      id="toast-box"
     >
-      <div>
+      <div id="toast-icon">
         <i class="fa fa-check-circle text-4xl text-button1"></i>
         <!-- <i class="fa fa-close text-4xl text-red-600"></i> -->
       </div>
       <div class="text-title dark:text-title-dark">
-        <span>عملیات با موفقیت انجام شد</span>
+        <span id="toast-title">عملیات با موفقیت انجام شد</span>
       </div>
     </div>
     <!-- toast box -->
 
     <script src="vendor/fa/all.min.js"></script>
+    <script src="vendor/sweetaler/sweetalert2@11.js"></script>
+    <script src="./src/js/singup.js"></script>
   </body>
 </html>

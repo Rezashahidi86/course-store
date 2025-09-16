@@ -33,6 +33,14 @@ helper.closeModalBars.addEventListener("click", helper.modalBarsHandeler);
 openModalBtnBars.addEventListener("click", helper.modalBarsHandeler);
 window.addEventListener("load", typeWriteTitle);
 
+
+
+
+
+
+
+new WOW().init()
+
 const swiperLastCourses = new Swiper(".swiper-last-courses", {
   loop: true,
   spaceBetween: 20,

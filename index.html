@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" class="">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./src/style/output.css" />
     <link rel="stylesheet" href="./vendor/fa/all.min.css" />
     <link rel="stylesheet" href="./vendor/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./vendor/wow/animate.min.css" />
     <link rel="icon" href="./src/img/index/آرم شرکت تجارت_لب.png" />
     <title>آکادمی آموزشی TradeLab</title>
   </head>
@@ -353,7 +354,7 @@
       <!-- Start Last Courses -->
 
       <section>
-        <div>
+        <div class="wow animate__animated animate__fadeInUp">
           <span
             class="relative after:absolute after:right-0 after:bottom-0 after:w-full after:h-4 after:-z-10 after:bg-shadow dark:after:bg-shadow-dark text-xl text-text dark:text-text-dark max-sm:text-[0.8rem]"
             >آخرین دوره ها</span
@@ -377,7 +378,7 @@
           </div>
         </div>
         <div>
-          <div class="swiper-last-courses swiper !pb-12 mt-8 cursor-grab">
+          <div class="swiper-last-courses swiper wow animate__animated animate__fadeInUp !pb-12 mt-8 cursor-grab">
             <div class="swiper-wrapper">
               <div
                 class="swiper-slide shadow-md shadow-cart dark:shadow-cart-dark"
@@ -738,7 +739,7 @@
       <!-- Start popular courses -->
 
       <section>
-        <div>
+        <div class="wow animate__animated animate__fadeInUp">
           <div class="swiper-popular-courses swiper !pb-12 !pt-20 -mt-10">
             <div class="mt-28">
               <div class="relative block text-center">
@@ -1158,7 +1159,7 @@
       <!-- Start Free Courses -->
 
       <section>
-        <div class="mt-32">
+        <div class="mt-32 wow animate__animated animate__fadeInUp">
           <div>
             <span
               class="relative after:absolute after:right-0 after:bottom-0 after:w-full after:h-4 after:-z-10 after:bg-shadow dark:after:bg-shadow-dark text-xl text-text dark:text-text-dark max-sm:text-[0.8rem]"
@@ -1184,7 +1185,7 @@
           </div>
         </div>
         <div class="swiper-free-courses swiper mt-8 !pb-12 !px-[30px]">
-          <div class="swiper-wrapper">
+          <div class="swiper-wrapper wow animate__animated animate__fadeInUp">
             <div
               class="swiper-slide shadow-md shadow-cart dark:shadow-cart-dark"
             >
@@ -1553,7 +1554,7 @@
 
     <!-- toast box -->
     <div
-      class="fixed top-10 left-20 flex items-center gap-x-4 bg-background dark:bg-background-dark p-6 rounded-md z-50 after:absolute after:w-[100%] after:h-1 after:bg-button1 after:bottom-0 after:right-0 duration-300"
+      class="hidden fixed top-10 left-20 flex items-center gap-x-4 bg-background dark:bg-background-dark p-6 rounded-md z-50 after:absolute after:w-[100%] after:h-1 after:bg-button1 after:bottom-0 after:right-0 duration-300"
     >
       <div>
         <i class="fa fa-check-circle text-4xl text-button1"></i>
@@ -1567,6 +1568,7 @@
 
     <script src="./vendor/fa/all.min.js"></script>
     <script src="./vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="./vendor/wow/wow.min.js"></script>
     <script src="./src/js/index.js" type="module"></script>
   </body>
 </html>
