@@ -1,3 +1,5 @@
+import * as helper from "./helper.js";
+
 const likeArrayInputs = document.querySelectorAll("input");
 const inputUserName = document.querySelector("#input-user-name");
 const inputName = document.querySelector("#input-name");
@@ -5,9 +7,6 @@ const inputPhoneNumber = document.querySelector("#input-phone-number");
 const inputEmail = document.querySelector("#input-email");
 const inputPassword = document.querySelector("#input-password");
 const registerBtn = document.querySelector("#register-btn");
-const toastBox = document.querySelector("#toast-box");
-const toastIcon = document.querySelector("#toast-icon");
-const toastTitle = document.querySelector("#toast-title");
 const baseUrl = "http://localhost:4000/v1";
 
 const checkInputRegister = (event) => {
@@ -34,8 +33,8 @@ const checkInputRegister = (event) => {
       "reject",
       "password"
     );
-  }else{
-    registerUser(event)
+  } else {
+    registerUser(event);
   }
 };
 
@@ -63,57 +62,26 @@ const registerUser = async (event) => {
   });
   if (response.status === 201) {
     showToastBoxAndEmtyeInput("ثبت نام موفقیت آمیز بود", "successful");
+    setTimeout(() => {
+      location.replace("http://127.0.0.1:5500/index.html?#");
+    }, 3000);
   } else if (response.status === 409) {
     showToastBoxAndEmtyeInput("نام کاربری یا ایمیل از قبل وجود دارد");
   }
+  const responseParse = await response.json()
+  const accessToken = responseParse.accessToken
+  helper.setInToLocalStorage("token",accessToken)
 };
 
 const showToastBoxAndEmtyeInput = (title, status, boxEmtye = true) => {
-  if (status === "successful") {
-    toastIcon.innerHTML = "";
-    toastTitle.innerHTML = "";
-    toastBox.classList.add("after:bg-button1");
-    toastBox.classList.remove("after:bg-red-600");
-    toastTitle.innerHTML = title;
-    toastIcon.insertAdjacentHTML(
-      "beforeend",
-      `
-        <i class="fa fa-check-circle text-4xl text-button1"></i>
-        `
-    );
-    toastBox.classList.remove("-left-96");
-    toastBox.classList.add("left-0");
-    setTimeout(() => {
-      toastBox.classList.add("-left-96");
-      toastBox.classList.remove("left-0");
-      location.replace("http://127.0.0.1:5500/index.html?#");
-    }, 2000);
-  } else {
-    if (boxEmtye === "userName") {
-      inputUserName.value = "";
-    } else if (boxEmtye === "password") {
-      inputPassword.value = "";
-    } else if (boxEmtye === "phone") {
-      inputPhoneNumber.value = "";
-    }
-    toastIcon.innerHTML = "";
-    toastTitle.innerHTML = "";
-    toastBox.classList.remove("after:bg-button1");
-    toastBox.classList.add("after:bg-red-600");
-    toastTitle.innerHTML = title;
-    toastIcon.insertAdjacentHTML(
-      "beforeend",
-      `
-        <i class="fa fa-close text-4xl text-red-600"></i>
-        `
-    );
-    toastBox.classList.remove("-left-96");
-    toastBox.classList.add("left-0");
-    setTimeout(() => {
-      toastBox.classList.add("-left-96");
-      toastBox.classList.remove("left-0");
-    }, 3000);
+  if (boxEmtye === "userName") {
+    inputUserName.value = "";
+  } else if (boxEmtye === "password") {
+    inputPassword.value = "";
+  } else if (boxEmtye === "phone") {
+    inputPhoneNumber.value = "";
   }
+  helper.showToastBox(title, status);
 };
 
 registerBtn.addEventListener("click", checkInputRegister);
