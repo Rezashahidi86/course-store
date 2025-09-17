@@ -1,4 +1,4 @@
-import * as helper from "./helper.js";
+import { setInToLocalStorage, showToastBox } from "./helper.js";
 
 const likeArrayInputs = document.querySelectorAll("input");
 const inputUserName = document.querySelector("#input-user-name");
@@ -68,9 +68,9 @@ const registerUser = async (event) => {
   } else if (response.status === 409) {
     showToastBoxAndEmtyeInput("نام کاربری یا ایمیل از قبل وجود دارد");
   }
-  const responseParse = await response.json()
-  const accessToken = responseParse.accessToken
-  helper.setInToLocalStorage("token",accessToken)
+  const responseParse = await response.json();
+  const accessToken = responseParse.accessToken;
+  setInToLocalStorage("token", accessToken);
 };
 
 const showToastBoxAndEmtyeInput = (title, status, boxEmtye = true) => {
@@ -81,7 +81,7 @@ const showToastBoxAndEmtyeInput = (title, status, boxEmtye = true) => {
   } else if (boxEmtye === "phone") {
     inputPhoneNumber.value = "";
   }
-  helper.showToastBox(title, status);
+  showToastBox(title, status);
 };
 
 registerBtn.addEventListener("click", checkInputRegister);

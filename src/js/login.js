@@ -1,4 +1,4 @@
-import * as helper from "./helper.js";
+import { showToastBox, setInToLocalStorage } from "./helper.js";
 const likeArrayInputs = document.querySelectorAll("input");
 const userNameInput = document.querySelector("#user-name");
 const passwordInput = document.querySelector("#password");
@@ -28,12 +28,12 @@ const loginUserHandler = async (event) => {
       body: JSON.stringify(userInfo),
     });
     if (response.status === 200) {
-      helper.showToastBox("اطلاعات شما با موفقیت دریافت شد", "successful");
+      showToastBox("اطلاعات شما با موفقیت دریافت شد", "successful");
       const responseParse = await response.json();
       const accessToken = responseParse.accessToken;
-      helper.setInToLocalStorage("token", accessToken);
+      setInToLocalStorage("token", accessToken);
     } else if (response.status === 401) {
-      helper.showToastBox("کاربری یافت نشد", "reject");
+      showToastBox("کاربری یافت نشد", "reject");
     }
   }
 };

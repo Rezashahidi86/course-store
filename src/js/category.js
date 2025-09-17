@@ -1,5 +1,14 @@
-import * as helper from "./helper.js"
+import {
+  closeModalBars,
+  modalBarsHandeler,
+  showModalInfoAccount,
+  backModalInfoAccount,
+  hideModalInfoAccount,
+   modalInfoAccountBtn,
+} from "./helper.js";
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
 
-helper.closeModalBars.addEventListener("click", helper.modalBarsHandeler);
-openModalBtnBars.addEventListener("click", helper.modalBarsHandeler);
+closeModalBars.addEventListener("click", modalBarsHandeler);
+openModalBtnBars.addEventListener("click", modalBarsHandeler);
+modalInfoAccountBtn.addEventListener("click", showModalInfoAccount);
+backModalInfoAccount.addEventListener("click", hideModalInfoAccount);

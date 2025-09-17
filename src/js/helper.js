@@ -1,32 +1,36 @@
-export const modalBars = document.querySelector("#modal-bars");
-export const closeModalBars = document.querySelector("#close-modal-bars");
+const modalBars = document.querySelector("#modal-bars");
+const closeModalBars = document.querySelector("#close-modal-bars");
 const toastBox = document.querySelector("#toast-box");
 const toastIcon = document.querySelector("#toast-icon");
 const toastTitle = document.querySelector("#toast-title");
+const moadlInfoAccount = document.querySelector("#moadl-info-account");
+const backModalInfoAccount = document.querySelector("#back-modal-info-account");
+const modalInfoAccountBtn = document.querySelector("#modal-info-account-btn");
+const themeChangeBtns = document.querySelectorAll(".theme-change");
 
-export const setInToLocalStorage = (key, value) => {
+const setInToLocalStorage = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
 
-export const getFromLocalStorage = (key) => {
-  return JSON.parse(localStorage.getItem(key))
+const getFromLocalStorage = (key) => {
+  return JSON.parse(localStorage.getItem(key));
 };
 
-export const modalBarsHandeler = () => {
+const modalBarsHandeler = () => {
   if (modalBars.className.includes("right-0")) {
     modalBars.classList.remove("right-0");
     modalBars.classList.add("right-[-270px]");
     closeModalBars.classList.remove("right-[270px]");
-    closeModalBars.classList.add("right-[700px]");
+    closeModalBars.classList.add("right-[1000px]");
   } else {
     modalBars.classList.add("right-0");
     modalBars.classList.remove("right-[-270px]");
     closeModalBars.classList.add("right-[270px]");
-    closeModalBars.classList.remove("right-[700px]");
+    closeModalBars.classList.remove("right-[1000px]");
   }
 };
 
-export const showToastBox = (title, status) => {
+const showToastBox = (title, status) => {
   toastIcon.innerHTML = "";
   toastTitle.innerHTML = "";
   if (status === "successful") {
@@ -62,4 +66,70 @@ export const showToastBox = (title, status) => {
       toastBox.classList.remove("left-0");
     }, 3000);
   }
+};
+
+const showModalInfoAccount = () => {
+  moadlInfoAccount.classList.remove("hidden");
+  backModalInfoAccount.classList.remove("hidden");
+};
+
+const hideModalInfoAccount = () => {
+  moadlInfoAccount.classList.add("hidden");
+  backModalInfoAccount.classList.add("hidden");
+};
+
+const iconThemeChange = (iconElemNavbar, iconElemBars) => {
+  themeChangeBtns[1].insertAdjacentHTML("beforeend", iconElemNavbar);
+  themeChangeBtns[0].insertAdjacentHTML("beforeend", iconElemBars);
+};
+
+const darkOrLight = () => {
+  const html = document.querySelector("html");
+  if (html.className.includes("dark")) {
+    setInToLocalStorage("theme", "light");
+    html.classList.remove("dark");
+    return "dark";
+  } else {
+    setInToLocalStorage("theme", "dark");
+    html.classList.add("dark");
+    return "lighte";
+  }
+};
+
+const getThemeFromLocalStorage = () => {
+  const themeLocal = getFromLocalStorage("theme");
+  themeChangeBtns[0].innerHTML = ""
+  themeChangeBtns[1].innerHTML = ""
+  if (themeLocal) {
+    const theme = darkOrLight();
+    console.log(theme);
+    if (theme === "dark") {
+      iconThemeChange(
+        '<i class="fa fa-moon text-xl text-background cursor-pointer"></i>',
+        '<i class="fa fa-moon cursor-pointer"></i><span class="cursor-pointer">تم تیره</span>'
+      );
+    } else {
+      iconThemeChange(
+        '<i class="fa fa-sun text-xl text-background cursor-pointer"></i>',
+        '<i class="fa fa-sun cursor-pointer"></i><span class="cursor-pointer">تم روشن</span>'
+      );
+    }
+  }
+};
+
+export {
+  modalBars,
+  closeModalBars,
+  backModalInfoAccount,
+  modalInfoAccountBtn,
+  setInToLocalStorage,
+  getFromLocalStorage,
+  modalBarsHandeler,
+  showToastBox,
+  showModalInfoAccount,
+  hideModalInfoAccount,
+  darkOrLight,
+  iconThemeChange,
+  themeChangeBtns,
+  getThemeFromLocalStorage,
 };

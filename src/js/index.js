@@ -1,21 +1,18 @@
-import * as helper from "./helper.js"
+import {
+  closeModalBars,
+  modalBarsHandeler,
+  showModalInfoAccount,
+  backModalInfoAccount,
+  hideModalInfoAccount,
+  modalInfoAccountBtn,
+  iconThemeChange,
+  darkOrLight,
+  themeChangeBtns,
+  getThemeFromLocalStorage,
+} from "./helper.js";
 
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
 const titleElem = document.querySelector("#title");
-
-const modalBarsHandeler = () => {
-  if (modalBars.className.includes("right-0")) {
-    modalBars.classList.remove("right-0");
-    modalBars.classList.add("right-[-270px]");
-    closeModalBars.classList.remove("right-[270px]");
-    closeModalBars.classList.add("right-[700px]");
-  } else {
-    modalBars.classList.add("right-0");
-    modalBars.classList.remove("right-[-270px]");
-    closeModalBars.classList.add("right-[270px]");
-    closeModalBars.classList.remove("right-[700px]");
-  }
-};
 
 const typeWriteTitle = () => {
   const text = "آماده برای یادگیری ترید از صفر هستی؟";
@@ -29,17 +26,33 @@ const typeWriteTitle = () => {
   }, 100);
 };
 
-helper.closeModalBars.addEventListener("click", helper.modalBarsHandeler);
-openModalBtnBars.addEventListener("click", helper.modalBarsHandeler);
+closeModalBars.addEventListener("click", modalBarsHandeler);
+openModalBtnBars.addEventListener("click", modalBarsHandeler);
+modalInfoAccountBtn.addEventListener("click", showModalInfoAccount);
+backModalInfoAccount.addEventListener("click", hideModalInfoAccount);
+themeChangeBtns.forEach((themeChangeBtn) => {
+  themeChangeBtn.addEventListener("click", () => {
+    themeChangeBtns[0].innerHTML = "";
+    themeChangeBtns[1].innerHTML = "";
+    const theme = darkOrLight();
+    if (theme === "dark") {
+      iconThemeChange(
+        '<i class="fa fa-moon text-xl text-background cursor-pointer"></i>',
+        '<i class="fa fa-moon cursor-pointer"></i><span class="cursor-pointer">تم تیره</span>'
+      );
+    } else {
+      iconThemeChange(
+        '<i class="fa fa-sun text-xl text-background cursor-pointer"></i>',
+        '<i class="fa fa-sun cursor-pointer"></i><span class="cursor-pointer">تم روشن</span>'
+      );
+    }
+  });
+});
+
 window.addEventListener("load", typeWriteTitle);
+window.addEventListener("load", getThemeFromLocalStorage);
 
-
-
-
-
-
-
-new WOW().init()
+new WOW().init();
 
 const swiperLastCourses = new Swiper(".swiper-last-courses", {
   loop: true,
