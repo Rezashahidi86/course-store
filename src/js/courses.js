@@ -4,7 +4,11 @@ import {
   showModalInfoAccount,
   backModalInfoAccount,
   hideModalInfoAccount,
-   modalInfoAccountBtn,
+  modalInfoAccountBtn,
+  iconThemeChange,
+  darkOrLight,
+  getThemeFromLocalStorage,
+  themeChangeBtns,
 } from "./helper.js";
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
 const boxesCourseInformation = document.querySelectorAll(
@@ -33,6 +37,25 @@ const boxPartsCourseHandler = (event) => {
   }
 };
 
+themeChangeBtns.forEach((themeChangeBtn) => {
+  themeChangeBtn.addEventListener("click", () => {
+    themeChangeBtns[0].innerHTML = "";
+    themeChangeBtns[1].innerHTML = "";
+    const theme = darkOrLight();
+    if (theme === "dark") {
+      iconThemeChange(
+        '<i class="fa fa-moon text-2xl text-text-dark"></i>',
+        '<i class="fa fa-moon cursor-pointer"></i><span class="cursor-pointer">تم تیره</span>'
+      );
+    } else {
+      iconThemeChange(
+        '<i class="fa fa-sun text-2xl text-text-dark"></i>',
+        '<i class="fa fa-sun cursor-pointer"></i><span class="cursor-pointer">تم روشن</span>'
+      );
+    }
+  });
+});
+
 closeModalBars.addEventListener("click", modalBarsHandeler);
 openModalBtnBars.addEventListener("click", modalBarsHandeler);
 modalInfoAccountBtn.addEventListener("click", showModalInfoAccount);
@@ -40,3 +63,4 @@ backModalInfoAccount.addEventListener("click", hideModalInfoAccount);
 boxesCourseInformation.forEach((boxCourseInformation) => {
   boxCourseInformation.addEventListener("click", boxPartsCourseHandler);
 });
+window.addEventListener("load", getThemeFromLocalStorage("text-dark"));

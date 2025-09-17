@@ -1,4 +1,4 @@
-import { setInToLocalStorage, showToastBox } from "./helper.js";
+import { setInToLocalStorage, showToastBox,getFromLocalStorage,html } from "./helper.js";
 
 const likeArrayInputs = document.querySelectorAll("input");
 const inputUserName = document.querySelector("#input-user-name");
@@ -85,3 +85,9 @@ const showToastBoxAndEmtyeInput = (title, status, boxEmtye = true) => {
 };
 
 registerBtn.addEventListener("click", checkInputRegister);
+window.addEventListener("load", () => {
+  const theme =  getFromLocalStorage("theme")
+  if(theme === "dark"){
+    html.classList.add("dark")
+  }
+});

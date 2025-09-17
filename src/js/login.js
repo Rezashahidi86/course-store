@@ -1,4 +1,4 @@
-import { showToastBox, setInToLocalStorage } from "./helper.js";
+import { showToastBox, setInToLocalStorage,getFromLocalStorage,html } from "./helper.js";
 const likeArrayInputs = document.querySelectorAll("input");
 const userNameInput = document.querySelector("#user-name");
 const passwordInput = document.querySelector("#password");
@@ -38,3 +38,9 @@ const loginUserHandler = async (event) => {
   }
 };
 loginBtn.addEventListener("click", loginUserHandler);
+window.addEventListener("load", () => {
+  const theme =  getFromLocalStorage("theme")
+  if(theme === "dark"){
+    html.classList.add("dark")
+  }
+});

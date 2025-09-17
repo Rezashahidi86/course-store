@@ -7,6 +7,7 @@ const moadlInfoAccount = document.querySelector("#moadl-info-account");
 const backModalInfoAccount = document.querySelector("#back-modal-info-account");
 const modalInfoAccountBtn = document.querySelector("#modal-info-account-btn");
 const themeChangeBtns = document.querySelectorAll(".theme-change");
+const html = document.querySelector("html");
 
 const setInToLocalStorage = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
@@ -84,7 +85,6 @@ const iconThemeChange = (iconElemNavbar, iconElemBars) => {
 };
 
 const darkOrLight = () => {
-  const html = document.querySelector("html");
   if (html.className.includes("dark")) {
     setInToLocalStorage("theme", "light");
     html.classList.remove("dark");
@@ -92,27 +92,27 @@ const darkOrLight = () => {
   } else {
     setInToLocalStorage("theme", "dark");
     html.classList.add("dark");
-    return "lighte";
+    return "light";
   }
 };
 
-const getThemeFromLocalStorage = () => {
+const getThemeFromLocalStorage = (color) => {
   const themeLocal = getFromLocalStorage("theme");
-  themeChangeBtns[0].innerHTML = ""
-  themeChangeBtns[1].innerHTML = ""
+  themeChangeBtns[0].innerHTML = "";
+  themeChangeBtns[1].innerHTML = "";
   if (themeLocal) {
-    const theme = darkOrLight();
-    console.log(theme);
-    if (theme === "dark") {
+    if (themeLocal === "dark") {
       iconThemeChange(
-        '<i class="fa fa-moon text-xl text-background cursor-pointer"></i>',
-        '<i class="fa fa-moon cursor-pointer"></i><span class="cursor-pointer">تم تیره</span>'
-      );
-    } else {
-      iconThemeChange(
-        '<i class="fa fa-sun text-xl text-background cursor-pointer"></i>',
+      `<i class="fa fa-sun text-2xl text-${color}"></i>`,
         '<i class="fa fa-sun cursor-pointer"></i><span class="cursor-pointer">تم روشن</span>'
       );
+      html.classList.add("dark");
+    } else {
+      iconThemeChange(
+        `<i class="fa fa-moon text-2xl text-${color}"></i>`,
+        '<i class="fa fa-moon cursor-pointer"></i><span class="cursor-pointer">تم تیره</span>'
+      );
+      html.classList.remove("dark");
     }
   }
 };
@@ -132,4 +132,7 @@ export {
   iconThemeChange,
   themeChangeBtns,
   getThemeFromLocalStorage,
+  html,
 };
+
+
