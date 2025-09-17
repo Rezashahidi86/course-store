@@ -1,4 +1,4 @@
-import { setInToLocalStorage, showToastBox,getFromLocalStorage,html } from "./helper.js";
+import { setInToLocalStorage, showToastBox,getFromLocalStorage,html,baseUrl } from "./helper.js";
 
 const likeArrayInputs = document.querySelectorAll("input");
 const inputUserName = document.querySelector("#input-user-name");
@@ -7,7 +7,7 @@ const inputPhoneNumber = document.querySelector("#input-phone-number");
 const inputEmail = document.querySelector("#input-email");
 const inputPassword = document.querySelector("#input-password");
 const registerBtn = document.querySelector("#register-btn");
-const baseUrl = "http://localhost:4000/v1";
+
 
 const checkInputRegister = (event) => {
   const inputs = Array.from(likeArrayInputs);
@@ -64,7 +64,7 @@ const registerUser = async (event) => {
     showToastBoxAndEmtyeInput("ثبت نام موفقیت آمیز بود", "successful");
     setTimeout(() => {
       location.replace("http://127.0.0.1:5500/index.html?#");
-    }, 3000);
+    }, 2000);
   } else if (response.status === 409) {
     showToastBoxAndEmtyeInput("نام کاربری یا ایمیل از قبل وجود دارد");
   }

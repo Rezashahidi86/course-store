@@ -5,10 +5,15 @@ const toastIcon = document.querySelector("#toast-icon");
 const toastTitle = document.querySelector("#toast-title");
 const moadlInfoAccount = document.querySelector("#moadl-info-account");
 const backModalInfoAccount = document.querySelector("#back-modal-info-account");
-const modalInfoAccountBtn = document.querySelector("#modal-info-account-btn");
 const themeChangeBtns = document.querySelectorAll(".theme-change");
 const html = document.querySelector("html");
-
+const baseUrl = "http://localhost:4000/v1";
+const statusUserDesctap = document.querySelector("#status-user-desctap");
+const statusUserMobile = document.querySelector("#status-user-mobile");
+const nameUserMaodalInfoAccount = document.querySelector(
+  "#name-user-maodal-info-account"
+);
+let modalInfoAccountBtn;
 const setInToLocalStorage = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
@@ -103,7 +108,7 @@ const getThemeFromLocalStorage = (color) => {
   if (themeLocal) {
     if (themeLocal === "dark") {
       iconThemeChange(
-      `<i class="fa fa-sun text-2xl text-${color}"></i>`,
+        `<i class="fa fa-sun text-2xl text-${color}"></i>`,
         '<i class="fa fa-sun cursor-pointer"></i><span class="cursor-pointer">تم روشن</span>'
       );
       html.classList.add("dark");
@@ -114,6 +119,90 @@ const getThemeFromLocalStorage = (color) => {
       );
       html.classList.remove("dark");
     }
+  }
+};
+
+const showStatusUser = (userInfo) => {
+  if (userInfo) {
+    statusUserDesctap.insertAdjacentHTML(
+      "beforeend",
+      `
+    <div id="modal-info-account-btn">
+     <i class="fa fa-user text-2xl text-background cursor-pointer z-40"></i>
+    </div>
+    `
+    );
+    statusUserMobile.insertAdjacentHTML(
+      "beforebegin",
+      `
+    <div>
+      <a
+        href="#"
+        class="flex items-center justify-between px-2 py-4 bg-text dark:bg-text-dark text-title dark:text-title-dark"
+      >
+        <span>${userInfo.username}</span>
+        <i class="fa fa-angle-left"></i>
+      </a>
+    </div>
+    `
+    );
+    modalInfoAccountBtn = document.querySelector("#modal-info-account-btn");
+    modalInfoAccountBtn.addEventListener("click", showModalInfoAccount);
+    nameUserMaodalInfoAccount.innerHTML = userInfo.username;
+  } else {
+    statusUserDesctap.insertAdjacentHTML(
+      "beforeend",
+      `
+     <a
+       href="./login.html"
+       class="flex items-center p-2 rounded-sm cursor-pointer bg-button2 dark:bg-header-dark"
+     >
+       <div class="">
+         <i class="fa fa-user text-2xl text-background"></i>
+       </div>
+       <div class="text-background flex items-center">
+         <span>ورود</span>
+         <span class="mr-1 pr-1 border-r-2 border-background"
+           >ثبت نام</span
+         >
+       </div>
+     </a>
+    `
+    );
+    statusUserMobile.insertAdjacentHTML(
+      "beforebegin",
+      `
+     <a
+       class="text-xl block text-center py-4 w-full text-header dark:bg-header-dark bg-button2 dark:text-button2-dark"
+       href="./login.html"
+     >
+       <span>ورود یا ثبت نام</span>
+     </a>
+    `
+    );
+  }
+};
+
+const getUser = async () => {
+  const accessToken = getFromLocalStorage("token");
+
+  if (accessToken) {
+    const res = await fetch(`${baseUrl}/auth/me`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    if (res.status === 200) {
+      const userInfo = await res.json();
+      showStatusUser(userInfo);
+      return userInfo;
+    } else if (res.status === 403) {
+      showToastBox("خطایی در دریافت اطلاعات شما رخ داده است", "reject");
+      showStatusUser(false);
+    }
+  } else {
+    showStatusUser(false);
   }
 };
 
@@ -133,6 +222,6 @@ export {
   themeChangeBtns,
   getThemeFromLocalStorage,
   html,
+  getUser,
+  baseUrl,
 };
-
-

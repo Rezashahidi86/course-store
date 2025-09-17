@@ -1,14 +1,13 @@
 import {
   closeModalBars,
   modalBarsHandeler,
-  showModalInfoAccount,
   backModalInfoAccount,
   hideModalInfoAccount,
-  modalInfoAccountBtn,
   iconThemeChange,
   darkOrLight,
   themeChangeBtns,
   getThemeFromLocalStorage,
+  getUser,
 } from "./helper.js";
 
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
@@ -28,8 +27,8 @@ const typeWriteTitle = () => {
 
 closeModalBars.addEventListener("click", modalBarsHandeler);
 openModalBtnBars.addEventListener("click", modalBarsHandeler);
-modalInfoAccountBtn.addEventListener("click", showModalInfoAccount);
 backModalInfoAccount.addEventListener("click", hideModalInfoAccount);
+
 themeChangeBtns.forEach((themeChangeBtn) => {
   themeChangeBtn.addEventListener("click", () => {
     themeChangeBtns[0].innerHTML = "";
@@ -49,9 +48,10 @@ themeChangeBtns.forEach((themeChangeBtn) => {
   });
 });
 
+
 window.addEventListener("load", typeWriteTitle);
 window.addEventListener("load", getThemeFromLocalStorage("background"));
-
+window.addEventListener("load", getUser);
 
 new WOW().init();
 

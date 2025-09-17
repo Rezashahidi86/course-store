@@ -1,9 +1,14 @@
-import { showToastBox, setInToLocalStorage,getFromLocalStorage,html } from "./helper.js";
+import {
+  showToastBox,
+  setInToLocalStorage,
+  getFromLocalStorage,
+  html,
+  baseUrl,
+} from "./helper.js";
 const likeArrayInputs = document.querySelectorAll("input");
 const userNameInput = document.querySelector("#user-name");
 const passwordInput = document.querySelector("#password");
 const loginBtn = document.querySelector("#login-btn");
-const baseUrl = "http://localhost:4000/v1";
 
 const loginUserHandler = async (event) => {
   event.preventDefault();
@@ -32,15 +37,18 @@ const loginUserHandler = async (event) => {
       const responseParse = await response.json();
       const accessToken = responseParse.accessToken;
       setInToLocalStorage("token", accessToken);
+      setTimeout(() => {
+        location.replace("http://127.0.0.1:5500/index.html?#");
+      }, 2000);
     } else if (response.status === 401) {
-      showToastBox("کاربری یافت نشد", "reject");
+      showToastBox("کاربری با این اطلاعات یافت نشد", "reject");
     }
   }
 };
 loginBtn.addEventListener("click", loginUserHandler);
 window.addEventListener("load", () => {
-  const theme =  getFromLocalStorage("theme")
-  if(theme === "dark"){
-    html.classList.add("dark")
+  const theme = getFromLocalStorage("theme");
+  if (theme === "dark") {
+    html.classList.add("dark");
   }
 });
