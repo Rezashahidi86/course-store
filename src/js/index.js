@@ -8,10 +8,13 @@ import {
   themeChangeBtns,
   getThemeFromLocalStorage,
   getUser,
+  getCourses,
 } from "./helper.js";
 
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
 const titleElem = document.querySelector("#title");
+const lastCourses = document.querySelector(".last-courses")
+const popularCourses = document.querySelector(".popular-courses")
 
 const typeWriteTitle = () => {
   const text = "آماده برای یادگیری ترید از صفر هستی؟";
@@ -48,10 +51,14 @@ themeChangeBtns.forEach((themeChangeBtn) => {
   });
 });
 
+window.addEventListener("load", () => {
+  typeWriteTitle();
+  getThemeFromLocalStorage("background", "xl");
+  getUser(false);
+  getCourses(lastCourses,"lastCourses")
+  getCourses(popularCourses,"popularCourses")
 
-window.addEventListener("load", typeWriteTitle);
-window.addEventListener("load", getThemeFromLocalStorage("background","xl"));
-window.addEventListener("load", getUser(false));
+});
 
 new WOW().init();
 

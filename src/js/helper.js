@@ -14,6 +14,9 @@ const nameUserMaodalInfoAccount = document.querySelector(
   "#name-user-maodal-info-account"
 );
 let modalInfoAccountBtn;
+
+//  localStorage
+
 const setInToLocalStorage = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
@@ -21,6 +24,8 @@ const setInToLocalStorage = (key, value) => {
 const getFromLocalStorage = (key) => {
   return JSON.parse(localStorage.getItem(key));
 };
+
+// modal bars
 
 const modalBarsHandeler = () => {
   if (modalBars.className.includes("right-0")) {
@@ -35,6 +40,13 @@ const modalBarsHandeler = () => {
     closeModalBars.classList.remove("right-[1000px]");
   }
 };
+
+const showModalInfoAccount = () => {
+  moadlInfoAccount.classList.remove("hidden");
+  backModalInfoAccount.classList.remove("hidden");
+};
+
+// toastBox
 
 const showToastBox = (title, status) => {
   toastIcon.innerHTML = "";
@@ -74,53 +86,7 @@ const showToastBox = (title, status) => {
   }
 };
 
-const showModalInfoAccount = () => {
-  moadlInfoAccount.classList.remove("hidden");
-  backModalInfoAccount.classList.remove("hidden");
-};
-
-const hideModalInfoAccount = () => {
-  moadlInfoAccount.classList.add("hidden");
-  backModalInfoAccount.classList.add("hidden");
-};
-
-const iconThemeChange = (iconElemNavbar, iconElemBars) => {
-  themeChangeBtns[1].insertAdjacentHTML("beforeend", iconElemNavbar);
-  themeChangeBtns[0].insertAdjacentHTML("beforeend", iconElemBars);
-};
-
-const darkOrLight = () => {
-  if (html.className.includes("dark")) {
-    setInToLocalStorage("theme", "light");
-    html.classList.remove("dark");
-    return "dark";
-  } else {
-    setInToLocalStorage("theme", "dark");
-    html.classList.add("dark");
-    return "light";
-  }
-};
-
-const getThemeFromLocalStorage = (color,fontSaiz) => {
-  const themeLocal = getFromLocalStorage("theme");
-  themeChangeBtns[0].innerHTML = "";
-  themeChangeBtns[1].innerHTML = "";
-  if (themeLocal) {
-    if (themeLocal === "dark") {
-      iconThemeChange(
-        `<i class="fa fa-sun text-${fontSaiz} text-${color}"></i>`,
-        '<i class="fa fa-sun cursor-pointer"></i><span class="cursor-pointer">تم روشن</span>'
-      );
-      html.classList.add("dark");
-    } else {
-      iconThemeChange(
-        `<i class="fa fa-moon text-${fontSaiz} text-${color}"></i>`,
-        '<i class="fa fa-moon cursor-pointer"></i><span class="cursor-pointer">تم تیره</span>'
-      );
-      html.classList.remove("dark");
-    }
-  }
-};
+// modalInfoAccount
 
 const showStatusUser = (userInfo, style) => {
   if (userInfo) {
@@ -196,7 +162,54 @@ const showStatusUser = (userInfo, style) => {
   }
 };
 
-const getUser = async (style=false) => {
+const hideModalInfoAccount = () => {
+  moadlInfoAccount.classList.add("hidden");
+  backModalInfoAccount.classList.add("hidden");
+};
+
+// changeTheme
+
+const iconThemeChange = (iconElemNavbar, iconElemBars) => {
+  themeChangeBtns[1].insertAdjacentHTML("beforeend", iconElemNavbar);
+  themeChangeBtns[0].insertAdjacentHTML("beforeend", iconElemBars);
+};
+
+const getThemeFromLocalStorage = (color, fontSaiz) => {
+  const themeLocal = getFromLocalStorage("theme");
+  themeChangeBtns[0].innerHTML = "";
+  themeChangeBtns[1].innerHTML = "";
+  if (themeLocal) {
+    if (themeLocal === "dark") {
+      iconThemeChange(
+        `<i class="fa fa-sun text-${fontSaiz} text-${color} cursor-pointer"></i>`,
+        '<i class="fa fa-sun cursor-pointer"></i><span class="cursor-pointer">تم روشن</span>'
+      );
+      html.classList.add("dark");
+    } else {
+      iconThemeChange(
+        `<i class="fa fa-moon text-${fontSaiz} text-${color} cursor-pointer"></i>`,
+        '<i class="fa fa-moon cursor-pointer"></i><span class="cursor-pointer">تم تیره</span>'
+      );
+      html.classList.remove("dark");
+    }
+  }
+};
+
+const darkOrLight = () => {
+  if (html.className.includes("dark")) {
+    setInToLocalStorage("theme", "light");
+    html.classList.remove("dark");
+    return "dark";
+  } else {
+    setInToLocalStorage("theme", "dark");
+    html.classList.add("dark");
+    return "light";
+  }
+};
+
+// infoUser
+
+const getUser = async (style = false) => {
   const accessToken = getFromLocalStorage("token");
 
   if (accessToken) {
@@ -208,14 +221,108 @@ const getUser = async (style=false) => {
     });
     if (res.status === 200) {
       const userInfo = await res.json();
-      showStatusUser(userInfo,style);
+      showStatusUser(userInfo, style);
       return userInfo;
     } else if (res.status === 403) {
       showToastBox("خطایی در دریافت اطلاعات شما رخ داده است", "reject");
-      showStatusUser(false,style);
+      showStatusUser(false, style);
     }
   } else {
-    showStatusUser(false,style);
+    showStatusUser(false, style);
+  }
+};
+
+// showCourses
+
+const showCourses = (container, courses) => {
+  for (let i = 0; i < courses.length; i++) {
+    let course = courses[i];
+    container.insertAdjacentHTML(
+      "beforeend",
+      `
+        <div
+          class="swiper-slide shadow-md shadow-cart dark:shadow-cart-dark"
+        >
+          <div
+            class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
+          >
+            <a href="#"
+              ><img
+                class="rounded-md mt-2"
+                src="src/img/index/forex.png"
+                alt="cover"
+            /></a>
+            <a
+              class="line-clamp-2 text-lg text-title dark:text-title-dark max-md:text-2xl h-16"
+              href="#"
+              >${course.name}</a
+            >
+            <p class="line-clamp-2 text-text dark:text-text-dark h-16">
+              ${course.description}
+            </p>
+            <div
+              class="flex justify-between text-text dark:text-text-dark px-1"
+            >
+              <a href="#">
+                <i class="fa fa-user"></i>
+                <span>${course.creator}</span>
+              </a>
+              <div class="text-yellow-400">
+                <span>${course.courseAverageScore}</span>
+                <i class="fa fa-star"></i>
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-between mt-2 border-t-2 border-text-dark dark:border-text px-1"
+            >
+              <div class="text-text dark:text-text-dark">
+                <i class="fa fa-users mt-4"></i>
+                <span>${course.registers}</span>
+              </div>
+              <div class="flex items-center gap-x-1 mt-2 h-[2.8rem]">
+                <span
+                  class="${
+                    course.price ? "hidden" : "flex"
+                  }  items-center justify-center p-2 rounded-xl bg-button2 text-background dark:bg-header-dark dark:text-background"
+                  >${course.price ? "" : "100%"}</span
+                >
+                <div class="flex flex-col justify-center">
+                  <del
+                    class="${
+                      course.price ? "hidden" : ""
+                    } text-sm text-title dark:text-background-dark"
+                    >200,000</del
+                  >
+                  <span class="text-button1 dark:text-button1-dark"
+                    >${
+                      course.price
+                        ? course.price.toLocaleString() + "تومان"
+                        : "رایگان"
+                    }</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        `
+    );
+  }
+};
+
+const getCourses = async (container, mode) => {
+  if (mode === "lastCourses") {
+    const res = await fetch(`${baseUrl}/courses`);
+    const resParse = await res.json();
+    const courses = await resParse;
+    const lastCourses = courses.slice(courses.length - 5, courses.length);
+    showCourses(container, lastCourses);
+  } else if (mode === "popularCourses") {
+    const res = await fetch(`${baseUrl}/courses/popular`);
+    const resParse = await res.json();
+    const courses = await resParse;
+    const popularCourses = courses.slice(courses.length - 7, courses.length);
+    showCourses(container, popularCourses);
   }
 };
 
@@ -237,4 +344,6 @@ export {
   html,
   getUser,
   baseUrl,
+  showCourses,
+  getCourses,
 };
