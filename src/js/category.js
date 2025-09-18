@@ -1,14 +1,13 @@
 import {
   closeModalBars,
   modalBarsHandeler,
-  showModalInfoAccount,
   backModalInfoAccount,
   hideModalInfoAccount,
-  modalInfoAccountBtn,
   iconThemeChange,
   darkOrLight,
   getThemeFromLocalStorage,
   themeChangeBtns,
+  getUser,
 } from "./helper.js";
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
 
@@ -33,7 +32,7 @@ themeChangeBtns.forEach((themeChangeBtn) => {
 
 closeModalBars.addEventListener("click", modalBarsHandeler);
 openModalBtnBars.addEventListener("click", modalBarsHandeler);
-modalInfoAccountBtn.addEventListener("click", showModalInfoAccount);
 backModalInfoAccount.addEventListener("click", hideModalInfoAccount);
 
-window.addEventListener("load", getThemeFromLocalStorage("text-dark"));
+window.addEventListener("load", getThemeFromLocalStorage("text-dark","2xl"));
+window.addEventListener("load", getUser(true));

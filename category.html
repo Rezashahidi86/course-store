@@ -36,21 +36,10 @@
           class="fixed w-[270px] h-full flex flex-col top-0 z-50 bg-cart dark:bg-cart-dark overflow-y-auto right-[-270px] duration-300"
           id="modal-bars"
         >
-          <!-- <a
-            class="text-xl block text-center py-4 w-full text-header dark:bg-header-dark bg-button2 dark:text-button2-dark"
-            href="#"
-          >
-            <span>ورود یا ثبت نام</span>
-          </a> -->
+          <!-- data loaded from js -->
           <!-- if user login -->
-          <div>
-            <a
-              href="#"
-              class="flex items-center justify-between px-2 py-4 bg-text dark:bg-text-dark text-title dark:text-title-dark"
-            >
-              <span>رضاشهیدی</span>
-              <i class="fa fa-angle-left"></i>
-            </a>
+          <div id="status-user-mobile">
+            <!-- data loaded from js -->
           </div>
           <div class="py-4 px-3 w-full">
             <span class="mt-4 text-sm text-button1 dark:text-button1-dark"
@@ -243,7 +232,10 @@
             </li>
           </ul>
         </div>
-        <div class="flex items-center gap-x-6 ml-8 max-lg:gap-x-4">
+        <div
+          class="flex items-center gap-x-6 ml-8 max-lg:gap-x-4"
+          id="status-user-desctap"
+        >
           <div
             class="theme-change p-4 px-5 rounded-full dark:bg-text bg-title-dark cursor-pointer"
           >
@@ -252,12 +244,6 @@
           <i
             class="fa fa-shopping-cart text-2xl p-4 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
           ></i>
-
-          <div id="modal-info-account-btn">
-            <i
-              class="fa fa-user text-2xl p-4 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
-            ></i>
-          </div>
           <div
             class="fixed flex flex-col justify-center top-20 left-14 max-lg:left-32 max-2md:!left-16 p-4 w-72 rounded-md bg-cart dark:bg-cart-dark z-50 hidden"
             id="moadl-info-account"
@@ -270,9 +256,10 @@
                   alt="profile"
                 />
                 <div class="flex flex-col text-sm gap-y-2">
-                  <span class="text-title dark:text-title-dark"
-                    >RezaShahidi</span
-                  >
+                  <span
+                    class="text-title dark:text-title-dark"
+                    id="name-user-maodal-info-account"
+                  ></span>
                   <span class="text-button1 dark:text-button1-dark"
                     >موجودی: 0 تومان</span
                   >
@@ -342,20 +329,7 @@
             id="back-modal-info-account"
           ></div>
           <!-- if user not login -->
-          <!-- <a
-            href="#"
-            class="flex items-center p-2 rounded-sm cursor-pointer bg-button2 dark:bg-button2-dark"
-          >
-            <div class="">
-              <i class="fa fa-user text-2xl text-background"></i>
-            </div>
-            <div class="text-background flex items-center">
-              <span>ورود</span>
-              <span class="mr-1 pr-1 border-r-2 border-background"
-                >ثبت نام</span
-              >
-            </div>
-          </a> -->
+          <!-- data loaded from js -->
           <!-- if user not login -->
         </div>
       </nav>

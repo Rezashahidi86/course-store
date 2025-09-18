@@ -50,8 +50,8 @@ themeChangeBtns.forEach((themeChangeBtn) => {
 
 
 window.addEventListener("load", typeWriteTitle);
-window.addEventListener("load", getThemeFromLocalStorage("background"));
-window.addEventListener("load", getUser);
+window.addEventListener("load", getThemeFromLocalStorage("background","xl"));
+window.addEventListener("load", getUser(false));
 
 new WOW().init();
 

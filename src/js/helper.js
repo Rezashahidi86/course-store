@@ -101,20 +101,20 @@ const darkOrLight = () => {
   }
 };
 
-const getThemeFromLocalStorage = (color) => {
+const getThemeFromLocalStorage = (color,fontSaiz) => {
   const themeLocal = getFromLocalStorage("theme");
   themeChangeBtns[0].innerHTML = "";
   themeChangeBtns[1].innerHTML = "";
   if (themeLocal) {
     if (themeLocal === "dark") {
       iconThemeChange(
-        `<i class="fa fa-sun text-2xl text-${color}"></i>`,
+        `<i class="fa fa-sun text-${fontSaiz} text-${color}"></i>`,
         '<i class="fa fa-sun cursor-pointer"></i><span class="cursor-pointer">تم روشن</span>'
       );
       html.classList.add("dark");
     } else {
       iconThemeChange(
-        `<i class="fa fa-moon text-2xl text-${color}"></i>`,
+        `<i class="fa fa-moon text-${fontSaiz} text-${color}"></i>`,
         '<i class="fa fa-moon cursor-pointer"></i><span class="cursor-pointer">تم تیره</span>'
       );
       html.classList.remove("dark");
@@ -122,16 +122,29 @@ const getThemeFromLocalStorage = (color) => {
   }
 };
 
-const showStatusUser = (userInfo) => {
+const showStatusUser = (userInfo, style) => {
   if (userInfo) {
-    statusUserDesctap.insertAdjacentHTML(
-      "beforeend",
-      `
+    if (!style) {
+      statusUserDesctap.insertAdjacentHTML(
+        "beforeend",
+        `
     <div id="modal-info-account-btn">
      <i class="fa fa-user text-2xl text-background cursor-pointer z-40"></i>
     </div>
     `
-    );
+      );
+    } else {
+      statusUserDesctap.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div id="modal-info-account-btn">
+          <i
+          class="fa fa-user text-2xl p-4 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
+          ></i>          
+        </div>
+        `
+      );
+    }
     statusUserMobile.insertAdjacentHTML(
       "beforebegin",
       `
@@ -183,7 +196,7 @@ const showStatusUser = (userInfo) => {
   }
 };
 
-const getUser = async () => {
+const getUser = async (style=false) => {
   const accessToken = getFromLocalStorage("token");
 
   if (accessToken) {
@@ -195,14 +208,14 @@ const getUser = async () => {
     });
     if (res.status === 200) {
       const userInfo = await res.json();
-      showStatusUser(userInfo);
+      showStatusUser(userInfo,style);
       return userInfo;
     } else if (res.status === 403) {
       showToastBox("خطایی در دریافت اطلاعات شما رخ داده است", "reject");
-      showStatusUser(false);
+      showStatusUser(false,style);
     }
   } else {
-    showStatusUser(false);
+    showStatusUser(false,style);
   }
 };
 
