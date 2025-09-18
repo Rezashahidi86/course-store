@@ -40,11 +40,11 @@ const checkInputRegister = (event) => {
 
 const registerUser = async (event) => {
   event.preventDefault();
-  const name = inputName.value;
-  const userName = inputUserName.value;
-  const phone = inputPhoneNumber.value;
-  const email = inputEmail.value;
-  const password = inputPassword.value;
+  const name = inputName.value.trim();
+  const userName = inputUserName.value.trim();
+  const phone = inputPhoneNumber.value.trim();
+  const email = inputEmail.value.trim();
+  const password = inputPassword.value.trim();
   const newUser = {
     name: name,
     username: userName,

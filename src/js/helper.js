@@ -8,11 +8,14 @@ const backModalInfoAccount = document.querySelector("#back-modal-info-account");
 const themeChangeBtns = document.querySelectorAll(".theme-change");
 const html = document.querySelector("html");
 const baseUrl = "http://localhost:4000/v1";
+const baseUrlCover = "http://localhost:4000/courses/covers";
 const statusUserDesctap = document.querySelector("#status-user-desctap");
 const statusUserMobile = document.querySelector("#status-user-mobile");
 const nameUserMaodalInfoAccount = document.querySelector(
   "#name-user-maodal-info-account"
 );
+const navbarDesctapContainer = document.querySelector("#navbar-desctap");
+const navbarMobileContainer = document.querySelector("#navbar-mobile");
 let modalInfoAccountBtn;
 
 //  localStorage
@@ -174,20 +177,20 @@ const iconThemeChange = (iconElemNavbar, iconElemBars) => {
   themeChangeBtns[0].insertAdjacentHTML("beforeend", iconElemBars);
 };
 
-const getThemeFromLocalStorage = (color, fontSaiz) => {
+const getThemeFromLocalStorage = (color) => {
   const themeLocal = getFromLocalStorage("theme");
   themeChangeBtns[0].innerHTML = "";
   themeChangeBtns[1].innerHTML = "";
   if (themeLocal) {
     if (themeLocal === "dark") {
       iconThemeChange(
-        `<i class="fa fa-sun text-${fontSaiz} text-${color} cursor-pointer"></i>`,
+        `<i class="fa fa-sun text-2xl text-${color} cursor-pointer"></i>`,
         '<i class="fa fa-sun cursor-pointer"></i><span class="cursor-pointer">تم روشن</span>'
       );
       html.classList.add("dark");
     } else {
       iconThemeChange(
-        `<i class="fa fa-moon text-${fontSaiz} text-${color} cursor-pointer"></i>`,
+        `<i class="fa fa-moon text-2xl text-${color} cursor-pointer"></i>`,
         '<i class="fa fa-moon cursor-pointer"></i><span class="cursor-pointer">تم تیره</span>'
       );
       html.classList.remove("dark");
@@ -244,20 +247,20 @@ const showCourses = (container, courses) => {
           class="swiper-slide shadow-md shadow-cart dark:shadow-cart-dark"
         >
           <div
-            class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
+            class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark"
           >
             <a href="#"
               ><img
-                class="rounded-md mt-2"
-                src="src/img/index/forex.png"
+                class="rounded-md w-full h-40 max-md:h-64 max-sm:max-h-52 max-sm:max-w-full"
+                src="${baseUrlCover}/${course.cover}"
                 alt="cover"
             /></a>
             <a
-              class="line-clamp-2 text-lg text-title dark:text-title-dark max-md:text-2xl h-16"
+              class="line-clamp-2 text-lg text-title dark:text-title-dark max-md:text-2xl h-16 px-4 mt-2"
               href="#"
               >${course.name}</a
             >
-            <p class="line-clamp-2 text-text dark:text-text-dark h-16">
+            <p class="line-clamp-2 text-text dark:text-text-dark h-16 px-4">
               ${course.description}
             </p>
             <div
@@ -311,12 +314,22 @@ const showCourses = (container, courses) => {
 };
 
 const getCourses = async (container, mode) => {
-  if (mode === "lastCourses") {
+  if (mode === "lastCourses" || mode === "freeCourses") {
     const res = await fetch(`${baseUrl}/courses`);
     const resParse = await res.json();
     const courses = await resParse;
-    const lastCourses = courses.slice(courses.length - 5, courses.length);
-    showCourses(container, lastCourses);
+    if (mode === "lastCourses") {
+      const lastCourses = courses.slice(courses.length - 5, courses.length);
+      showCourses(container, lastCourses);
+    } else {
+      const freeCourses = [];
+      courses.forEach((course) => {
+        if (course.price === 0) {
+          freeCourses.push(course);
+        }
+      });
+      showCourses(container, freeCourses);
+    }
   } else if (mode === "popularCourses") {
     const res = await fetch(`${baseUrl}/courses/popular`);
     const resParse = await res.json();
@@ -326,6 +339,74 @@ const getCourses = async (container, mode) => {
   }
 };
 
+// showNavbar
+
+const showNavbar = (sortNavbar) => {
+  const navbarDesctap = sortNavbar.slice(
+    sortNavbar.length - 5,
+    sortNavbar.length
+  );
+  navbarDesctap.forEach((nav) => {
+    navbarDesctapContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+      <li
+        class="relative group text-button2 dark:text-header hover:text-button2-dark dark:hover:text-header-dark duration-200"
+      >
+       <a
+         href="./category.html?cat=${nav.href}"
+         class="flex items-center gap-x-2 after:-bottom-2 after:bg-background dark:after:bg-text after:h-0.5 after:w-0 after:absolute group-hover:after:w-full after:duration-500 max-lg:gap-x-0"
+         ><span>${nav.title}</span>
+         <div class="max-lg:hidden">
+           <i
+             class="fa fa-arrow-left group-hover:-rotate-90 duration-200"
+           ></i></div
+       ></a>
+       <div
+         class="absolute right-0 top-6 duration-100 invisible group-hover:visible"
+       >
+         <div
+           class="group-hover:mt-4 bg-background dark:bg-text-dark divide-text dark:divide-text shadow-md shadow-shadow dark:shadow-2xl dark:shadow-shadow-dark duration-300 opacity-0 group-hover:opacity-100 divide-y-2 flex flex-col border-2 p-2 gap-y-2 rounded-2xl"
+         >
+         ${
+           nav.submenus.length
+             ? nav.submenus
+                 .map((submenu) => {
+                   return `<a href="#" class="text-nowrap">${submenu.title}</a>`;
+                 })
+                 .join("")
+             : `<a href="#" class="text-nowrap">به زودی دوره ها اضافه میشود</a>`
+         }
+         </div>
+       </div>
+      </li>
+    `
+    );
+  });
+  sortNavbar.forEach((nav) => {
+    navbarMobileContainer.insertAdjacentHTML("beforeend",
+      `
+      <a
+        href="#"
+        class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
+      >
+        <span class="">${nav.title}</span>
+        <i class="fa fa-angle-left"></i>
+      </a>
+      `
+    )
+  });
+};
+
+const getNavbar = async () => {
+  const res = await fetch(`${baseUrl}/menus`);
+  const resParse = await res.json();
+  const navbarCourses = resParse;
+  const sortNavbar = navbarCourses.sort((a, b) => {
+    return 0.5 - Math.random();
+  });
+  showNavbar(sortNavbar);
+};
 export {
   modalBars,
   closeModalBars,
@@ -346,4 +427,5 @@ export {
   baseUrl,
   showCourses,
   getCourses,
+  getNavbar,
 };

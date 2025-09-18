@@ -9,12 +9,15 @@ import {
   getThemeFromLocalStorage,
   getUser,
   getCourses,
+  getNavbar,
 } from "./helper.js";
 
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
 const titleElem = document.querySelector("#title");
 const lastCourses = document.querySelector(".last-courses")
 const popularCourses = document.querySelector(".popular-courses")
+const freeCourses = document.querySelector(".free-courses")
+
 
 const typeWriteTitle = () => {
   const text = "آماده برای یادگیری ترید از صفر هستی؟";
@@ -39,12 +42,12 @@ themeChangeBtns.forEach((themeChangeBtn) => {
     const theme = darkOrLight();
     if (theme === "dark") {
       iconThemeChange(
-        '<i class="fa fa-moon text-xl text-background cursor-pointer"></i>',
+        '<i class="fa fa-moon text-2xl text-background cursor-pointer"></i>',
         '<i class="fa fa-moon cursor-pointer"></i><span class="cursor-pointer">تم تیره</span>'
       );
     } else {
       iconThemeChange(
-        '<i class="fa fa-sun text-xl text-background cursor-pointer"></i>',
+        '<i class="fa fa-sun text-2xl text-background cursor-pointer"></i>',
         '<i class="fa fa-sun cursor-pointer"></i><span class="cursor-pointer">تم روشن</span>'
       );
     }
@@ -53,10 +56,12 @@ themeChangeBtns.forEach((themeChangeBtn) => {
 
 window.addEventListener("load", () => {
   typeWriteTitle();
-  getThemeFromLocalStorage("background", "xl");
+  getThemeFromLocalStorage("background");
   getUser(false);
   getCourses(lastCourses,"lastCourses")
   getCourses(popularCourses,"popularCourses")
+  getCourses(freeCourses,"freeCourses")
+  getNavbar()
 
 });
 
