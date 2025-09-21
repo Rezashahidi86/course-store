@@ -8,8 +8,11 @@ import {
   getThemeFromLocalStorage,
   themeChangeBtns,
   getUser,
+  getNavbar,
+  getCourses,
 } from "./helper.js";
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
+const coursesContainer = document.querySelector("#courses-container")
 
 themeChangeBtns.forEach((themeChangeBtn) => {
   themeChangeBtn.addEventListener("click", () => {
@@ -34,5 +37,9 @@ closeModalBars.addEventListener("click", modalBarsHandeler);
 openModalBtnBars.addEventListener("click", modalBarsHandeler);
 backModalInfoAccount.addEventListener("click", hideModalInfoAccount);
 
-window.addEventListener("load", getThemeFromLocalStorage("text-dark","2xl"));
-window.addEventListener("load", getUser(true));
+window.addEventListener("load", () => {
+  getThemeFromLocalStorage("text-dark");
+  getUser(true);
+  getNavbar()
+  getCourses(coursesContainer,"category")
+});

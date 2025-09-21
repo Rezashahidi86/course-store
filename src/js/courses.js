@@ -1,7 +1,7 @@
 import {
   closeModalBars,
   modalBarsHandeler,
-
+  getValueFromUrl,
   backModalInfoAccount,
   hideModalInfoAccount,
   iconThemeChange,
@@ -9,8 +9,24 @@ import {
   getThemeFromLocalStorage,
   themeChangeBtns,
   getUser,
+  getNavbar,
+  baseUrl,
+  getFromLocalStorage,
+  plusTime,
 } from "./helper.js";
+
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
+const headerLinksContainer = document.querySelector("#header-links-category");
+const courseTitle = document.querySelector("#course-title");
+const courseDescription = document.querySelector("#course-description");
+const statusBuyUserContainer = document.querySelector("#status-buy-user");
+const countStudentsElem = document.querySelector("#count-students");
+const statusCourseElem = document.querySelector("#status-course");
+const statusSupportElem = document.querySelector("#status-support");
+const statusWatchCourseElem = document.querySelector("#status-watch-course");
+const teacherNameElems = document.querySelectorAll(".teacher-name");
+const courseTimeElem = document.querySelector("#course-time");
+const courseSessionsTimeElem = document.querySelector("#course-sessions-time");
 const boxesCourseInformation = document.querySelectorAll(
   "#box-course-information"
 );
@@ -35,6 +51,114 @@ const boxPartsCourseHandler = (event) => {
     boxCoursePartInformation.classList.remove("rounded-t-md");
     boxCoursePartInformation.classList.add("rounded-md");
   }
+};
+
+const getInfoCourse = async () => {
+  const courseParams = getValueFromUrl("name");
+  const token = getFromLocalStorage("token");
+  const res = await fetch(`${baseUrl}/courses/${courseParams}`, {
+    headers: {
+      Authorization: token,
+    },
+  });
+  const courseInfo = await res.json();
+  return courseInfo;
+};
+
+const changeHeaderLinks = (courseInfo) => {
+  headerLinksContainer.insertAdjacentHTML(
+    "beforeend",
+    `
+      <a
+        href="category.html?cat=${courseInfo.categoryID.name}"
+        class="relative text-nowrap text-text dark:text-text-dark after:absolute after:w-[4.25rem] after:h-2 after:-top-3 after:-right-18 after:rotate-[140deg] after:bg-background dark:after:bg-background-dark before:absolute before:w-16 before:h-2 before:-bottom-3 before:-right-18 before:rotate-[-140deg] before:bg-background dark:before:bg-background-dark"
+        id="category-course-title"
+        >${courseInfo.categoryID.name}</a
+      >
+      <a
+        href="#"
+        class="relative text-nowrap text-text dark:text-text-dark after:absolute after:w-[4.25rem] after:h-2 after:-top-3 after:-right-18 after:rotate-[140deg] after:bg-background dark:after:bg-background-dark before:absolute before:w-16 before:h-2 before:-bottom-3 before:-right-18 before:rotate-[-140deg] before:bg-background dark:before:bg-background-dark"
+      >${courseInfo.name}</a
+      >
+    `
+  );
+};
+
+const headerInfoCourse = (courseInfo) => {
+  courseTitle.innerHTML = courseInfo.name;
+  courseDescription.innerHTML = courseInfo.description;
+  if (courseInfo.isUserRegisteredToThisCourse) {
+    statusBuyUserContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div
+        class="flex items-center justify-between mt-4 max-2sm:flex-col-reverse"
+      >
+        <div
+          class="flex items-center gap-x-6 text-text dark:text-text-dark"
+        >
+          <i class="fa fa-user text-3xl max-sm:text-2xl"></i>
+          <span class="text-xl max-sm:text-lg">شما دانشجوی دوره هستید</span>
+        </div>
+        <div
+          class="flex items-center gap-x-2 text-background py-4 px-8 rounded-xl bg-button1 dark:bg-button1-dark max-sm:px-4 max-2sm:px-20 max-2sm:mb-4 cursor-pointer"
+        >
+          <i class="fa fa-book-open text-xl"></i>
+          <span>مشاهده دوره</span>
+        </div>
+      </div>
+      `
+    );
+  } else {
+    statusBuyUserContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div
+        class="flex items-center flex-row-reverse justify-between mt-4 max-2sm:flex-col-reverse"
+      >
+        <div
+          class="flex items-center gap-x-6 text-text dark:text-text-dark"
+        >
+          <span class="text-xl max-sm:text-lg text-button1">${courseInfo.price?courseInfo.price.toLocaleString() :"رایگان"}${courseInfo.price?"تومان":""}</span>
+        </div>
+        <div
+          class="flex items-center gap-x-2 text-background py-4 px-8 rounded-xl bg-button1 dark:bg-button1-dark max-sm:px-4 max-2sm:px-20 max-2sm:mb-4 cursor-pointer"
+        >
+          <i class="fa fa-basket-shopping text-xl"></i>
+          <span>افزودن به سبد خرید</span>
+        </div>
+      </div>
+      `
+    );
+  }
+};
+
+const boxesStatusCourse = (courseInfo) => {
+  if (courseInfo.isComplete) {
+    statusCourseElem.innerHTML = "تکمیل شده";
+  } else {
+    statusCourseElem.innerHTML = "در حال اجرا";
+  }
+  if (courseInfo.price) {
+    statusWatchCourseElem.innerHTML = "آنلاین";
+  } else {
+    statusWatchCourseElem.innerHTML = "دانلود/آنلاین";
+  }
+  teacherNameElems.forEach((teacherNameElem) => {
+    teacherNameElem.innerHTML = courseInfo.creator.name;
+  });
+  courseSessionsTimeElem.innerHTML = plusTime(courseInfo.sessions);
+  courseTimeElem.innerHTML = courseInfo.updatedAt.slice(0, 10);
+  countStudentsElem.innerHTML = courseInfo.courseStudentsCount;
+  statusSupportElem.innerHTML = courseInfo.support;
+};
+
+const showInfoCourses = async () => {
+  const courseInfo = await getInfoCourse();
+  console.log(courseInfo);
+  changeHeaderLinks(courseInfo);
+  headerInfoCourse(courseInfo);
+  boxesStatusCourse(courseInfo);
 };
 
 themeChangeBtns.forEach((themeChangeBtn) => {
@@ -62,5 +186,10 @@ backModalInfoAccount.addEventListener("click", hideModalInfoAccount);
 boxesCourseInformation.forEach((boxCourseInformation) => {
   boxCourseInformation.addEventListener("click", boxPartsCourseHandler);
 });
-window.addEventListener("load", getThemeFromLocalStorage("text-dark","2xl"));
-window.addEventListener("load", getUser(true));
+
+window.addEventListener("load", () => {
+  getThemeFromLocalStorage("text-dark");
+  getUser(true);
+  getNavbar();
+  showInfoCourses();
+});

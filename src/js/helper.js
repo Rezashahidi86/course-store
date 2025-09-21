@@ -18,7 +18,7 @@ const navbarDesctapContainer = document.querySelector("#navbar-desctap");
 const navbarMobileContainer = document.querySelector("#navbar-mobile");
 let modalInfoAccountBtn;
 
-//  localStorage
+//  localStorageAndUtiliti
 
 const setInToLocalStorage = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
@@ -26,6 +26,46 @@ const setInToLocalStorage = (key, value) => {
 
 const getFromLocalStorage = (key) => {
   return JSON.parse(localStorage.getItem(key));
+};
+
+const getValueFromUrl = (key) => {
+  const keys = new URLSearchParams(location.search);
+  const value = keys.get(key);
+  return value;
+};
+
+const plusTime = (sessiones) => {
+  const times = sessiones.map((session) => {
+    return session.time;
+  });
+  let allTimeSecound = 0;
+  times.forEach((time) => {
+    
+    if (time.length === 8) {
+      const hourse = +time.slice(0, 2);
+      const min = +time.slice(3, 5);
+      const secound = +time.slice(6, 8);
+      allTimeSecound += hourse * 3600;
+      allTimeSecound += min * 60;
+      allTimeSecound += secound;
+    } else if (time.length === 5) {
+      const min = +time.slice(0, 2);
+      const secound = +time.slice(3, 5);
+      allTimeSecound += min * 60;
+      allTimeSecound += secound;
+    }
+  });
+  if (allTimeSecound<3600){
+    const min = Math.floor(allTimeSecound/60)
+    if (min === 0){
+      return "تازه اجرا شده"
+    } else{
+      return `${min} دقیقه`
+    }
+  }else{
+    const hourse = Math.floor(allTimeSecound/3600)
+    return `${hourse} ساعت`
+  }
 };
 
 // modal bars
@@ -249,7 +289,7 @@ const showCourses = (container, courses) => {
           <div
             class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark"
           >
-            <a href="#"
+            <a href="courses.html?name=${course.shortName}"
               ><img
                 class="rounded-md w-full h-40 max-md:h-64 max-sm:max-h-52 max-sm:max-w-full"
                 src="${baseUrlCover}/${course.cover}"
@@ -257,7 +297,7 @@ const showCourses = (container, courses) => {
             /></a>
             <a
               class="line-clamp-2 text-lg text-title dark:text-title-dark max-md:text-2xl h-16 px-4 mt-2"
-              href="#"
+              href="courses.html?name=${course.shortName}"
               >${course.name}</a
             >
             <p class="line-clamp-2 text-text dark:text-text-dark h-16 px-4">
@@ -266,7 +306,7 @@ const showCourses = (container, courses) => {
             <div
               class="flex justify-between text-text dark:text-text-dark px-1"
             >
-              <a href="#">
+              <a href="courses.html?name=${course.shortName}">
                 <i class="fa fa-user"></i>
                 <span>${course.creator}</span>
               </a>
@@ -336,6 +376,22 @@ const getCourses = async (container, mode) => {
     const courses = await resParse;
     const popularCourses = courses.slice(courses.length - 7, courses.length);
     showCourses(container, popularCourses);
+  } else if (mode === "category") {
+    const categoryCoursesParams = getValueFromUrl("cat");
+    console.log(baseUrl, categoryCoursesParams);
+    // baseUrl => http://localhost:4000/v1 and categoryCoursesParams => frontend
+    const res = await fetch(
+      `${baseUrl}/courses/cateogry/${categoryCoursesParams}`,
+      {
+        headers: {
+          // token admin
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGU2YmVhMWQ1MTQyYjkxYWZhOWJiNyIsImlhdCI6MTc1ODM1OTYwMCwiZXhwIjoxNzYwOTUxNjAwfQ.BazV0FRC3X6TPqBE4FxsNzzN7453XH2pOieSdfHX350",
+        },
+      }
+    );
+    const allCourses = await res.json();
+    console.log(allCourses);
   }
 };
 
@@ -347,6 +403,8 @@ const showNavbar = (sortNavbar) => {
     sortNavbar.length
   );
   navbarDesctap.forEach((nav) => {
+    const paramsMenu = nav.href.split("/");
+    const hrefMenu = paramsMenu[paramsMenu.length - 1] ?? "";
     navbarDesctapContainer.insertAdjacentHTML(
       "beforeend",
       `
@@ -354,7 +412,7 @@ const showNavbar = (sortNavbar) => {
         class="relative group text-button2 dark:text-header hover:text-button2-dark dark:hover:text-header-dark duration-200"
       >
        <a
-         href="./category.html?cat=${nav.href}"
+         href="./category.html?cat=${hrefMenu}"
          class="flex items-center gap-x-2 after:-bottom-2 after:bg-background dark:after:bg-text after:h-0.5 after:w-0 after:absolute group-hover:after:w-full after:duration-500 max-lg:gap-x-0"
          ><span>${nav.title}</span>
          <div class="max-lg:hidden">
@@ -372,7 +430,9 @@ const showNavbar = (sortNavbar) => {
            nav.submenus.length
              ? nav.submenus
                  .map((submenu) => {
-                   return `<a href="#" class="text-nowrap">${submenu.title}</a>`;
+                   const paramsSubmenu = submenu.href.split("/");
+                   const hrefSubmenu = paramsSubmenu[paramsSubmenu.length - 1];
+                   return `<a href="courses.html?name=${hrefSubmenu}" class="text-nowrap">${submenu.title}</a>`;
                  })
                  .join("")
              : `<a href="#" class="text-nowrap">به زودی دوره ها اضافه میشود</a>`
@@ -384,29 +444,31 @@ const showNavbar = (sortNavbar) => {
     );
   });
   sortNavbar.forEach((nav) => {
-    navbarMobileContainer.insertAdjacentHTML("beforeend",
+    const hrefMenu = nav.href.split("/")[2] ?? "";
+    navbarMobileContainer.insertAdjacentHTML(
+      "beforeend",
       `
       <a
-        href="#"
+        href="./category.html?cat=${hrefMenu}"
         class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
       >
         <span class="">${nav.title}</span>
         <i class="fa fa-angle-left"></i>
       </a>
       `
-    )
+    );
   });
 };
 
 const getNavbar = async () => {
   const res = await fetch(`${baseUrl}/menus`);
-  const resParse = await res.json();
-  const navbarCourses = resParse;
+  const navbarCourses = await res.json();
   const sortNavbar = navbarCourses.sort((a, b) => {
     return 0.5 - Math.random();
   });
   showNavbar(sortNavbar);
 };
+
 export {
   modalBars,
   closeModalBars,
@@ -428,4 +490,6 @@ export {
   showCourses,
   getCourses,
   getNavbar,
+  getValueFromUrl,
+  plusTime,
 };

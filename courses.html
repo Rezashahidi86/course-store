@@ -34,10 +34,8 @@
           class="fixed w-[270px] h-full flex flex-col top-0 z-50 bg-cart dark:bg-cart-dark overflow-y-auto right-[-270px] duration-300"
           id="modal-bars"
         >
-
           <!-- if user login -->
-          <div id="status-user-mobile">
-          </div>
+          <div id="status-user-mobile"></div>
           <div class="py-4 px-3 w-full">
             <span class="mt-4 text-sm text-button1 dark:text-button1-dark"
               >دسترسی سریع</span
@@ -58,45 +56,11 @@
             </a>
           </div>
           <!-- if user login -->
-          <div class="py-4 px-3 w-full">
+          <div class="py-4 px-3 w-full" id="navbar-mobile">
             <span class="mt-4 text-sm text-button1 dark:text-button1-dark"
               >دسته بندی ها</span
             >
-            <a
-              href="#"
-              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
-            >
-              <span class="">بازار های مالی</span>
-              <i class="fa fa-angle-left"></i>
-            </a>
-            <a
-              href="#"
-              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
-            >
-              <span class="">بازار های مالی</span>
-              <i class="fa fa-angle-left"></i>
-            </a>
-            <a
-              href="#"
-              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
-            >
-              <span class="">بازار های مالی</span>
-              <i class="fa fa-angle-left"></i>
-            </a>
-            <a
-              href="#"
-              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
-            >
-              <span class="">بازار های مالی</span>
-              <i class="fa fa-angle-left"></i>
-            </a>
-            <a
-              href="#"
-              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
-            >
-              <span class="">بازار های مالی</span>
-              <i class="fa fa-angle-left"></i>
-            </a>
+            <!-- Loaded Data From JS -->
           </div>
           <div
             class="flex items-center gap-x-3 p-2 mt-8 pt-8 border-t-2 border-gray-300 text-text dark:text-text-dark theme-change"
@@ -122,120 +86,17 @@
             class="max-w-[7rem] max-h-[6rem]"
             alt="logo"
           />
-          <ul class="flex items-center gap-x-4 max-lg:gap-x-2 max-lg:ml10">
-            <li
-              class="relative group text-button2 dark:text-title-dark duration-20"
-            >
-              <a
-                href="#"
-                class="flex items-center gap-x-2 after:-bottom-2 after:h-0.5 after:w-0 after:absolute group-hover:after:w-full after:bg-text dark:after:bg-text after:duration-500 max-lg:gap-x-0"
-                ><span>بازار های مالی</span
-                ><i
-                  class="fa fa-arrow-left group-hover:-rotate-90 duration-200"
-                ></i
-              ></a>
-              <div
-                class="absolute right-0 top-6 duration-100 invisible group-hover:visible"
-              >
-                <div
-                  class="group-hover:mt-4 dark:text-text-dark bg-background dark:bg-cart-dark duration-300 shadow-md shadow-shadow dark:shadow-2xl dark:shadow-shadow-dark opacity-0 group-hover:opacity-100 divide-y-2 divide-text dark:divide-text flex flex-col border-2 p-2 gap-y-2 rounded-2xl"
-                >
-                  <a href="#" class="text-nowrap">آشنایی با بازار فارکس</a>
-                  <a href="#" class="text-nowrap"
-                    >آشنایی با بازار ارزهای دیجیتال</a
-                  >
-                  <a href="#" class="text-nowrap"
-                    >آشنایی با بازار بورس ایران و جهانی</a
-                  >
-                </div>
-              </div>
-            </li>
-            <li
-              class="relative group text-button2 dark:text-title-dark duration-200"
-            >
-              <a
-                href="#"
-                class="flex items-center gap-x-2 after:-bottom-2 after:bg-text dark:after:bg-text after:h-0.5 after:w-0 after:absolute group-hover:after:w-full after:duration-500 max-lg:gap-x-0"
-                ><span>تحلیل تکنیکال</span
-                ><i
-                  class="fa fa-arrow-left group-hover:-rotate-90 duration-200"
-                ></i
-              ></a>
-              <div
-                class="absolute right-0 top-6 duration-100 invisible group-hover:visible"
-              >
-                <div
-                  class="group-hover:mt-4 dark:text-text-dark bg-background dark:bg-cart-dark divide-text dark:divide-text shadow-md shadow-shadow dark:shadow-2xl dark:shadow-shadow-dark duration-300 opacity-0 group-hover:opacity-100 divide-y-2 flex flex-col border-2 p-2 gap-y-2 rounded-2xl"
-                >
-                  <a href="#" class="text-nowrap">مقدمات تحلیل تکنیکال</a>
-                  <a href="#" class="text-nowrap">الگوهای کلاسیک قیمتی</a>
-                  <a href="#" class="text-nowrap">اندیکاتورها و اوسیلاتورها</a>
-                  <a href="#" class="text-nowrap">پرایس اکشن حرفه‌ای</a>
-                </div>
-              </div>
-            </li>
-            <li
-              class="relative group text-button2 dark:text-title-dark duration-200"
-            >
-              <a
-                href="#"
-                class="flex items-center gap-x-2 after:bg-text dark:after:bg-text after:-bottom-2 after:h-0.5 after:w-0 after:absolute group-hover:after:w-full after:duration-500 max-lg:gap-x-0"
-                ><span>تحلیل فاندامنتال</span
-                ><i
-                  class="fa fa-arrow-left group-hover:-rotate-90 duration-200"
-                ></i
-              ></a>
-              <div
-                class="absolute right-0 top-6 duration-100 invisible group-hover:visible"
-              >
-                <div
-                  class="group-hover:mt-4 dark:text-text-dark bg-background dark:bg-cart-dark divide-text dark:divide-text shadow-md shadow-shadow dark:shadow-2xl dark:shadow-shadow-dark duration-300 opacity-0 group-hover:opacity-100 divide-y-2 flex flex-col border-2 p-2 gap-y-2 rounded-2xl"
-                >
-                  <a href="#" class="text-nowrap"
-                    >مبانی تحلیل فاندامنتال در فارکس</a
-                  >
-                  <a href="#" class="text-nowrap"
-                    >تحلیل اخبار و رویدادهای اقتصادی</a
-                  >
-                  <a href="#" class="text-nowrap"
-                    >تحلیل فاندامنتال ارزهای دیجیتال</a
-                  >
-                </div>
-              </div>
-            </li>
-            <li
-              class="relative group text-button2 dark:text-title-dark duration-200"
-            >
-              <a
-                href="#"
-                class="flex items-center gap-x-2 after:bg-text dark:after:bg-text after:-bottom-2 after:h-0.5 after:w-0 after:absolute group-hover:after:w-full after:duration-500 max-lg:gap-x-0"
-                ><span>ابزارها و پلتفرم‌ها</span
-                ><i
-                  class="fa fa-arrow-left group-hover:-rotate-90 duration-200"
-                ></i
-              ></a>
-              <div
-                class="absolute right-0 top-6 duration-100 invisible group-hover:visible"
-              >
-                <div
-                  class="group-hover:mt-4 dark:text-text-dark bg-background dark:bg-cart-dark divide-text dark:divide-text shadow-md shadow-shadow dark:shadow-2xl dark:shadow-shadow-dark duration-300 opacity-0 group-hover:opacity-100 divide-y-2 flex flex-col border-2 p-2 gap-y-2 rounded-2xl"
-                >
-                  <a href="#" class="text-nowrap"
-                    >آموزش کار با متاتریدر (MT4/MT5)</a
-                  >
-                  <a href="#" class="text-nowrap"
-                    >آموزش ترید در صرافی‌های ارز دیجیتال</a
-                  >
-                  <a href="#" class="text-nowrap"
-                    >آموزش استفاده از تریدینگ‌ویو</a
-                  >
-                </div>
-              </div>
-            </li>
+          <ul
+            class="flex items-center gap-x-4 max-lg:gap-x-2 max-lg:ml10"
+            id="navbar-desctap"
+          >
+            <!-- Loaded Data From JS -->
           </ul>
         </div>
-        <div class="flex items-center gap-x-6 ml-8 max-lg:gap-x-4"
-        id="status-user-desctap">
+        <div
+          class="flex items-center gap-x-6 ml-8 max-lg:gap-x-4"
+          id="status-user-desctap"
+        >
           <div
             class="theme-change p-4 px-5 rounded-full dark:bg-text bg-title-dark cursor-pointer"
           >
@@ -256,9 +117,10 @@
                   alt="profile"
                 />
                 <div class="flex flex-col text-sm gap-y-2">
-                  <span class="text-title dark:text-title-dark"id="name-user-maodal-info-account"
-                    ></span
-                  >
+                  <span
+                    class="text-title dark:text-title-dark"
+                    id="name-user-maodal-info-account"
+                  ></span>
                   <span class="text-button1 dark:text-button1-dark"
                     >موجودی: 0 تومان</span
                   >
@@ -340,26 +202,17 @@
 
     <section
       class="container p-4 mt-16 flex items-center gap-x-14 rounded-lg bg-cart dark:bg-cart-dark overflow-x-auto scrollbar-hide overflow-y-hidden"
+      id="header-links-category"
     >
-      <a href="#">
+      <a href="index.html">
         <i
           class="fa fa-house relative text-xl text-text dark:text-text-dark after:absolute"
         ></i>
       </a>
       <a
-        href="#"
+        href="category.html?cat=all"
         class="relative text-nowrap text-text dark:text-text-dark after:absolute after:w-[4.25rem] after:h-2 after:-top-3 after:-right-18 after:rotate-[140deg] after:bg-background dark:after:bg-background-dark before:absolute before:w-16 before:h-2 before:-bottom-3 before:-right-18 before:rotate-[-140deg] before:bg-background dark:before:bg-background-dark"
         >همه دوره ها</a
-      >
-      <a
-        href="#"
-        class="relative text-nowrap text-text dark:text-text-dark after:absolute after:w-[4.25rem] after:h-2 after:-top-3 after:-right-18 after:rotate-[140deg] after:bg-background dark:after:bg-background-dark before:absolute before:w-16 before:h-2 before:-bottom-3 before:-right-18 before:rotate-[-140deg] before:bg-background dark:before:bg-background-dark"
-        >بازارهای مالی</a
-      >
-      <a
-        href="#"
-        class="relative text-nowrap text-text dark:text-text-dark after:absolute after:w-[4.25rem] after:h-2 after:-top-3 after:-right-18 after:rotate-[140deg] after:bg-background dark:after:bg-background-dark before:absolute before:w-16 before:h-2 before:-bottom-3 before:-right-18 before:rotate-[-140deg] before:bg-background dark:before:bg-background-dark"
-        >آموزش فارکس</a
       >
     </section>
 
@@ -373,50 +226,24 @@
       <section
         class="container p-8 max-2sm:p-4 rounded-lg flex max-lg:flex-col-reverse justify-between mt-24 gap-x-16 bg-cart dark:bg-cart-dark"
       >
-        <div class="w-1/2 max-lg:w-full">
+        <div class="w-1/2 max-lg:w-full" id="status-buy-user">
           <div class="mt-8">
-            <h1 class="text-4xl text-title dark:text-title-dark">
-              آشنایی با بازار فارکس
-            </h1>
+            <h1
+              class="text-4xl text-title dark:text-title-dark h-28 max-xl:text-2xl max-xl:h-14"
+              id="course-title"
+            ></h1>
+
             <p
-              class="text-lg text-text dark:text-text-dark mt-4 line-clamp-4 h-28"
+              class="text-lg text-text dark:text-text-dark mt-4 line-clamp-4 h-32 max-xl:h-28"
+              id="course-description"
             >
               معرفی ساختار فارکس، جفت‌ارزها، بروکرها و نحوه معامله در این بازار
               بین‌المللی.
             </p>
           </div>
-          <div
-            class="hidden flex items-center justify-between mt-48 max-2xl:mt-28 max-xl:mt-8 max-2sm:flex-col-reverse"
-          >
-            <div
-              class="flex items-center gap-x-6 text-text dark:text-text-dark"
-            >
-              <i class="fa fa-user text-3xl max-sm:text-2xl"></i>
-              <span class="text-xl max-sm:text-lg">شما دانشجوی دوره هستید</span>
-            </div>
-            <div
-              class="flex items-center gap-x-2 text-background py-4 px-8 rounded-xl bg-button1 dark:bg-button1-dark max-sm:px-4 max-2sm:px-20 max-2sm:mb-4"
-            >
-              <i class="fa fa-book-open text-xl"></i>
-              <span>مشاهده دوره</span>
-            </div>
-          </div>
+
           <!-- if the user did not have the course -->
-          <div
-            class="flex items-center flex-row-reverse justify-between mt-48 max-2xl:mt-28 max-xl:mt-8 max-2sm:flex-col-reverse"
-          >
-            <div
-              class="flex items-center gap-x-6 text-text dark:text-text-dark"
-            >
-              <span class="text-xl max-sm:text-lg">1.200.000 تومان</span>
-            </div>
-            <div
-              class="flex items-center gap-x-2 text-background py-4 px-8 rounded-xl bg-button1 dark:bg-button1-dark max-sm:px-4 max-2sm:px-20 max-2sm:mb-4"
-            >
-              <i class="fa fa-basket-shopping text-xl"></i>
-              <span>افزودن به سبد خرید</span>
-            </div>
-          </div>
+          <!-- Loaded Dta From JS -->
           <!-- if the user did not have the course -->
         </div>
         <div class="w-1/2 rounded-xl max-lg:w-full">
@@ -433,14 +260,14 @@
 
       <!-- information course -->
       <section
-        class="container grid grid-cols-13 max-lg:grid-cols-12 mt-18 gap-8"
+        class="container grid grid-cols-13 max-lg:grid-cols-12 mt-18 gap-8 max-2sm:gap-2"
       >
         <div class="col-span-9 max-lg:col-span-12">
           <div
             class="grid grid-cols-3 gap-4 max-lg:col-span-4 max-sm:grid-cols-2 max-2sm:gap-2"
           >
             <div
-              class="flex items-center gap-x-4 rounded-md p-4 bg-cart dark:bg-cart-dark max-md:flex-col"
+              class="flex items-center gap-x-2 rounded-md p-4 bg-cart dark:bg-cart-dark max-md:flex-col"
             >
               <div class="">
                 <i
@@ -450,12 +277,16 @@
               <div
                 class="flex flex-col text-text dark:text-text-dark max-md:mt-2"
               >
-                <span class="text-xl font-bold">وضعیت دوره</span>
-                <span class="mt-2 max-md:text-center">تکمیل شده</span>
+                <span class="text-xl font-bold max-2sm:text-[1rem]"
+                  >وضعیت دوره</span
+                >
+                <span class="mt-2 max-md:text-center" id="status-course"
+                  >تکمیل شده</span
+                >
               </div>
             </div>
             <div
-              class="flex items-center gap-x-4 rounded-md p-4 bg-cart dark:bg-cart-dark max-md:flex-col"
+              class="flex items-center gap-x-2 rounded-md p-4 bg-cart dark:bg-cart-dark max-md:flex-col"
             >
               <div class="">
                 <i
@@ -465,12 +296,14 @@
               <div
                 class="flex flex-col text-text dark:text-text-dark max-md:mt-2"
               >
-                <span class="text-xl font-bold">مدت زمان دوره</span>
-                <span class="mt-2 max-md:text-center">23 ساعت</span>
+                <span class="text-xl font-bold max-2sm:text-[1rem]"
+                  >مدت زمان دوره</span
+                >
+                <span class="mt-2 max-md:text-center" id="course-sessions-time">23 ساعت</span>
               </div>
             </div>
             <div
-              class="flex items-center gap-x-4 rounded-md p-4 bg-cart dark:bg-cart-dark max-md:flex-col"
+              class="flex items-center gap-x-2 rounded-md p-4 bg-cart dark:bg-cart-dark max-md:flex-col"
             >
               <div class="">
                 <i
@@ -480,12 +313,16 @@
               <div
                 class="flex flex-col text-text dark:text-text-dark max-md:mt-2"
               >
-                <span class="text-xl font-bold">آخرین بروزرسانی</span>
-                <span class="mt-2 max-md:text-center">1403/12/3</span>
+                <span class="text-xl font-bold max-2sm:text-[1rem]"
+                  >آخرین بروزرسانی</span
+                >
+                <span class="mt-2 max-md:text-center" id="course-time">
+                  <!-- Loaded Data From JS -->
+                </span>
               </div>
             </div>
             <div
-              class="flex items-center gap-x-4 rounded-md p-4 bg-cart dark:bg-cart-dark max-md:flex-col"
+              class="flex items-center gap-x-2 rounded-md p-4 bg-cart dark:bg-cart-dark max-md:flex-col"
             >
               <div class="">
                 <i
@@ -495,27 +332,35 @@
               <div
                 class="flex flex-col text-text dark:text-text-dark max-md:mt-2"
               >
-                <span class="text-xl font-bold">روش پشتیبانی</span>
-                <span class="mt-2 max-md:text-center">آنلاین</span>
+                <span class="text-xl font-bold max-2sm:text-[1rem]"
+                  >روش پشتیبانی</span
+                >
+                <span class="mt-2 max-md:text-center" id="status-support">
+                  <!-- Loaded Data From JS -->
+                </span>
               </div>
             </div>
             <div
-              class="flex items-center gap-x-4 rounded-md p-4 bg-cart dark:bg-cart-dark max-md:flex-col"
+              class="flex items-center gap-x-2 rounded-md p-4 bg-cart dark:bg-cart-dark max-md:flex-col"
             >
               <div class="">
                 <i
-                  class="fa fa-tools text-5xl text-button1 dark:text-button1-dark"
+                  class="fa fa-chalkboard-teacher text-5xl text-button1 dark:text-button1-dark"
                 ></i>
               </div>
               <div
                 class="flex flex-col text-text dark:text-text-dark max-md:mt-2"
               >
-                <span class="text-xl font-bold">پیشنیاز دوره</span>
-                <span class="mt-2 max-md:text-center">پیش نیاز ندارد</span>
+                <span class="text-xl font-bold max-2sm:text-[1rem]"
+                  >مدرس دوره</span
+                >
+                <span class="mt-2 max-md:text-center teacher-name">
+                  <!-- Loaded Data Fromc JS -->
+                </span>
               </div>
             </div>
             <div
-              class="flex items-center gap-x-4 rounded-md p-4 bg-cart dark:bg-cart-dark max-md:flex-col"
+              class="flex items-center gap-x-2 rounded-md p-4 bg-cart dark:bg-cart-dark max-md:flex-col"
             >
               <div class="">
                 <i
@@ -525,8 +370,12 @@
               <div
                 class="flex flex-col text-text dark:text-text-dark max-md:mt-2"
               >
-                <span class="text-xl font-bold">نوع مشاهده</span>
-                <span class="mt-2 max-md:text-center">دوره/آنلاین</span>
+                <span class="text-xl font-bold max-2sm:text-[1rem]"
+                  >نوع مشاهده</span
+                >
+                <span class="mt-2 max-md:text-center" id="status-watch-course"
+                  >دوره/آنلاین</span
+                >
               </div>
             </div>
           </div>
@@ -613,18 +462,20 @@
           <div class="flex flex-col p-6 bg-cart dark:bg-cart-dark rounded-md">
             <div class="flex items-center justify-between gap-x-2">
               <div
-                class="flex items-center justify-around pr-2 pl-4 py-4 rounded-sm gap-x-3 bg-background dark:bg-background-dark"
+                class="flex items-center justify-around pr-2 pl-2 py-4 rounded-sm gap-x-3 bg-background dark:bg-background-dark w-full"
               >
                 <div class="text-button1 text-3xl">
                   <i class="fa fa-users"></i>
                 </div>
                 <div class="flex flex-col text-title dark:text-title-dark">
-                  <span class="text-[0.8rem] font-bold">234</span>
+                  <span class="text-[0.8rem] font-bold" id="count-students"
+                    >234</span
+                  >
                   <span class="text-sm">دانشجو</span>
                 </div>
               </div>
               <div
-                class="flex items-center justify-around pr-2 pl-4 py-4 rounded-sm gap-x-3 bg-background dark:bg-background-dark"
+                class="flex items-center justify-around pr-2 pl-4 py-4 rounded-sm gap-x-3 bg-background dark:bg-background-dark w-full"
               >
                 <div class="text-yellow-300 text-3xl">
                   <i class="fa fa-star"></i>
@@ -659,9 +510,10 @@
             />
             <div class="text-text dark:text-text-dark mt-4 text-lg font-bold">
               <span
-                class="relative after:absolute after:h-full after:w-0.5 after:bg-text dark:after:bg-text-dark after:-left-3"
-                >سعید سعیدی</span
+                class="relative after:absolute after:h-full after:w-0.5 after:bg-text dark:after:bg-text-dark after:-left-3 teacher-name"
               >
+                <!-- Loade Data From JS -->
+              </span>
               <span class="mr-4">مدرس دوره</span>
             </div>
             <a
