@@ -246,13 +246,8 @@
           <!-- Loaded Dta From JS -->
           <!-- if the user did not have the course -->
         </div>
-        <div class="w-1/2 rounded-xl max-lg:w-full">
-          <video
-            class="rounded-xl"
-            src=""
-            poster="src/img/index/forex.png"
-            controls
-          ></video>
+        <div class="w-1/2 rounded-xl max-lg:w-full" id="video-container">
+
         </div>
       </section>
 
@@ -389,22 +384,12 @@
               <span class="text-4xl mr-4 max-md:text-2xl">توضیحات</span>
             </div>
             <p
-              class="mt-10 text-lg text-text dark:text-text-dark max-md:text-sm"
+              class="mt-10 text-lg text-text dark:text-text-dark max-md:text-sm" id="description-text"
             >
-              قبل از شروع آموزش بازار فارکس بذار اینو بهت بگیم: فارکس فقط یک
-              بازار مالی نیست، یک دنیای بی‌پایان از فرصت‌های سودآوریه که روزانه
-              میلیون‌ها نفر توی اون معامله می‌کنن. اصلاً اغراق نیست اگر بگیم
-              فارکس بزرگ‌ترین و پرهیجان‌ترین بازار دنیاست! بازاری ۲۴ ساعته،
-              بین‌المللی و همیشه زنده که حجم معاملاتش از تمام بورس‌های دنیا
-              بیشتره. یادگیری فارکس نقطه‌ی شروع مسیر حرفه‌ای هر معامله‌گره. شما
-              اینجا اصول پایه مثل جفت‌ارزها، بروکرها و ساختار کلی بازار رو یاد
-              می‌گیرید. همین مقدمات به ظاهر ساده، برگ برنده شما برای ورود مطمئن
-              و بدون ترس به دنیای ترید خواهد بود. اگر به درآمد دلاری، شناخت
-              اقتصاد جهانی و داشتن مهارتی که همیشه و همه‌جا قابل استفاده‌ست فکر
-              می‌کنید، این دوره اولین و مهم‌ترین قدم شماست.
+            <!-- Loaded Data From JS -->
             </p>
             <div class="mt-10 h-full">
-              <img class="rounded-md" src="src/img/index/forex.png" alt="" />
+              <img class="rounded-md" src="" alt="" id="description-img"/>
             </div>
           </div>
           <!-- Start Course headings -->
@@ -491,10 +476,10 @@
                 class="flex items-center justify-between text-text dark:text-text-dark"
               >
                 <span>درصد تکمیلی دوره</span>
-                <span>98%</span>
+                <span id="number-percent-status-course">98%</span>
               </div>
               <div
-                class="relative w-full h-2 rounded-md bg-text dark:bg-text-dark mt-4 after:absolute after:w-[98%] after:h-2 after:bg-button1 dark:after:bg-button1-dark after:rounded-md after:left-0"
+                class="relative w-full h-2 rounded-md bg-text dark:bg-text-dark mt-4 after:absolute after:h-2 after:bg-button1 dark:after:bg-button1-dark after:rounded-md after:left-0" id="percent-status-course"
               ></div>
             </div>
           </div>
@@ -534,10 +519,12 @@
             <div
               class="flex items-center justify-between mt-10 border-2 border-dashed border-blue-400 p-4 rounded-md"
             >
-              <button class="cursor-pointer">
+              <button class="cursor-pointer" id="copy-shortlink-btn">
                 <i class="fa fa-link"></i>
               </button>
-              <span>sabzlearn.ir/?p=82</span>
+              <span id="shortlink">
+                <!-- Loaded Data From JS -->
+              </span>
             </div>
           </div>
           <!-- Finish short link -->

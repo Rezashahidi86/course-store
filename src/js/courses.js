@@ -13,6 +13,8 @@ import {
   baseUrl,
   getFromLocalStorage,
   plusTime,
+  changeDate,
+  showToastBox,
 } from "./helper.js";
 
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
@@ -27,6 +29,16 @@ const statusWatchCourseElem = document.querySelector("#status-watch-course");
 const teacherNameElems = document.querySelectorAll(".teacher-name");
 const courseTimeElem = document.querySelector("#course-time");
 const courseSessionsTimeElem = document.querySelector("#course-sessions-time");
+const videoContainer = document.querySelector("#video-container");
+const percentStatusCourse = document.querySelector("#percent-status-course");
+const shortLinkCourse = document.querySelector("#shortlink");
+const copyShortLinkBtn = document.querySelector("#copy-shortlink-btn");
+const descriptionTextElem = document.querySelector("#description-text");
+const descriptionImg = document.querySelector("#description-img")
+const numberPercentStatusCourse = document.querySelector(
+  "#number-percent-status-course"
+);
+let courseParams;
 const boxesCourseInformation = document.querySelectorAll(
   "#box-course-information"
 );
@@ -54,13 +66,14 @@ const boxPartsCourseHandler = (event) => {
 };
 
 const getInfoCourse = async () => {
-  const courseParams = getValueFromUrl("name");
+  courseParams = getValueFromUrl("name");
   const token = getFromLocalStorage("token");
   const res = await fetch(`${baseUrl}/courses/${courseParams}`, {
     headers: {
       Authorization: token,
     },
   });
+  shortLinkCourse.innerHTML = `courses.html?name=${courseParams}`;
   const courseInfo = await res.json();
   return courseInfo;
 };
@@ -119,7 +132,9 @@ const headerInfoCourse = (courseInfo) => {
         <div
           class="flex items-center gap-x-6 text-text dark:text-text-dark"
         >
-          <span class="text-xl max-sm:text-lg text-button1">${courseInfo.price?courseInfo.price.toLocaleString() :"رایگان"}${courseInfo.price?"تومان":""}</span>
+          <span class="text-xl max-sm:text-lg text-button1">${
+            courseInfo.price ? courseInfo.price.toLocaleString() : "رایگان"
+          }${courseInfo.price ? "تومان" : ""}</span>
         </div>
         <div
           class="flex items-center gap-x-2 text-background py-4 px-8 rounded-xl bg-button1 dark:bg-button1-dark max-sm:px-4 max-2sm:px-20 max-2sm:mb-4 cursor-pointer"
@@ -131,6 +146,17 @@ const headerInfoCourse = (courseInfo) => {
       `
     );
   }
+  videoContainer.insertAdjacentHTML(
+    "beforeend",
+    `
+    <video
+      class="rounded-xl"
+      src=""
+      poster="./src/img/index/forex.png"
+      controls
+    ></video>
+    `
+  );
 };
 
 const boxesStatusCourse = (courseInfo) => {
@@ -147,10 +173,25 @@ const boxesStatusCourse = (courseInfo) => {
   teacherNameElems.forEach((teacherNameElem) => {
     teacherNameElem.innerHTML = courseInfo.creator.name;
   });
+  if (courseInfo.isComplete) {
+    percentStatusCourse.classList.add("after:w-[100%]");
+    numberPercentStatusCourse.innerHTML = 100 + "%";
+  } else {
+    const nub = courseInfo.sessions.length * 3;
+    percentStatusCourse.classList.add(`after:w-[${nub}%]`);
+    numberPercentStatusCourse.innerHTML = nub + "%";
+  }
+  const dateMiladi = courseInfo.updatedAt.slice(0, 10).split("-");
+  const dateShamsi = changeDate(dateMiladi[0], dateMiladi[1], dateMiladi[2]);
+  courseTimeElem.innerHTML = dateShamsi.join("/");
   courseSessionsTimeElem.innerHTML = plusTime(courseInfo.sessions);
-  courseTimeElem.innerHTML = courseInfo.updatedAt.slice(0, 10);
   countStudentsElem.innerHTML = courseInfo.courseStudentsCount;
   statusSupportElem.innerHTML = courseInfo.support;
+};
+
+const description = (courseInfo) => {
+  descriptionTextElem.innerHTML = courseInfo.description
+  descriptionImg.src = "./src/img/index/forex.png"
 };
 
 const showInfoCourses = async () => {
@@ -159,6 +200,7 @@ const showInfoCourses = async () => {
   changeHeaderLinks(courseInfo);
   headerInfoCourse(courseInfo);
   boxesStatusCourse(courseInfo);
+  description(courseInfo)
 };
 
 themeChangeBtns.forEach((themeChangeBtn) => {
@@ -185,6 +227,10 @@ openModalBtnBars.addEventListener("click", modalBarsHandeler);
 backModalInfoAccount.addEventListener("click", hideModalInfoAccount);
 boxesCourseInformation.forEach((boxCourseInformation) => {
   boxCourseInformation.addEventListener("click", boxPartsCourseHandler);
+});
+copyShortLinkBtn.addEventListener("click", () => {
+  navigator.clipboard.writeText(`courses.html?name=${courseParams}`);
+  showToastBox("لینک با موفقیت ذخیره شد", "successful");
 });
 
 window.addEventListener("load", () => {

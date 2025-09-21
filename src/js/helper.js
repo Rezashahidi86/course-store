@@ -40,7 +40,6 @@ const plusTime = (sessiones) => {
   });
   let allTimeSecound = 0;
   times.forEach((time) => {
-    
     if (time.length === 8) {
       const hourse = +time.slice(0, 2);
       const min = +time.slice(3, 5);
@@ -55,19 +54,34 @@ const plusTime = (sessiones) => {
       allTimeSecound += secound;
     }
   });
-  if (allTimeSecound<3600){
-    const min = Math.floor(allTimeSecound/60)
-    if (min === 0){
-      return "تازه اجرا شده"
-    } else{
-      return `${min} دقیقه`
+  if (allTimeSecound < 3600) {
+    const min = Math.floor(allTimeSecound / 60);
+    if (min === 0) {
+      return "تازه اجرا شده";
+    } else {
+      return `${min} دقیقه`;
     }
-  }else{
-    const hourse = Math.floor(allTimeSecound/3600)
-    return `${hourse} ساعت`
+  } else {
+    const hourse = Math.floor(allTimeSecound / 3600);
+    return `${hourse} ساعت`;
   }
 };
 
+const changeDate = (y, m, d) => {
+  const date = new Date(y, m - 1, d);
+  const formatter = new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  });
+
+  const formatted = formatter.format(date);
+  const englishNumbers = formatted.replace(/[۰-۹]/g, (d) =>
+    "۰۱۲۳۴۵۶۷۸۹".indexOf(d)
+  );
+  const parts = englishNumbers.split("/");
+  return [parseInt(parts[0]), parseInt(parts[1]), parseInt(parts[2])];
+};
 // modal bars
 
 const modalBarsHandeler = () => {
@@ -379,9 +393,8 @@ const getCourses = async (container, mode) => {
   } else if (mode === "category") {
     const categoryCoursesParams = getValueFromUrl("cat");
     console.log(baseUrl, categoryCoursesParams);
-    // baseUrl => http://localhost:4000/v1 and categoryCoursesParams => frontend
     const res = await fetch(
-      `${baseUrl}/courses/cateogry/${categoryCoursesParams}`,
+      `${baseUrl}/courses/category/${categoryCoursesParams}`,
       {
         headers: {
           // token admin
@@ -492,4 +505,5 @@ export {
   getNavbar,
   getValueFromUrl,
   plusTime,
+  changeDate,
 };

@@ -450,9 +450,6 @@
   .h-6 {
     height: calc(var(--spacing) * 6);
   }
-  .h-14 {
-    height: calc(var(--spacing) * 14);
-  }
   .h-16 {
     height: calc(var(--spacing) * 16);
   }
@@ -746,6 +743,9 @@
   .bg-button2 {
     background-color: var(--color-button2);
   }
+  .bg-button2-dark {
+    background-color: var(--color-button2-dark);
+  }
   .bg-cart {
     background-color: var(--color-cart);
   }
@@ -967,6 +967,9 @@
   }
   .text-button2 {
     color: var(--color-button2);
+  }
+  .text-button2-dark {
+    color: var(--color-button2-dark);
   }
   .text-green-500 {
     color: var(--color-green-500);
@@ -1303,12 +1306,6 @@
       width: 4.25rem;
     }
   }
-  .after\:w-\[98\%\] {
-    &::after {
-      content: var(--tw-content);
-      width: 98%;
-    }
-  }
   .after\:w-\[100\%\] {
     &::after {
       content: var(--tw-content);
@@ -1541,19 +1538,9 @@
       font-size: 1rem;
     }
   }
-  .max-2xl\:mt-28 {
-    @media (width < 96rem) {
-      margin-top: calc(var(--spacing) * 28);
-    }
-  }
   .max-xl\:col-span-2 {
     @media (width < 80rem) {
       grid-column: span 2 / span 2;
-    }
-  }
-  .max-xl\:mt-8 {
-    @media (width < 80rem) {
-      margin-top: calc(var(--spacing) * 8);
     }
   }
   .max-xl\:h-14 {
