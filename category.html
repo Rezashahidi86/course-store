@@ -93,7 +93,10 @@
             class="max-w-[7rem] max-h-[6rem]"
             alt="logo"
           />
-          <ul class="flex items-center gap-x-4 max-lg:gap-x-8 max-lg:ml10" id="navbar-desctap">
+          <ul
+            class="flex items-center gap-x-4 max-lg:gap-x-8 max-lg:ml10"
+            id="navbar-desctap"
+          >
             <!-- Loaded Dat From JS -->
           </ul>
         </div>
@@ -212,11 +215,17 @@
         <h3
           class="text-3xl max-sm:mb-2 max-sm:text-3xl mr-8 max-sm:mr-0 text-title dark:text-title-dark before:rounded-sm before:size-6 max-sm:before:hidden before:bg-yellow-300 before:absolute before:right-0 before:top-2"
         >
-          جستجو: <span>forex</span>
+          جستجو:
+          <span id="name-categoty-course">
+            <!-- Loaded Data Fromc JS -->
+          </span>
         </h3>
-        <span class="text-2xl text-text dark:text-text-dark max-sm:text-lg"
-          >0 دوره آموزشی</span
+        <span
+          class="text-2xl text-text dark:text-text-dark max-sm:text-lg"
+          id="count-courses"
         >
+          <!-- Loaded Data From JS -->
+        </span>
       </section>
       <!-- Finish header main -->
       <section
@@ -228,6 +237,7 @@
           >
             <input
               class="w-full text-text dark:text-text-dark border-none outline-none"
+              id="search-input"
               type="text"
               placeholder="جستجو..."
             />
@@ -244,7 +254,7 @@
               >فقط دوره های رایگان</span
             >
             <div
-              class="relative w-12 h-6 rounded-3xl bg-text-dark after:absolute after:size-5 after:bg-text after:rounded-full after:top-0.5 after:right-0.5 cursor-pointer"
+              class="off-just-filter duration-200 filter-just-btn" data-value="freeCourses"
             ></div>
           </div>
           <div
@@ -252,17 +262,17 @@
           >
             <span class="text-text dark:text-text-dark">در حال پیش فروش</span>
             <div
-              class="relative w-12 h-6 rounded-3xl bg-text-dark after:absolute after:size-5 after:bg-text after:rounded-full after:top-0.5 after:right-0.5 cursor-pointer"
+              class="off-just-filter duration-200 filter-just-btn" data-value="notIsCompeleCourses"
             ></div>
           </div>
           <div
             class="flex items-center justify-between mt-8 rounded-sm border-2 border-cart dark:border-cart-dark p-4 bg-cart dark:bg-cart-dark"
           >
             <span class="text-text dark:text-text-dark"
-              >دوره های خریداری شده</span
+              >قدیمی ترین دوره ها</span
             >
             <div
-              class="cursor-pointer relative w-12 h-6 rounded-3xl bg-text-dark after:absolute after:size-5 after:bg-text after:rounded-full after:top-0.5 after:left-0.5"
+              class="off-just-filter duration-200 filter-just-btn" data-value="oldCourses"
             ></div>
           </div>
         </div>
@@ -279,370 +289,36 @@
               class="flex items-center gap-x-6 mr-4 text-text dark:text-text-dark max-2sm:gap-x-3"
             >
               <span
-                class="cursor-pointer relative max-2sm:text-sm after-before-filter"
+                class="cursor-pointer relative max-2sm:text-sm after-before-filter filter-mode-btn duration-300"
                 >همه دوره ها</span
               >
-              <span class="cursor-pointer relative max-2sm:text-sm"
+              <span class="cursor-pointer relative max-2sm:text-sm filter-mode-btn duration-300"
                 >ارزان ترین</span
               >
-              <span class="cursor-pointer relative max-2sm:text-sm"
+              <span class="cursor-pointer relative max-2sm:text-sm filter-mode-btn duration-300"
                 >گران ترین</span
               >
-              <span class="cursor-pointer relative max-2sm:text-sm"
+              <span class="cursor-pointer relative max-2sm:text-sm filter-mode-btn duration-300"
                 >پر مخاطب ها</span
               >
             </div>
           </div>
           <div
-            class="grid grid-cols-3 gap-12 mt-8 max-xl:grid-cols-2 max-sm:grid-cols-1" id="courses-container"
+            class="grid grid-cols-3 gap-12 mt-8 max-xl:grid-cols-2 max-sm:grid-cols-1"
+            id="courses-container"
           >
-            <div class="shadow-md shadow-cart dark:shadow-cart-dark">
-              <div
-                class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
-              >
-                <a href="#"
-                  ><img
-                    class="rounded-md mt-2"
-                    src="src/img/index/forex.png"
-                    alt="cover"
-                /></a>
-                <a
-                  class="text-lg text-title dark:text-title-dark max-md:text-2xl"
-                  href="#"
-                  >آشنایی با بازار فارکس</a
-                >
-                <p class="line-clamp-2 text-text dark:text-text-dark mt-2">
-                  معرفی ساختار فارکس، جفت‌ارزها، بروکرها و نحوه معامله در این
-                  بازار بین‌المللی.
-                </p>
-                <div
-                  class="flex justify-between mt-2 text-text dark:text-text-dark px-1"
-                >
-                  <a href="#">
-                    <i class="fa fa-user"></i>
-                    <span>سعید سعیدی</span>
-                  </a>
-                  <div class="text-yellow-400">
-                    <span>5</span>
-                    <i class="fa fa-star"></i>
-                  </div>
-                </div>
-                <div
-                  class="flex items-center justify-between mt-2 border-t-2 border-text-dark dark:border-text px-1"
-                >
-                  <div class="text-text dark:text-text-dark">
-                    <i class="fa fa-users mt-4"></i>
-                    <span>155</span>
-                  </div>
-                  <div class="flex items-center gap-x-1 mt-2 h-[2.8rem]">
-                    <span
-                      class="hidden flex items-center justify-center p-2 rounded-xl bg-button2 text-background dark:bg-header-dark dark:text-background"
-                      >20%</span
-                    >
-                    <div class="flex flex-col justify-center">
-                      <del
-                        class="hidden text-sm text-title dark:text-background-dark"
-                        >3,000,000</del
-                      >
-                      <span class="text-button1 dark:text-button1-dark"
-                        >2,000,000تومان</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="shadow-md shadow-cart dark:shadow-cart-dark">
-              <div
-                class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
-              >
-                <a href="#"
-                  ><img
-                    class="rounded-md mt-2"
-                    src="src/img/index/forex.png"
-                    alt="cover"
-                /></a>
-                <a
-                  class="text-lg text-title dark:text-title-dark max-md:text-2xl"
-                  href="#"
-                  >آشنایی با بازار فارکس</a
-                >
-                <p class="line-clamp-2 text-text dark:text-text-dark mt-2">
-                  معرفی ساختار فارکس، جفت‌ارزها، بروکرها و نحوه معامله در این
-                  بازار بین‌المللی.
-                </p>
-                <div
-                  class="flex justify-between mt-2 text-text dark:text-text-dark px-1"
-                >
-                  <a href="#">
-                    <i class="fa fa-user"></i>
-                    <span>سعید سعیدی</span>
-                  </a>
-                  <div class="text-yellow-400">
-                    <span>5</span>
-                    <i class="fa fa-star"></i>
-                  </div>
-                </div>
-                <div
-                  class="flex items-center justify-between mt-2 border-t-2 border-text-dark dark:border-text px-1"
-                >
-                  <div class="text-text dark:text-text-dark">
-                    <i class="fa fa-users mt-4"></i>
-                    <span>155</span>
-                  </div>
-                  <div class="flex items-center gap-x-1 mt-2 h-[2.8rem]">
-                    <span
-                      class="hidden flex items-center justify-center p-2 rounded-xl bg-button2 text-background dark:bg-header-dark dark:text-background"
-                      >20%</span
-                    >
-                    <div class="flex flex-col justify-center">
-                      <del
-                        class="hidden text-sm text-title dark:text-background-dark"
-                        >3,000,000</del
-                      >
-                      <span class="text-button1 dark:text-button1-dark"
-                        >2,000,000تومان</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="shadow-md shadow-cart dark:shadow-cart-dark">
-              <div
-                class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
-              >
-                <a href="#"
-                  ><img
-                    class="rounded-md mt-2"
-                    src="src/img/index/forex.png"
-                    alt="cover"
-                /></a>
-                <a
-                  class="text-lg text-title dark:text-title-dark max-md:text-2xl"
-                  href="#"
-                  >آشنایی با بازار فارکس</a
-                >
-                <p class="line-clamp-2 text-text dark:text-text-dark mt-2">
-                  معرفی ساختار فارکس، جفت‌ارزها، بروکرها و نحوه معامله در این
-                  بازار بین‌المللی.
-                </p>
-                <div
-                  class="flex justify-between mt-2 text-text dark:text-text-dark px-1"
-                >
-                  <a href="#">
-                    <i class="fa fa-user"></i>
-                    <span>سعید سعیدی</span>
-                  </a>
-                  <div class="text-yellow-400">
-                    <span>5</span>
-                    <i class="fa fa-star"></i>
-                  </div>
-                </div>
-                <div
-                  class="flex items-center justify-between mt-2 border-t-2 border-text-dark dark:border-text px-1"
-                >
-                  <div class="text-text dark:text-text-dark">
-                    <i class="fa fa-users mt-4"></i>
-                    <span>155</span>
-                  </div>
-                  <div class="flex items-center gap-x-1 mt-2 h-[2.8rem]">
-                    <span
-                      class="hidden flex items-center justify-center p-2 rounded-xl bg-button2 text-background dark:bg-header-dark dark:text-background"
-                      >20%</span
-                    >
-                    <div class="flex flex-col justify-center">
-                      <del
-                        class="hidden text-sm text-title dark:text-background-dark"
-                        >3,000,000</del
-                      >
-                      <span class="text-button1 dark:text-button1-dark"
-                        >2,000,000تومان</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="shadow-md shadow-cart dark:shadow-cart-dark">
-              <div
-                class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
-              >
-                <a href="#"
-                  ><img
-                    class="rounded-md mt-2"
-                    src="src/img/index/forex.png"
-                    alt="cover"
-                /></a>
-                <a
-                  class="text-lg text-title dark:text-title-dark max-md:text-2xl"
-                  href="#"
-                  >آشنایی با بازار فارکس</a
-                >
-                <p class="line-clamp-2 text-text dark:text-text-dark mt-2">
-                  معرفی ساختار فارکس، جفت‌ارزها، بروکرها و نحوه معامله در این
-                  بازار بین‌المللی.
-                </p>
-                <div
-                  class="flex justify-between mt-2 text-text dark:text-text-dark px-1"
-                >
-                  <a href="#">
-                    <i class="fa fa-user"></i>
-                    <span>سعید سعیدی</span>
-                  </a>
-                  <div class="text-yellow-400">
-                    <span>5</span>
-                    <i class="fa fa-star"></i>
-                  </div>
-                </div>
-                <div
-                  class="flex items-center justify-between mt-2 border-t-2 border-text-dark dark:border-text px-1"
-                >
-                  <div class="text-text dark:text-text-dark">
-                    <i class="fa fa-users mt-4"></i>
-                    <span>155</span>
-                  </div>
-                  <div class="flex items-center gap-x-1 mt-2 h-[2.8rem]">
-                    <span
-                      class="hidden flex items-center justify-center p-2 rounded-xl bg-button2 text-background dark:bg-header-dark dark:text-background"
-                      >20%</span
-                    >
-                    <div class="flex flex-col justify-center">
-                      <del
-                        class="hidden text-sm text-title dark:text-background-dark"
-                        >3,000,000</del
-                      >
-                      <span class="text-button1 dark:text-button1-dark"
-                        >2,000,000تومان</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="shadow-md shadow-cart dark:shadow-cart-dark">
-              <div
-                class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
-              >
-                <a href="#"
-                  ><img
-                    class="rounded-md mt-2"
-                    src="src/img/index/forex.png"
-                    alt="cover"
-                /></a>
-                <a
-                  class="text-lg text-title dark:text-title-dark max-md:text-2xl"
-                  href="#"
-                  >آشنایی با بازار فارکس</a
-                >
-                <p class="line-clamp-2 text-text dark:text-text-dark mt-2">
-                  معرفی ساختار فارکس، جفت‌ارزها، بروکرها و نحوه معامله در این
-                  بازار بین‌المللی.
-                </p>
-                <div
-                  class="flex justify-between mt-2 text-text dark:text-text-dark px-1"
-                >
-                  <a href="#">
-                    <i class="fa fa-user"></i>
-                    <span>سعید سعیدی</span>
-                  </a>
-                  <div class="text-yellow-400">
-                    <span>5</span>
-                    <i class="fa fa-star"></i>
-                  </div>
-                </div>
-                <div
-                  class="flex items-center justify-between mt-2 border-t-2 border-text-dark dark:border-text px-1"
-                >
-                  <div class="text-text dark:text-text-dark">
-                    <i class="fa fa-users mt-4"></i>
-                    <span>155</span>
-                  </div>
-                  <div class="flex items-center gap-x-1 mt-2 h-[2.8rem]">
-                    <span
-                      class="hidden flex items-center justify-center p-2 rounded-xl bg-button2 text-background dark:bg-header-dark dark:text-background"
-                      >20%</span
-                    >
-                    <div class="flex flex-col justify-center">
-                      <del
-                        class="hidden text-sm text-title dark:text-background-dark"
-                        >3,000,000</del
-                      >
-                      <span class="text-button1 dark:text-button1-dark"
-                        >2,000,000تومان</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="shadow-md shadow-cart dark:shadow-cart-dark">
-              <div
-                class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark px-4"
-              >
-                <a href="#"
-                  ><img
-                    class="rounded-md mt-2"
-                    src="src/img/index/forex.png"
-                    alt="cover"
-                /></a>
-                <a
-                  class="text-lg text-title dark:text-title-dark max-md:text-2xl"
-                  href="#"
-                  >آشنایی با بازار فارکس</a
-                >
-                <p class="line-clamp-2 text-text dark:text-text-dark mt-2">
-                  معرفی ساختار فارکس، جفت‌ارزها، بروکرها و نحوه معامله در این
-                  بازار بین‌المللی.
-                </p>
-                <div
-                  class="flex justify-between mt-2 text-text dark:text-text-dark px-1"
-                >
-                  <a href="#">
-                    <i class="fa fa-user"></i>
-                    <span>سعید سعیدی</span>
-                  </a>
-                  <div class="text-yellow-400">
-                    <span>5</span>
-                    <i class="fa fa-star"></i>
-                  </div>
-                </div>
-                <div
-                  class="flex items-center justify-between mt-2 border-t-2 border-text-dark dark:border-text px-1"
-                >
-                  <div class="text-text dark:text-text-dark">
-                    <i class="fa fa-users mt-4"></i>
-                    <span>155</span>
-                  </div>
-                  <div class="flex items-center gap-x-1 mt-2 h-[2.8rem]">
-                    <span
-                      class="hidden flex items-center justify-center p-2 rounded-xl bg-button2 text-background dark:bg-header-dark dark:text-background"
-                      >20%</span
-                    >
-                    <div class="flex flex-col justify-center">
-                      <del
-                        class="hidden text-sm text-title dark:text-background-dark"
-                        >3,000,000</del
-                      >
-                      <span class="text-button1 dark:text-button1-dark"
-                        >2,000,000تومان</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <!-- Loaded Data From JS -->
           </div>
         </div>
         <div></div>
       </section>
-      <div class="text-center p-2 mt-8">
+      <!-- <div class="text-center p-2 mt-8">
         <span
           class="p-1 rounded-md text-button1 dark:text-button1-dark border-2 border-button1 dark:border-button1-dark"
         >
           مشاهده بیشتر
         </span>
-      </div>
+      </div> -->
     </main>
 
     <!-- Finish main -->

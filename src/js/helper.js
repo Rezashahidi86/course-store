@@ -16,6 +16,8 @@ const nameUserMaodalInfoAccount = document.querySelector(
 );
 const navbarDesctapContainer = document.querySelector("#navbar-desctap");
 const navbarMobileContainer = document.querySelector("#navbar-mobile");
+const countCourses = document.querySelector("#count-courses")
+const nameCategotyCourse = document.querySelector("#name-categoty-course")
 let modalInfoAccountBtn;
 
 //  localStorageAndUtiliti
@@ -292,6 +294,7 @@ const getUser = async (style = false) => {
 // showCourses
 
 const showCourses = (container, courses) => {
+  container.innerHTML = ""
   for (let i = 0; i < courses.length; i++) {
     let course = courses[i];
     container.insertAdjacentHTML(
@@ -392,7 +395,7 @@ const getCourses = async (container, mode) => {
     showCourses(container, popularCourses);
   } else if (mode === "category") {
     const categoryCoursesParams = getValueFromUrl("cat");
-    console.log(baseUrl, categoryCoursesParams);
+    
     const res = await fetch(
       `${baseUrl}/courses/category/${categoryCoursesParams}`,
       {
@@ -403,8 +406,11 @@ const getCourses = async (container, mode) => {
         },
       }
     );
-    const allCourses = await res.json();
-    console.log(allCourses);
+    const categoryCourses = await res.json();
+    nameCategotyCourse.innerHTML = categoryCoursesParams
+    countCourses.innerHTML = categoryCourses.length + " دوره آموزشی"
+    showCourses(container,categoryCourses)
+    return categoryCourses
   }
 };
 
