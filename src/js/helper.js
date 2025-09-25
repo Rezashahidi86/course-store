@@ -20,6 +20,8 @@ const countCourses = document.querySelector("#count-courses");
 const nameCategotyCourse = document.querySelector("#name-categoty-course");
 const shortLinkCourse = document.querySelector("#shortlink");
 const headerLinksContainer = document.querySelector("#header-links-category");
+const creatorName = document.querySelector("#creator-name");
+const teacherProfile = document.querySelector("#teacher-profile");
 let modalInfoAccountBtn;
 let courseParams;
 const boxesCourseInformation = document.querySelectorAll(
@@ -488,7 +490,6 @@ const getNavbar = async () => {
 };
 
 const changeHeaderLinks = (courseInfo) => {
-  console.log(courseInfo);
   headerLinksContainer.insertAdjacentHTML(
     "beforeend",
     `
@@ -515,10 +516,14 @@ const getInfoCourse = async (mode) => {
       Authorization: token,
     },
   });
+  const courseInfo = await res.json();
   if (mode === "course") {
     shortLinkCourse.innerHTML = `courses.html?name=${courseParams}`;
+  } else {
+    creatorName.innerHTML = courseInfo.creator.name;
+    teacherProfile.src = `${baseUrlCover}/${courseInfo.creator.profile}`;
   }
-  const courseInfo = await res.json();
+
   return courseInfo;
 };
 

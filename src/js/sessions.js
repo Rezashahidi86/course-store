@@ -14,10 +14,12 @@ import {
   getFromLocalStorage,
   getInfoCourse,
   changeHeaderLinks,
+  baseUrlCover,
 } from "./helper.js";
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
 const partCourseElem = document.querySelector("#part-course");
 const nameSessionElem = document.querySelector("#name-session");
+const videoContainer = document.querySelector("#video-container");
 const boxSessenionsContainer = document.querySelector(
   "#box-sessions-container"
 );
@@ -25,7 +27,7 @@ const boxesCourseInformation = document.querySelectorAll(
   ".box-course-information"
 );
 let boxCourseParts;
-
+let userSessionSelect;
 themeChangeBtns.forEach((themeChangeBtn) => {
   themeChangeBtn.addEventListener("click", () => {
     themeChangeBtns[0].innerHTML = "";
@@ -47,7 +49,8 @@ themeChangeBtns.forEach((themeChangeBtn) => {
 
 const showHeaderLinks = async () => {
   const courseInfo = await getInfoCourse("session");
-  changeHeaderLinks(courseInfo)
+  changeHeaderLinks(courseInfo);
+  videoContainer.poster = `${baseUrlCover}/${courseInfo.cover}`
 };
 
 const boxPartsCourseHandler = (event) => {
@@ -71,54 +74,61 @@ const boxPartsCourseHandler = (event) => {
       boxCoursePartInformation.classList.add("rounded-md");
     }
   });
+  if (userSessionSelect) {
+    boxSessenionsContainer.scrollTop =
+      userSessionSelect.offsetTop - boxSessenionsContainer.offsetTop - 60;
+  }
 };
 
 const showSissions = (allSessions) => {
   const userSession = allSessions.session;
+  videoContainer.scr = `${baseUrlCover}/${userSession.video}`
   const sessions = allSessions.sessions;
-  console.log(sessions);
   const lastSessions = sessions.length;
   if (sessions.length) {
     sessions.forEach((session, index) => {
       const sessionSelect = userSession._id === session._id;
-      if (sessionSelect) {
-        partCourseElem.innerHTML = index + 1;
-        nameSessionElem.innerHTML = session.title;
-      }
       boxSessenionsContainer.insertAdjacentHTML(
         "beforeend",
         `
       <${session.free ? "a" : "div"}
         href="sessions.html?name=${getValueFromUrl("name")}&id=${session._id}"
-        class="relative bg-text dark:bg-text-dark flex items-center justify-between p-4 box-course-part ${
-          sessionSelect
-            ? "after:absolute after:w-2.5 after:h-[1.8rem] after:bg-green-500 dark:after:bg-green-600 after:top-4 after:right-0 after:rounded-l-lg"
-            : ""
-        } ${lastSessions === index + 1 ? "rounded-b-md" : ""}"
+        class="mt-1 flex items-center justify-between p-4 box-course-part ${
+          session.free ? "group" : ""
+        } ${lastSessions === index + 1 ? "rounded-br-md" : ""}"
+        id="${sessionSelect ? "session-on" : ""}"
       >
         <div
           class="flex items-center gap-x-4 text-title dark:text-title-dark"
         >
           <div
-            class="dark:bg-background-dark bg-background px-2 py-0.5 rounded-sm"
+            class="dark:bg-background-dark bg-background px-2 py-0.5 rounded-sm group-hover:bg-button1"
           >
-            <span class="">${index + 1}</span>
+            <span class="relative  ${
+              sessionSelect
+                ? "after:absolute after:w-[10px] after:h-[28px] after:bg-green-500 dark:after:bg-green-600 after:-top-[1px] after:-right-4 after:rounded-r-lg"
+                : ""
+            } ">${index + 1}</span>
           </div>
-          <span class="text-background dark:text-background-dark"
+          <span class="text-background-dark group-hover:text-button1 duration-200 line-clamp-1"
             >${session.title}</span
           >
         </div>
         <div
-          class="text-background dark:text-background-dark flex items-center gap-x-2"
+          class="text-background-dark flex items-center gap-x-2 group-hover:text-button1 duration-200 max-2sm:"
         >
         <span>${session.time}</span>
-        <i class="fa fa-play"></i>
-        <i class="fa fa-lock ${session.free ? "opacity-0" : ""}"></i>
+        <i class="fa fa-lock ${session.free ? "opacity-0 absolute" : ""}"></i>
         </div>
       </${session.free ? "a" : "div"}>
       `
       );
       boxCourseParts = document.querySelectorAll(".box-course-part");
+      if (sessionSelect) {
+        partCourseElem.innerHTML = index + 1;
+        nameSessionElem.innerHTML = session.title;
+        userSessionSelect = document.querySelector("#session-on");
+      }
     });
   } else {
     boxSessenionsContainer.insertAdjacentHTML(
@@ -152,6 +162,13 @@ const showSissions = (allSessions) => {
   }
 };
 
+const changeScrollBarSessions = () => {
+  if (userSessionSelect) {
+    boxSessenionsContainer.scrollTop =
+      userSessionSelect.offsetTop - boxSessenionsContainer.offsetTop - 60;
+  }
+};
+
 const getSessions = async () => {
   const res = await fetch(
     `${baseUrl}/courses/${getValueFromUrl("name")}/${getValueFromUrl("id")}`,
@@ -175,6 +192,7 @@ window.addEventListener("load", async () => {
   getThemeFromLocalStorage("text-dark");
   getUser(true);
   getNavbar();
-  getSessions();
+  const _ = await getSessions();
+  changeScrollBarSessions();
   showHeaderLinks();
 });

@@ -58,7 +58,19 @@
     @apply relative w-12 h-6 rounded-3xl bg-gray-400 dark:bg-text-dark after:absolute after:size-5 after:bg-gray-500 dark:after:bg-text after:rounded-full after:top-0.5 after:right-0.5 cursor-pointer;
   }
   .on-just-filter {
-    @apply relative w-12 h-6 rounded-3xl bg-blue-400 dark:bg-blue-700 after:absolute after:size-5 after:bg-blue-600 dark:after:bg-blue-950 after:rounded-full after:top-0.5 after:left-0.5 cursor-pointer
+    @apply relative w-12 h-6 rounded-3xl bg-blue-400 dark:bg-blue-700 after:absolute after:size-5 after:bg-blue-600 dark:after:bg-blue-950 after:rounded-full after:top-0.5 after:left-0.5 cursor-pointer;
+  }
+  .scrollbar-sessions::-webkit-scrollbar {
+    @apply w-3;
+  }
+  .scrollbar-sessions::-webkit-scrollbar-track {
+    @apply bg-gray-600;
+  }
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-800;
+  }
+  .scrollbar-sessions::-webkit-scrollbar-thumb {
+    @apply bg-gray-500 rounded-md border-3 border-transparent bg-clip-content;
   }
   .scrollbar-hide {
     scrollbar-width: none;
@@ -75,15 +87,20 @@
   margin-right: auto;
 }
 
-::-webkit-scrollbar {
+.scrollbar::-webkit-scrollbar {
   width: 8px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
 }
-::-webkit-scrollbar-track {
+.scrollbar::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
-::-webkit-scrollbar-thumb {
+.scrollbar::-webkit-scrollbar-thumb {
   background: #888;
 }
-::-webkit-scrollbar-thumb:hover {
+.scrollbar::-webkit-scrollbar-thumb:hover {
   background: #555;
 }

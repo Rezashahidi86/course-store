@@ -178,7 +178,7 @@ const showSessions = (shortName, sessions) => {
         `
       <${session.free ? "a" : "div"}
         href="sessions.html?name=${shortName}&id=${session._id}"
-        class="bg-text dark:bg-text-dark flex items-center justify-between p-4 hidden box-course-part ${
+        class="group bg-text dark:bg-text-dark flex items-center justify-between p-4 hidden box-course-part hover:border-2 border-button1 ${
           lastSessions === index + 1 ? "rounded-b-md" : ""
         }"
       >
@@ -186,20 +186,20 @@ const showSessions = (shortName, sessions) => {
           class="flex items-center gap-x-4 text-title dark:text-title-dark"
         >
           <div
-            class="dark:bg-background-dark bg-background px-2 py-0.5 rounded-sm"
+            class="dark:bg-background-dark bg-background px-2 py-0.5 rounded-sm group-hover:bg-button1  duration-200"
           >
-            <span class="">${index + 1}</span>
+            <span>${index + 1}</span>
           </div>
-          <span class="text-background dark:text-background-dark"
+          <span class="text-background dark:text-background-dark group-hover:text-button1 duration-200"
             >${session.title}</span
           >
         </div>
         <div
-          class="text-background dark:text-background-dark flex items-center gap-x-2"
+          class="text-background dark:text-background-dark flex items-center gap-x-2 group-hover:text-button1 duration-200"
         >
         <span>${session.time}</span>
         <i class="fa fa-play"></i>
-        <i class="fa fa-lock ${session.free ? "opacity-0" : ""}"></i>
+        <i class="fa fa-lock ${session.free ? "opacity-0 absolute" : ""}"></i>
         </div>
       </${session.free ? "a" : "div"}>
       `
