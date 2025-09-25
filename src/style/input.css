@@ -61,7 +61,6 @@
     @apply relative w-12 h-6 rounded-3xl bg-blue-400 dark:bg-blue-700 after:absolute after:size-5 after:bg-blue-600 dark:after:bg-blue-950 after:rounded-full after:top-0.5 after:left-0.5 cursor-pointer
   }
   .scrollbar-hide {
-    -ms-overflow-style: none;
     scrollbar-width: none;
   }
   .scrollbar-hide::-webkit-scrollbar {
@@ -71,7 +70,6 @@
     --animate-duration: 2s;
   }
 }
-
 .container {
   margin-left: auto;
   margin-right: auto;

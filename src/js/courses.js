@@ -15,10 +15,12 @@ import {
   plusTime,
   changeDate,
   showToastBox,
+  baseUrlCover,
+  getInfoCourse,
+  changeHeaderLinks
 } from "./helper.js";
 
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
-const headerLinksContainer = document.querySelector("#header-links-category");
 const courseTitle = document.querySelector("#course-title");
 const courseDescription = document.querySelector("#course-description");
 const statusBuyUserContainer = document.querySelector("#status-buy-user");
@@ -27,20 +29,23 @@ const statusCourseElem = document.querySelector("#status-course");
 const statusSupportElem = document.querySelector("#status-support");
 const statusWatchCourseElem = document.querySelector("#status-watch-course");
 const teacherNameElems = document.querySelectorAll(".teacher-name");
+const profileTeacher = document.querySelector("#profile-teacher");
 const courseTimeElem = document.querySelector("#course-time");
 const courseSessionsTimeElem = document.querySelector("#course-sessions-time");
 const videoContainer = document.querySelector("#video-container");
 const percentStatusCourse = document.querySelector("#percent-status-course");
-const shortLinkCourse = document.querySelector("#shortlink");
 const copyShortLinkBtn = document.querySelector("#copy-shortlink-btn");
 const descriptionTextElem = document.querySelector("#description-text");
-const descriptionImg = document.querySelector("#description-img")
+const descriptionImg = document.querySelector("#description-img");
+const boxSessenionsContainer = document.querySelector(
+  "#box-sessions-container"
+);
+let boxCourseParts;
 const numberPercentStatusCourse = document.querySelector(
   "#number-percent-status-course"
 );
-let courseParams;
 const boxesCourseInformation = document.querySelectorAll(
-  "#box-course-information"
+  ".box-course-information"
 );
 
 const boxPartsCourseHandler = (event) => {
@@ -51,50 +56,19 @@ const boxPartsCourseHandler = (event) => {
     boxCoursePartInformation = event.target.parentElement;
   }
   const faAngele = boxCoursePartInformation.querySelector("svg");
-  const boxCoursePart = boxCoursePartInformation.nextElementSibling;
-  if (boxCoursePart.className.includes("hidden")) {
-    boxCoursePart.classList.remove("hidden");
-    faAngele.classList.add("rotate-180");
-    boxCoursePartInformation.classList.add("rounded-t-md");
-    boxCoursePartInformation.classList.remove("rounded-md");
-  } else {
-    boxCoursePart.classList.add("hidden");
-    faAngele.classList.remove("rotate-180");
-    boxCoursePartInformation.classList.remove("rounded-t-md");
-    boxCoursePartInformation.classList.add("rounded-md");
-  }
-};
-
-const getInfoCourse = async () => {
-  courseParams = getValueFromUrl("name");
-  const token = getFromLocalStorage("token");
-  const res = await fetch(`${baseUrl}/courses/${courseParams}`, {
-    headers: {
-      Authorization: token,
-    },
+  boxCourseParts.forEach((boxCoursePart) => {
+    if (boxCoursePart.className.includes("hidden")) {
+      boxCoursePart.classList.remove("hidden");
+      faAngele.classList.add("rotate-180");
+      boxCoursePartInformation.classList.add("rounded-t-md");
+      boxCoursePartInformation.classList.remove("rounded-md");
+    } else {
+      boxCoursePart.classList.add("hidden");
+      faAngele.classList.remove("rotate-180");
+      boxCoursePartInformation.classList.remove("rounded-t-md");
+      boxCoursePartInformation.classList.add("rounded-md");
+    }
   });
-  shortLinkCourse.innerHTML = `courses.html?name=${courseParams}`;
-  const courseInfo = await res.json();
-  return courseInfo;
-};
-
-const changeHeaderLinks = (courseInfo) => {
-  headerLinksContainer.insertAdjacentHTML(
-    "beforeend",
-    `
-      <a
-        href="category.html?cat=${courseInfo.categoryID.name}"
-        class="relative text-nowrap text-text dark:text-text-dark after:absolute after:w-[4.25rem] after:h-2 after:-top-3 after:-right-18 after:rotate-[140deg] after:bg-background dark:after:bg-background-dark before:absolute before:w-16 before:h-2 before:-bottom-3 before:-right-18 before:rotate-[-140deg] before:bg-background dark:before:bg-background-dark"
-        id="category-course-title"
-        >${courseInfo.categoryID.name}</a
-      >
-      <a
-        href="#"
-        class="relative text-nowrap text-text dark:text-text-dark after:absolute after:w-[4.25rem] after:h-2 after:-top-3 after:-right-18 after:rotate-[140deg] after:bg-background dark:after:bg-background-dark before:absolute before:w-16 before:h-2 before:-bottom-3 before:-right-18 before:rotate-[-140deg] before:bg-background dark:before:bg-background-dark"
-      >${courseInfo.name}</a
-      >
-    `
-  );
 };
 
 const headerInfoCourse = (courseInfo) => {
@@ -150,9 +124,9 @@ const headerInfoCourse = (courseInfo) => {
     "beforeend",
     `
     <video
-      class="rounded-xl"
+      class="rounded-xl w-full h-full"
       src=""
-      poster="./src/img/index/forex.png"
+      poster="${baseUrlCover}/${courseInfo.cover}"
       controls
     ></video>
     `
@@ -173,6 +147,7 @@ const boxesStatusCourse = (courseInfo) => {
   teacherNameElems.forEach((teacherNameElem) => {
     teacherNameElem.innerHTML = courseInfo.creator.name;
   });
+  profileTeacher.src = `${baseUrlCover}/${courseInfo.profile}`;
   if (courseInfo.isComplete) {
     percentStatusCourse.classList.add("after:w-[100%]");
     numberPercentStatusCourse.innerHTML = 100 + "%";
@@ -190,17 +165,87 @@ const boxesStatusCourse = (courseInfo) => {
 };
 
 const description = (courseInfo) => {
-  descriptionTextElem.innerHTML = courseInfo.description
-  descriptionImg.src = "./src/img/index/forex.png"
+  descriptionTextElem.innerHTML = courseInfo.description;
+  descriptionImg.src = `${baseUrlCover}/${courseInfo.cover}`;
+};
+
+const showSessions = (shortName, sessions) => {
+  const lastSessions = sessions.length;
+  if (sessions.length) {
+    sessions.forEach((session, index) => {
+      boxSessenionsContainer.insertAdjacentHTML(
+        "beforeend",
+        `
+      <${session.free ? "a" : "div"}
+        href="sessions.html?name=${shortName}&id=${session._id}"
+        class="bg-text dark:bg-text-dark flex items-center justify-between p-4 hidden box-course-part ${
+          lastSessions === index + 1 ? "rounded-b-md" : ""
+        }"
+      >
+        <div
+          class="flex items-center gap-x-4 text-title dark:text-title-dark"
+        >
+          <div
+            class="dark:bg-background-dark bg-background px-2 py-0.5 rounded-sm"
+          >
+            <span class="">${index + 1}</span>
+          </div>
+          <span class="text-background dark:text-background-dark"
+            >${session.title}</span
+          >
+        </div>
+        <div
+          class="text-background dark:text-background-dark flex items-center gap-x-2"
+        >
+        <span>${session.time}</span>
+        <i class="fa fa-play"></i>
+        <i class="fa fa-lock ${session.free ? "opacity-0" : ""}"></i>
+        </div>
+      </${session.free ? "a" : "div"}>
+      `
+      );
+      boxCourseParts = document.querySelectorAll(".box-course-part");
+    });
+  } else {
+    boxSessenionsContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div
+        class="bg-text dark:bg-text-dark flex items-center justify-between p-4 hidden box-course-part"
+      >
+        <div
+          class="flex items-center gap-x-4 text-title dark:text-title-dark"
+        >
+          <div
+            class="dark:bg-background-dark bg-background px-2 py-0.5 rounded-sm"
+          >
+            <span class="">--</span>
+          </div>
+          <span class="text-background dark:text-background-dark"
+            >هنوز دوره ای اضافه نشده</span
+          >
+        </div>
+        <div
+          class="text-background dark:text-background-dark flex items-center gap-x-2"
+        >
+        <span>00:00</span>
+        <i class="fa fa-play"></i>
+        </div>
+      </div>
+      `
+    );
+    boxCourseParts = document.querySelectorAll(".box-course-part");
+  }
 };
 
 const showInfoCourses = async () => {
-  const courseInfo = await getInfoCourse();
-  console.log(courseInfo);
+  const courseInfo = await getInfoCourse("course");
   changeHeaderLinks(courseInfo);
   headerInfoCourse(courseInfo);
   boxesStatusCourse(courseInfo);
-  description(courseInfo)
+  description(courseInfo);
+  console.log(courseInfo);
+  showSessions(courseInfo.shortName, courseInfo.sessions);
 };
 
 themeChangeBtns.forEach((themeChangeBtn) => {

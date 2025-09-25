@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="fa-IR" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -247,7 +247,7 @@
           <!-- if the user did not have the course -->
         </div>
         <div class="w-1/2 rounded-xl max-lg:w-full" id="video-container">
-
+          <!-- Loaded Data From JS -->
         </div>
       </section>
 
@@ -389,7 +389,7 @@
             <!-- Loaded Data From JS -->
             </p>
             <div class="mt-10 h-full">
-              <img class="rounded-md" src="" alt="" id="description-img"/>
+              <img class="rounded-md w-full" src="" alt="" id="description-img"/>
             </div>
           </div>
           <!-- Start Course headings -->
@@ -402,41 +402,18 @@
                 >سر فصل ها</span
               >
             </div>
-            <div>
+            <div class="flex flex-col" id="box-sessions-container">
               <div
-                class="mt-8 dark:bg-gray-700 bg-gray-400 rounded-md flex items-center justify-between px-8 py-4"
-                id="box-course-information"
+                class="mt-8 dark:bg-gray-700 bg-gray-400 rounded-md flex items-center justify-between px-8 py-4 box-course-information"
               >
                 <span class="text-xl text-background dark:text-background-dark"
-                  >معرفی دوره</span
+                  >جلسات دوره</span
                 >
                 <i
                   class="text-background dark:text-background-dark text-2xl fa fa-angle-up duration-300"
                 ></i>
               </div>
-              <a
-                href="#"
-                class="bg-text dark:bg-text-dark rounded-b-md flex items-center justify-between p-4 hidden"
-              >
-                <div
-                  class="flex items-center gap-x-4 text-title dark:text-title-dark"
-                >
-                  <div
-                    class="dark:bg-background-dark bg-background px-2 py-0.5 rounded-sm"
-                  >
-                    <span class="">1</span>
-                  </div>
-                  <span class="text-background dark:text-background-dark"
-                    >معرفی دوره</span
-                  >
-                </div>
-                <div
-                  class="text-background dark:text-background-dark flex items-center gap-x-2"
-                >
-                  <span>6:00</span>
-                  <i class="fa fa-play"></i>
-                </div>
-              </a>
+              <!-- Loaded Data From JS -->
             </div>
           </div>
           <!-- Finish Course headings -->
@@ -492,6 +469,7 @@
               class="w-18 h-16 rounded-full"
               src="src/img/index/forex.png"
               alt="teacher"
+              id="profile-teacher"
             />
             <div class="text-text dark:text-text-dark mt-4 text-lg font-bold">
               <span

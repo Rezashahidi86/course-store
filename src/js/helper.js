@@ -16,9 +16,15 @@ const nameUserMaodalInfoAccount = document.querySelector(
 );
 const navbarDesctapContainer = document.querySelector("#navbar-desctap");
 const navbarMobileContainer = document.querySelector("#navbar-mobile");
-const countCourses = document.querySelector("#count-courses")
-const nameCategotyCourse = document.querySelector("#name-categoty-course")
+const countCourses = document.querySelector("#count-courses");
+const nameCategotyCourse = document.querySelector("#name-categoty-course");
+const shortLinkCourse = document.querySelector("#shortlink");
+const headerLinksContainer = document.querySelector("#header-links-category");
 let modalInfoAccountBtn;
+let courseParams;
+const boxesCourseInformation = document.querySelectorAll(
+  "#box-course-information"
+);
 
 //  localStorageAndUtiliti
 
@@ -294,7 +300,7 @@ const getUser = async (style = false) => {
 // showCourses
 
 const showCourses = (container, courses) => {
-  container.innerHTML = ""
+  container.innerHTML = "";
   for (let i = 0; i < courses.length; i++) {
     let course = courses[i];
     container.insertAdjacentHTML(
@@ -395,22 +401,15 @@ const getCourses = async (container, mode) => {
     showCourses(container, popularCourses);
   } else if (mode === "category") {
     const categoryCoursesParams = getValueFromUrl("cat");
-    
+
     const res = await fetch(
-      `${baseUrl}/courses/category/${categoryCoursesParams}`,
-      {
-        headers: {
-          // token admin
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGU2YmVhMWQ1MTQyYjkxYWZhOWJiNyIsImlhdCI6MTc1ODM1OTYwMCwiZXhwIjoxNzYwOTUxNjAwfQ.BazV0FRC3X6TPqBE4FxsNzzN7453XH2pOieSdfHX350",
-        },
-      }
+      `${baseUrl}/courses/category/${categoryCoursesParams}`
     );
     const categoryCourses = await res.json();
-    nameCategotyCourse.innerHTML = categoryCoursesParams
-    countCourses.innerHTML = categoryCourses.length + " دوره آموزشی"
-    showCourses(container,categoryCourses)
-    return categoryCourses
+    nameCategotyCourse.innerHTML = categoryCoursesParams;
+    countCourses.innerHTML = categoryCourses.length + " دوره آموزشی";
+    showCourses(container, categoryCourses);
+    return categoryCourses;
   }
 };
 
@@ -488,7 +487,43 @@ const getNavbar = async () => {
   showNavbar(sortNavbar);
 };
 
+const changeHeaderLinks = (courseInfo) => {
+  console.log(courseInfo);
+  headerLinksContainer.insertAdjacentHTML(
+    "beforeend",
+    `
+      <a
+        href="category.html?cat=${courseInfo.categoryID.name}"
+        class="relative text-nowrap text-text dark:text-text-dark after:absolute after:w-[4.25rem] after:h-2 after:-top-3 after:-right-18 after:rotate-[140deg] after:bg-background dark:after:bg-background-dark before:absolute before:w-16 before:h-2 before:-bottom-3 before:-right-18 before:rotate-[-140deg] before:bg-background dark:before:bg-background-dark"
+        id="category-course-title"
+        >${courseInfo.categoryID.name}</a
+      >
+      <a
+        href="#"
+        class="relative text-nowrap text-text dark:text-text-dark after:absolute after:w-[4.25rem] after:h-2 after:-top-3 after:-right-18 after:rotate-[140deg] after:bg-background dark:after:bg-background-dark before:absolute before:w-16 before:h-2 before:-bottom-3 before:-right-18 before:rotate-[-140deg] before:bg-background dark:before:bg-background-dark"
+      >${courseInfo.name}</a
+      >
+    `
+  );
+};
+
+const getInfoCourse = async (mode) => {
+  courseParams = getValueFromUrl("name");
+  const token = getFromLocalStorage("token");
+  const res = await fetch(`${baseUrl}/courses/${courseParams}`, {
+    headers: {
+      Authorization: token,
+    },
+  });
+  if (mode === "course") {
+    shortLinkCourse.innerHTML = `courses.html?name=${courseParams}`;
+  }
+  const courseInfo = await res.json();
+  return courseInfo;
+};
+
 export {
+  baseUrlCover,
   modalBars,
   closeModalBars,
   backModalInfoAccount,
@@ -512,4 +547,6 @@ export {
   getValueFromUrl,
   plusTime,
   changeDate,
+  getInfoCourse,
+  changeHeaderLinks,
 };
