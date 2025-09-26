@@ -294,7 +294,9 @@
                 <span class="text-xl font-bold max-2sm:text-[1rem]"
                   >مدت زمان دوره</span
                 >
-                <span class="mt-2 max-md:text-center" id="course-sessions-time">23 ساعت</span>
+                <span class="mt-2 max-md:text-center" id="course-sessions-time"
+                  >23 ساعت</span
+                >
               </div>
             </div>
             <div
@@ -346,7 +348,8 @@
               <div
                 class="flex flex-col text-text dark:text-text-dark max-md:mt-2"
               >
-                <span class="text-xl font-bold max-2sm:text-[1rem] max-md:text-center"
+                <span
+                  class="text-xl font-bold max-2sm:text-[1rem] max-md:text-center"
                   >مدرس دوره</span
                 >
                 <span class="mt-2 max-md:text-center teacher-name">
@@ -384,12 +387,18 @@
               <span class="text-4xl mr-4 max-md:text-2xl">توضیحات</span>
             </div>
             <p
-              class="mt-10 text-lg text-text dark:text-text-dark max-md:text-sm" id="description-text"
+              class="mt-10 text-lg text-text dark:text-text-dark max-md:text-sm"
+              id="description-text"
             >
-            <!-- Loaded Data From JS -->
+              <!-- Loaded Data From JS -->
             </p>
             <div class="mt-10 h-full">
-              <img class="rounded-md w-full" src="" alt="" id="description-img"/>
+              <img
+                class="rounded-md w-full"
+                src=""
+                alt=""
+                id="description-img"
+              />
             </div>
           </div>
           <!-- Start Course headings -->
@@ -397,7 +406,7 @@
             class="mt-8 flex flex-col p-6 bg-cart dark:bg-cart-dark rounded-lg"
           >
             <div class="flex items-center">
-              <i class="text-blue-400 text-6xl fa fa-chalkboard-teacher"></i>
+              <i class="text-blue-400 text-6xl fa fa-chalkboard-teacher max-md:opacity-0 max-md:absolute"></i>
               <span class="text-3xl mr-4 text-title dark:text-title-dark"
                 >سر فصل ها</span
               >
@@ -417,6 +426,75 @@
             </div>
           </div>
           <!-- Finish Course headings -->
+          <!-- Start Commentes -->
+          <div class="mt-8 p-6 bg-cart dark:bg-cart-dark rounded-lg" id="commentes-container">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <i class="text-red-500 text-4xl fa fa-comments max-md:opacity-0 max-md:absolute"></i>
+                <span class="text-3xl mr-4 text-title dark:text-title-dark"
+                  >نظرات</span
+                >
+              </div>
+              <div>
+                <button
+                  class="flex items-center px-4 py-2 bg-button1 rounded-md gap-x-2 cursor-pointer hover:bg-green-700" id="add-comment-btn"
+                >
+                  <span class="text-background">ارسال دیدگاه خود</span>
+                  <i class="text-background fa fa-comment-dots"></i>
+                </button>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center gap-x-2 mt-8">
+                <img
+                  class="size-14 rounded-full"
+                  src="./src/img/index/forex.png"
+                  alt=""
+                />
+                <span class="text-title dark:text-title-dark">RezaShahidi</span>
+              </div>
+              <div class="p-3 rounded-md mt-12 bg-button1/50 dark:bg-green-800/50" id="worning-box-comments">
+                <p class="text-green-700 dark:text-button1 text-sm">
+                  دانشجوی عزیز؛ سوالات مرتبط به پشتیبانی دوره در قسمت نظرات
+                  تایید نخواهد شد، لطفا در بخش مشاهده آنلاین هر ویدیو سوالات خود
+                  را مطرح کنید.
+                </p>
+              </div>
+              <div class="mt-12 hidden" id="box-add-comments">
+                <div
+                  class="p-3 rounded-lg flex items-center gap-x-2 bg-red-500 dark:bg-red-600 mt-8"
+                >
+                  <i class="text-background fa fa-warning"></i>
+                  <p class="text-background">
+                    لطفا پرسش مربوط به هر درس یا ویدئو دوره را در صفحه همان
+                    ویدئو مطرح کنید.
+                  </p>
+                </div>
+                <textarea
+                  class="w-full p-2 mt-8 h-40 rounded-md text-text dark:text-shadow-teal-50 outline-none border-2 border-button2 dark:border-header"
+                  name=""
+                  id=""
+                  placeholder="نظر خود را بنویسید ..."
+                ></textarea>
+                <div
+                  class="flex items-center justify-end gap-x-2 text-background mt-4"
+                >
+                  <button
+                    class="px-12 rounded-md py-2 bg-green-800 cursor-pointer hover:bg-green-900" id="close-textarea-comment"
+                  >
+                    لغو
+                  </button>
+                  <button
+                    class="px-10 py-2 rounded-md bg-button1 cursor-pointer hover:bg-green-700"
+                  >
+                    ارسال
+                  </button>
+                </div>
+              </div>
+              <!-- Comments Loaded From JS -->
+            </div>
+          </div>
+          <!-- Finish Commentes -->
         </div>
         <!-- Start Aside -->
         <div class="col-span-4 max-lg:hidden">
@@ -430,9 +508,10 @@
                   <i class="fa fa-users"></i>
                 </div>
                 <div class="flex flex-col text-title dark:text-title-dark">
-                  <span class="text-[0.8rem] font-bold" id="count-students"
-                    ></span
-                  >
+                  <span
+                    class="text-[0.8rem] font-bold"
+                    id="count-students"
+                  ></span>
                   <span class="text-sm">دانشجو</span>
                 </div>
               </div>
@@ -456,7 +535,8 @@
                 <span id="number-percent-status-course"></span>
               </div>
               <div
-                class="relative w-full h-2 rounded-md bg-text dark:bg-text-dark mt-4 after:absolute after:h-2 after:bg-button1 dark:after:bg-button1-dark after:rounded-md after:left-0" id="percent-status-course"
+                class="relative w-full h-2 rounded-md bg-text dark:bg-text-dark mt-4 after:absolute after:h-2 after:bg-button1 dark:after:bg-button1-dark after:rounded-md after:left-0"
+                id="percent-status-course"
               ></div>
             </div>
           </div>

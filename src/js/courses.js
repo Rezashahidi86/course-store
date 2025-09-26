@@ -17,7 +17,7 @@ import {
   showToastBox,
   baseUrlCover,
   getInfoCourse,
-  changeHeaderLinks
+  changeHeaderLinks,
 } from "./helper.js";
 
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
@@ -37,6 +37,13 @@ const percentStatusCourse = document.querySelector("#percent-status-course");
 const copyShortLinkBtn = document.querySelector("#copy-shortlink-btn");
 const descriptionTextElem = document.querySelector("#description-text");
 const descriptionImg = document.querySelector("#description-img");
+const commentesContainer = document.querySelector("#commentes-container");
+const addCommentBtn = document.querySelector("#add-comment-btn");
+const worningBoxComments = document.querySelector("#worning-box-comments");
+const boxAddComments = document.querySelector("#box-add-comments");
+const closeTextareaCommentBtn = document.querySelector(
+  "#close-textarea-comment"
+);
 const boxSessenionsContainer = document.querySelector(
   "#box-sessions-container"
 );
@@ -238,6 +245,96 @@ const showSessions = (shortName, sessions) => {
   }
 };
 
+const showComments = (courseInfo) => {
+  if (courseInfo.comments.length) {
+    const comments = courseInfo.comments.slice();
+    if (comments.length >= 7) {
+      comments = comments.slice(comments.length - 6, comments.length);
+    }
+    console.log(comments);
+    comments.forEach((comment, index) => {
+      let answerCreate;
+      let dataCreate = comment.creator.createdAt.slice(0, 10).split("-");
+      if (comment.answerContent) {
+        answerCreate = comment.answerContent.createdAt.slice(0, 10).split("-");
+      }
+      commentesContainer.insertAdjacentHTML(
+        "beforeend",
+        `
+      <div
+        class="rounded-md mt-8 p-4 bg-background dark:bg-background-dark"
+        id="comment-${index + 1}"
+      >
+        <div>
+          <div
+            class="flex items-center gap-x-2 pb-6 border-b-2 border-text dark:border-text-dark w-full"
+          >
+            <img
+              class="size-14 rounded-full"
+              src="${baseUrlCover}/${comment.creator.profile}"
+              alt="profile"
+            />
+            <div class="flex flex-col gap-y-2">
+              <span class="text-title dark:text-title-dark"
+                >${comment.creator.username} | ${
+          comment.creator.role === "USER" ? "دانشجو" : "مدرس"
+        }</span
+              >
+              <span class="text-text dark:text-text-dark text-sm"
+                >${changeDate(dataCreate[0], dataCreate[1], dataCreate[2]).join(
+                  "/"
+                )}</span
+              >
+            </div>
+          </div>
+          <p class="text-text dark:text-text-dark p-2 mt-4">${comment.body}</p>
+        </div>
+      </div>
+      `
+      );
+      if (comment.answerContent) {
+        let commentBox = document.querySelector(`#comment-${index + 1}`);
+        commentBox.insertAdjacentHTML(
+          "beforeend",
+          `
+                  <div class="bg-cart dark:bg-cart-dark p-4 mt-4 rounded-md">
+          <div class="">
+            <div
+              class="flex items-center gap-x-2 pb-6 border-b-2 border-text dark:border-text-dark w-full"
+            >
+              <img
+                class="size-14 rounded-full"
+                src="${baseUrlCover}/${comment.answerContent.creator.profile}"
+                alt="profile"
+              />
+              <div class="flex flex-col gap-y-2">
+                <span class="text-title dark:text-title-dark"
+                  >${comment.answerContent.creator.name} |  ${
+            comment.creator.role === "USER" ? "دانشجو" : "مدرس"
+          }</span
+                >
+
+                <span class="text-text dark:text-text-dark text-sm"
+                  >${changeDate(
+                    answerCreate[0],
+                    answerCreate[1],
+                    answerCreate[2]
+                  ).join("/")}</span
+                >
+              </div>
+            </div>
+          </div>
+          <p class="text-text dark:text-text-dark mt-2 p-2">${
+            comment.answerContent.body
+          }</p>
+        </div>
+          `
+        );
+      }
+    });
+  }
+};
+
 const showInfoCourses = async () => {
   const courseInfo = await getInfoCourse("course");
   changeHeaderLinks(courseInfo);
@@ -246,6 +343,7 @@ const showInfoCourses = async () => {
   description(courseInfo);
   console.log(courseInfo);
   showSessions(courseInfo.shortName, courseInfo.sessions);
+  showComments(courseInfo);
 };
 
 themeChangeBtns.forEach((themeChangeBtn) => {
@@ -276,6 +374,14 @@ boxesCourseInformation.forEach((boxCourseInformation) => {
 copyShortLinkBtn.addEventListener("click", () => {
   navigator.clipboard.writeText(`courses.html?name=${courseParams}`);
   showToastBox("لینک با موفقیت ذخیره شد", "successful");
+});
+addCommentBtn.addEventListener("click", () => {
+  boxAddComments.classList.toggle("hidden");
+  worningBoxComments.classList.toggle("hidden");
+});
+closeTextareaCommentBtn.addEventListener("click", () => {
+    boxAddComments.classList.toggle("hidden");
+  worningBoxComments.classList.toggle("hidden");
 });
 
 window.addEventListener("load", () => {
