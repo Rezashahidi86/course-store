@@ -41,6 +41,13 @@ const commentesContainer = document.querySelector("#commentes-container");
 const addCommentBtn = document.querySelector("#add-comment-btn");
 const worningBoxComments = document.querySelector("#worning-box-comments");
 const boxAddComments = document.querySelector("#box-add-comments");
+const postCommentBtn = document.querySelector("#post-comment-btn");
+const commentsText = document.querySelector("#comments-text");
+const scoreContainer = document.querySelector("#score-container");
+const rediousScore = document.querySelector("#redious-score");
+const scoreNumber = document.querySelector("#score-number");
+const cresseScore = document.querySelector("#cresse-score");
+const scoreIcon = document.querySelectorAll(".score-icon");
 const closeTextareaCommentBtn = document.querySelector(
   "#close-textarea-comment"
 );
@@ -183,7 +190,7 @@ const showSessions = (shortName, sessions) => {
       boxSessenionsContainer.insertAdjacentHTML(
         "beforeend",
         `
-      <${session.free ? "a" : "div"}
+      <${session.free || session.isUserRegisteredToThisCourse ? "a" : "div"}
         href="sessions.html?name=${shortName}&id=${session._id}"
         class="group bg-text dark:bg-text-dark flex items-center justify-between p-4 hidden box-course-part hover:border-2 border-button1 ${
           lastSessions === index + 1 ? "rounded-b-md" : ""
@@ -206,9 +213,13 @@ const showSessions = (shortName, sessions) => {
         >
         <span>${session.time}</span>
         <i class="fa fa-play"></i>
-        <i class="fa fa-lock ${session.free ? "opacity-0 absolute" : ""}"></i>
+        <i class="fa fa-lock ${
+          session.free || session.isUserRegisteredToThisCourse
+            ? "opacity-0 absolute"
+            : ""
+        }"></i>
         </div>
-      </${session.free ? "a" : "div"}>
+      </${session.free || session.isUserRegisteredToThisCourse ? "a" : "div"}>
       `
       );
       boxCourseParts = document.querySelectorAll(".box-course-part");
@@ -251,7 +262,6 @@ const showComments = (courseInfo) => {
     if (comments.length >= 7) {
       comments = comments.slice(comments.length - 6, comments.length);
     }
-    console.log(comments);
     comments.forEach((comment, index) => {
       let answerCreate;
       let dataCreate = comment.creator.createdAt.slice(0, 10).split("-");
@@ -335,13 +345,59 @@ const showComments = (courseInfo) => {
   }
 };
 
+const postComments = async () => {
+  const textUser = commentsText.value;
+  if (!getFromLocalStorage("token")) {
+    showToastBox("لطفا ابتدا در سایت ثبت نام کنید", "failed");
+  } else if (!textUser) {
+    showToastBox("لطفا ابتدا دیدگاه خود را بنویسید", "failed");
+  } else {
+    const commentData = {
+      body: commentsText.value.trim(),
+      courseShortName: getValueFromUrl("name"),
+      score: scoreNumber.innerHTML,
+    };
+    const res = await fetch(`${baseUrl}/comments`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${getFromLocalStorage("token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(commentData),
+    });
+    if (res.ok) {
+      commentsText.value = "";
+      showToastBox("نظر شما با موفقیت ثبت شد", "successful");
+    } else {
+      showToastBox("خطای ناشناخته ای رخ داد بعدا تلاش کنید", "failde");
+    }
+  }
+};
+
+const showScoreComment = () => {
+  const scoreUser = +scoreNumber.innerHTML;
+  const starEmpty = 5 - scoreUser;
+  let scoreIconArray = Array.from(scoreIcon);
+  for (let i = 0; i < scoreUser; i++) {
+    scoreIconArray[i].classList.remove("text-yellow-200");
+    scoreIconArray[i].classList.add("text-yellow-400");
+  }
+  for (let i = 0; i < starEmpty; i++) {
+    scoreIconArray[scoreIconArray.length - 1 - i].classList.remove(
+      "text-yellow-400"
+    );
+    scoreIconArray[scoreIconArray.length - 1 - i].classList.add(
+      "text-yellow-200"
+    );
+  }
+};
+
 const showInfoCourses = async () => {
   const courseInfo = await getInfoCourse("course");
   changeHeaderLinks(courseInfo);
   headerInfoCourse(courseInfo);
   boxesStatusCourse(courseInfo);
   description(courseInfo);
-  console.log(courseInfo);
   showSessions(courseInfo.shortName, courseInfo.sessions);
   showComments(courseInfo);
 };
@@ -368,6 +424,21 @@ themeChangeBtns.forEach((themeChangeBtn) => {
 closeModalBars.addEventListener("click", modalBarsHandeler);
 openModalBtnBars.addEventListener("click", modalBarsHandeler);
 backModalInfoAccount.addEventListener("click", hideModalInfoAccount);
+postCommentBtn.addEventListener("click", postComments);
+rediousScore.addEventListener("click", () => {
+  const score = scoreNumber.innerHTML;
+  if (score > 1) {
+    scoreNumber.innerHTML = +scoreNumber.innerHTML - 1;
+  }
+  showScoreComment();
+});
+cresseScore.addEventListener("click", () => {
+  const score = scoreNumber.innerHTML;
+  if (score < 5) {
+    scoreNumber.innerHTML = +scoreNumber.innerHTML + 1;
+  }
+  showScoreComment();
+});
 boxesCourseInformation.forEach((boxCourseInformation) => {
   boxCourseInformation.addEventListener("click", boxPartsCourseHandler);
 });
@@ -380,7 +451,7 @@ addCommentBtn.addEventListener("click", () => {
   worningBoxComments.classList.toggle("hidden");
 });
 closeTextareaCommentBtn.addEventListener("click", () => {
-    boxAddComments.classList.toggle("hidden");
+  boxAddComments.classList.toggle("hidden");
   worningBoxComments.classList.toggle("hidden");
 });
 

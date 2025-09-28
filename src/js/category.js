@@ -12,13 +12,16 @@ import {
   getCourses,
   showCourses,
   getValueFromUrl,
+  showSearchGlobal,
 } from "./helper.js";
-const nameCategotyCourse = document.querySelector("#name-categoty-course")
+const nameCategotyCourse = document.querySelector("#name-categoty-course");
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
 const coursesContainer = document.querySelector("#courses-container");
 const filterModeBtns = document.querySelectorAll(".filter-mode-btn");
 const filterJustBtns = document.querySelectorAll(".filter-just-btn");
+const searchGlobalBtn = document.querySelector("#search-global-btn");
 const searchInput = document.querySelector("#search-input");
+const countCourses = document.querySelector("#count-courses");
 let categoryCourses;
 let filters = {
   mode: "همه دوره ها",
@@ -52,7 +55,7 @@ const largeToSmallOrSmallToLarge = (
   registers = false
 ) => {
   const courseSort = [];
-  for (let i = 0; courseSort.length < categoryCourses.length; i++) {
+  for (let i = 0; courseSort.length < copyCategoryCourses.length + 3; i++) {
     let sheapeCours = copyCategoryCourses[0];
     let indexCourse = 0;
     copyCategoryCourses.forEach((course, index) => {
@@ -97,12 +100,9 @@ const showCoursesByFilter = (filters) => {
     copyCategoryCourses.reverse();
   }
   if (searchInput.value != "") {
-    nameCategotyCourse.innerHTML = searchInput.value
     copyCategoryCourses = copyCategoryCourses.filter((copyCategoryCours) => {
       return copyCategoryCours.name.includes(searchInput.value);
     });
-  }else{
-    nameCategotyCourse.innerHTML = getValueFromUrl("cat")
   }
   switch (filters.mode) {
     case "همه دور ها":
@@ -128,7 +128,11 @@ const showCoursesByFilter = (filters) => {
       );
       break;
   }
-  showCourses(coursesContainer, copyCategoryCourses);
+  countCourses.innerHTML = copyCategoryCourses.length + " دوره آموزشی";
+  const filterCourses = copyCategoryCourses.filter((course) => {
+    return course != undefined
+  });
+  showCourses(coursesContainer, filterCourses);
 };
 
 filterModeBtns.forEach((filterModeBtn) => {
@@ -158,6 +162,7 @@ filterJustBtns.forEach((filterJustBtn) => {
 closeModalBars.addEventListener("click", modalBarsHandeler);
 openModalBtnBars.addEventListener("click", modalBarsHandeler);
 backModalInfoAccount.addEventListener("click", hideModalInfoAccount);
+searchGlobalBtn.addEventListener("click", showSearchGlobal);
 searchInput.addEventListener("input", () => {
   showCoursesByFilter(filters);
 });

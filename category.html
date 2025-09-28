@@ -209,8 +209,26 @@
 
     <main>
       <!-- Start header main -->
+      <section class="container">
+        <div
+          class="flex items-center gap-x-2 bg-cart dark:bg-cart-dark mt-8 w-max rounded-md px-6 py-3 max-sm:mx-auto"
+        >
+          <div>
+            <input
+              class="w-full border-none outline-none text-title dark:text-title-dark"
+              placeholder="جستجو در بین دسته بندی ها..."
+              type="text"
+              id="search-global-input"
+            />
+          </div>
+          <button class="cursor-pointer" id="search-global-btn">
+            <i class="text-title dark:text-title-dark text-xl fa fa-search"></i>
+          </button>
+        </div>
+      </section>
+
       <section
-        class="relative container mt-16 flex items-center justify-between max-sm:flex-col"
+        class="relative container mt-8 flex items-center justify-between max-sm:flex-col"
       >
         <h3
           class="text-3xl max-sm:mb-2 max-sm:text-3xl mr-8 max-sm:mr-0 text-title dark:text-title-dark before:rounded-sm before:size-6 max-sm:before:hidden before:bg-yellow-300 before:absolute before:right-0 before:top-2"
@@ -254,7 +272,8 @@
               >فقط دوره های رایگان</span
             >
             <div
-              class="off-just-filter duration-200 filter-just-btn" data-value="freeCourses"
+              class="off-just-filter duration-200 filter-just-btn"
+              data-value="freeCourses"
             ></div>
           </div>
           <div
@@ -262,7 +281,8 @@
           >
             <span class="text-text dark:text-text-dark">در حال پیش فروش</span>
             <div
-              class="off-just-filter duration-200 filter-just-btn" data-value="notIsCompeleCourses"
+              class="off-just-filter duration-200 filter-just-btn"
+              data-value="notIsCompeleCourses"
             ></div>
           </div>
           <div
@@ -272,7 +292,8 @@
               >قدیمی ترین دوره ها</span
             >
             <div
-              class="off-just-filter duration-200 filter-just-btn" data-value="oldCourses"
+              class="off-just-filter duration-200 filter-just-btn"
+              data-value="oldCourses"
             ></div>
           </div>
         </div>
@@ -286,19 +307,22 @@
               <span class="text-lg">مرتب سازی بر اساس :</span>
             </div>
             <div
-              class="flex items-center gap-x-6 mr-4 text-text dark:text-text-dark max-2sm:gap-x-3"
+              class="flex items-center gap-x-6 mr-4 text-text dark:text-text-dark max-2sm:gap-x-3 max-2sm:justify-between"
             >
               <span
                 class="cursor-pointer relative max-2sm:text-sm after-before-filter filter-mode-btn duration-300"
                 >همه دوره ها</span
               >
-              <span class="cursor-pointer relative max-2sm:text-sm filter-mode-btn duration-300"
+              <span
+                class="cursor-pointer relative max-2sm:text-sm filter-mode-btn duration-300"
                 >ارزان ترین</span
               >
-              <span class="cursor-pointer relative max-2sm:text-sm filter-mode-btn duration-300"
+              <span
+                class="cursor-pointer relative max-2sm:text-sm filter-mode-btn duration-300"
                 >گران ترین</span
               >
-              <span class="cursor-pointer relative max-2sm:text-sm filter-mode-btn duration-300"
+              <span
+                class="cursor-pointer relative max-2sm:text-sm filter-mode-btn duration-300"
                 >پر مخاطب ها</span
               >
             </div>

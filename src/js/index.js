@@ -10,14 +10,15 @@ import {
   getUser,
   getCourses,
   getNavbar,
+  showSearchGlobal,
 } from "./helper.js";
 
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
 const titleElem = document.querySelector("#title");
-const lastCourses = document.querySelector(".last-courses")
-const popularCourses = document.querySelector(".popular-courses")
-const freeCourses = document.querySelector(".free-courses")
-
+const lastCourses = document.querySelector(".last-courses");
+const popularCourses = document.querySelector(".popular-courses");
+const freeCourses = document.querySelector(".free-courses");
+const searchGlobalBtn = document.querySelector("#search-global-btn");
 
 const typeWriteTitle = () => {
   const text = "آماده برای یادگیری ترید از صفر هستی؟";
@@ -34,6 +35,7 @@ const typeWriteTitle = () => {
 closeModalBars.addEventListener("click", modalBarsHandeler);
 openModalBtnBars.addEventListener("click", modalBarsHandeler);
 backModalInfoAccount.addEventListener("click", hideModalInfoAccount);
+searchGlobalBtn.addEventListener("click", showSearchGlobal);
 
 themeChangeBtns.forEach((themeChangeBtn) => {
   themeChangeBtn.addEventListener("click", () => {
@@ -58,11 +60,10 @@ window.addEventListener("load", () => {
   typeWriteTitle();
   getThemeFromLocalStorage("background");
   getUser(false);
-  getCourses(lastCourses,"lastCourses")
-  getCourses(popularCourses,"popularCourses")
-  getCourses(freeCourses,"freeCourses")
-  getNavbar()
-
+  getCourses(lastCourses, "lastCourses");
+  getCourses(popularCourses, "popularCourses");
+  getCourses(freeCourses, "freeCourses");
+  getNavbar();
 });
 
 new WOW().init();

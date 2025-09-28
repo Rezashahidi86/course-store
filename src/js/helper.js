@@ -22,6 +22,7 @@ const shortLinkCourse = document.querySelector("#shortlink");
 const headerLinksContainer = document.querySelector("#header-links-category");
 const creatorName = document.querySelector("#creator-name");
 const teacherProfile = document.querySelector("#teacher-profile");
+const searchGlobalInput = document.querySelector("#search-global-input");
 let modalInfoAccountBtn;
 let courseParams;
 const boxesCourseInformation = document.querySelectorAll(
@@ -303,20 +304,20 @@ const getUser = async (style = false) => {
 
 const showCourses = (container, courses) => {
   container.innerHTML = "";
-  for (let i = 0; i < courses.length; i++) {
-    let course = courses[i];
-    container.insertAdjacentHTML(
-      "beforeend",
-      `
+  if (courses.length) {
+    courses.forEach((course) => {
+      container.insertAdjacentHTML(
+        "beforeend",
+        `
         <div
           class="swiper-slide shadow-md shadow-cart dark:shadow-cart-dark"
         >
           <div
             class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark"
           >
-            <a href="courses.html?name=${course.shortName}"
+            <a href="courses.html?name=${course?.shortName}"
               ><img
-                class="rounded-md w-full h-40 max-md:h-64 max-sm:max-h-52 max-sm:max-w-full"
+                class="rounded-md w-full h-40 max-md:h-64 max-sm:max-h-52 max-sm:max-w-full object-center"
                 src="${baseUrlCover}/${course.cover}"
                 alt="cover"
             /></a>
@@ -374,6 +375,21 @@ const showCourses = (container, courses) => {
           </div>
         </div>
         `
+      );
+    });
+  } else {
+    container.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div
+        class="p-3 rounded-lg flex items-center gap-x-2 bg-red-500 dark:bg-red-600 mt-8 w-max"
+      >
+        <i class="text-background fa fa-person-circle-question"></i>
+        <p class="text-background">
+          دوره ای یافت نشد.
+        </p>
+      </div>
+      `
     );
   }
 };
@@ -403,15 +419,34 @@ const getCourses = async (container, mode) => {
     showCourses(container, popularCourses);
   } else if (mode === "category") {
     const categoryCoursesParams = getValueFromUrl("cat");
+    if (categoryCoursesParams) {
+      const res = await fetch(
+        `${baseUrl}/courses/category/${categoryCoursesParams}`
+      );
+      const categoryCourses = await res.json();
+      nameCategotyCourse.innerHTML = categoryCoursesParams;
+      countCourses.innerHTML = categoryCourses.length + " دوره آموزشی";
+      showCourses(container, categoryCourses);
+      return categoryCourses;
+    } else {
+      const searchCategoryParams = getValueFromUrl("search");
+      const res = await fetch(`${baseUrl}/search/${searchCategoryParams}`);
+      const categoryRes = await res.json();
+      const categoryCourses = categoryRes.allResultCourses;
+      nameCategotyCourse.innerHTML = searchCategoryParams;
+      countCourses.innerHTML = categoryCourses.length + " دوره آموزشی";
+      showCourses(container, categoryCourses);
+      return categoryCourses;
+    }
+  }
+};
 
-    const res = await fetch(
-      `${baseUrl}/courses/category/${categoryCoursesParams}`
-    );
-    const categoryCourses = await res.json();
-    nameCategotyCourse.innerHTML = categoryCoursesParams;
-    countCourses.innerHTML = categoryCourses.length + " دوره آموزشی";
-    showCourses(container, categoryCourses);
-    return categoryCourses;
+const showSearchGlobal = () => {
+  const searchUser = searchGlobalInput.value.trim();
+  if (searchUser) {
+    location.assign(`./category.html?search=${searchUser}`);
+  } else {
+    showToastBox("جستجوی شما خالی است", "failed");
   }
 };
 
@@ -554,4 +589,5 @@ export {
   changeDate,
   getInfoCourse,
   changeHeaderLinks,
+  showSearchGlobal,
 };
