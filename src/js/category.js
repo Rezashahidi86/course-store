@@ -13,6 +13,8 @@ import {
   showCourses,
   getValueFromUrl,
   showSearchGlobal,
+  showPagination,
+  changePage,
 } from "./helper.js";
 const nameCategotyCourse = document.querySelector("#name-categoty-course");
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
@@ -22,6 +24,8 @@ const filterJustBtns = document.querySelectorAll(".filter-just-btn");
 const searchGlobalBtn = document.querySelector("#search-global-btn");
 const searchInput = document.querySelector("#search-input");
 const countCourses = document.querySelector("#count-courses");
+const paginationContainer = document.querySelector("#pagination-container");
+window.changePage = changePage
 let categoryCourses;
 let filters = {
   mode: "همه دوره ها",
@@ -55,7 +59,7 @@ const largeToSmallOrSmallToLarge = (
   registers = false
 ) => {
   const courseSort = [];
-  for (let i = 0; courseSort.length < copyCategoryCourses.length + 3; i++) {
+  for (let i = 0; courseSort.length < copyCategoryCourses.length + 5; i++) {
     let sheapeCours = copyCategoryCourses[0];
     let indexCourse = 0;
     copyCategoryCourses.forEach((course, index) => {
@@ -130,9 +134,9 @@ const showCoursesByFilter = (filters) => {
   }
   countCourses.innerHTML = copyCategoryCourses.length + " دوره آموزشی";
   const filterCourses = copyCategoryCourses.filter((course) => {
-    return course != undefined
+    return course != undefined;
   });
-  showCourses(coursesContainer, filterCourses);
+  showPagination(coursesContainer, paginationContainer, [...filterCourses],1, 9);
 };
 
 filterModeBtns.forEach((filterModeBtn) => {
@@ -173,4 +177,5 @@ window.addEventListener("load", async () => {
   getNavbar();
   const categoryCours = await getCourses(coursesContainer, "category");
   categoryCourses = [...categoryCours];
+  showPagination(coursesContainer, paginationContainer, [...categoryCours],1, 9);
 });

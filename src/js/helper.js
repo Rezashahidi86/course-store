@@ -450,6 +450,44 @@ const showSearchGlobal = () => {
   }
 };
 
+// Pagination
+let coursePage;
+let coursecontainerPage;
+let pagecontainerGlo;
+const showPagination = (
+  coursecontainer,
+  pagecontainer,
+  courses,
+  currentPage,
+  countcorseinpage
+) => {
+  coursecontainerPage = coursecontainer;
+  pagecontainerGlo = pagecontainer;
+  coursePage = courses;
+  pagecontainer.innerHTML = "";
+  const countPagination = Math.ceil(courses.length / countcorseinpage);
+  const lastIndex = currentPage * countcorseinpage;
+  const startindex = lastIndex - countcorseinpage;
+  const courseShow = courses.slice(startindex, lastIndex);
+  for (let i = 0; i < countPagination; i++) {
+    pagecontainer.insertAdjacentHTML(
+      "beforeend",
+      `
+    <div class="px-3 py-1 rounded-sm  ${
+      +currentPage === i + 1
+        ? "text-title-dark bg-green-600 dark:bg-green-800"
+        : "bg-cart dark:bg-cart-dark text-title dark:text-title-dark hover:bg-green-600 hover:text-white dark:hover:bg-green-600 duration-200"
+    } cursor-pointer" onclick="changePage(${i + 1})"><span>${i + 1}</span></div>
+    `
+    );
+  }
+  showCourses(coursecontainer, courseShow);
+};
+
+const changePage = (page) => {
+  showPagination(coursecontainerPage, pagecontainerGlo, coursePage, page, 9);
+};
+
 // showNavbar
 
 const showNavbar = (sortNavbar) => {
@@ -590,4 +628,6 @@ export {
   getInfoCourse,
   changeHeaderLinks,
   showSearchGlobal,
+  showPagination,
+  changePage,
 };
