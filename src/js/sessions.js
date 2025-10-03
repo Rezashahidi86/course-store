@@ -99,23 +99,23 @@ const showSissions = (allSessions) => {
         id="${sessionSelect ? "session-on" : ""}"
       >
         <div
-          class="flex items-center gap-x-4 text-title dark:text-title-dark"
+          class="flex items-center group gap-x-4 text-title dark:text-title-dark"
         >
           <div
-            class="dark:bg-background-dark bg-background px-2 py-0.5 rounded-sm group-hover:bg-button1"
+            class="dark:bg-background-dark bg-background px-2 py-0.5 rounded-sm ${session.free ? "group-hover:bg-button1" : ""}"
           >
-            <span class="relative  ${
+            <span class="relative ${session.free ? "group-hover:text-background" : ""} ${
               sessionSelect
-                ? "after:absolute after:w-[10px] after:h-[28px] after:bg-green-500 dark:after:bg-green-600 after:-top-[1px] after:-right-4 after:rounded-r-lg"
+                ? "after:absolute after:size-3 after:bg-green-500 dark:after:bg-green-600 after:top-1.5 after:-right-[22px] after:rounded-full"
                 : ""
             } ">${index + 1}</span>
           </div>
-          <span class="text-background-dark group-hover:text-button1 duration-200 line-clamp-1"
+          <span class="text-background-dark ${session.free ? "group-hover:text-button1" : ""} duration-200 line-clamp-1"
             >${session.title}</span
           >
         </div>
         <div
-          class="text-background-dark flex items-center gap-x-2 group-hover:text-button1 duration-200 max-2sm:"
+          class="text-background-dark flex items-center gap-x-2 ${session.free ? "group-hover:text-button1" : ""} duration-200 max-2sm:"
         >
         <span>${session.time}</span>
         <i class="fa fa-lock ${session.free ? "opacity-0 absolute" : ""}"></i>

@@ -48,6 +48,7 @@ const rediousScore = document.querySelector("#redious-score");
 const scoreNumber = document.querySelector("#score-number");
 const cresseScore = document.querySelector("#cresse-score");
 const scoreIcon = document.querySelectorAll(".score-icon");
+const countComments = document.querySelector("#count-comments");
 const closeTextareaCommentBtn = document.querySelector(
   "#close-textarea-comment"
 );
@@ -102,7 +103,7 @@ const headerInfoCourse = (courseInfo) => {
           <span class="text-xl max-sm:text-lg">شما دانشجوی دوره هستید</span>
         </div>
         <div
-          class="flex items-center gap-x-2 text-background py-4 px-8 rounded-xl bg-button1 dark:bg-button1-dark max-sm:px-4 max-2sm:px-20 max-2sm:mb-4 cursor-pointer"
+          class="flex items-center gap-x-2 text-background py-4 px-8 rounded-xl bg-button1 dark:bg-button1-dark max-sm:px-4 max-2sm:px-20 max-2sm:mb-4 cursor-pointer hover:bg-green-700 duration-200"
         >
           <i class="fa fa-book-open text-xl"></i>
           <span>مشاهده دوره</span>
@@ -125,7 +126,7 @@ const headerInfoCourse = (courseInfo) => {
           }${courseInfo.price ? "تومان" : ""}</span>
         </div>
         <div
-          class="flex items-center gap-x-2 text-background py-4 px-8 rounded-xl bg-button1 dark:bg-button1-dark max-sm:px-4 max-2sm:px-20 max-2sm:mb-4 cursor-pointer"
+          class="flex items-center gap-x-2 text-background py-4 px-8 rounded-xl bg-button1 dark:bg-button1-dark max-sm:px-4 max-2sm:px-20 max-2sm:mb-4 cursor-pointer hover:bg-green-700 duration-200"
         >
           <i class="fa fa-basket-shopping text-xl"></i>
           <span>افزودن به سبد خرید</span>
@@ -170,6 +171,11 @@ const boxesStatusCourse = (courseInfo) => {
     percentStatusCourse.classList.add(`after:w-[${nub}%]`);
     numberPercentStatusCourse.innerHTML = nub + "%";
   }
+  if (courseInfo.comments.length) {
+    countComments.innerHTML = courseInfo.comments.length;
+  } else {
+    countComments.innerHTML = 0;
+  }
   const dateMiladi = courseInfo.updatedAt.slice(0, 10).split("-");
   const dateShamsi = changeDate(dateMiladi[0], dateMiladi[1], dateMiladi[2]);
   courseTimeElem.innerHTML = dateShamsi.join("/");
@@ -192,7 +198,11 @@ const showSessions = (shortName, sessions) => {
         `
       <${session.free || session.isUserRegisteredToThisCourse ? "a" : "div"}
         href="sessions.html?name=${shortName}&id=${session._id}"
-        class="group bg-text dark:bg-text-dark flex items-center justify-between p-4 hidden box-course-part hover:border-2 border-button1 ${
+        class="${
+          session.free || session.isUserRegisteredToThisCourse
+            ? "group"
+            : ""
+        } bg-gray-500 dark:bg-text-dark flex items-center justify-between p-4 hidden box-course-part hover:border-[1px] border-button1 ${
           lastSessions === index + 1 ? "rounded-b-md" : ""
         }"
       >
@@ -200,7 +210,7 @@ const showSessions = (shortName, sessions) => {
           class="flex items-center gap-x-4 text-title dark:text-title-dark"
         >
           <div
-            class="dark:bg-background-dark bg-background px-2 py-0.5 rounded-sm group-hover:bg-button1  duration-200"
+            class="dark:bg-background-dark bg-background px-2 py-0.5 rounded-sm group-hover:bg-button1 group-hover:text-background  duration-200"
           >
             <span>${index + 1}</span>
           </div>
@@ -342,6 +352,20 @@ const showComments = (courseInfo) => {
         );
       }
     });
+  } else {
+    commentesContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div
+          class="p-3 rounded-lg flex items-center gap-x-2 bg-red-500 dark:bg-red-600 mt-8"
+        >
+          <i class="text-background fa fa-warning"></i>
+          <p class="text-background text-sm">
+            هنوز نظری ثبت نشده است
+          </p>
+      </div>
+      `
+    );
   }
 };
 
@@ -443,7 +467,7 @@ boxesCourseInformation.forEach((boxCourseInformation) => {
   boxCourseInformation.addEventListener("click", boxPartsCourseHandler);
 });
 copyShortLinkBtn.addEventListener("click", () => {
-  navigator.clipboard.writeText(`courses.html?name=${courseParams}`);
+  navigator.clipboard.writeText(`courses.html?name=${getValueFromUrl("name")}`);
   showToastBox("لینک با موفقیت ذخیره شد", "successful");
 });
 addCommentBtn.addEventListener("click", () => {

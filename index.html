@@ -42,7 +42,7 @@
         >
           <!-- if user login -->
           <div id="status-user-mobile">
-          <!-- Loaded Data From JS -->
+            <!-- Loaded Data From JS -->
           </div>
           <div class="py-4 px-3 w-full">
             <span class="mt-4 text-sm text-button1 dark:text-button1-dark"
@@ -96,7 +96,10 @@
             class="max-w-[7rem] max-h-[6rem]"
             alt="logo"
           />
-          <ul class="flex items-center gap-x-4 max-lg:gap-x-2 max-lg:ml10" id="navbar-desctap">
+          <ul
+            class="flex items-center gap-x-4 max-lg:gap-x-2 max-lg:ml10"
+            id="navbar-desctap"
+          >
             <!-- Loaded Data From JS -->
           </ul>
         </div>
@@ -122,19 +125,20 @@
                   alt="profile"
                 />
                 <div class="flex flex-col text-sm gap-y-2">
-                  <span class="text-title dark:text-title-dark" id="name-user-maodal-info-account"
-                    ></span
-                  >
+                  <span
+                    class="text-title dark:text-title-dark"
+                    id="name-user-maodal-info-account"
+                  ></span>
                   <span class="text-button1 dark:text-button1-dark"
                     >موجودی: 0 تومان</span
                   >
                 </div>
               </div>
             </div>
-            <div class="py-4 border-t-2 border-text dark:border-text-dark">
+            <div class="pt-4 border-t-2 border-text dark:border-text-dark">
               <ul>
                 <li
-                  class="hover:bg-button2 dark:hover:bg-header-dark rounded-md"
+                  class="hover:bg-button2 dark:hover:bg-header-dark rounded-md duration-200"
                 >
                   <a
                     href="#"
@@ -145,7 +149,7 @@
                   </a>
                 </li>
                 <li
-                  class="hover:bg-button2 dark:hover:bg-header-dark rounded-md"
+                  class="hover:bg-button2 dark:hover:bg-header-dark rounded-md duration-200"
                 >
                   <a
                     href="#"
@@ -156,7 +160,7 @@
                   </a>
                 </li>
                 <li
-                  class="hover:bg-button2 dark:hover:bg-header-dark rounded-md"
+                  class="hover:bg-button2 dark:hover:bg-header-dark rounded-md duration-200"
                 >
                   <a
                     href="#"
@@ -167,7 +171,7 @@
                   </a>
                 </li>
                 <li
-                  class="hover:bg-button2 dark:hover:bg-header-dark rounded-md"
+                  class="hover:bg-button2 dark:hover:bg-header-dark rounded-md duration-200"
                 >
                   <a
                     href="#"
@@ -177,10 +181,11 @@
                     <span class="text-sm">اطلاعات حساب کاربری</span>
                   </a>
                 </li>
-                <li class="hover:bg-red-600 dark:hover:bg-red-800 rounded-md">
+                <li class="hover:bg-red-600 dark:hover:bg-red-800 rounded-md duration-200">
                   <a
                     href="#"
                     class="flex items-center gap-x-4 py-4 px-2 text-xl text-text dark:text-text-dark hover:text-background"
+                    id="logout-btn"
                   >
                     <i class="fa fa-power-off"></i>
                     <span class="text-sm">خروج</span>
@@ -194,7 +199,7 @@
             id="back-modal-info-account"
           ></div>
           <!-- if user not login -->
-            <!-- Loaded Data From JS -->
+          <!-- Loaded Data From JS -->
           <!-- if user not login -->
         </div>
       </nav>
@@ -202,7 +207,9 @@
         <h1
           class="text-center text-background dark:text-text-dark text-4xl max-sm:text-[26px]"
           id="title"
-        ></h1>
+        >
+        آماده برای یادگیری ترید از صفر هستی؟
+        </h1>
         <h2
           class="text-center text-background dark:text-text-dark text-2xl mt-8 max-sm:text-2xl"
         >
@@ -218,7 +225,8 @@
             id="search-global-input"
           />
           <button
-            class="bg-button2 dark:bg-header px-4 py-3 rounded-full cursor-pointer" id="search-global-btn"
+            class="bg-button2 dark:bg-header px-4 py-3 rounded-full cursor-pointer hover:bg-blue-600 dark:hover:bg-blue-950 duration-200"
+            id="search-global-btn"
           >
             <i class="fa fa-search text-background"></i>
           </button>
@@ -246,7 +254,7 @@
             src="src/img/index/book-min.webp"
             alt="clock"
           />
-          <span class="text-background font-bold">1000</span>
+          <span class="text-background font-bold" id="count-all-course"></span>
           <span class="text-background font-bold max-2sm:text-sm"
             >دوره آموزشی</span
           >
@@ -282,9 +290,9 @@
             >
               با بروز ترین دوره های ترید همراه شو
             </h3>
-            <a href="#">
+            <a href="./category.html">
               <button
-                class="flex items-center gap-x-2 max-sm:gap-x-0.5 px-4 max-sm:px-1 max-sm:py-1 py-2 cursor-pointer text-background border-2 bg-button1 dark:bg-button1-dark border-button1 dark:border-button1-dark rounded-lg"
+                class="flex items-center gap-x-2 max-sm:gap-x-0.5 px-4 max-sm:px-1 max-sm:py-1 py-2 cursor-pointer hover:bg-green-700 hover:border-green-700 duration-200 text-background border-2 bg-button1 dark:bg-button1-dark border-button1 dark:border-button1-dark rounded-lg"
               >
                 <span class="max-sm:text-[0.8rem]">همه دوره ها</span>
                 <i
@@ -372,14 +380,14 @@
         <div class="wow animate__animated animate__fadeInUp">
           <div class="swiper-popular-courses swiper !pb-12 !pt-20 -mt-10">
             <div class="mt-28">
-              <div class="relative block text-center">
+              <div>
                 <span
                   class="relative after:absolute after:right-0 after:bottom-0 after:w-full after:h-4 after:-z-10 after:bg-shadow dark:after:bg-shadow-dark text-xl text-text dark:text-text-dark max-sm:text-[0.8rem]"
                   >پرطرفدارترین دوره ها</span
                 >
               </div>
               <div class="flex items-center justify-between mt-4">
-                <h3 class="text-2xl mx-auto text-title dark:text-title-dark">
+                <h3 class="text-2xl text-title dark:text-title-dark max-sm:text-[1rem]">
                   محبوب ترین دوره های ما
                 </h3>
               </div>
@@ -388,10 +396,10 @@
               <!-- Loaded Data From JS -->
             </div>
             <div
-              class="swiper-button-next-popular-courses swiper-button-next !top-[14.5rem]"
+              class="swiper-button-prev-popular-courses swiper-button-prev !top-[18rem] !max-sm:top-[16rem] !left-16 !after:text-sm"
             ></div>
             <div
-              class="swiper-button-prev-popular-courses swiper-button-prev !top-[14.5rem]"
+              class="swiper-button-next-popular-courses swiper-button-next !top-[18rem] !max-sm:top-[16rem]"
             ></div>
             <div
               class="swiper-pagination-popular-courses swiper-pagination"
@@ -411,11 +419,11 @@
             >
               از شروع مسیر با هم و کنار هم هستیم
             </h3>
-            <a href="#">
+            <a href="./category.html">
               <button
-                class="flex items-center gap-x-2 max-sm:gap-x-0.5 px-4 max-sm:px-1 max-sm:py-1 py-2 cursor-pointer text-background border-2 bg-button1 dark:bg-button1-dark border-button1 dark:border-button1-dark rounded-lg"
+                class="flex items-center gap-x-2 max-sm:gap-x-0.5 px-4 max-sm:px-1 max-sm:py-1 py-2 cursor-pointer hover:bg-green-700 hover:border-green-700 duration-200 text-background border-2 bg-button1 dark:bg-button1-dark border-button1 dark:border-button1-dark rounded-lg"
               >
-                <span class="max-sm:text-sm">اولین قدم</span>
+                <span class="max-sm:text-sm">همه دوره ها</span>
                 <i class="fa fa-arrow-left rotate-[22deg] max-sm:text-sm"></i>
               </button>
             </a>
@@ -501,7 +509,7 @@
 
       <section>
         <div class="mt-32 wow animate__animated animate__fadeInUp">
-          <div>
+          <div class="-mb-4">
             <span
               class="relative after:absolute after:right-0 after:bottom-0 after:w-full after:h-4 after:-z-10 after:bg-shadow dark:after:bg-shadow-dark text-xl text-text dark:text-text-dark max-sm:text-[0.8rem]"
               >دوره های رایگان</span
@@ -512,29 +520,21 @@
               >
                 با دور های رایگان ما شروع کن
               </h3>
-              <a href="#">
-                <button
-                  class="flex items-center gap-x-2 max-sm:gap-x-0.5 px-4 max-sm:px-1 max-sm:py-1 py-2 cursor-pointer text-background border-2 bg-button1 dark:bg-button1-dark border-button1 dark:border-button1-dark rounded-lg"
-                >
-                  <span class="max-sm:text-[0.8rem]">همه دوره ها</span>
-                  <i
-                    class="fa fa-arrow-left rotate-[22deg] max-sm:text-[0.8rem]"
-                  ></i>
-                </button>
-              </a>
             </div>
           </div>
         </div>
-        <div class="swiper-free-courses swiper mt-8 !pb-12 !px-[30px]">
-          <div class="swiper-wrapper wow animate__animated animate__fadeInUp free-courses">
+        <div class="swiper-free-courses swiper !pb-12 !py-20">
+          <div
+            class="swiper-wrapper wow animate__animated animate__fadeInUp free-courses"
+          >
             <!-- Loaded Data From JS -->
           </div>
           <div class="swiper-pagination-free-courses swiper-pagination"></div>
           <div
-            class="swiper-button-next-free-courses swiper-button-next !left-0"
+            class="swiper-button-next-free-courses swiper-button-next !top-12"
           ></div>
           <div
-            class="swiper-button-prev-free-courses swiper-button-prev !right-0"
+            class="swiper-button-prev-free-courses swiper-button-prev !top-12 !left-16"
           ></div>
         </div>
       </section>
@@ -557,7 +557,7 @@
             alt="logo"
           />
           <div
-            class="mr-8 flex items-center gap-x-8 max-sm:flex-col max-sm:items-start text-text dark:text-text-dark"
+            class="mr-8 flex items-center gap-x-4 max-sm:flex-col max-sm:items-start text-text dark:text-text-dark"
           >
             <div>
               <a
@@ -581,19 +581,19 @@
         </div>
         <div class="flex items-center gap-x-4 ml-8 max-2sm:ml-0 max-2sm:mr-8">
           <a
-            class="p-2 rounded-full duration-200 bg-text dark:bg-text-dark hover:bg-button2 dark:hover:bg-header-dark"
+            class="py-2 px-3 rounded-full duration-200 bg-text dark:bg-text-dark hover:bg-button2 dark:hover:bg-header-dark"
             href="#"
           >
             <i class="fab fa-github text-3xl text-background"></i>
           </a>
           <a
-            class="p-2 rounded-full duration-200 bg-text dark:bg-text-dark hover:bg-button2 dark:hover:bg-header-dark"
+            class="py-2 px-3 rounded-full duration-200 bg-text dark:bg-text-dark hover:bg-button2 dark:hover:bg-header-dark"
             href="#"
           >
             <i class="fab fa-instagram text-3xl text-background"></i>
           </a>
           <a
-            class="p-2 rounded-full duration-200 bg-text dark:bg-text-dark hover:bg-button2 dark:hover:bg-header-dark"
+            class="py-2 px-3 rounded-full duration-200 bg-text dark:bg-text-dark hover:bg-button2 dark:hover:bg-header-dark"
             href="#"
           >
             <i class="fab fa-telegram text-3xl text-background"></i>

@@ -82,9 +82,17 @@
     --animate-duration: 2s;
   }
 }
+
+
 .container {
   margin-left: auto;
   margin-right: auto;
+}
+.swiper-button-prev{
+  right: inherit !important; 
+}
+.swiper-button-next:after, .swiper-rtl .swiper-button-prev:after,.swiper-rtl .swiper-button-next:after{
+  @apply text-xl py-2 px-4 rounded-full bg-blue-600 text-background
 }
 
 .scrollbar::-webkit-scrollbar {

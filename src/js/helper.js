@@ -300,6 +300,12 @@ const getUser = async (style = false) => {
   }
 };
 
+const logoutuser = (style = false) => {
+  setInToLocalStorage("token","")
+  getUser(style)
+  hideModalInfoAccount()
+};
+
 // showCourses
 
 const showCourses = (container, courses) => {
@@ -419,6 +425,7 @@ const getCourses = async (container, mode) => {
     showCourses(container, popularCourses);
   } else if (mode === "category") {
     const categoryCoursesParams = getValueFromUrl("cat");
+    const searchCategoryParams = getValueFromUrl("search");
     if (categoryCoursesParams) {
       const res = await fetch(
         `${baseUrl}/courses/category/${categoryCoursesParams}`
@@ -428,8 +435,7 @@ const getCourses = async (container, mode) => {
       countCourses.innerHTML = categoryCourses.length + " دوره آموزشی";
       showCourses(container, categoryCourses);
       return categoryCourses;
-    } else {
-      const searchCategoryParams = getValueFromUrl("search");
+    } else if (searchCategoryParams) {
       const res = await fetch(`${baseUrl}/search/${searchCategoryParams}`);
       const categoryRes = await res.json();
       const categoryCourses = categoryRes.allResultCourses;
@@ -437,6 +443,14 @@ const getCourses = async (container, mode) => {
       countCourses.innerHTML = categoryCourses.length + " دوره آموزشی";
       showCourses(container, categoryCourses);
       return categoryCourses;
+    } else {
+      const res = await fetch(`${baseUrl}/courses`);
+      const resParse = await res.json();
+      const courses = await resParse;
+      showCourses(container, courses);
+      countCourses.innerHTML = courses.length + " دوره آموزشی";
+      nameCategotyCourse.innerHTML = "همه دوره ها";
+      return courses;
     }
   }
 };
@@ -485,7 +499,7 @@ const showPagination = (
 };
 
 const changePage = (page) => {
-  showPagination(coursecontainerPage, pagecontainerGlo, coursePage, page, 9);
+  showPagination(coursecontainerPage, pagecontainerGlo, coursePage, page, 6);
 };
 
 // showNavbar
@@ -630,4 +644,5 @@ export {
   showSearchGlobal,
   showPagination,
   changePage,
+  logoutuser,
 };

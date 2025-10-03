@@ -59,7 +59,8 @@ const largeToSmallOrSmallToLarge = (
   registers = false
 ) => {
   const courseSort = [];
-  for (let i = 0; courseSort.length < copyCategoryCourses.length + 5; i++) {
+  const courseReally = [...copyCategoryCourses]
+  for (let i = 0; courseSort.length < courseReally.length; i++) {
     let sheapeCours = copyCategoryCourses[0];
     let indexCourse = 0;
     copyCategoryCourses.forEach((course, index) => {
@@ -136,7 +137,7 @@ const showCoursesByFilter = (filters) => {
   const filterCourses = copyCategoryCourses.filter((course) => {
     return course != undefined;
   });
-  showPagination(coursesContainer, paginationContainer, [...filterCourses],1, 9);
+  showPagination(coursesContainer, paginationContainer, [...filterCourses],1, 6);
 };
 
 filterModeBtns.forEach((filterModeBtn) => {
@@ -177,5 +178,5 @@ window.addEventListener("load", async () => {
   getNavbar();
   const categoryCours = await getCourses(coursesContainer, "category");
   categoryCourses = [...categoryCours];
-  showPagination(coursesContainer, paginationContainer, [...categoryCours],1, 9);
+  showPagination(coursesContainer, paginationContainer, [...categoryCours],1, 6);
 });

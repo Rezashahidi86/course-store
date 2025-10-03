@@ -11,6 +11,9 @@ import {
   getCourses,
   getNavbar,
   showSearchGlobal,
+  baseUrl,
+  getValueFromUrl,
+  logoutuser
 } from "./helper.js";
 
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
@@ -19,23 +22,48 @@ const lastCourses = document.querySelector(".last-courses");
 const popularCourses = document.querySelector(".popular-courses");
 const freeCourses = document.querySelector(".free-courses");
 const searchGlobalBtn = document.querySelector("#search-global-btn");
+const countAllCourse = document.querySelector("#count-all-course")
+const logoutBtn = document.querySelector("#logout-btn")
+const showCountCourses = async () => {
+  const res = await fetch(`${baseUrl}/courses`);
+  const resParse = await res.json();
+  const courses = await resParse;
+  countAllCourse.innerHTML = courses.length
+};
 
 const typeWriteTitle = () => {
-  const text = "آماده برای یادگیری ترید از صفر هستی؟";
+  const text = "ماده برای یادگیری ترید از صفر هستی؟";
   let indexText = 0;
   const timer = setInterval(() => {
     titleElem.innerHTML += text[indexText];
     indexText++;
     if (indexText >= text.length) {
       clearInterval(timer);
+      setTimeout(() => {
+        deleteTittle();
+      }, 3000);
     }
-  }, 100);
+  }, 50);
+};
+
+const deleteTittle = () => {
+  const timer = setInterval(() => {
+    titleElem.innerHTML = titleElem.innerHTML.slice(
+      0,
+      titleElem.innerHTML.length - 1
+    );
+    if (titleElem.innerHTML.trim().length === 1) {
+      clearInterval(timer);
+      typeWriteTitle();
+    }
+  }, 70);
 };
 
 closeModalBars.addEventListener("click", modalBarsHandeler);
 openModalBtnBars.addEventListener("click", modalBarsHandeler);
 backModalInfoAccount.addEventListener("click", hideModalInfoAccount);
 searchGlobalBtn.addEventListener("click", showSearchGlobal);
+logoutBtn.addEventListener("click",logoutuser)
 
 themeChangeBtns.forEach((themeChangeBtn) => {
   themeChangeBtn.addEventListener("click", () => {
@@ -56,112 +84,110 @@ themeChangeBtns.forEach((themeChangeBtn) => {
   });
 });
 
-window.addEventListener("load", () => {
-  typeWriteTitle();
+window.addEventListener("load", async () => {
+  deleteTittle();
+  showCountCourses();
   getThemeFromLocalStorage("background");
   getUser(false);
-  getCourses(lastCourses, "lastCourses");
-  getCourses(popularCourses, "popularCourses");
-  getCourses(freeCourses, "freeCourses");
+  let _ = await getCourses(lastCourses, "lastCourses");
+  _ = await getCourses(popularCourses, "popularCourses");
+  _ = await getCourses(freeCourses, "freeCourses");
   getNavbar();
+  const swiperLastCourses = new Swiper(".swiper-last-courses", {
+    loop: true,
+    spaceBetween: 20,
+    speed: 800,
+    slidesPerView: 4,
+    spaceBetween: 30,
+    freeMode: true,
+    pagination: {
+      el: ".swiper-pagination-last-courses",
+      clickable: true,
+    },
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+      },
+      768: {
+        slidesPerView: 2,
+      },
+      1024: {
+        slidesPerView: 3,
+      },
+      1280: {
+        slidesPerView: 4,
+      },
+    },
+  });
+  const swiperPopularCourses = new Swiper(".swiper-popular-courses", {
+    spaceBetween: 20,
+    speed: 800,
+    slidesPerView: 4,
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination-popular-courses",
+    },
+    navigation: {
+      nextEl: ".swiper-button-next-popular-courses",
+      prevEl: ".swiper-button-prev-popular-courses",
+    },
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+      },
+      768: {
+        slidesPerView: 2,
+      },
+      1024: {
+        slidesPerView: 3,
+      },
+      1280: {
+        slidesPerView: 4,
+      },
+    },
+  });
+  const swiperFreeCourses = new Swiper(".swiper-free-courses", {
+    loop: true,
+    spaceBetween: 20,
+    speed: 800,
+    slidesPerView: 4,
+    spaceBetween: 30,
+    freeMode: true,
+    pagination: {
+      el: ".swiper-pagination-free-courses",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next-free-courses",
+      prevEl: ".swiper-button-prev-free-courses",
+    },
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+      },
+      768: {
+        slidesPerView: 2,
+      },
+      1024: {
+        slidesPerView: 3,
+      },
+      1280: {
+        slidesPerView: 4,
+      },
+    },
+  });
 });
 
 new WOW().init();
-
-const swiperLastCourses = new Swiper(".swiper-last-courses", {
-  loop: true,
-  spaceBetween: 20,
-  speed: 800,
-  slidesPerView: 4,
-  spaceBetween: 30,
-  freeMode: true,
-  pagination: {
-    el: ".swiper-pagination-last-courses",
-    clickable: true,
-  },
-  autoplay: {
-    delay: 2500,
-    disableOnInteraction: false,
-  },
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    1024: {
-      slidesPerView: 3,
-    },
-    1280: {
-      slidesPerView: 4,
-    },
-  },
-});
-
-const swiperPopularCourses = new Swiper(".swiper-popular-courses", {
-  spaceBetween: 20,
-  speed: 800,
-  slidesPerView: 4,
-  loop: true,
-  pagination: {
-    el: ".swiper-pagination-popular-courses",
-  },
-  navigation: {
-    nextEl: ".swiper-button-next-popular-courses",
-    prevEl: ".swiper-button-prev-popular-courses",
-  },
-  autoplay: {
-    delay: 2500,
-    disableOnInteraction: false,
-  },
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    1024: {
-      slidesPerView: 3,
-    },
-    1280: {
-      slidesPerView: 4,
-    },
-  },
-});
-
-const swiperFreeCourses = new Swiper(".swiper-free-courses", {
-  loop: true,
-  spaceBetween: 20,
-  speed: 800,
-  slidesPerView: 4,
-  spaceBetween: 30,
-  freeMode: true,
-  pagination: {
-    el: ".swiper-pagination-free-courses",
-    clickable: true,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next-free-courses",
-    prevEl: ".swiper-button-prev-free-courses",
-  },
-  autoplay: {
-    delay: 2500,
-    disableOnInteraction: false,
-  },
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    1024: {
-      slidesPerView: 3,
-    },
-    1280: {
-      slidesPerView: 4,
-    },
-  },
-});
