@@ -59,15 +59,17 @@
         <i class="fa fa-user p-2"></i>
       </div>
       <div
-        class="flex items-center justify-between bg-cart dark:bg-cart-dark px-2 py-1 rounded-sm w-68 mt-6 text-text dark:text-text-dark"
+        class="relative flex items-center justify-between bg-cart dark:bg-cart-dark px-2 py-1 rounded-sm w-68 mt-6 text-text dark:text-text-dark"
       >
-        <input
-          class="border-none outline-none w-full p-2 text-sm"
-          type="number"
-          placeholder="شماره موبایل"
-          required
-          id="input-phone-number"
-        />
+      <input
+      class="border-none outline-none w-full p-2 text-sm"
+      type="text"
+      placeholder="شماره موبایل"
+      required
+      id="input-phone-number"
+      maxlength="11"
+      />
+      <label class="text-[10px] mb-4" for="input-phone-number" id="count-phone-number">11</label>
         <i class="fa fa-phone p-2"></i>
       </div>
       <div
@@ -95,7 +97,7 @@
         <i class="fa fa-lock p-2"></i>
       </div>
       <button
-        class="mt-6 px-4 py-2 rounded-md bg-button1 dark:bg-button1-dark w-68 text-background"
+        class="mt-6 px-4 py-2 rounded-md bg-button1 dark:bg-button1-dark w-68 text-background hover:bg-green-700 duration-200 cursor-pointer"
         type="submit"
         id="register-btn"
       >

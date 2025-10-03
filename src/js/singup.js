@@ -1,4 +1,10 @@
-import { setInToLocalStorage, showToastBox,getFromLocalStorage,html,baseUrl } from "./helper.js";
+import {
+  setInToLocalStorage,
+  showToastBox,
+  getFromLocalStorage,
+  html,
+  baseUrl,
+} from "./helper.js";
 
 const likeArrayInputs = document.querySelectorAll("input");
 const inputUserName = document.querySelector("#input-user-name");
@@ -7,7 +13,14 @@ const inputPhoneNumber = document.querySelector("#input-phone-number");
 const inputEmail = document.querySelector("#input-email");
 const inputPassword = document.querySelector("#input-password");
 const registerBtn = document.querySelector("#register-btn");
-
+const countPhoneNumber = document.querySelector("#count-phone-number");
+likeArrayInputs.forEach((input, index) => {
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Backspace" && input.value === "" && index) {
+      likeArrayInputs[index - 1].focus();
+    }
+  });
+});
 
 const checkInputRegister = (event) => {
   const inputs = Array.from(likeArrayInputs);
@@ -83,11 +96,13 @@ const showToastBoxAndEmtyeInput = (title, status, boxEmtye = true) => {
   }
   showToastBox(title, status);
 };
-
+inputPhoneNumber.addEventListener("keyup", () => {
+  countPhoneNumber.innerHTML = 11 - inputPhoneNumber.value.length
+});
 registerBtn.addEventListener("click", checkInputRegister);
 window.addEventListener("load", () => {
-  const theme =  getFromLocalStorage("theme")
-  if(theme === "dark"){
-    html.classList.add("dark")
+  const theme = getFromLocalStorage("theme");
+  if (theme === "dark") {
+    html.classList.add("dark");
   }
 });
