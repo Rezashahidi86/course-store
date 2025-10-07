@@ -55,10 +55,10 @@
     @apply text-button2 dark:text-header after:absolute before:absolute before:w-full before:h-0.5 before:-bottom-[1.3rem] before:right-0 after:right-0 after:-top-[1.3rem] after:w-full after:h-0.5 after:bg-button2 dark:after:bg-header before:bg-button2 dark:before:bg-header duration-300;
   }
   .off-just-filter {
-    @apply relative w-12 h-6 rounded-3xl bg-gray-400 dark:bg-text-dark after:absolute after:size-5 after:bg-gray-500 dark:after:bg-text after:rounded-full after:top-0.5 after:right-0.5 cursor-pointer;
+    @apply  bg-gray-400 dark:bg-text-dark after:bg-gray-500 dark:after:bg-text ;
   }
   .on-just-filter {
-    @apply relative w-12 h-6 rounded-3xl bg-blue-400 dark:bg-blue-700 after:absolute after:size-5 after:bg-blue-600 dark:after:bg-blue-950 after:rounded-full after:top-0.5 after:left-0.5 cursor-pointer;
+    @apply  bg-blue-400 dark:bg-blue-700 after:bg-blue-600 dark:after:bg-blue-950;
   }
   .scrollbar-sessions::-webkit-scrollbar {
     @apply w-3;

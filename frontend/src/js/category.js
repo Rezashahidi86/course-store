@@ -25,7 +25,7 @@ const searchGlobalBtn = document.querySelector("#search-global-btn");
 const searchInput = document.querySelector("#search-input");
 const countCourses = document.querySelector("#count-courses");
 const paginationContainer = document.querySelector("#pagination-container");
-window.changePage = changePage
+window.changePage = changePage;
 let categoryCourses;
 let filters = {
   mode: "همه دوره ها",
@@ -59,7 +59,7 @@ const largeToSmallOrSmallToLarge = (
   registers = false
 ) => {
   const courseSort = [];
-  const courseReally = [...copyCategoryCourses]
+  const courseReally = [...copyCategoryCourses];
   for (let i = 0; courseSort.length < courseReally.length; i++) {
     let sheapeCours = copyCategoryCourses[0];
     let indexCourse = 0;
@@ -137,7 +137,13 @@ const showCoursesByFilter = (filters) => {
   const filterCourses = copyCategoryCourses.filter((course) => {
     return course != undefined;
   });
-  showPagination(coursesContainer, paginationContainer, [...filterCourses],1, 6);
+  showPagination(
+    coursesContainer,
+    paginationContainer,
+    [...filterCourses],
+    1,
+    6
+  );
 };
 
 filterModeBtns.forEach((filterModeBtn) => {
@@ -153,10 +159,14 @@ filterJustBtns.forEach((filterJustBtn) => {
   filterJustBtn.addEventListener("click", (event) => {
     if (event.target.className.includes("off-just-filter")) {
       event.target.classList.remove("off-just-filter");
+      event.target.classList.remove("after:right-0.5");
+      event.target.classList.add("after:right-[1.6rem]");
       event.target.classList.add("on-just-filter");
       filters[event.target.dataset.value] = "on";
     } else {
       event.target.classList.remove("on-just-filter");
+      event.target.classList.add("after:right-0.5");
+      event.target.classList.remove("after:right-[1.6rem]");
       event.target.classList.add("off-just-filter");
       filters[event.target.dataset.value] = "off";
     }
@@ -178,5 +188,11 @@ window.addEventListener("load", async () => {
   getNavbar();
   const categoryCours = await getCourses(coursesContainer, "category");
   categoryCourses = [...categoryCours];
-  showPagination(coursesContainer, paginationContainer, [...categoryCours],1, 6);
+  showPagination(
+    coursesContainer,
+    paginationContainer,
+    [...categoryCours],
+    1,
+    6
+  );
 });
