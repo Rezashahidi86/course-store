@@ -55,10 +55,10 @@
     @apply text-button2 dark:text-header after:absolute before:absolute before:w-full before:h-0.5 before:-bottom-[1.3rem] before:right-0 after:right-0 after:-top-[1.3rem] after:w-full after:h-0.5 after:bg-button2 dark:after:bg-header before:bg-button2 dark:before:bg-header duration-300;
   }
   .off-just-filter {
-    @apply  bg-gray-400 dark:bg-text-dark after:bg-gray-500 dark:after:bg-text ;
+    @apply bg-gray-400 dark:bg-text-dark after:bg-gray-500 dark:after:bg-text;
   }
   .on-just-filter {
-    @apply  bg-blue-400 dark:bg-blue-700 after:bg-blue-600 dark:after:bg-blue-950;
+    @apply bg-blue-400 dark:bg-blue-700 after:bg-blue-600 dark:after:bg-blue-950;
   }
   .scrollbar-sessions::-webkit-scrollbar {
     @apply w-3;
@@ -78,21 +78,25 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+  .bgheader{
+    @apply bg-[linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("../img/index/bgindex.jpeg")]
+  }
   .animate__animated.animate__fadeInUp {
     --animate-duration: 2s;
   }
 }
 
-
 .container {
   margin-left: auto;
   margin-right: auto;
 }
-.swiper-button-prev{
-  right: inherit !important; 
+.swiper-button-prev {
+  right: inherit !important;
 }
-.swiper-button-next:after, .swiper-rtl .swiper-button-prev:after,.swiper-rtl .swiper-button-next:after{
-  @apply text-xl py-2 px-4 rounded-full bg-blue-600 text-background
+.swiper-button-next:after,
+.swiper-rtl .swiper-button-prev:after,
+.swiper-rtl .swiper-button-next:after {
+  @apply text-xl py-2 px-4 rounded-full bg-blue-600 text-background;
 }
 
 .scrollbar::-webkit-scrollbar {

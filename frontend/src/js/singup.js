@@ -76,7 +76,7 @@ const registerUser = async (event) => {
   if (response.status === 201) {
     showToastBoxAndEmtyeInput("ثبت نام موفقیت آمیز بود", "successful");
     setTimeout(() => {
-      location.replace("http://127.0.0.1:5500/index.html?#");
+      location.replace("index.html");
     }, 2000);
   } else if (response.status === 409) {
     showToastBoxAndEmtyeInput("نام کاربری یا ایمیل از قبل وجود دارد");

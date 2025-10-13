@@ -38,7 +38,7 @@ const loginUserHandler = async (event) => {
       const accessToken = responseParse.accessToken;
       setInToLocalStorage("token", accessToken);
       setTimeout(() => {
-        location.replace("http://127.0.0.1:5500/index.html?#");
+        location.replace("./index.html");
       }, 2000);
     } else if (response.status === 401) {
       showToastBox("کاربری با این اطلاعات یافت نشد", "reject");

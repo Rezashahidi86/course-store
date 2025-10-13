@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" class="dark">
+<html lang="fa" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../src/style/output.css" />
     <link rel="stylesheet" href="../src/style/input.css" />
     <link rel="stylesheet" href="../vendor/fa/all.min.css" />
+    <link rel="stylesheet" href="../vendor/swiper/swiper-bundle.min.css" />
     <link rel="icon" href="../src/img/index/آرم شرکت تجارت_لب.png" />
     <title>Document</title>
   </head>
@@ -15,7 +16,10 @@
       class="fixed z-50 -right-[300px] w-[270px] h-full overflow-y-auto bg-header duration-300"
       id="asidebar"
     >
-      <section class="fixed inset-0 -z-10 backdrop-blur-xs hidden" id="close-menus"></section>
+      <section
+        class="fixed inset-0 -z-10 backdrop-blur-xs hidden"
+        id="close-menus"
+      ></section>
       <section>
         <div>
           <img
@@ -79,7 +83,10 @@
         class="flex items-center justify-between px-8 py-4 bg-text dark:bg-text-dark max-2sm:px-1"
       >
         <div class="flex items-center gap-x-4 max-2sm:gap-x-1">
-          <button class="text-3xl text-background cursor-pointer max-2sm:text-xl" id="open-menus">
+          <button
+            class="text-3xl text-background cursor-pointer max-2sm:text-xl"
+            id="open-menus"
+          >
             <i class="fas fa-bars"></i>
           </button>
           <div
@@ -96,13 +103,19 @@
           </div>
           <button class="group relative text-xl text-background">
             <div class="absolute h-max -top-3 right-2 z-40 cursor-pointer">
-              <span class="text-[0.5rem] text-background bg-red-600 px-1 py-0.5 rounded-full"> 2 </span>
+              <span
+                class="text-[0.5rem] text-background bg-red-600 px-1 py-0.5 rounded-full"
+              >
+                2
+              </span>
             </div>
             <i class="relative fa fa-bell cursor-pointer"> </i>
             <div
               class="absolute opacity-0 -z-50 group-hover:z-20 group-hover:opacity-100 top-6 duration-200 delay-500"
             >
-              <div class="relative gap-y-2 after:size-8 after:rounded-md after:rotate-45 after:-right-1.5 after:bg-cart dark:after:bg-cart-dark after:top-1 after:absolute">
+              <div
+                class="relative gap-y-2 after:size-8 after:rounded-md after:rotate-45 after:-right-1.5 after:bg-cart dark:after:bg-cart-dark after:top-1 after:absolute"
+              >
                 <div
                   class="absolute top-2 w-80 max-2sm:w-72 -right-40 flex items-center justify-between bg-cart dark:bg-cart-dark p-4 rounded-md z-40"
                 >
@@ -125,21 +138,78 @@
         </div>
         <div class="flex items-center gap-x-4 max-2sm:gap-x-1">
           <span class="text-background max-sm:text-sm">RezaShahidi</span>
-          <img
-            class="size-12 rounded-full object-center max-sm:size-8"
-            src="../src/img/index/forex.png"
-            alt=""
-          />
+          <button
+            class="text-background py-2.5 px-4 rounded-full bg-text-dark dark:bg-text cursor-pointer light"
+            id="change-theme"
+          >
+            <i class="fa fa-sun"></i>
+          </button>
         </div>
       </section>
-      <section class="container">
-        <span>خوش آمدید</span>
-        <span>سعید سعیدی</span>
+      <section class="container flex items-center gap-x-2 mt-4">
+        <span class="text-title dark:text-title-dark">خوش آمدید :</span>
+        <span class="font-extrabold text-button2" id="name-admin"
+          >سعید سعیدی</span
+        >
       </section>
     </header>
     <!-- Finish Header -->
-     
+
+    <!-- Start Main -->
+    <section>
+      <!-- Start chart -->
+      <div class="grid grid-cols-5 gap-x-5 container mt-20 max-lg:flex max-lg:flex-col max-lg:gap-y-4">
+        <div class="col-span-3 bg-cart dark:bg-cart-dark">
+          <div class="swiper chart-slide !pb-4">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <canvas
+                  class="w-full h-full p-4"
+                  id="chart-studens-course1"
+                ></canvas>
+              </div>
+              <div class="swiper-slide">
+                <canvas
+                  class="w-full h-full p-4"
+                  id="chart-studens-course2"
+                ></canvas>
+              </div>
+              <div class="swiper-slide">
+                <canvas
+                  class="w-full h-full p-4"
+                  id="chart-studens-course3"
+                ></canvas>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+        <div
+          class="flex items-center justify-between w-full col-span-2 py-2 px-8 bg-cart dark:bg-cart-dark rounded-sm max-sm:flex-col"
+        >
+          <div
+            class="flex justify-center flex-col gap-y-4 text-text dark:text-text-dark"
+          >
+            <span
+              class="relative after:absolute after:size-4 after:top-1 after:-right-5 after:bg-blue-500 dark:after:bg-header after:rounded-md"
+              >دانشجویان : 500</span
+            >
+            <span
+              class="relative after:absolute after:size-4 after:top-1 after:-right-5 after:bg-orange-500 dark:after:bg-orange-700 after:rounded-md"
+              >ادمین ها : 200</span
+            >
+          </div>
+          <canvas class="py-2 max-sm:w-64" id="chart-role-users"></canvas>
+        </div>
+      </div>
+      <!-- Finish chart -->
+    </section>
+    <!-- Finish Main -->
+    <script src="../vendor/chart/chart.js"></script>
     <script src="../vendor/fa/all.min.js"></script>
-    <script src="js/util.js"></script>
+    <script src="../vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="js/custom.js" type="module"></script>
+    <script src="js/util.js" type="module"></script>
+    <script src="js/homepage.js" type="module"></script>
   </body>
 </html>

@@ -301,9 +301,9 @@ const getUser = async (style = false) => {
 };
 
 const logoutuser = (style = false) => {
-  setInToLocalStorage("token","")
-  getUser(style)
-  hideModalInfoAccount()
+  setInToLocalStorage("token", "");
+  getUser(style);
+  hideModalInfoAccount();
 };
 
 // showCourses
@@ -436,9 +436,11 @@ const getCourses = async (container, mode) => {
       showCourses(container, categoryCourses);
       return categoryCourses;
     } else if (searchCategoryParams) {
-      const res = await fetch(`${baseUrl}/search/${searchCategoryParams}`);
-      const categoryRes = await res.json();
-      const categoryCourses = categoryRes.allResultCourses;
+      const res = await fetch(`${baseUrl}/courses`);
+      const allcategoryCourses = await res.json();
+      const categoryCourses = allcategoryCourses.filter((course) => {
+        return course.name.includes(searchCategoryParams)
+      });
       nameCategotyCourse.innerHTML = searchCategoryParams;
       countCourses.innerHTML = categoryCourses.length + " دوره آموزشی";
       showCourses(container, categoryCourses);
@@ -531,7 +533,7 @@ const showNavbar = (sortNavbar) => {
          class="absolute right-0 top-6 duration-100 invisible group-hover:visible"
        >
          <div
-           class="group-hover:mt-4 bg-background dark:bg-text-dark divide-text dark:divide-text shadow-md shadow-shadow dark:shadow-2xl dark:shadow-shadow-dark duration-300 opacity-0 group-hover:opacity-100 divide-y-2 flex flex-col border-2 p-2 gap-y-2 rounded-2xl"
+           class="group-hover:mt-4 bg-background dark:bg-text-dark divide-text dark:divide-text shadow-md shadow-shadow dark:shadow-2xl dark:shadow-shadow-dark duration-300 opacity-0 group-hover:opacity-100 divide-y-2 flex flex-col border-2 p-2 gap-y-2 rounded-md"
          >
          ${
            nav.submenus.length
