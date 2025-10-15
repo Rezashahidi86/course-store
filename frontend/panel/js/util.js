@@ -2,6 +2,7 @@ import {
   baseUrl,
   getFromLocalStorage,
   setInToLocalStorage,
+  showToastBox,
 } from "../../src/js/helper.js";
 import {
   chartRoleUser,
@@ -18,38 +19,38 @@ const nameAdminElem = document.querySelector("#name-admin");
 const userNameAdminElem = document.querySelector("#username-admin");
 const countNotifElem = document.querySelector("#count-notif");
 const notifBox = document.querySelector("#notif-box");
-const notifBoxMsg = document.querySelector("#notif-box-msg")
+const notifBoxMsg = document.querySelector("#notif-box-msg");
 
 const showInfoInHeader = (info) => {
   if (info.role != "ADMIN") {
     location.replace("../login.html");
   } else {
-
     nameAdminElem.innerHTML = info.name;
     userNameAdminElem.innerHTML = info.username;
     countNotifElem.innerHTML = info.notifications.length;
     if (info.notifications.length) {
       const notifications = info.notifications;
       for (let i = 0; i < notifications.length; i++) {
-        notifBoxMsg.insertAdjacentHTML("beforeend",
+        notifBoxMsg.insertAdjacentHTML(
+          "beforeend",
           `
           <div
-            class="w-80 max-2sm:w-72 flex items-center justify-between bg-cart dark:bg-cart-dark p-4 z-40"
+            class="w-80 max-2sm:w-72 flex items-center justify-between bg-cart dark:bg-cart-dark p-4 z-40" id="notif-${i}"
           >
             <span class="text-sm text-text dark:text-text-dark max-w-60"
               >${notifications[i].msg}</span
             >
-            <div
-              class="p-1 bg-button2 dark:bg-button2-dark cursor-pointer rounded-md"
+            <button
+              class="p-1 bg-button2 dark:bg-button2-dark cursor-pointer rounded-md" onclick=seenNotifBtn('${i},${notifications[i]._id}')
             >
               <span class="text-sm text-background">باشه!</span>
-            </div>
+            </button>
           </div>
           `
-        )
-        console.log(notifBox.innerHTML);
+        );
       }
     } else {
+      notifBoxMsg.classList.add("hidden")
       notifBox.insertAdjacentHTML(
         "beforeend",
         `
@@ -59,6 +60,35 @@ const showInfoInHeader = (info) => {
         </div>
         `
       );
+    }
+  }
+};
+
+const seenNotifBtn = async (numberNotifAndnotificationsID) => {
+  const notificationsID = numberNotifAndnotificationsID.slice(2)
+  const numberNotif = numberNotifAndnotificationsID.slice(0,1)
+  const res = await fetch(`${baseUrl}/notifications/see/${notificationsID}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${getFromLocalStorage("token")}`,
+    },
+  });
+  if (!res.ok) {
+    showToastBox("خطای ناشناخته رخ داده","failed")
+  }else{
+    const notifSeen = document.querySelector(`#notif-${numberNotif}`)
+    notifSeen.remove()
+    countNotifElem.innerHTML = +countNotifElem.innerHTML - 1
+    if(!notifBoxMsg.innerHTML.trim()){
+      notifBoxMsg.classList.add("hidden")
+      notifBox.insertAdjacentHTML("beforeend",
+        `
+        <div class="mt-2 absolute rounded-md right-12 w-60 p-4 bg-red-500 text-background flex  items-center gap-x-2 after:size-8 after:rounded-md after:rotate-45 after:right-[6.55rem] after:bg-red-500 after:top-0 after:absolute">
+          <i class="fa fa-warning z-40"></i>
+          <span class="text-sm z-40">هیچ پیغامی برای شما پیدا نشد.</span>
+        </div>
+        `
+      )
     }
   }
 };
@@ -178,4 +208,5 @@ export {
   getThemeFromLocalStorage,
   changeTheme,
   getInfoAdmin,
+  seenNotifBtn,
 };
