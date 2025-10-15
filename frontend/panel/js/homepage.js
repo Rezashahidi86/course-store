@@ -2,21 +2,21 @@ import {
   showAndHideMenus,
   changeTheme,
   getThemeFromLocalStorage,
-  chartstudentsCourse1,
-  chartstudentsCourse2,
-  chartstudentsCourse3,
+  getInfoAdmin,
 } from "./util.js";
 const openMenus = document.querySelector("#open-menus");
 const closeMenus = document.querySelector("#close-menus");
 const changeThemeBtn = document.querySelector("#change-theme");
+let infoAdmin;
 
 openMenus.addEventListener("click", showAndHideMenus);
 closeMenus.addEventListener("click", showAndHideMenus);
-changeThemeBtn.addEventListener("click", () => {
-  changeTheme();
-  chartstudentsCourse1.update()
-});
+changeThemeBtn.addEventListener("click", changeTheme);
 
 window.addEventListener("load", () => {
   getThemeFromLocalStorage();
+  getInfoAdmin().then((res) => {
+   infoAdmin = res
+   console.log(infoAdmin);
+  });
 });

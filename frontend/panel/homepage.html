@@ -105,39 +105,27 @@
             <div class="absolute h-max -top-3 right-2 z-40 cursor-pointer">
               <span
                 class="text-[0.5rem] text-background bg-red-600 px-1 py-0.5 rounded-full"
+                id="count-notif"
               >
                 2
               </span>
             </div>
             <i class="relative fa fa-bell cursor-pointer"> </i>
             <div
-              class="absolute opacity-0 -z-50 group-hover:z-20 group-hover:opacity-100 top-6 duration-200 delay-500"
+              class="absolute -right-40 opacity-0 -z-50 group-hover:z-20 group-hover:opacity-100 top-8 duration-200 delay-500"
+              id="notif-box"
             >
               <div
-                class="relative gap-y-2 after:size-8 after:rounded-md after:rotate-45 after:-right-1.5 after:bg-cart dark:after:bg-cart-dark after:top-1 after:absolute"
-              >
-                <div
-                  class="absolute top-2 w-80 max-2sm:w-72 -right-40 flex items-center justify-between bg-cart dark:bg-cart-dark p-4 rounded-md z-40"
-                >
-                  <span class="text-sm text-text dark:text-text-dark max-w-60"
-                    >دوره ریکت را بروز رسانی کنید</span
-                  >
-                  <div
-                    class="p-1 bg-button2 dark:bg-button2-dark cursor-pointer rounded-md"
-                  >
-                    <span class="text-sm text-background">باشه!</span>
-                  </div>
-                </div>
-              </div>
-              <!-- <div class="mt-2 absolute rounded-md -right-28 w-60 p-4 bg-red-500 text-background flex  items-center gap-x-2 after:size-8 after:rounded-md after:rotate-45 after:right-[6.55rem] after:bg-red-500 after:top-0 after:absolute">
-                <i class="fa fa-warning z-40"></i>
-                <span class="text-sm z-40">هیچ پیغامی برای شما پیدا نشد.</span>
-              </div> -->
+                class="relative gap-y-2 after:size-8 after:-z-10 after:rounded-md after:rotate-45 after:right-[9.5rem] after:bg-cart dark:after:bg-cart-dark after:-top-1 after:absolute"
+                id="notif-box-msg"
+              ></div>
             </div>
           </button>
         </div>
         <div class="flex items-center gap-x-4 max-2sm:gap-x-1">
-          <span class="text-background max-sm:text-sm">RezaShahidi</span>
+          <span class="text-background max-sm:text-sm" id="username-admin"
+            >RezaShahidi</span
+          >
           <button
             class="text-background py-2.5 px-4 rounded-full bg-text-dark dark:bg-text cursor-pointer light"
             id="change-theme"
@@ -156,56 +144,117 @@
     <!-- Finish Header -->
 
     <!-- Start Main -->
-    <section>
-      <!-- Start chart -->
-      <div class="grid grid-cols-5 gap-x-5 container mt-20 max-lg:flex max-lg:flex-col max-lg:gap-y-4">
-        <div class="col-span-3 bg-cart dark:bg-cart-dark">
-          <div class="swiper chart-slide !pb-4">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <canvas
-                  class="w-full h-full p-4"
-                  id="chart-studens-course1"
-                ></canvas>
-              </div>
-              <div class="swiper-slide">
-                <canvas
-                  class="w-full h-full p-4"
-                  id="chart-studens-course2"
-                ></canvas>
-              </div>
-              <div class="swiper-slide">
-                <canvas
-                  class="w-full h-full p-4"
-                  id="chart-studens-course3"
-                ></canvas>
-              </div>
-            </div>
-            <div class="swiper-pagination"></div>
-          </div>
-        </div>
+    <main>
+      <section>
+        <!-- Start chart -->
         <div
-          class="flex items-center justify-between w-full col-span-2 py-2 px-8 bg-cart dark:bg-cart-dark rounded-sm max-sm:flex-col"
+          class="grid grid-cols-5 gap-x-5 container mt-20 max-lg:flex max-lg:flex-col max-lg:gap-y-4"
         >
-          <div
-            class="flex justify-center flex-col gap-y-4 text-text dark:text-text-dark"
-          >
-            <span
-              class="relative after:absolute after:size-4 after:top-1 after:-right-5 after:bg-blue-500 dark:after:bg-header after:rounded-md"
-              >دانشجویان : 500</span
-            >
-            <span
-              class="relative after:absolute after:size-4 after:top-1 after:-right-5 after:bg-orange-500 dark:after:bg-orange-700 after:rounded-md"
-              >ادمین ها : 200</span
-            >
+          <div class="col-span-3 bg-cart dark:bg-cart-dark cursor-crosshair">
+            <div class="swiper chart-slide !pb-4">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <canvas
+                    class="w-full h-full p-4"
+                    id="chart-studens-course1"
+                  ></canvas>
+                </div>
+                <div class="swiper-slide">
+                  <canvas
+                    class="w-full h-full p-4"
+                    id="chart-studens-course2"
+                  ></canvas>
+                </div>
+                <div class="swiper-slide">
+                  <canvas
+                    class="w-full h-full p-4"
+                    id="chart-studens-course3"
+                  ></canvas>
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
           </div>
-          <canvas class="py-2 max-sm:w-64" id="chart-role-users"></canvas>
+          <div
+            class="flex items-center justify-between w-full col-span-2 py-2 px-8 bg-cart dark:bg-cart-dark rounded-sm max-sm:flex-col"
+          >
+            <div
+              class="flex justify-center flex-col gap-y-4 text-text dark:text-text-dark"
+            >
+              <span
+                class="relative after:absolute after:size-4 after:top-1 after:-right-5 after:bg-blue-500 dark:after:bg-header after:rounded-md"
+                >دانشجویان : 500</span
+              >
+              <span
+                class="relative after:absolute after:size-4 after:top-1 after:-right-5 after:bg-orange-500 dark:after:bg-orange-700 after:rounded-md"
+                >ادمین ها : 200</span
+              >
+            </div>
+            <canvas class="py-2 max-sm:w-64" id="chart-role-users"></canvas>
+          </div>
         </div>
-      </div>
-      <!-- Finish chart -->
-    </section>
+        <div>
+          <canvas
+            class="container mt-16 bg-cart dark:bg-cart-dark p-8 rounded-md cursor-crosshair"
+            id="chart-count-courses"
+          ></canvas>
+        </div>
+        <!-- Finish chart -->
+      </section>
+      <!-- Start table -->
+      <section
+        class="container bg-cart dark:bg-cart-dark mt-12 py-6 px-4 rounded-md"
+      >
+        <table class="container">
+          <thead
+            class="text-title dark:text-title-dark bg-background dark:bg-background-dark rounded-md"
+          >
+            <tr>
+              <th class="py-4">شناسه</th>
+              <th class="py-4">نام</th>
+              <th class="py-4">نام و خانوادگی</th>
+              <th class="py-4">شماره</th>
+              <th class="py-4">ایمیل</th>
+              <th class="py-4">رمز عبور</th>
+            </tr>
+          </thead>
+          <tbody class="text-text dark:text-text-dark">
+            <tr>
+              <th class="py-4">1</th>
+              <th class="py-4">رضا</th>
+              <th class="py-4">شهیدی</th>
+              <th class="py-4">0913</th>
+              <th class="py-4">@gmail.com</th>
+              <th class="py-2">1234</th>
+            </tr>
+          </tbody>
+          <tbody class="text-text dark:text-text-dark">
+            <tr>
+              <th class="py-4">1</th>
+              <th class="py-4">رضا</th>
+              <th class="py-4">شهیدی</th>
+              <th class="py-4">0913</th>
+              <th class="py-4">@gmail.com</th>
+              <th class="py-2">1234</th>
+            </tr>
+          </tbody>
+          <tbody class="text-text dark:text-text-dark">
+            <tr>
+              <th class="py-4">1</th>
+              <th class="py-4">رضا</th>
+              <th class="py-4">شهیدی</th>
+              <th class="py-4">0913</th>
+              <th class="py-4">@gmail.com</th>
+              <th class="py-2">1234</th>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <!-- Finish table -->
+    </main>
     <!-- Finish Main -->
     <script src="../vendor/chart/chart.js"></script>
+    <script src="../vendor/chart/chartjs-plugin-datalabels.js"></script>
     <script src="../vendor/fa/all.min.js"></script>
     <script src="../vendor/swiper/swiper-bundle.min.js"></script>
     <script src="js/custom.js" type="module"></script>
