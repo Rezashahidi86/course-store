@@ -82,29 +82,23 @@
       <section
         class="flex items-center justify-between px-8 py-4 bg-text dark:bg-text-dark max-2sm:px-1"
       >
-        <div class="flex items-center gap-x-4 max-2sm:gap-x-1">
+        <div class="flex items-center gap-x-12">
           <button
             class="text-3xl text-background cursor-pointer max-2sm:text-xl"
             id="open-menus"
           >
             <i class="fas fa-bars"></i>
           </button>
-          <div
-            class="flex items-center bg-button2 dark:bg-button2-dark text-background p-2 rounded-sm max-2sm:py-0.5"
+          <button
+            class="text-background cursor-pointer light"
+            id="change-theme"
           >
-            <input
-              class="border-none outline-none max-sm:w-32 max-2sm:max-w-24"
-              type="text"
-              placeholder="جستجو..."
-            />
-            <button class="font-bold cursor-pointer">
-              <i class="fa fa-search"></i>
-            </button>
-          </div>
+            <i class="fa fa-sun text-xl"></i>
+          </button>
           <button class="group relative text-xl text-background">
             <div class="absolute h-max -top-3 right-2 z-40 cursor-pointer">
               <span
-                class="text-[0.5rem] text-background bg-red-600 px-1  rounded-full"
+                class="text-[0.5rem] text-background bg-red-600 px-1 py-0.5 rounded-full"
                 id="count-notif"
               >
                 2
@@ -127,19 +121,25 @@
           <span class="text-background max-sm:text-sm" id="username-admin"
             >RezaShahidi</span
           >
-          <button
-            class="text-background py-2.5 px-4 rounded-full bg-text-dark dark:bg-text cursor-pointer light"
-            id="change-theme"
-          >
-            <i class="fa fa-sun"></i>
-          </button>
         </div>
       </section>
-      <section class="container flex items-center gap-x-2 mt-4">
-        <span class="text-title dark:text-title-dark">خوش آمدید :</span>
-        <span class="font-extrabold text-button2" id="name-admin"
-          >سعید سعیدی</span
+      <section class="container flex flex-col gap-y-4 mt-4 justify-between">
+        <div class="flex items-center gap-x-2">
+          <span class="text-title dark:text-title-dark">خوش آمدید :</span>
+          <span class="font-extrabold text-button2" id="name-admin"></span>
+        </div>
+        <div
+          class="flex items-center bg-button2 dark:bg-button2-dark text-background p-2 rounded-sm max-w-max"
         >
+          <input
+            class="border-none outline-none"
+            type="text"
+            placeholder="جستجو..."
+          />
+          <button class="font-bold text-xl cursor-pointer">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
       </section>
     </header>
     <!-- Finish Header -->

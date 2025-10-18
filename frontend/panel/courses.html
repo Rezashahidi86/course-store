@@ -125,9 +125,7 @@
       <section class="container flex flex-col gap-y-4 mt-4 justify-between">
         <div class="flex items-center gap-x-2">
           <span class="text-title dark:text-title-dark">خوش آمدید :</span>
-          <span class="font-extrabold text-button2" id="name-admin"
-            >سعید سعیدی</span
-          >
+          <span class="font-extrabold text-button2" id="name-admin"></span>
         </div>
         <div
           class="flex items-center bg-button2 dark:bg-button2-dark text-background p-2 rounded-sm max-w-max"
@@ -144,6 +142,8 @@
       </section>
     </header>
     <!-- Finish Header -->
+
+    <!-- Start Main -->
     <main>
       <!-- Start add course -->
       <section>
@@ -155,7 +155,9 @@
           </div>
           <div>
             <form action="#">
-              <div class="flex items-center justify-between gap-6 max-lg:grid max-lg:grid-cols-6">
+              <div
+                class="flex items-center justify-between gap-6 max-lg:grid max-lg:grid-cols-6"
+              >
                 <input
                   class="border-2 border-button2 dark:border-header outline-none p-3 text-text dark:text-text-dark rounded-md w-full col-span-3 max-2sm:col-span-6"
                   type="text"
@@ -187,22 +189,25 @@
                 id="description-course"
                 placeholder="توضیحات دوره..."
               ></textarea>
-              <div class="flex items-center justify-between gap-x-28 mt-6 flex-wrap">
+              <div
+                class="flex items-center justify-between gap-x-28 mt-6 flex-wrap"
+              >
                 <div class="max-xl:mt-8">
                   <div
                     class="font-bold text-lg text-title dark:text-title-dark"
                   >
                     <span>وضعیت دوره</span>
                   </div>
-                  <div class="flex gap-2 mt-2 text-text dark:text-text-dark max-xl:flex-col">
+                  <div
+                    class="flex gap-2 mt-2 text-text dark:text-text-dark max-xl:flex-col"
+                  >
                     <div class="flex items-center gap-x-2">
                       <input
-                        class="cursor-pointer"
+                        class="cursor-pointer radio-status-course"
                         type="radio"
                         name="status-course"
                         id="start-course"
                         value="start"
-                        checked
                       />
                       <label for="start-course" class="cursor-pointer"
                         >درحال برگزاری</label
@@ -210,13 +215,13 @@
                     </div>
                     <div class="flex items-center gap-x-2">
                       <input
-                        class="cursor-pointer"
+                        class="cursor-pointer radio-status-course"
                         type="radio"
                         name="status-course"
-                        id="persell-course"
-                        value="persell"
+                        id="presell-course"
+                        value="presell"
                       />
-                      <label for="persell-course" class="cursor-pointer"
+                      <label for="presell-course" class="cursor-pointer"
                         >پیش فروش</label
                       >
                     </div>
@@ -231,7 +236,7 @@
                   <div class="mt-4">
                     <label
                       for="cover-course"
-                      class="text-background bg-button2 dark:bg-header p-2 rounded-md cursor-pointer"
+                      class="text-background bg-button2 dark:bg-header p-2 rounded-md cursor-pointer hover:bg-blue-600 dark:hover:bg-blue-900 duration-200"
                       >عکس مورد نظرتو وارد کن</label
                     >
                     <input class="hidden" id="cover-course" type="file" />
@@ -244,20 +249,16 @@
                     <span>دسته بندی</span>
                   </div>
                   <select
-                    id=""
-                    class="mt-4 bg-button2 dark:bg-header cursor-pointer text-background rounded-md border-none outline-none p-2 hover:rounded-t-md w-40"
+                    id="category-course"
+                    class="mt-4 bg-button2 dark:bg-header cursor-pointer text-background rounded-md border-none outline-none p-2 hover:rounded-t-md w-40 hover:bg-blue-600 dark:hover:bg-blue-900 duration-200"
                   >
-                    <option value="" disabled selected>دسته بندی</option>
-                    <option class="cursor-pointer" value="">fronend</option>
-                    <option class="cursor-pointer" value="">backend</option>
-                    <option class="cursor-pointer" value="">
-                      مهارت های نرم
-                    </option>
+                    <option value="-1" disabled selected>دسته بندی</option>
                   </select>
                 </div>
                 <button
-                  class="bg-button2 dark:bg-header outline-none rounded-md border-none px-8 py-3 text-background mt-14"
+                  class="bg-button2 dark:bg-header outline-none rounded-md border-none px-8 py-3 text-background mt-14 hover:bg-blue-600 dark:hover:bg-blue-900 duration-200 cursor-pointer"
                   type="submit"
+                  id="add-course-btn"
                 >
                   <span>افزودن</span>
                 </button>
@@ -270,25 +271,33 @@
       <!-- Start table -->
       <section class="bg-cart dark:bg-cart-dark mt-24 py-6 px-4 rounded-md">
         <table class="w-full" id="courses-table">
-          <thead
-            class="text-title dark:text-title-dark bg-background dark:bg-background-dark"
-          >
-            <tr>
-              <th class="py-4">شناسه</th>
-              <th class="py-4">نام</th>
-              <th class="py-4 max-sm:hidden">دسته بندی</th>
-              <th class="py-4 max-lg:hidden">مدرس</th>
-              <th class="py-4 max-sm:hidden">وضعیت</th>
-              <th class="py-4">قیمت</th>
-              <th class="py-4">ویرایش</th>
-              <th class="py-4">حذف</th>
-            </tr>
-            <!-- Data Loaded From JS -->
-          </thead>
+          <!-- Data Loaded From JS -->
         </table>
       </section>
       <!-- Finish table -->
     </main>
+    <!-- Finish Main -->
+    <!-- toast box -->
+    <div
+      class="fixed top-10 -left-96 flex items-center gap-x-4 bg-background dark:bg-background-dark p-6 rounded-md z-50 after:absolute after:w-[100%] after:h-1 after:bg-button1 after:bottom-0 after:right-0 duration-300"
+      id="toast-box"
+    >
+      <div id="toast-icon">
+        <i class="fa fa-check-circle text-4xl text-button1"></i>
+        <!-- <i class="fa fa-close text-4xl text-red-600"></i> -->
+      </div>
+      <div class="text-title dark:text-title-dark">
+        <span id="toast-title">عملیات با موفقیت انجام شد</span>
+      </div>
+    </div>
+    <!-- toast box -->
+
+    <!-- Start modal -->
+    <section id="modal">
+      <!-- Data Loaded From JS -->
+    </section>
+    <!-- Finish modal -->
+
     <script src="../vendor/fa/all.min.js"></script>
     <script src="js/courses.js" type="module"></script>
   </body>
