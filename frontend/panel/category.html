@@ -76,8 +76,156 @@
       </section>
     </aside>
     <!-- Finish Aside -->
-
+    <!-- Start Header -->
+    <header>
+      <section
+        class="flex items-center justify-between px-8 py-4 bg-text dark:bg-text-dark max-2sm:px-1"
+      >
+        <div class="flex items-center gap-x-12">
+          <button
+            class="text-3xl text-background cursor-pointer max-2sm:text-xl"
+            id="open-menus"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+          <button
+            class="text-background cursor-pointer light"
+            id="change-theme"
+          >
+            <i class="fa fa-sun text-xl"></i>
+          </button>
+          <button class="group relative text-xl text-background">
+            <div class="absolute h-max -top-3 right-2 z-40 cursor-pointer">
+              <span
+                class="text-[0.5rem] text-background bg-red-600 px-1 rounded-full"
+                id="count-notif"
+              >
+              </span>
+            </div>
+            <i class="relative fa fa-bell cursor-pointer"> </i>
+            <div
+              class="absolute -right-40 opacity-0 -z-50 group-hover:z-20 group-hover:opacity-100 top-8 duration-200 delay-500"
+              id="notif-box"
+            >
+              <div
+                class="relative gap-y-2 after:size-8 after:-z-10 after:rounded-md after:rotate-45 after:right-[9.5rem] after:bg-cart dark:after:bg-cart-dark after:-top-1 after:absolute"
+                id="notif-box-msg"
+              ></div>
+              <!-- Data Loaded From JS -->
+            </div>
+          </button>
+        </div>
+        <div class="flex items-center gap-x-4 max-2sm:gap-x-1">
+          <span class="text-background max-sm:text-sm" id="username-admin"
+            >RezaShahidi</span
+          >
+        </div>
+      </section>
+      <section class="container flex flex-col gap-y-4 mt-4 justify-between">
+        <div class="flex items-center gap-x-2">
+          <span class="text-title dark:text-title-dark">خوش آمدید :</span>
+          <span class="font-extrabold text-button2" id="name-admin"></span>
+        </div>
+        <div
+          class="flex items-center bg-button2 dark:bg-button2-dark text-background p-2 rounded-sm max-w-max"
+        >
+          <input
+            class="border-none outline-none"
+            type="text"
+            placeholder="جستجو..."
+          />
+          <button class="font-bold text-xl cursor-pointer">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </section>
+    </header>
+    <!-- Finish Header -->
+    <!-- toast box -->
+    <div
+      class="fixed top-10 -left-96 flex items-center gap-x-4 bg-background dark:bg-background-dark p-6 rounded-md z-50 after:absolute after:w-[100%] after:h-1 after:bg-button1 after:bottom-0 after:right-0 duration-300"
+      id="toast-box"
+    >
+      <div id="toast-icon">
+        <i class="fa fa-check-circle text-4xl text-button1"></i>
+        <!-- <i class="fa fa-close text-4xl text-red-600"></i> -->
+      </div>
+      <div class="text-title dark:text-title-dark">
+        <span id="toast-title">عملیات با موفقیت انجام شد</span>
+      </div>
+    </div>
+    <!-- toast box -->
+    <!-- Start Main -->
+    <main>
+      <!-- Start Add Category -->
+      <section>
+        <div
+          class="container mt-8 flex flex-col gap-y-4 bg-cart dark:bg-cart-dark px-4 py-6 rounded-md"
+        >
+          <div class="text-xl font-bold text-title dark:text-title-dark">
+            <span>افزودن دسته بندی جدید</span>
+          </div>
+          <div>
+            <form action="#">
+              <div class="gap-6 grid grid-cols-6">
+                <input
+                  class="border-2 border-button2 dark:border-header outline-none p-3 text-text dark:text-text-dark rounded-md w-full col-span-3 max-sm:col-span-6"
+                  type="text"
+                  id="name-input"
+                  placeholder="نام دسته بندی را وارد کنید..."
+                />
+                <input
+                  class="border-2 border-button2 dark:border-header outline-none p-3 text-text dark:text-text-dark rounded-md w-full col-span-3 max-sm:col-span-6"
+                  type="text"
+                  id="link-input"
+                  placeholder="مقصد را وارد کنید..."
+                />
+              </div>
+              <div
+                class="flex items-center justify-between gap-x-28 mt-2 flex-wrap"
+              >
+                <button
+                  class="bg-button2 dark:bg-header outline-none rounded-md border-none px-8 py-3 text-background mt-2 hover:bg-blue-600 dark:hover:bg-blue-900 duration-200 cursor-pointer"
+                  type="submit"
+                  id="add-category-btn"
+                >
+                  <span>افزودن</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+      <!-- Finish Add Category -->
+      <!-- Start table -->
+      <section class="bg-cart dark:bg-cart-dark mt-24 py-6 px-4 rounded-md">
+        <table class="w-full">
+          <thead
+            class="text-title dark:text-title-dark bg-background dark:bg-background-dark"
+          >
+            <tr>
+              <th class="py-4">شناسه</th>
+              <th class="py-4">نام</th>
+              <th class="py-4">مقصد</th>
+              <th class="py-4 max-md:hidden">ساخت</th>
+              <th class="py-4">حذف</th>
+            </tr>
+          </thead>
+          <tbody class="text-text dark:text-text-dark" id="category-table">
+            <!-- Data Loaded From JS -->
+          </tbody>
+        </table>
+      </section>
+      <!-- Finish table -->
+    </main>
+    <!-- Finish Main -->
+    <!-- Start modal -->
+    <section id="modal">
+      <!-- Data Loaded From JS -->
+    </section>
+    <!-- Finish modal -->
     <script src="../vendor/fa/all.min.js"></script>
     <script src="js/util.js" type="module"></script>
+    <script src="./js/category.js" type="module"></script>
   </body>
 </html>

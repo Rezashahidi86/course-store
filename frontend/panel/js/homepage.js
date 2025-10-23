@@ -95,6 +95,20 @@ const showInfoBarChart = async () => {
   chartstudentsCourse3.update();
 };
 
+const showInfoChartLine = async () => {
+  const res = await fetch(`${baseUrl}/menus`);
+  const infoMenus = await res.json();
+  let menus = [];
+  let countCourseMenu = [];
+  infoMenus.forEach((menu) => {
+    menus.push(menu.title);
+    countCourseMenu.push(menu.submenus.length);
+    chartCountCoursesMenus.data.labels = menus;
+    chartCountCoursesMenus.data.datasets[0].data = countCourseMenu;
+    chartCountCoursesMenus.update();
+  });
+};
+
 const getAndShowLastUsers = async () => {
   const res = await fetch(`${baseUrl}/users`, {
     headers: {
@@ -133,20 +147,6 @@ const getAndShowLastCourses = async () => {
       </tr>
       `
     );
-  });
-};
-
-const showInfoChartLine = async () => {
-  const res = await fetch(`${baseUrl}/menus`);
-  const infoMenus = await res.json();
-  let menus = [];
-  let countCourseMenu = [];
-  infoMenus.forEach((menu) => {
-    menus.push(menu.title);
-    countCourseMenu.push(menu.submenus.length);
-    chartCountCoursesMenus.data.labels = menus;
-    chartCountCoursesMenus.data.datasets[0].data = countCourseMenu;
-    chartCountCoursesMenus.update();
   });
 };
 
