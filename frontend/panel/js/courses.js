@@ -95,7 +95,7 @@ const getAndShowCategory = async () => {
     categoryCourseBox.insertAdjacentHTML(
       "beforeend",
       `
-      <option class="cursor-pointer" value="${category._id}">${category.name}</option>
+      <option class="cursor-pointer" value="${category._id}">${category.title}</option>
       `
     );
   });

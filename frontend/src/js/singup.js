@@ -25,7 +25,7 @@ likeArrayInputs.forEach((input, index) => {
 const checkInputRegister = (event) => {
   const inputs = Array.from(likeArrayInputs);
   const inputEmtye = inputs.find((input) => {
-    return input.value === "";
+    return input.value.trim() === "";
   });
   if (inputEmtye) {
     inputEmtye.focus();
@@ -73,6 +73,7 @@ const registerUser = async (event) => {
     },
     body: JSON.stringify(newUser),
   });
+  console.log(response);
   if (response.status === 201) {
     showToastBoxAndEmtyeInput("ثبت نام موفقیت آمیز بود", "successful");
     setTimeout(() => {
@@ -80,10 +81,14 @@ const registerUser = async (event) => {
     }, 2000);
   } else if (response.status === 409) {
     showToastBoxAndEmtyeInput("نام کاربری یا ایمیل از قبل وجود دارد");
+  } else if (response.status === 403) {
+    showToastBoxAndEmtyeInput("کاربر مورد نظر اخراج شده");
   }
   const responseParse = await response.json();
   const accessToken = responseParse.accessToken;
-  setInToLocalStorage("token", accessToken);
+  if (accessToken) {
+    setInToLocalStorage("token", accessToken);
+  }
 };
 
 const showToastBoxAndEmtyeInput = (title, status, boxEmtye = true) => {
@@ -97,7 +102,7 @@ const showToastBoxAndEmtyeInput = (title, status, boxEmtye = true) => {
   showToastBox(title, status);
 };
 inputPhoneNumber.addEventListener("keyup", () => {
-  countPhoneNumber.innerHTML = 11 - inputPhoneNumber.value.length
+  countPhoneNumber.innerHTML = 11 - inputPhoneNumber.value.length;
 });
 registerBtn.addEventListener("click", checkInputRegister);
 window.addEventListener("load", () => {

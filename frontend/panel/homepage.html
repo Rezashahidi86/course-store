@@ -98,10 +98,10 @@
           <button class="group relative text-xl text-background">
             <div class="absolute h-max -top-3 right-2 z-40 cursor-pointer">
               <span
-                class="text-[0.5rem] text-background bg-red-600 px-1 py-0.5 rounded-full"
+                class="text-[0.5rem] text-background bg-red-600 px-1 rounded-full"
                 id="count-notif"
               >
-                2
+                
               </span>
             </div>
             <i class="relative fa fa-bell cursor-pointer"> </i>
@@ -149,7 +149,7 @@
       <section>
         <!-- Start chart -->
         <div
-          class="grid grid-cols-5 gap-x-5 container mt-20 max-lg:flex max-lg:flex-col max-lg:gap-y-4"
+          class="grid grid-cols-5 gap-x-5 mt-20 max-lg:flex max-lg:flex-col max-lg:gap-y-4"
         >
           <div class="col-span-3 bg-cart dark:bg-cart-dark cursor-crosshair">
             <div class="swiper chart-slide !pb-4">
@@ -184,11 +184,13 @@
             >
               <span
                 class="relative after:absolute after:size-4 after:top-1 after:-right-5 after:bg-blue-500 dark:after:bg-header after:rounded-md"
-                >دانشجویان : 500</span
+                id="count-users"
+                ></span
               >
               <span
                 class="relative after:absolute after:size-4 after:top-1 after:-right-5 after:bg-orange-500 dark:after:bg-orange-700 after:rounded-md"
-                >ادمین ها : 200</span
+                id="count-admin"
+                ></span
               >
             </div>
             <canvas class="py-2 max-sm:w-64" id="chart-role-users"></canvas>
@@ -196,60 +198,56 @@
         </div>
         <div>
           <canvas
-            class="container mt-16 bg-cart dark:bg-cart-dark p-8 rounded-md cursor-crosshair"
+            class="w-full mt-16 bg-cart dark:bg-cart-dark p-8 rounded-md cursor-crosshair"
             id="chart-count-courses"
           ></canvas>
         </div>
         <!-- Finish chart -->
       </section>
       <!-- Start table -->
-      <section
-        class="container bg-cart dark:bg-cart-dark mt-12 py-6 px-4 rounded-md"
-      >
-        <table class="container">
-          <thead
-            class="text-title dark:text-title-dark bg-background dark:bg-background-dark rounded-md"
-          >
-            <tr>
-              <th class="py-4">شناسه</th>
-              <th class="py-4">نام</th>
-              <th class="py-4">نام و خانوادگی</th>
-              <th class="py-4">شماره</th>
-              <th class="py-4">ایمیل</th>
-              <th class="py-4">رمز عبور</th>
-            </tr>
-          </thead>
-          <tbody class="text-text dark:text-text-dark">
-            <tr>
-              <th class="py-4">1</th>
-              <th class="py-4">رضا</th>
-              <th class="py-4">شهیدی</th>
-              <th class="py-4">0913</th>
-              <th class="py-4">@gmail.com</th>
-              <th class="py-2">1234</th>
-            </tr>
-          </tbody>
-          <tbody class="text-text dark:text-text-dark">
-            <tr>
-              <th class="py-4">1</th>
-              <th class="py-4">رضا</th>
-              <th class="py-4">شهیدی</th>
-              <th class="py-4">0913</th>
-              <th class="py-4">@gmail.com</th>
-              <th class="py-2">1234</th>
-            </tr>
-          </tbody>
-          <tbody class="text-text dark:text-text-dark">
-            <tr>
-              <th class="py-4">1</th>
-              <th class="py-4">رضا</th>
-              <th class="py-4">شهیدی</th>
-              <th class="py-4">0913</th>
-              <th class="py-4">@gmail.com</th>
-              <th class="py-2">1234</th>
-            </tr>
-          </tbody>
-        </table>
+      <section class="flex gap-x-4 max-md:flex-col">
+        <section
+          class="container bg-cart dark:bg-cart-dark mt-12 py-6 px-4 rounded-md"
+        >
+          <div class="mb-8 text-title dark:text-title-dark text-xl">
+            <span>10 کاربر اخیر</span>
+          </div>
+          <table class="container">
+            <thead
+              class="text-title dark:text-title-dark bg-background dark:bg-background-dark rounded-md"
+            >
+              <tr>
+                <th class="py-4">شناسه</th>
+                <th class="py-4">نام و نام خانوادگی</th>
+                <th class="py-4">شماره</th>
+              </tr>
+            </thead>
+            <tbody class="text-text dark:text-text-dark" id="table-users">
+              <!-- Data Loaded From JS -->
+            </tbody>
+          </table>
+        </section>
+        <section
+          class="container bg-cart dark:bg-cart-dark mt-12 py-6 px-4 rounded-md"
+        >
+          <div class="mb-8 text-title dark:text-title-dark text-xl">
+            <span>10 دوره اخیر</span>
+          </div>
+          <table class="container">
+            <thead
+              class="text-title dark:text-title-dark bg-background dark:bg-background-dark rounded-md"
+            >
+              <tr>
+                <th class="py-4">شناسه</th>
+                <th class="py-4">نام دوره</th>
+                <th class="py-4">دانشجو</th>
+              </tr>
+            </thead>
+            <tbody class="text-text dark:text-text-dark" id="table-courses">
+              <!-- Data Loaded From JS -->
+            </tbody>
+          </table>
+        </section>
       </section>
       <!-- Finish table -->
     </main>

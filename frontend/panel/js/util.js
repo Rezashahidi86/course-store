@@ -24,7 +24,7 @@ let chartRoleUser;
 let chartstudentsCourse1;
 let chartstudentsCourse2;
 let chartstudentsCourse3;
-let chartCountCourses;
+let chartCountCoursesMenus;
 const showInfoInHeader = (info) => {
   if (info.role != "ADMIN") {
     location.replace("../login.html");
@@ -138,8 +138,8 @@ const getThemeFromLocalStorage = () => {
         chartstudentsCourse1.data.datasets[0].backgroundColor = ["#0d3b66"];
         chartstudentsCourse2.data.datasets[0].backgroundColor = ["#0d3b66"];
         chartstudentsCourse3.data.datasets[0].backgroundColor = ["#0d3b66"];
-        chartCountCourses.data.datasets[0].backgroundColor = ["#0d3b66"];
-        chartCountCourses.data.datasets[0].borderColor = ["#1e90ff"];
+        chartCountCoursesMenus.data.datasets[0].backgroundColor = ["#0d3b66"];
+        chartCountCoursesMenus.data.datasets[0].borderColor = ["#1e90ff"];
         chartRoleUser.data.datasets[0].backgroundColor = [
           "#0d3b66",
           "oklch(55.3% 0.195 38.402)",
@@ -148,7 +148,7 @@ const getThemeFromLocalStorage = () => {
         chartstudentsCourse1.update();
         chartstudentsCourse2.update();
         chartstudentsCourse3.update();
-        chartCountCourses.update();
+        chartCountCoursesMenus.update();
       }
     }
   }
@@ -171,8 +171,8 @@ const changeTheme = () => {
       chartstudentsCourse1.data.datasets[0].backgroundColor = ["#0d3b66"];
       chartstudentsCourse2.data.datasets[0].backgroundColor = ["#0d3b66"];
       chartstudentsCourse3.data.datasets[0].backgroundColor = ["#0d3b66"];
-      chartCountCourses.data.datasets[0].backgroundColor = ["#0d3b66"];
-      chartCountCourses.data.datasets[0].borderColor = ["#1e90ff"];
+      chartCountCoursesMenus.data.datasets[0].backgroundColor = ["#0d3b66"];
+      chartCountCoursesMenus.data.datasets[0].borderColor = ["#1e90ff"];
       chartRoleUser.data.datasets[0].backgroundColor = [
         "#0d3b66",
         "oklch(55.3% 0.195 38.402)",
@@ -181,7 +181,7 @@ const changeTheme = () => {
       chartstudentsCourse1.update();
       chartstudentsCourse2.update();
       chartstudentsCourse3.update();
-      chartCountCourses.update();
+      chartCountCoursesMenus.update();
     }
   } else {
     htmlTag.classList.remove("dark");
@@ -199,8 +199,8 @@ const changeTheme = () => {
       chartstudentsCourse1.data.datasets[0].backgroundColor = ["#1e90ff"];
       chartstudentsCourse2.data.datasets[0].backgroundColor = ["#1e90ff"];
       chartstudentsCourse3.data.datasets[0].backgroundColor = ["#1e90ff"];
-      chartCountCourses.data.datasets[0].backgroundColor = ["#1e90ff"];
-      chartCountCourses.data.datasets[0].borderColor = ["#0d3b66"];
+      chartCountCoursesMenus.data.datasets[0].backgroundColor = ["#1e90ff"];
+      chartCountCoursesMenus.data.datasets[0].borderColor = ["#0d3b66"];
       chartRoleUser.data.datasets[0].backgroundColor = [
         "oklch(62.3% 0.214 259.815)",
         "oklch(70.5% 0.213 47.604)",
@@ -209,20 +209,11 @@ const changeTheme = () => {
       chartstudentsCourse1.update();
       chartstudentsCourse2.update();
       chartstudentsCourse3.update();
-      chartCountCourses.update();
+      chartCountCoursesMenus.update();
     }
   }
 };
 
-
-
-export {
-  showAndHideMenus,
-  getThemeFromLocalStorage,
-  changeTheme,
-  getInfoAdmin,
-  seenNotifBtn,
-};
 // charts
 if (chartSlide) {
   new Swiper(chartSlide, {
@@ -244,7 +235,7 @@ if (chartSlide) {
       datasets: [
         {
           label: "کاربران",
-          data: [500, 200],
+          data: [],
           backgroundColor: [
             "oklch(62.3% 0.214 259.815)",
             "oklch(70.5% 0.213 47.604)",
@@ -263,21 +254,11 @@ if (chartSlide) {
   chartstudentsCourse1 = new Chart(studensCoursestCanvas1, {
     type: "bar",
     data: {
-      labels: [
-        "ریکت",
-        "ریکت",
-        "ریکت",
-        "ریکت",
-        "ریکت",
-        "ریکت",
-        "ریکت",
-        "ریکت",
-        "ریکت",
-      ],
+      labels: [],
       datasets: [
         {
           label: "کاربران",
-          data: [500, 200, 300, 100, 400, 150, 20, 30, 56],
+          data: [],
           backgroundColor: ["#1e90ff"],
           borderRadius: 10,
         },
@@ -308,21 +289,11 @@ if (chartSlide) {
   chartstudentsCourse2 = new Chart(studensCoursestCanvas2, {
     type: "bar",
     data: {
-      labels: [
-        "ریکت",
-        "ریکت",
-        "ریکت",
-        "ریکت",
-        "ریکت",
-        "ریکت",
-        "ریکت",
-        "ریکت",
-        "ریکت",
-      ],
+      labels: [],
       datasets: [
         {
           label: "کاربران",
-          data: [500, 200, 300, 100, 400, 150, 20, 30, 56],
+          data: [],
           backgroundColor: ["#1e90ff"],
           borderRadius: 10,
         },
@@ -353,21 +324,11 @@ if (chartSlide) {
   chartstudentsCourse3 = new Chart(studensCoursestCanvas3, {
     type: "bar",
     data: {
-      labels: [
-        "ریکت",
-        "ریکت",
-        "ریکت",
-        "ریکت",
-        "ریکت",
-        "ریکت",
-        "ریکت",
-        "ریکت",
-        "ریکت",
-      ],
+      labels: [],
       datasets: [
         {
           label: "کاربران",
-          data: [500, 200, 300, 100, 400, 150, 20, 30, 56],
+          data: [],
           backgroundColor: ["#1e90ff"],
           borderRadius: 10,
         },
@@ -395,23 +356,23 @@ if (chartSlide) {
     },
   });
 
-  chartCountCourses = new Chart(countCoursesCanvas, {
+  chartCountCoursesMenus = new Chart(countCoursesCanvas, {
     type: "line",
     data: {
-      labels: ["ریکت", "ریکت", "ریکت", "ریکت", "ریکت"],
+      labels: [],
       datasets: [
         {
           label: "کاربران",
-          data: [500, 200, 300, 100, 400],
+          data: [],
           backgroundColor: ["#1e90ff"],
           pointBackgroundColor: ["#1e90ff"],
-          pointRadius: 20,
-          hoverPointRadius: 22,
+          pointRadius: 12,
+          hoverPointRadius: 24,
           tension: 0.2,
           fill: true,
-          hoverBorderWidth: 30,
+          hoverBorderWidth: 24,
           borderColor: "#0d3b66",
-          borderWidth: 5,
+          borderWidth: 0,
         },
       ],
     },
@@ -423,19 +384,18 @@ if (chartSlide) {
       responsive: false,
       plugins: {
         tooltip: {
-          enabled: true, // فعال یا غیرفعال کردن tooltip
-          backgroundColor: "rgba(0,0,0,0.7)", // رنگ پس‌زمینه
-          titleColor: "#fff", // رنگ عنوان
-          bodyColor: "#bbbbbb", // رنگ متن
+          enabled: true,
+          backgroundColor: "rgba(0,0,0,0.7)",
+          titleColor: "#fff",
+          bodyColor: "#bbbbbb",
           titleFont: { size: 14, family: "medium" },
           bodyFont: { size: 14 },
           padding: 10,
           cornerRadius: 6,
-          displayColors: false, // حذف رنگ کوچک کنار tooltip
+          displayColors: false,
           callbacks: {
             title: (tooltipItems) => {
-              // تغییر عنوان (معمولاً label محور X)
-              return "دسته بندی: " + tooltipItems[0].label;
+              return "منو : " + tooltipItems[0].label;
             },
             label: (tooltipItem) => {
               return "تعداد دوره : " + tooltipItem.formattedValue;
@@ -475,3 +435,16 @@ if (chartSlide) {
     plugins: [ChartDataLabels],
   });
 }
+
+export {
+  showAndHideMenus,
+  getThemeFromLocalStorage,
+  changeTheme,
+  getInfoAdmin,
+  seenNotifBtn,
+  chartRoleUser,
+  chartCountCoursesMenus,
+  chartstudentsCourse1,
+  chartstudentsCourse2,
+  chartstudentsCourse3,
+};
