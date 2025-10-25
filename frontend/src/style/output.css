@@ -1976,6 +1976,11 @@
       margin-left: calc(var(--spacing) * 0);
     }
   }
+  .max-2sm\:hidden {
+    @media (width < 473px) {
+      display: none;
+    }
+  }
   .max-2sm\:w-60 {
     @media (width < 473px) {
       width: calc(var(--spacing) * 60);
