@@ -50,7 +50,7 @@ themeChangeBtns.forEach((themeChangeBtn) => {
 const showHeaderLinks = async () => {
   const courseInfo = await getInfoCourse("session");
   changeHeaderLinks(courseInfo);
-  videoContainer.poster = `${baseUrlCover}/${courseInfo.cover}`
+  videoContainer.poster = `${baseUrlCover}/${courseInfo.cover}`;
 };
 
 const boxPartsCourseHandler = (event) => {
@@ -82,7 +82,14 @@ const boxPartsCourseHandler = (event) => {
 
 const showSissions = (allSessions) => {
   const userSession = allSessions.session;
-  videoContainer.scr = `${baseUrlCover}/${userSession.video}`
+  console.log(userSession);
+  videoContainer.insertAdjacentHTML(
+    "beforeend",
+    `
+    <video src="${baseUrlCover}/${userSession.video}" controls class="rounded-xl w-full"></video>
+    `
+  );
+  console.log(videoContainer);
   const sessions = allSessions.sessions;
   const lastSessions = sessions.length;
   if (sessions.length) {
@@ -102,20 +109,28 @@ const showSissions = (allSessions) => {
           class="flex items-center group gap-x-4 text-title dark:text-title-dark"
         >
           <div
-            class="dark:bg-background-dark bg-background px-2 py-0.5 rounded-sm ${session.free ? "group-hover:bg-button1" : ""}"
+            class="dark:bg-background-dark bg-background px-2 py-0.5 rounded-sm ${
+              session.free ? "group-hover:bg-button1" : ""
+            }"
           >
-            <span class="relative ${session.free ? "group-hover:text-background" : ""} ${
-              sessionSelect
-                ? "after:absolute after:size-3 after:bg-green-500 dark:after:bg-green-600 after:top-1.5 after:-right-[22px] after:rounded-full"
-                : ""
-            } ">${index + 1}</span>
+            <span class="relative ${
+              session.free ? "group-hover:text-background" : ""
+            } ${
+          sessionSelect
+            ? "after:absolute after:size-3 after:bg-green-500 dark:after:bg-green-600 after:top-1.5 after:-right-[22px] after:rounded-full"
+            : ""
+        } ">${index + 1}</span>
           </div>
-          <span class="text-background-dark ${session.free ? "group-hover:text-button1" : ""} duration-200 line-clamp-1"
+          <span class="text-background-dark ${
+            session.free ? "group-hover:text-button1" : ""
+          } duration-200 line-clamp-1"
             >${session.title}</span
           >
         </div>
         <div
-          class="text-background-dark flex items-center gap-x-2 ${session.free ? "group-hover:text-button1" : ""} duration-200 max-2sm:"
+          class="text-background-dark flex items-center gap-x-2 ${
+            session.free ? "group-hover:text-button1" : ""
+          } duration-200 max-2sm:"
         >
         <span>${session.time}</span>
         <i class="fa fa-lock ${session.free ? "opacity-0 absolute" : ""}"></i>

@@ -26,7 +26,7 @@ const videoSession = document.querySelector("#video-session");
 const modal = document.querySelector("#modal");
 let allSessions = [];
 let infoAdmin;
-let showSessionsForUser
+let showSessionsForUser;
 let addIdCourseSessions;
 let typeSession;
 let fileSession;
@@ -122,17 +122,22 @@ const showSessions = () => {
 const addSession = async (event) => {
   event.preventDefault();
   if (
-    nameSessionsInput.value.trim() &&
-    timeSessionsInput.value.trim() &&
-    addIdCourseSessions &&
-    typeSession &&
+    nameSessionsInput.value.trim() ||
+    timeSessionsInput.value.trim() ||
+    addIdCourseSessions ||
+    typeSession ||
     fileSession
   ) {
+    console.log(nameSessionsInput);
+    console.log(timeSessionsInput);
+    console.log(fileSession);
+    console.log(typeSession);
     const formDataSession = new FormData();
-    formDataSession.append("title", nameSessionsInput.value);
-    formDataSession.append("time", timeSessionsInput.value);
+    formDataSession.append("title", nameSessionsInput.value.trim());
+    formDataSession.append("time", +timeSessionsInput.value.trim());
     formDataSession.append("video", fileSession);
     formDataSession.append("free", typeSession);
+    console.log(formDataSession);
     const res = await fetch(
       `${baseUrl}/courses/${addIdCourseSessions}/sessions`,
       {
@@ -143,6 +148,8 @@ const addSession = async (event) => {
         body: formDataSession,
       }
     );
+    const resss =  await res.json()
+    console.log(resss);
     if (res.ok) {
       showToastBox("جلسه با موفقیت اضافه شد", "seccessful");
       getAllSessions();
@@ -165,7 +172,7 @@ const deleteSessions = async (sessionsId) => {
   if (res.ok) {
     showToastBox("جلسه بندی حذف شد", "successful");
     const _ = await getAllSessions();
-    showSessions()
+    showSessions();
     hideModal();
   } else {
     showToastBox("خطایی ناشناخته ای رخ داده", "failed");
@@ -221,8 +228,8 @@ openMenus.addEventListener("click", showAndHideMenus);
 closeMenus.addEventListener("click", showAndHideMenus);
 changeThemeBtn.addEventListener("click", changeTheme);
 selectCourseContainer.addEventListener("change", (event) => {
-  showSessionsForUser =  event.target.value
-  showSessions()
+  showSessionsForUser = event.target.value;
+  showSessions();
 });
 courseAddSessions.addEventListener("change", (event) => {
   addIdCourseSessions = event.target.value;

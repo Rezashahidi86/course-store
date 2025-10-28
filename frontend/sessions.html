@@ -220,14 +220,7 @@
 
     <!-- Start Mian -->
     <main>
-      <div class="container mt-12">
-        <video
-          src=""
-          poster=""
-          controls
-          class="rounded-xl w-full"
-          id="video-container"
-        ></video>
+      <div class="container mt-12" id="video-container">
       </div>
       <div
         class="container grid grid-cols-12 gap-x-4 max-lg:grid-cols-10 max-md:flex max-md:flex-col"
@@ -352,7 +345,9 @@
               alt="teacher"
               id="teacher-profile"
             />
-            <div class="text-text dark:text-text-dark mt-4 text-lg max-lg:text-[1rem] font-bold">
+            <div
+              class="text-text dark:text-text-dark mt-4 text-lg max-lg:text-[1rem] font-bold"
+            >
               <span
                 class="relative after:absolute after:h-full after:w-0.5 after:bg-text dark:after:bg-text-dark after:-left-3 teacher-name"
                 id="creator-name"

@@ -20,6 +20,7 @@ const descriptionCourseInput = document.querySelector("#description-course");
 const coverCourse = document.querySelector("#cover-course");
 const categoryCourseSelect = document.querySelector("#category-course");
 const categoryCourseBox = document.querySelector("#category-course");
+const formAddCourse = document.querySelector("#form-add-course")
 const modal = document.querySelector("#modal");
 const radioStatusCourseInputs = document.querySelectorAll(
   ".radio-status-course"
@@ -198,15 +199,15 @@ const addCourse = async (event) => {
       showToastBox("خطایی رخ داده لطفا بعدا امتحان کنید", "failed");
     }
   }
+  return false
 };
 
 openMenus.addEventListener("click", showAndHideMenus);
 closeMenus.addEventListener("click", showAndHideMenus);
 changeThemeBtn.addEventListener("click", changeTheme);
-addCourseBtn.addEventListener("click", addCourse);
+formAddCourse.addEventListener("submit", addCourse);
 coverCourse.addEventListener("change", (event) => {
   coverCourseFile = event.target.files[0];
-  console.log(event.target.files);
 });
 categoryCourseSelect.addEventListener("change", (event) => {
   categoryCourse = event.target.value;
