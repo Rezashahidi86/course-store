@@ -12,8 +12,10 @@ import {
   getNavbar,
   showSearchGlobal,
   baseUrl,
-  getValueFromUrl,
-  logoutuser
+  logoutuser,
+  showInfoBasket,
+  showCourseBasket,
+  deleteCourseFromBasket,
 } from "./helper.js";
 
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
@@ -22,13 +24,15 @@ const lastCourses = document.querySelector(".last-courses");
 const popularCourses = document.querySelector(".popular-courses");
 const freeCourses = document.querySelector(".free-courses");
 const searchGlobalBtn = document.querySelector("#search-global-btn");
-const countAllCourse = document.querySelector("#count-all-course")
-const logoutBtn = document.querySelector("#logout-btn")
+const countAllCourse = document.querySelector("#count-all-course");
+const logoutBtn = document.querySelector("#logout-btn");
+const showbasketBtns = document.querySelectorAll(".show-basket-btn");
+const closeBasket = document.querySelector("#close-basket");
 const showCountCourses = async () => {
   const res = await fetch(`${baseUrl}/courses`);
   const resParse = await res.json();
   const courses = await resParse;
-  countAllCourse.innerHTML = courses.length
+  countAllCourse.innerHTML = courses.length;
 };
 
 const typeWriteTitle = () => {
@@ -63,7 +67,11 @@ closeModalBars.addEventListener("click", modalBarsHandeler);
 openModalBtnBars.addEventListener("click", modalBarsHandeler);
 backModalInfoAccount.addEventListener("click", hideModalInfoAccount);
 searchGlobalBtn.addEventListener("click", showSearchGlobal);
-logoutBtn.addEventListener("click",logoutuser)
+logoutBtn.addEventListener("click", logoutuser);
+showbasketBtns.forEach((showbasketBtn) => {
+  showbasketBtn.addEventListener("click", showInfoBasket);
+});
+closeBasket.addEventListener("click", showInfoBasket);
 
 themeChangeBtns.forEach((themeChangeBtn) => {
   themeChangeBtn.addEventListener("click", () => {
@@ -84,11 +92,13 @@ themeChangeBtns.forEach((themeChangeBtn) => {
   });
 });
 
+window.deleteCourseFromBasket = deleteCourseFromBasket;
 window.addEventListener("load", async () => {
   deleteTittle();
   showCountCourses();
   getThemeFromLocalStorage("background");
   getUser(false);
+  showCourseBasket();
   let _ = await getCourses(lastCourses, "lastCourses");
   _ = await getCourses(popularCourses, "popularCourses");
   _ = await getCourses(freeCourses, "freeCourses");

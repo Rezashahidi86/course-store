@@ -47,7 +47,7 @@
               <a href="./menues.html" class="block">منو ها</a>
             </li>
             <li
-              class="relative block bg-gradient-to-r from-[#1e90ff] to-white/40 py-4 pr-2 after:absolute after:w-2 after:h-14 after:left-0 after:top-0 after:bg-blue-600/50 cursor-pointer"
+              class="py-4 pr-2 text-text-dark cursor-pointer hover:bg-white/10 hover:text-background duration-200"
             >
               <a href="./users.html" class="block">کاربران</a>
             </li>
@@ -57,7 +57,7 @@
               <a href="./category.html" class="block">دسته بندی ها</a>
             </li>
             <li
-              class="py-4 pr-2 text-text-dark cursor-pointer hover:bg-white/10 hover:text-background duration-200"
+              class="relative block bg-gradient-to-r from-[#1e90ff] to-white/40 py-4 pr-2 after:absolute after:w-2 after:h-14 after:left-0 after:top-0 after:bg-blue-600/50 cursor-pointer"
             >
               <a href="./offs.html" class="block">کد های تخفیف</a>
             </li>
@@ -149,50 +149,52 @@
           class="container mt-8 flex flex-col gap-y-4 bg-cart dark:bg-cart-dark px-4 py-6 rounded-md"
         >
           <div class="text-xl font-bold text-title dark:text-title-dark">
-            <span>افزودن کاربر جدید</span>
+            <span>افزودن کد تخفیف جدید</span>
           </div>
           <div>
-            <form action="#">
-              <div class="gap-6 grid grid-cols-6">
+            <form action="#" id="form-add-course">
+              <div
+                class="flex items-center justify-between gap-6 max-lg:grid max-lg:grid-cols-6"
+              >
                 <input
-                  class="border-2 border-button2 dark:border-header outline-none p-3 text-text dark:text-text-dark rounded-md w-full col-span-3 max-sm:col-span-6"
+                  class="border-2 border-button2 dark:border-header outline-none p-3 text-text dark:text-text-dark rounded-md w-full col-span-3 max-2sm:col-span-6"
                   type="text"
-                  id="name"
-                  placeholder="نام و نام خانوادگی را وارد کنید..."
+                  id="name-off"
+                  placeholder="نام کد تخفیف را وارد کنید..."
                 />
                 <input
-                  class="border-2 border-button2 dark:border-header outline-none p-3 text-text dark:text-text-dark rounded-md w-full col-span-3 max-sm:col-span-6"
-                  type="text"
-                  id="username"
-                  placeholder="نام کاربری را وارد کنید..."
-                />
-                <input
-                  class="border-2 border-button2 dark:border-header outline-none p-3 text-text dark:text-text-dark rounded-md w-full col-span-3 max-sm:col-span-6"
-                  type="password"
-                  id="password"
-                  placeholder="رمز عبور را وارد کنید..."
-                />
-                <input
-                  class="border-2 border-button2 dark:border-header outline-none p-3 text-text dark:text-text-dark rounded-md w-full col-span-3 max-sm:col-span-6"
-                  type="email"
-                  id="email"
-                  placeholder="ایمیل را وارد کنید..."
-                  required
-                />
-                <input
-                  class="border-2 border-button2 dark:border-header outline-none p-3 text-text dark:text-text-dark rounded-md w-full col-span-3 max-sm:col-span-6"
+                  class="border-2 border-button2 dark:border-header outline-none p-3 text-text dark:text-text-dark rounded-md w-full col-span-3 max-2sm:col-span-6"
                   type="number"
-                  id="phone"
-                  placeholder="شماره تلفن را وارد کنید..."
+                  id="max-off"
+                  placeholder="حداکثر استفاده..."
+                />
+                <input
+                  class="border-2 border-button2 dark:border-header outline-none p-3 text-text dark:text-text-dark rounded-md w-full col-span-3 max-2sm:col-span-6"
+                  type="number"
+                  id="off-percent"
+                  placeholder="درصد تخفیف..."
                 />
               </div>
               <div
                 class="flex items-center justify-between gap-x-28 mt-6 flex-wrap"
               >
+                <div>
+                  <div
+                    class="font-bold text-lg text-title dark:text-title-dark mt-4"
+                  >
+                    <span>دوره مورد نظر</span>
+                  </div>
+                  <select
+                    id="course-select"
+                    class="mt-4 bg-button2 dark:bg-header cursor-pointer text-background rounded-md border-none outline-none p-2 hover:rounded-t-md w-40 hover:bg-blue-600 dark:hover:bg-blue-900 duration-200"
+                  >
+                    <option value="-1" disabled selected>دوره مورد نظر</option>
+                  </select>
+                </div>
                 <button
-                  class="bg-button2 dark:bg-header outline-none rounded-md border-none px-8 py-3 text-background mt-2 hover:bg-blue-600 dark:hover:bg-blue-900 duration-200 cursor-pointer"
+                  class="bg-button2 dark:bg-header outline-none rounded-md border-none px-8 py-3 text-background mt-14 hover:bg-blue-600 dark:hover:bg-blue-900 duration-200 cursor-pointer"
                   type="submit"
-                  id="add-user-btn"
+                  id="add-off-btn"
                 >
                   <span>افزودن</span>
                 </button>
@@ -203,15 +205,33 @@
       </section>
       <!-- Finish add course -->
       <!-- Start table -->
-      <section class="bg-cart dark:bg-cart-dark mt-24 py-6 px-4 rounded-md">
-        <table class="w-full" id="courses-table">
-          <!-- Data Loaded From JS -->
-        </table>
+      <section class="flex gap-x-4 max-md:flex-col">
+        <section
+          class="container bg-cart dark:bg-cart-dark mt-12 py-6 px-4 rounded-md"
+        >
+          <table class="container">
+            <thead
+              class="text-title dark:text-title-dark bg-background dark:bg-background-dark rounded-md"
+            >
+              <tr>
+                <th class="py-4">شناسه</th>
+                <th class="py-4">کد</th>
+                <th class="py-4">دوره</th>
+                <th class="py-4 max-sm:hidden">سازنده</th>
+                <th class="py-4 max-2sm:hidden">حد مجاز</th>
+                <th class="py-4">مقدار استفاده</th>
+                <th class="py-4">حذف</th>
+              </tr>
+            </thead>
+            <tbody class="text-text dark:text-text-dark" id="table-offs">
+              <!-- Data Loaded From JS -->
+            </tbody>
+          </table>
+        </section>
       </section>
       <!-- Finish table -->
     </main>
     <!-- Finish Main -->
-
     <!-- toast box -->
     <div
       class="fixed top-10 -left-96 flex items-center gap-x-4 bg-background dark:bg-background-dark p-6 rounded-md z-50 after:absolute after:w-[100%] after:h-1 after:bg-button1 after:bottom-0 after:right-0 duration-300"
@@ -226,14 +246,13 @@
       </div>
     </div>
     <!-- toast box -->
-
     <!-- Start modal -->
     <section id="modal">
       <!-- Data Loaded From JS -->
     </section>
     <!-- Finish modal -->
     <script src="../vendor/fa/all.min.js"></script>
-    <script src="./js/user.js" type="module"></script>
     <script src="js/util.js" type="module"></script>
+    <script src="./js/offs.js" type="module"></script>
   </body>
 </html>

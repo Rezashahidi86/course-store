@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/style/input.css" />
+    <link rel="stylesheet" href="./src/style/output.css" />
+    <link rel="stylesheet" href="./vendor/fa/all.min.css" />
+    <link rel="icon" href="./src/img/index/آرم شرکت تجارت_لب.png" />
+    <title>Document</title>
+  </head>
+  <body class="bg-background dark:bg-background-dark">
+    <!-- Start Header -->
+    <header class="relative bg-cart dark:bg-cart-dark">
+      <!-- Start Mobile navbar -->
+
+      <nav class="hidden max-lg:block">
+        <div class="container flex items-center justify-between px-6 mb-6">
+          <button id="open-modal-btn-bars">
+            <i
+              class="fa fa-bars text-3xl p-4 px-[1.2rem] max-2sm:p-2 max-2sm:px-[0.7rem] rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
+            ></i>
+          </button>
+          <img
+            class="max-w-[20rem] h-[7rem] max-2sm:w-[18rem]"
+            src="src/img/index/آرم شرکت تجارت_لب.png"
+            alt="logo"
+          />
+          <i
+            class="fa fa-shopping-cart text-3xl p-4 max-2sm:p-2 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
+          ></i>
+        </div>
+        <div
+          class="fixed w-[270px] h-full flex flex-col top-0 z-50 bg-cart dark:bg-cart-dark overflow-y-auto right-[-270px] duration-300"
+          id="modal-bars"
+        >
+          <!-- if user login -->
+          <div id="status-user-mobile"></div>
+          <div class="py-4 px-3 w-full">
+            <span class="mt-4 text-sm text-button1 dark:text-button1-dark"
+              >دسترسی سریع</span
+            >
+            <a
+              href="#"
+              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
+            >
+              <span class="">دوره های من</span>
+              <i class="fa fa-angle-left"></i>
+            </a>
+            <a
+              href="#"
+              class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
+            >
+              <span class="">تیکت های من</span>
+              <i class="fa fa-angle-left"></i>
+            </a>
+          </div>
+          <!-- if user login -->
+          <div class="py-4 px-3 w-full" id="navbar-mobile">
+            <span class="mt-4 text-sm text-button1 dark:text-button1-dark"
+              >دسته بندی ها</span
+            >
+            <!-- Loaded Data From JS -->
+          </div>
+          <div
+            class="flex items-center gap-x-3 p-2 mt-8 pt-8 border-t-2 border-gray-300 text-text dark:text-text-dark theme-change"
+          >
+            <i class="fa fa-moon cursor-pointer"></i>
+            <span class="cursor-pointer">تم تیره</span>
+          </div>
+        </div>
+        <div
+          class="fixed right-[1000px] w-full h-full top-0 z-50 backdrop-blur-xs duration-150"
+          id="close-modal-bars"
+        ></div>
+      </nav>
+
+      <!-- Finish Mobile navbar  -->
+
+      <nav class="flex items-center justify-between max-lg:hidden">
+        <div
+          class="flex items-center justify-center gap-x-4 max-lg:gap-x-2 z-20"
+        >
+          <img
+            src="src/img/index/آرم شرکت تجارت_لب.png"
+            class="max-w-[7rem] max-h-[6rem]"
+            alt="logo"
+          />
+          <ul
+            class="flex items-center gap-x-4 max-lg:gap-x-2 max-lg:ml10"
+            id="navbar-desctap"
+          >
+            <!-- Loaded Data From JS -->
+          </ul>
+        </div>
+        <div
+          class="flex items-center gap-x-4 ml-8 max-lg:gap-x-4"
+          id="status-user-desctap"
+        >
+          <div
+            class="theme-change p-4 px-5 rounded-full dark:bg-text bg-title-dark cursor-pointer"
+          >
+            <i class="fa fa-moon text-2xl text-text-dark"></i>
+          </div>
+          <i
+            class="fa fa-shopping-cart text-2xl p-4 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
+          ></i>
+          <div
+            class="fixed flex flex-col justify-center top-20 left-14 max-lg:left-32 max-2md:!left-16 p-4 w-72 rounded-md bg-cart dark:bg-cart-dark z-50 hidden"
+            id="moadl-info-account"
+          >
+            <div class="py-4">
+              <div class="flex items-center gap-x-4">
+                <img
+                  class="size-14 rounded-full"
+                  src="src/img/index/forex.png"
+                  alt="profile"
+                />
+                <div class="flex flex-col text-sm gap-y-2">
+                  <span
+                    class="text-title dark:text-title-dark"
+                    id="name-user-maodal-info-account"
+                  ></span>
+                  <span class="text-button1 dark:text-button1-dark"
+                    >موجودی: 0 تومان</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="py-4 border-t-2 border-text dark:border-text-dark">
+              <ul>
+                <li
+                  class="hover:bg-button2 dark:hover:bg-header-dark rounded-md duration-200"
+                >
+                  <a
+                    href="#"
+                    class="flex items-center gap-x-4 py-4 px-2 text-xl text-text dark:text-text-dark hover:text-background"
+                  >
+                    <i class="fa fa-house text-xl"></i>
+                    <span class="text-sm">پیشخوان ها</span>
+                  </a>
+                </li>
+                <li
+                  class="hover:bg-button2 dark:hover:bg-header-dark rounded-md duration-200"
+                >
+                  <a
+                    href="#"
+                    class="flex items-center gap-x-4 py-4 px-2 text-xl text-text dark:text-text-dark hover:text-background"
+                  >
+                    <i class="fa fa-folder"></i>
+                    <span class="text-sm">دوره های من</span>
+                  </a>
+                </li>
+                <li
+                  class="hover:bg-button2 dark:hover:bg-header-dark rounded-md duration-200"
+                >
+                  <a
+                    href="#"
+                    class="flex items-center gap-x-4 py-4 px-2 text-xl text-text dark:text-text-dark hover:text-background"
+                  >
+                    <i class="fa fa-comment"></i>
+                    <span class="text-sm">تیکت های من</span>
+                  </a>
+                </li>
+                <li
+                  class="hover:bg-button2 dark:hover:bg-header-dark rounded-md duration-200"
+                >
+                  <a
+                    href="#"
+                    class="flex items-center gap-x-4 py-4 px-2 text-xl text-text dark:text-text-dark hover:text-background"
+                  >
+                    <i class="fa fa-user"></i>
+                    <span class="text-sm">اطلاعات حساب کاربری</span>
+                  </a>
+                </li>
+                <li
+                  class="hover:bg-red-600 dark:hover:bg-red-800 rounded-md duration-200"
+                >
+                  <a
+                    href="#"
+                    class="flex items-center gap-x-4 py-4 px-2 text-xl text-text dark:text-text-dark hover:text-background"
+                  >
+                    <i class="fa fa-power-off"></i>
+                    <span class="text-sm">خروج</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="fixed inset-0 z-30 backdrop-blur-sm hidden"
+            id="back-modal-info-account"
+          ></div>
+
+          <!-- if user not login -->
+          <!-- data loaded from js -->
+          <!-- if user not login -->
+        </div>
+      </nav>
+    </header>
+    <!-- Finish Header -->
+    <!-- Start Main -->
+    <main>
+      <!-- Start Courses -->
+      <section class="container">
+        <div
+          class="grid grid-cols-4 gap-12 mt-8 max-xl:grid-cols-3 max-sm:grid-cols-1"
+          id="courses-container"
+        >
+          <!-- Loaded Data From JS -->
+        </div>
+      </section>
+      <!-- Finish Courses -->
+    </main>
+    <!-- Finish Main -->
+
+    <script src="./vendor/fa/all.min.js"></script>
+    <script src="./src/js/mycourses.js" type="module"></script>
+  </body>
+</html>

@@ -43,6 +43,7 @@ const getAndShowUsers = async () => {
         <th class="py-4 max-md:hidden">ایمیل</th>
         <th class="py-4">شماره</th>
         <th class="py-4">نقش</th>
+        <th class="py-4"> تغییر نقش</th>
         <th class="py-4">حذف</th>
         <th class="py-4 max-md:hidden">اخراج</th>
       </tr>
@@ -50,6 +51,7 @@ const getAndShowUsers = async () => {
     `
   );
   users.forEach((user, index) => {
+    const roleForChangeRole = user.role.slice(0, 1);
     usersTable.insertAdjacentHTML(
       "beforeend",
       `
@@ -63,6 +65,13 @@ const getAndShowUsers = async () => {
                 <th class="py-4 text-sm">${
                   user.role === "ADMIN" ? "مدیر" : "دانشجو"
                 }</th>
+                <th class="py-4">
+                    <button class="bg-blue-500 dark:bg-blue-800 text-background p-2 rounded-md cursor-pointer hover:bg-blue-600 dark:hover:bg-blue-700 duration-200" onclick="showModalMassage('${roleForChangeRole}${
+        user._id
+      }')">
+                      <span>تغییر</span>
+                    </button>
+                </th>
                 <th class="py-4">
                     <button class="bg-red-500 dark:bg-red-800 text-background p-2 rounded-md cursor-pointer hover:bg-red-600 dark:hover:bg-red-700 duration-200" onclick="showModalBan('${"del"}${
         user._id

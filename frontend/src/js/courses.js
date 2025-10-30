@@ -18,6 +18,8 @@ import {
   baseUrlCover,
   getInfoCourse,
   changeHeaderLinks,
+  setInToLocalStorage,
+  showInfoBasket,
 } from "./helper.js";
 
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
@@ -88,6 +90,7 @@ const boxPartsCourseHandler = (event) => {
 
 const headerInfoCourse = (courseInfo) => {
   courseTitle.innerHTML = courseInfo.name;
+  console.log(courseInfo);
   courseDescription.innerHTML = courseInfo.description;
   if (courseInfo.isUserRegisteredToThisCourse) {
     statusBuyUserContainer.insertAdjacentHTML(
@@ -112,6 +115,16 @@ const headerInfoCourse = (courseInfo) => {
       `
     );
   } else {
+    const courseInfoForAddToBasket = {
+      _id: courseInfo._id,
+      name: courseInfo.name,
+      description: courseInfo.description,
+      cover: courseInfo.cover,
+      price: courseInfo.price,
+      creator: courseInfo.creator.name,
+      courseStudentsCount: courseInfo.courseStudentsCount,
+      shortName: courseInfo.shortName,
+    };
     statusBuyUserContainer.insertAdjacentHTML(
       "beforeend",
       `
@@ -125,12 +138,15 @@ const headerInfoCourse = (courseInfo) => {
             courseInfo.price ? courseInfo.price.toLocaleString() : "رایگان"
           }${courseInfo.price ? "تومان" : ""}</span>
         </div>
-        <div
+        <button
           class="flex items-center gap-x-2 text-background py-4 px-8 rounded-xl bg-button1 dark:bg-button1-dark max-sm:px-4 max-2sm:px-20 max-2sm:mb-4 cursor-pointer hover:bg-green-700 duration-200"
+          onclick='addCoursesToBasket(${JSON.stringify(
+            courseInfoForAddToBasket
+          )})'
         >
           <i class="fa fa-basket-shopping text-xl"></i>
           <span>افزودن به سبد خرید</span>
-        </div>
+        </button>
       </div>
       `
     );
@@ -199,9 +215,7 @@ const showSessions = (shortName, sessions) => {
       <${session.free || session.isUserRegisteredToThisCourse ? "a" : "div"}
         href="sessions.html?name=${shortName}&id=${session._id}"
         class="${
-          session.free || session.isUserRegisteredToThisCourse
-            ? "group"
-            : ""
+          session.free || session.isUserRegisteredToThisCourse ? "group" : ""
         } bg-gray-500 dark:bg-text-dark flex items-center justify-between p-4 hidden box-course-part hover:border-[1px] border-button1 ${
           lastSessions === index + 1 ? "rounded-b-md" : ""
         }"
@@ -426,6 +440,33 @@ const showInfoCourses = async () => {
   showComments(courseInfo);
 };
 
+const addCoursesToBasket = (courseInfo) => {
+  if (getFromLocalStorage("token")) {
+    const antiquatedBasket = getFromLocalStorage("basket");
+    if (antiquatedBasket) {
+      if (
+        antiquatedBasket.some((infoCourse) => infoCourse._id === courseInfo._id)
+      ) {
+        showToastBox("دوره از قبل در سبد شما موجود است", "failed");
+      } else {
+        const newBasket = [courseInfo, ...antiquatedBasket];
+        setInToLocalStorage("basket", newBasket);
+        showToastBox("دوره به سبد خرید شما اضافه شد", "successful");
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
+      }
+    } else {
+      const newBasket = [courseInfo];
+      setInToLocalStorage("basket", newBasket);
+      showToastBox("دوره به سبد خرید شما اضافه شد", "successful");
+      setTimeout(() => {
+        location.reload();
+      }, 2000);
+    }
+  }
+};
+
 themeChangeBtns.forEach((themeChangeBtn) => {
   themeChangeBtn.addEventListener("click", () => {
     themeChangeBtns[0].innerHTML = "";
@@ -479,9 +520,12 @@ closeTextareaCommentBtn.addEventListener("click", () => {
   worningBoxComments.classList.toggle("hidden");
 });
 
+window.addCoursesToBasket = addCoursesToBasket;
+
 window.addEventListener("load", () => {
   getThemeFromLocalStorage("text-dark");
   getUser(true);
   getNavbar();
   showInfoCourses();
+  showInfoBasket();
 });

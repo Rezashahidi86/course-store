@@ -14,7 +14,7 @@
   <body class="bg-background dark:bg-background-dark scrollbar">
     <!-- Start header -->
     <header
-      class="bg-[linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('../img/index/bgindex.jpeg')] bg-cover bg-center  bg-no-repeat pb-28"
+      class="bg-[linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('../img/index/bgindex.jpeg')] bg-cover bg-center bg-no-repeat pb-28"
     >
       <!-- Start Mobile navbar -->
 
@@ -31,9 +31,11 @@
             src="src/img/index/آرم شرکت تجارت_لب.png"
             alt="logo"
           />
-          <i
-            class="fa fa-shopping-cart text-background text-3xl cursor-pointer"
-          ></i>
+          <button class="show-basket-btn">
+            <i
+              class="fa fa-shopping-cart text-background text-3xl cursor-pointer"
+            ></i>
+          </button>
         </div>
         <div
           class="fixed w-[270px] h-full flex flex-col top-0 z-50 bg-cart dark:bg-cart-dark overflow-y-auto right-[-270px] duration-300"
@@ -48,7 +50,7 @@
               >دسترسی سریع</span
             >
             <a
-              href="#"
+              href="./src/js/mycourses.js"
               class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
             >
               <span class="">دوره های من</span>
@@ -109,9 +111,11 @@
           <div class="theme-change">
             <i class="fa fa-sun text-2xl text-background cursor-pointer"></i>
           </div>
-          <i
-            class="fa fa-shopping-cart text-2xl text-background cursor-pointer"
-          ></i>
+          <button class="show-basket-btn">
+            <i
+              class="fa fa-shopping-cart text-2xl text-background cursor-pointer"
+            ></i>
+          </button>
           <div
             class="fixed flex flex-col justify-center top-20 left-14 max-lg:left-32 max-2md:!left-16 p-4 w-72 rounded-md bg-cart dark:bg-cart-dark z-50 hidden"
             id="moadl-info-account"
@@ -151,7 +155,7 @@
                   class="hover:bg-button2 dark:hover:bg-header-dark rounded-md duration-200"
                 >
                   <a
-                    href="#"
+                    href="./mycourses.html"
                     class="flex items-center gap-x-4 py-4 px-2 text-xl text-text dark:text-text-dark hover:text-background"
                   >
                     <i class="fa fa-folder"></i>
@@ -180,7 +184,9 @@
                     <span class="text-sm">اطلاعات حساب کاربری</span>
                   </a>
                 </li>
-                <li class="hover:bg-red-600 dark:hover:bg-red-800 rounded-md duration-200">
+                <li
+                  class="hover:bg-red-600 dark:hover:bg-red-800 rounded-md duration-200"
+                >
                   <a
                     href="#"
                     class="flex items-center gap-x-4 py-4 px-2 text-xl text-text dark:text-text-dark hover:text-background"
@@ -207,7 +213,7 @@
           class="text-center text-background dark:text-text-dark text-4xl max-sm:text-[26px]"
           id="title"
         >
-        آماده برای یادگیری ترید از صفر هستی؟
+          آماده برای یادگیری ترید از صفر هستی؟
         </h1>
         <h2
           class="text-center text-background dark:text-text-dark text-2xl mt-8 max-sm:text-2xl"
@@ -386,7 +392,9 @@
                 >
               </div>
               <div class="flex items-center justify-between mt-4">
-                <h3 class="text-2xl text-title dark:text-title-dark max-sm:text-[1rem]">
+                <h3
+                  class="text-2xl text-title dark:text-title-dark max-sm:text-[1rem]"
+                >
                   محبوب ترین دوره های ما
                 </h3>
               </div>
@@ -617,7 +625,20 @@
       </div>
     </div>
     <!-- toast box -->
-
+    <!-- Start Basket -->
+    <div
+      class="fixed top-0 z-50 -right-[620px] w-[310px] h-full overflow-y-auto bg-background dark:bg-background-dark duration-300 px-2"
+      id="basket-container"
+    >
+      <div
+        class="fixed inset-0 -z-10 backdrop-blur-xs hidden"
+        id="close-basket"
+      ></div>
+      <div class="gap-4" id="basket-courses-container">
+        <!-- Data Loaded From JS -->
+      </div>
+    </div>
+    <!-- Finish Basket -->
     <script src="./vendor/fa/all.min.js"></script>
     <script src="./vendor/swiper/swiper-bundle.min.js"></script>
     <script src="./vendor/wow/wow.min.js"></script>
