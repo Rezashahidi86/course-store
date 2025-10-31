@@ -33,6 +33,7 @@ let courseParams;
 const boxesCourseInformation = document.querySelectorAll(
   "#box-course-information"
 );
+const quickAccessContainer = document.querySelector("#quick-access-container");
 
 //  localStorageAndUtiliti
 
@@ -201,6 +202,24 @@ const showStatusUser = (userInfo, style) => {
     modalInfoAccountBtn = document.querySelector("#modal-info-account-btn");
     modalInfoAccountBtn.addEventListener("click", showModalInfoAccount);
     nameUserMaodalInfoAccount.innerHTML = userInfo.username;
+    if (userInfo.role === "ADMIN") {
+      quickAccessContainer.insertAdjacentHTML(
+        "afterbegin",
+        `
+        <li
+          class="hover:bg-button2 dark:hover:bg-header-dark rounded-md duration-200"
+        >
+          <a
+            href="./panel/homepage.html"
+            class="flex items-center gap-x-4 py-4 px-2 text-xl text-text dark:text-text-dark hover:text-background"
+          >
+            <i class="fa fa-house text-xl"></i>
+            <span class="text-sm">بخش مدیریت</span>
+          </a>
+        </li>
+        `
+      );
+    }
   } else {
     statusUserDesctap.insertAdjacentHTML(
       "beforeend",
@@ -318,7 +337,7 @@ const showCourses = (container, courses, myCourses = false) => {
   if (courses.length) {
     if (myCourses) {
       courses.forEach((course) => {
-        let arrayDateCreate = course.createdAt.slice(0, 10).split("-");
+        let arrayDateCreate = course.course.createdAt.slice(0, 10).split("-");
         let dateCreat = changeDate(
           arrayDateCreate[0],
           arrayDateCreate[1],
@@ -327,25 +346,25 @@ const showCourses = (container, courses, myCourses = false) => {
         container.insertAdjacentHTML(
           "beforeend",
           `
-                  <div
+        <div
           class="swiper-slide shadow-md shadow-cart dark:shadow-cart-dark"
         >
           <div
             class="bg-cart dark:bg-cart-dark border-2 rounded-t-lg border-cart dark:border-cart-dark"
           >
-            <a href="courses.html?name=${course?.shortName}"
+            <a href="courses.html?name=${course.course?.shortName}"
               ><img
                 class="rounded-md w-full h-40 max-md:h-64 max-sm:max-h-52 max-sm:max-w-full object-center p-0"
-                src="${baseUrlCover}/${course.cover}"
+                src="${baseUrlCover}/${course.course.cover}"
                 alt="cover"
             /></a>
             <a
               class="line-clamp-2 text-lg text-title dark:text-title-dark max-md:text-2xl h-16 px-4 mt-2"
-              href="courses.html?name=${course.shortName}"
-              >${course.name}</a
+              href="courses.html?name=${course.course.shortName}"
+              >${course.course.name}</a
             >
             <p class="line-clamp-2 text-text dark:text-text-dark h-16 px-4">
-              ${course.description}
+              ${course.course.description}
             </p>
             <div
               class="flex items-center justify-between mt-2 border-t-2 border-text-dark dark:border-text px-1"
@@ -360,26 +379,34 @@ const showCourses = (container, courses, myCourses = false) => {
               <div class="flex items-center gap-x-1 mt-2 h-[2.8rem]">
                 <span
                   class="${
-                    course.price ? "hidden" : "flex"
+                    course.course.price ? "hidden" : "flex"
                   }  items-center justify-center p-2 rounded-xl bg-button2 text-background dark:bg-header-dark dark:text-background"
-                  >${course.price ? "" : "100%"}</span
+                  >${course.course.price ? "" : "100%"}</span
                 >
                 <div class="flex flex-col justify-center">
                   <del
                     class="${
-                      course.price ? "hidden" : ""
+                      course.course.price ? "hidden" : ""
                     } text-sm text-title dark:text-background-dark"
                     >200,000</del
                   >
                   <span class="text-button1 dark:text-button1-dark"
                     >${
-                      course.price
-                        ? course.price.toLocaleString() + "تومان"
+                      course.course.price
+                        ? course.course.price.toLocaleString() + "تومان"
                         : "رایگان"
                     }</span
                   >
                 </div>
               </div>
+            </div>
+            <div>
+                <a class="mt-4 w-full flex items-center justify-center gap-x-2 bg-button2 dark:bg-header hover:bg-blue-600 dark:hover:bg-blue-900 duration-200 text-background py-2 rounded-md" href="courses.html?name=${
+                  course.course.shortName
+                }">
+                  <span>ادامه یادگیری</span>
+                  <i class="fa fa-arrow-left"></i>
+                </a>
             </div>
           </div>
         </div>
@@ -538,8 +565,7 @@ const getCourses = async (container, mode) => {
       },
     });
     const infoUser = await res.json();
-    const courses = [infoUser[0].course];
-    showCourses(container, courses, true);
+    showCourses(container, infoUser, true);
   }
 };
 
@@ -786,23 +812,25 @@ const showCourseBasket = () => {
       "beforeend",
       `
     <div class="mt-6 flex items-center justify-between mb-4 w-full flex-wrap gap-y-4">
-      <button class="flex items-center gap-x-2 bg-button1 hover:bg-green-700 duration-200 px-3 py-2 rounded-md text-background cursor-pointer">
+      <button class="flex items-center gap-x-2 bg-button1 hover:bg-green-700 duration-200 px-3 py-2 rounded-md text-background cursor-pointer"
+      onclick="rigesterToCourses()">
         <i class="fa fa-cart-shopping"></i>
-        <span>ثبت نام در دوره</span>
+        <span id="plus-price-inbasket">ثبت نام در دوره</span>
       </button>
       <span class="text-text dark:text-text-dark text-sm">مبلغ کل :  ${plusPriceCourses.toLocaleString()} تومان</span>
     </div>
     `
     );
   } else {
-    basketCoursesContainer.insertAdjacentHTML("beforeend",
+    basketCoursesContainer.insertAdjacentHTML(
+      "beforeend",
       `
       <div class="flex items-center gap-x-4 bg-red-500 text-background mt-12 rounded-md p-3">
           <i class="fa fa-warning"></i>
           <span>سبد خرید شما خالی است:(</span>
       </div>
       `
-    )
+    );
   }
 };
 
@@ -815,6 +843,46 @@ const showInfoBasket = () => {
     basketContainer.classList.add("-right-[620px]");
   }
   closeBasket.classList.toggle("hidden");
+};
+
+const rigesterToCourses = () => {
+  const plusPriceInbasketElem = document.querySelector("#plus-price-inbasket");
+  const basketCourses = getFromLocalStorage("basket");
+  if (getFromLocalStorage("token")) {
+    if (!+plusPriceInbasketElem.innerHTML) {
+      basketCourses.forEach(async (basketCourse) => {
+        const res = await fetch(
+          `${baseUrl}/courses/${basketCourse._id}/register`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${getFromLocalStorage("token")}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ price: 0 }),
+          }
+        );
+        if (res.ok) {
+          setInToLocalStorage("basket", []);
+          showInfoBasket();
+          showToastBox("با موفقیت در دوره ثبت نام کردید", "successful");
+          setTimeout(() => {
+            location.href = "./frontend/mycourses.html";
+          }, 2000);
+        } else if (res.status === 409) {
+          showInfoBasket();
+          showToastBox("شما قبلا در دوره ثبت نام کردید", "failed");
+          deleteCourseFromBasket();
+        } else {
+          showInfoBasket();
+          showToastBox("خطایی رخ داده بعدا تلاش کنید", "failed");
+        }
+      });
+    }
+  } else {
+    showInfoBasket();
+    showToastBox("لطفا ابتدا در سایت ثبت نام کنید", "failed");
+  }
 };
 
 const deleteCourseFromBasket = (courseID) => {
@@ -861,4 +929,5 @@ export {
   showInfoBasket,
   showCourseBasket,
   deleteCourseFromBasket,
+  rigesterToCourses,
 };

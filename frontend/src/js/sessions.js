@@ -15,11 +15,17 @@ import {
   getInfoCourse,
   changeHeaderLinks,
   baseUrlCover,
+  showInfoBasket,
+  showCourseBasket,
+  deleteCourseFromBasket,
+  rigesterToCourses,
 } from "./helper.js";
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
 const partCourseElem = document.querySelector("#part-course");
 const nameSessionElem = document.querySelector("#name-session");
 const videoContainer = document.querySelector("#video-container");
+const showbasketBtns = document.querySelectorAll(".show-basket-btn");
+const closeBasket = document.querySelector("#close-basket");
 const boxSessenionsContainer = document.querySelector(
   "#box-sessions-container"
 );
@@ -203,6 +209,12 @@ backModalInfoAccount.addEventListener("click", hideModalInfoAccount);
 boxesCourseInformation.forEach((boxCourseInformation) => {
   boxCourseInformation.addEventListener("click", boxPartsCourseHandler);
 });
+showbasketBtns.forEach((showbasketBtn) => {
+  showbasketBtn.addEventListener("click", showInfoBasket);
+});
+closeBasket.addEventListener("click", showInfoBasket);
+window.rigesterToCourses = rigesterToCourses;
+window.deleteCourseFromBasket = deleteCourseFromBasket;
 window.addEventListener("load", async () => {
   getThemeFromLocalStorage("text-dark");
   getUser(true);
@@ -210,4 +222,5 @@ window.addEventListener("load", async () => {
   const _ = await getSessions();
   changeScrollBarSessions();
   showHeaderLinks();
+  showCourseBasket()
 });

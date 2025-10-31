@@ -26,9 +26,11 @@
             src="src/img/index/آرم شرکت تجارت_لب.png"
             alt="logo"
           />
-          <i
-            class="fa fa-shopping-cart text-3xl p-4 max-2sm:p-2 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
-          ></i>
+          <button class="show-basket-btn">
+            <i
+              class="fa fa-shopping-cart text-3xl p-4 max-2sm:p-2 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
+            ></i>
+          </button>
         </div>
         <div
           class="fixed w-[270px] h-full flex flex-col top-0 z-50 bg-cart dark:bg-cart-dark overflow-y-auto right-[-270px] duration-300"
@@ -102,9 +104,11 @@
           >
             <i class="fa fa-moon text-2xl text-text-dark"></i>
           </div>
-          <i
-            class="fa fa-shopping-cart text-2xl p-4 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
-          ></i>
+          <button class="show-basket-btn">
+            <i
+              class="fa fa-shopping-cart text-2xl p-4 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
+            ></i>
+          </button>
           <div
             class="fixed flex flex-col justify-center top-20 left-14 max-lg:left-32 max-2md:!left-16 p-4 w-72 rounded-md bg-cart dark:bg-cart-dark z-50 hidden"
             id="moadl-info-account"
@@ -127,24 +131,13 @@
                 </div>
               </div>
             </div>
-            <div class="py-4 border-t-2 border-text dark:border-text-dark">
-              <ul>
+            <div class="pt-4 border-t-2 border-text dark:border-text-dark">
+              <ul id="quick-access-container">
                 <li
                   class="hover:bg-button2 dark:hover:bg-header-dark rounded-md duration-200"
                 >
                   <a
-                    href="#"
-                    class="flex items-center gap-x-4 py-4 px-2 text-xl text-text dark:text-text-dark hover:text-background"
-                  >
-                    <i class="fa fa-house text-xl"></i>
-                    <span class="text-sm">پیشخوان ها</span>
-                  </a>
-                </li>
-                <li
-                  class="hover:bg-button2 dark:hover:bg-header-dark rounded-md duration-200"
-                >
-                  <a
-                    href="#"
+                    href="./mycourses.html"
                     class="flex items-center gap-x-4 py-4 px-2 text-xl text-text dark:text-text-dark hover:text-background"
                   >
                     <i class="fa fa-folder"></i>
@@ -179,6 +172,7 @@
                   <a
                     href="#"
                     class="flex items-center gap-x-4 py-4 px-2 text-xl text-text dark:text-text-dark hover:text-background"
+                    id="logout-btn"
                   >
                     <i class="fa fa-power-off"></i>
                     <span class="text-sm">خروج</span>
@@ -430,7 +424,7 @@
                 class="overflow-auto rounded-b-md scrollbar-sessions h-max max-h-[485px]"
                 id="box-sessions-container"
               >
-              <!-- Loaded Data From JS -->
+                <!-- Loaded Data From JS -->
               </div>
             </div>
           </div>
@@ -571,7 +565,10 @@
                   <i class="fa fa-comments"></i>
                 </div>
                 <div class="flex flex-col text-title dark:text-title-dark">
-                  <span class="text-[0.8rem] font-bold" id="count-comments"></span>
+                  <span
+                    class="text-[0.8rem] font-bold"
+                    id="count-comments"
+                  ></span>
                   <span class="text-sm">نظرها</span>
                 </div>
               </div>
@@ -612,9 +609,7 @@
               href="#"
               class="mt-8 bg-button1 dark:bg-button1-dark hover:bg-hover1 dark:hover:bg-hover1 p-2 border-2 border-button1 dark:border-button1-dark rounded-md hover:border-hover1 duration-200 transition-all"
             >
-              <span class="text-background"
-                >مشاهده پروفایل من</span
-              >
+              <span class="text-background">مشاهده پروفایل من</span>
             </a>
           </div>
           <!-- Finish information teacher -->
@@ -657,7 +652,20 @@
       </div>
     </div>
     <!-- toast box -->
-
+    <!-- Start Basket -->
+    <div
+      class="fixed top-0 z-50 -right-[620px] w-[310px] h-full overflow-y-auto bg-background dark:bg-background-dark duration-300 px-2"
+      id="basket-container"
+    >
+      <div
+        class="fixed inset-0 -z-10 backdrop-blur-xs hidden"
+        id="close-basket"
+      ></div>
+      <div class="gap-4" id="basket-courses-container">
+        <!-- Data Loaded From JS -->
+      </div>
+    </div>
+    <!-- Finish Basket -->
     <script src="vendor/fa/all.min.js"></script>
     <script src="src/js/courses.js" type="module"></script>
   </body>

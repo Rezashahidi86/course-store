@@ -20,6 +20,9 @@ import {
   changeHeaderLinks,
   setInToLocalStorage,
   showInfoBasket,
+  showCourseBasket,
+  deleteCourseFromBasket,
+  rigesterToCourses,
 } from "./helper.js";
 
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
@@ -51,6 +54,8 @@ const scoreNumber = document.querySelector("#score-number");
 const cresseScore = document.querySelector("#cresse-score");
 const scoreIcon = document.querySelectorAll(".score-icon");
 const countComments = document.querySelector("#count-comments");
+const showbasketBtns = document.querySelectorAll(".show-basket-btn");
+const closeBasket = document.querySelector("#close-basket");
 const closeTextareaCommentBtn = document.querySelector(
   "#close-textarea-comment"
 );
@@ -519,13 +524,17 @@ closeTextareaCommentBtn.addEventListener("click", () => {
   boxAddComments.classList.toggle("hidden");
   worningBoxComments.classList.toggle("hidden");
 });
-
+showbasketBtns.forEach((showbasketBtn) => {
+  showbasketBtn.addEventListener("click", showInfoBasket);
+});
+closeBasket.addEventListener("click", showInfoBasket);
 window.addCoursesToBasket = addCoursesToBasket;
-
+window.rigesterToCourses = rigesterToCourses;
+window.deleteCourseFromBasket = deleteCourseFromBasket;
 window.addEventListener("load", () => {
   getThemeFromLocalStorage("text-dark");
   getUser(true);
   getNavbar();
   showInfoCourses();
-  showInfoBasket();
+  showCourseBasket()
 });

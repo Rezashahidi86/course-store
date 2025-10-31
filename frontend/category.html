@@ -28,9 +28,11 @@
             src="src/img/index/آرم شرکت تجارت_لب.png"
             alt="logo"
           />
-          <i
-            class="fa fa-shopping-cart text-3xl p-4 max-2sm:p-2 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
-          ></i>
+          <button class="show-basket-btn">
+            <i
+              class="fa fa-shopping-cart text-3xl p-4 max-2sm:p-2 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
+            ></i>
+          </button>
         </div>
         <div
           class="fixed w-[270px] h-full flex flex-col top-0 z-50 bg-cart dark:bg-cart-dark overflow-y-auto right-[-270px] duration-300"
@@ -109,9 +111,11 @@
           >
             <i class="fa fa-sun text-2xl text-text-dark"></i>
           </div>
-          <i
-            class="fa fa-shopping-cart text-2xl p-4 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
-          ></i>
+          <button class="show-basket-btn">
+            <i
+              class="fa fa-shopping-cart text-2xl p-4 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
+            ></i>
+          </button>
           <div
             class="fixed flex flex-col justify-center top-20 left-14 max-lg:left-32 max-2md:!left-16 p-4 w-72 rounded-md bg-cart dark:bg-cart-dark z-50 hidden"
             id="moadl-info-account"
@@ -135,23 +139,12 @@
               </div>
             </div>
             <div class="pt-4 border-t-2 border-text dark:border-text-dark">
-              <ul>
+              <ul id="quick-access-container">
                 <li
                   class="hover:bg-button2 dark:hover:bg-header-dark rounded-md duration-200"
                 >
                   <a
-                    href="#"
-                    class="flex items-center gap-x-4 py-4 px-2 text-xl text-text dark:text-text-dark hover:text-background"
-                  >
-                    <i class="fa fa-house text-xl"></i>
-                    <span class="text-sm">پیشخوان ها</span>
-                  </a>
-                </li>
-                <li
-                  class="hover:bg-button2 dark:hover:bg-header-dark rounded-md duration-200"
-                >
-                  <a
-                    href="#"
+                    href="./mycourses.html"
                     class="flex items-center gap-x-4 py-4 px-2 text-xl text-text dark:text-text-dark hover:text-background"
                   >
                     <i class="fa fa-folder"></i>
@@ -180,10 +173,13 @@
                     <span class="text-sm">اطلاعات حساب کاربری</span>
                   </a>
                 </li>
-                <li class="hover:bg-red-600 dark:hover:bg-red-800 rounded-md duration-200">
+                <li
+                  class="hover:bg-red-600 dark:hover:bg-red-800 rounded-md duration-200"
+                >
                   <a
                     href="#"
                     class="flex items-center gap-x-4 py-4 px-2 text-xl text-text dark:text-text-dark hover:text-background"
+                    id="logout-btn"
                   >
                     <i class="fa fa-power-off"></i>
                     <span class="text-sm">خروج</span>
@@ -288,9 +284,7 @@
           <div
             class="flex items-center justify-between mt-8 rounded-sm border-2 border-cart dark:border-cart-dark p-4 bg-cart dark:bg-cart-dark"
           >
-            <span class="text-text dark:text-text-dark"
-              >جدید ترین دوره ها</span
-            >
+            <span class="text-text dark:text-text-dark">جدید ترین دوره ها</span>
             <div
               class="off-just-filter duration-500 after:duration-500 filter-just-btn relative w-12 h-6 rounded-3xl after:absolute after:size-5 after:rounded-full after:top-0.5 after:right-0.5 cursor-pointer"
               data-value="oldCourses"
@@ -420,7 +414,20 @@
       </div>
     </div>
     <!-- toast box -->
-
+    <!-- Start Basket -->
+    <div
+      class="fixed top-0 z-50 -right-[620px] w-[310px] h-full overflow-y-auto bg-background dark:bg-background-dark duration-300 px-2"
+      id="basket-container"
+    >
+      <div
+        class="fixed inset-0 -z-10 backdrop-blur-xs hidden"
+        id="close-basket"
+      ></div>
+      <div class="gap-4" id="basket-courses-container">
+        <!-- Data Loaded From JS -->
+      </div>
+    </div>
+    <!-- Finish Basket -->
     <script src="vendor/fa/all.min.js"></script>
     <script src="src/js/category.js" type="module"></script>
   </body>

@@ -16,6 +16,7 @@ import {
   showInfoBasket,
   showCourseBasket,
   deleteCourseFromBasket,
+  rigesterToCourses,
 } from "./helper.js";
 
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
@@ -92,6 +93,7 @@ themeChangeBtns.forEach((themeChangeBtn) => {
   });
 });
 
+window.rigesterToCourses = rigesterToCourses;
 window.deleteCourseFromBasket = deleteCourseFromBasket;
 window.addEventListener("load", async () => {
   deleteTittle();

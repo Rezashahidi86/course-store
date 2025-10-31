@@ -10,11 +10,13 @@ import {
   getUser,
   getNavbar,
   getCourses,
-  showCourses,
-  getValueFromUrl,
   showSearchGlobal,
   showPagination,
   changePage,
+  showInfoBasket,
+  showCourseBasket,
+  deleteCourseFromBasket,
+  rigesterToCourses,
 } from "./helper.js";
 const nameCategotyCourse = document.querySelector("#name-categoty-course");
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
@@ -25,6 +27,8 @@ const searchGlobalBtn = document.querySelector("#search-global-btn");
 const searchInput = document.querySelector("#search-input");
 const countCourses = document.querySelector("#count-courses");
 const paginationContainer = document.querySelector("#pagination-container");
+const showbasketBtns = document.querySelectorAll(".show-basket-btn");
+const closeBasket = document.querySelector("#close-basket");
 window.changePage = changePage;
 let categoryCourses;
 let filters = {
@@ -181,11 +185,17 @@ searchGlobalBtn.addEventListener("click", showSearchGlobal);
 searchInput.addEventListener("input", () => {
   showCoursesByFilter(filters);
 });
-
+showbasketBtns.forEach((showbasketBtn) => {
+  showbasketBtn.addEventListener("click", showInfoBasket);
+});
+closeBasket.addEventListener("click", showInfoBasket);
+window.rigesterToCourses = rigesterToCourses;
+window.deleteCourseFromBasket = deleteCourseFromBasket;
 window.addEventListener("load", async () => {
   getThemeFromLocalStorage("text-dark");
   getUser(true);
   getNavbar();
+  showCourseBasket();
   const categoryCours = await getCourses(coursesContainer, "category");
   categoryCourses = [...categoryCours];
   showPagination(
