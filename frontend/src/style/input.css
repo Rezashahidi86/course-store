@@ -116,6 +116,24 @@
 .scrollbar::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+.scrollbar-aside-my-acount::-webkit-scrollbar {
+  width: 2px;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+}
+.scrollbar-aside-my-acount::-webkit-scrollbar-track {
+  background: #1e1e1e;
+  display: none;
+}
+.scrollbar-aside-my-acount::-webkit-scrollbar-thumb {
+  background: #888;
+}
+.scrollbar-aside-my-acount::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 
 
 input[type="number"]::-webkit-outer-spin-button,

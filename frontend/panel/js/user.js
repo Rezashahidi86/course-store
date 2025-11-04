@@ -43,9 +43,9 @@ const getAndShowUsers = async () => {
         <th class="py-4 max-md:hidden">ایمیل</th>
         <th class="py-4">شماره</th>
         <th class="py-4">نقش</th>
-        <th class="py-4"> تغییر نقش</th>
+        <th class="py-4 max-2sm:hidden"> تغییر نقش</th>
         <th class="py-4">حذف</th>
-        <th class="py-4 max-md:hidden">اخراج</th>
+        <th class="py-4 max-lg:hidden">اخراج</th>
       </tr>
     </thead>
     `
@@ -65,8 +65,8 @@ const getAndShowUsers = async () => {
                 <th class="py-4 text-sm">${
                   user.role === "ADMIN" ? "مدیر" : "دانشجو"
                 }</th>
-                <th class="py-4">
-                    <button class="bg-blue-500 dark:bg-blue-800 text-background p-2 rounded-md cursor-pointer hover:bg-blue-600 dark:hover:bg-blue-700 duration-200" onclick="showModalMassage('${roleForChangeRole}${
+                <th class="py-4 max-2sm:hidden">
+                    <button class="bg-blue-500 dark:bg-blue-800 text-background p-2 rounded-md cursor-pointer hover:bg-blue-600 dark:hover:bg-blue-700 duration-200" onclick="showModalChangeRole('${roleForChangeRole}${
         user._id
       }')">
                       <span>تغییر</span>
@@ -79,7 +79,7 @@ const getAndShowUsers = async () => {
                         <span>حذف</span>
                     </button>
                 </th>
-                <th class="py-4 max-md:hidden">
+                <th class="py-4 max-lg:hidden">
                     <button class="bg-red-500 dark:bg-red-800 text-background p-2 rounded-md cursor-pointer hover:bg-red-600 dark:hover:bg-red-700 duration-200" onclick="showModalBan('${"ban"}${
         user._id
       }')">
@@ -129,6 +129,66 @@ const deleteOrBanUser = async (infoUserID) => {
   }
 };
 
+const changeRole = async (roleAndUserID) => {
+  const infoForBody = {
+    role: `${roleAndUserID.slice(0, 1) === "A" ? "USER" : "ADMIN"}`,
+    id: roleAndUserID.slice(1, roleAndUserID.length),
+  };
+  const res = await fetch(`${baseUrl}/users/role`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${getFromLocalStorage("token")}`,
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(infoForBody),
+  });
+  if (res.ok) {
+    showToastBox("تغییر نقش انجام شد", "successful");
+    getAndShowUsers();
+    hideModal();
+  } else {
+    showToastBox("مشکل ناشناخته ای رخ داد", "failed");
+    hideModal();
+  }
+};
+
+const showModalChangeRole = (roleAndUserID) => {
+  modal.innerHTML = "";
+  modal.insertAdjacentHTML(
+    "beforeend",
+    `
+    <div
+      class="fixed flex items-center justify-center inset-0 backdrop-blur-md z-50"
+    >
+      <div
+        class="flex items-center flex-col p-4 bg-red-600 dark:bg-red-800 w-max h-max rounded-xl"
+      >
+        <i class="fa fa-warning text-6xl text-background"></i>
+        <span class="mt-4 text-background">از تغییر نقش کاربر اطمینان دارید</span>
+        <div
+          class="flex items-center justify-between p-2 mt-4 w-full text-background"
+        >
+          <button
+            class="bg-green-600 hover:bg-green-700 dark:hover:bg-green-700  dark:bg-green-800 px-4 py-1 rounded-md outline-none cursor-pointer duration-200"
+            id="delete-course-btn"
+            onclick="changeRole('${roleAndUserID}')"
+          >
+            <span>بله</span>
+          </button>
+          <button
+            class="bg-gray-400 hover:bg-gray-500 px-4 py-1 rounded-md outline-none cursor-pointer duration-200"
+            id="close-modal-btn"
+            onclick="hideModal()"
+          >
+            <span>خیر</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    `
+  );
+};
+
 const showModalBan = (infoUserID) => {
   const userID = infoUserID.slice(3);
   const job = infoUserID.slice(0, 3);
@@ -171,6 +231,7 @@ const showModalBan = (infoUserID) => {
     `
   );
 };
+
 const hideModal = () => {
   modal.innerHTML = "";
 };
@@ -274,6 +335,9 @@ likeArrayInputs.forEach((input, index) => {
     }
   });
 });
+
+window.changeRole = changeRole;
+window.showModalChangeRole = showModalChangeRole;
 window.hideModal = hideModal;
 window.showModalBan = showModalBan;
 window.deleteOrBanUser = deleteOrBanUser;

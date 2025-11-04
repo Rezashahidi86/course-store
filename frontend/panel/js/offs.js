@@ -19,6 +19,8 @@ const addOffBtn = document.querySelector("#add-off-btn");
 const nameOff = document.querySelector("#name-off");
 const maxOff = document.querySelector("#max-off");
 const offPercent = document.querySelector("#off-percent");
+const offPercentAllInput = document.querySelector("#off-percent-all");
+const addOffAllBtn = document.querySelector("#add-off-all-btn");
 
 let allCourses;
 let courseID;
@@ -45,8 +47,28 @@ const addNewOff = async (event) => {
       },
       body: JSON.stringify(offInfo),
     });
-    const resss = await res.json();
-    console.log(resss);
+    if (res.ok) {
+      showToastBox("کد تخفیف با موفقیت ایجاد شد", "successful");
+      getAndShowAllOffs();
+    } else {
+      showToastBox("خطای ناشناخته ای رخ داده است", "failed");
+    }
+  } else {
+    showToastBox("اطلاعات را درست و کامل وارد کنید", "failed");
+  }
+};
+
+const addNewAllOff = async (event) => {
+  event.preventDefault();
+  if (offPercentAllInput.value < 101) {
+    const res = await fetch(`${baseUrl}/offs/all`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${getFromLocalStorage("token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ discount: +offPercentAllInput.value }),
+    });
     if (res.ok) {
       showToastBox("کد تخفیف با موفقیت ایجاد شد", "successful");
       getAndShowAllOffs();
@@ -62,7 +84,7 @@ const getAndShowCourses = async () => {
   const res = await fetch(`${baseUrl}/courses`);
   allCourses = await res.json();
   allCourses
-    .filter((course) => !course.price)
+    .filter((course) => course.price)
     .forEach((course) => {
       courseSelect.insertAdjacentHTML(
         "beforeend",
@@ -178,6 +200,7 @@ courseSelect.addEventListener(
   "change",
   (event) => (courseID = event.target.value)
 );
+addOffAllBtn.addEventListener("click", addNewAllOff);
 
 window.addEventListener("load", async () => {
   getThemeFromLocalStorage();

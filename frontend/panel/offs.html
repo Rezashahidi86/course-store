@@ -203,6 +203,42 @@
           </div>
         </div>
       </section>
+      <section>
+        <div
+          class="container mt-8 flex flex-col gap-y-4 bg-cart dark:bg-cart-dark px-4 py-6 rounded-md"
+        >
+          <div class="text-xl font-bold text-title dark:text-title-dark">
+            <span>افزودن کد تخفیف برای همه دوره ها</span>
+          </div>
+          <div>
+            <form action="#" id="form-add-course">
+              <div class="flex items-center justify-between gap-6">
+                <input
+                  class="border-2 border-button2 dark:border-header outline-none p-3 text-text dark:text-text-dark rounded-md w-full"
+                  type="number"
+                  id="off-percent-all"
+                  placeholder="درصد تخفیف..."
+                />
+                <button
+                  class="bg-button2 dark:bg-header outline-none rounded-md border-none px-8 py-3 text-background hover:bg-blue-600 dark:hover:bg-blue-900 duration-200 cursor-pointer"
+                  type="submit"
+                  id="add-off-all-btn"
+                >
+                  <span>افزودن</span>
+                </button>
+              </div>
+              <div>
+                <div
+                  class="flex items-center gap-x-4 bg-red-500 text-background mt-4 rounded-md p-3 w-max"
+                >
+                  <i class="fa fa-warning"></i>
+                  <span>برای اتمام تخفیف درصد 0 را بفرستید</span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
       <!-- Finish add course -->
       <!-- Start table -->
       <section class="flex gap-x-4 max-md:flex-col">

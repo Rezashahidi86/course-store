@@ -110,20 +110,23 @@ const showInfoChartLine = async () => {
 };
 
 const getAndShowLastUsers = async () => {
-  const res = await fetch(`${baseUrl}/users`, {
+  const res = await fetch(`${baseUrl}/infos/p-admin`, {
     headers: {
       Authorization: `Bearer ${getFromLocalStorage("token")}`,
     },
   });
-  const users = await res.json();
-  const lastReverseUsers = users.reverse().slice(0, 10);
-  lastReverseUsers.forEach((user, index) => {
+  const infos = await res.json();
+  const lastUsers = infos.lastUsers
+  console.log(infos);
+  lastUsers.forEach((user, index) => {
     tableUsersContainer.insertAdjacentHTML(
       "beforeend",
       `
     <tr>
       <th class="py-4 text-sm">${index + 1}</th>
       <th class="py-4 text-sm">${user.name}</th>
+      <th class="py-4 text-sm max-md:hidden">${user.username}</th>
+      <th class="py-4 text-sm max-2sm:hidden">${user.email}</th>
       <th class="py-4 text-sm">${user.phone}</th>
     </tr>
     `
@@ -143,6 +146,8 @@ const getAndShowLastCourses = async () => {
       <tr>
         <th class="py-4 text-sm">${index + 1}</th>
         <th class="py-4 text-sm">${course.name}</th>
+        <th class="py-4 text-sm max-sm:hidden">${course.creator}</th>
+        <th class="py-4 text-sm max-2sm:hidden">${course.isComplete?"تکمیل شده":"در حال برگزاری"}</th>
         <th class="py-4 text-sm">${course.registers}</th>
       </tr>
       `

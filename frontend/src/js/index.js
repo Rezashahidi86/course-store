@@ -17,6 +17,7 @@ import {
   showCourseBasket,
   deleteCourseFromBasket,
   rigesterToCourses,
+  checkCodeOff,
 } from "./helper.js";
 
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
@@ -25,17 +26,12 @@ const lastCourses = document.querySelector(".last-courses");
 const popularCourses = document.querySelector(".popular-courses");
 const freeCourses = document.querySelector(".free-courses");
 const searchGlobalBtn = document.querySelector("#search-global-btn");
-const countAllCourse = document.querySelector("#count-all-course");
 const logoutBtn = document.querySelector("#logout-btn");
 const showbasketBtns = document.querySelectorAll(".show-basket-btn");
 const closeBasket = document.querySelector("#close-basket");
-const showCountCourses = async () => {
-  const res = await fetch(`${baseUrl}/courses`);
-  const resParse = await res.json();
-  const courses = await resParse;
-  countAllCourse.innerHTML = courses.length;
-};
-
+const countUsersElem = document.querySelector("#count-users");
+const countAllCourseElem = document.querySelector("#count-all-course");
+const countAllTimeTeachElem = document.querySelector("#count-all-time-teach")
 const typeWriteTitle = () => {
   const text = "ماده برای یادگیری ترید از صفر هستی؟";
   let indexText = 0;
@@ -62,6 +58,17 @@ const deleteTittle = () => {
       typeWriteTitle();
     }
   }, 70);
+};
+
+const showInfoHeader = async () => {
+  const res = await fetch(`${baseUrl}/infos/index`);
+  const infoHeader = await res.json();
+  console.log(infoHeader);
+  countAllCourseElem.innerHTML = infoHeader.coursesCount
+  countUsersElem.innerHTML = infoHeader.usersCount
+  const allTime = Math.ceil(infoHeader.totalTime / 60)
+  countAllTimeTeachElem.innerHTML = allTime
+
 };
 
 closeModalBars.addEventListener("click", modalBarsHandeler);
@@ -92,12 +99,12 @@ themeChangeBtns.forEach((themeChangeBtn) => {
     }
   });
 });
-
+window.checkCodeOff = checkCodeOff;
 window.rigesterToCourses = rigesterToCourses;
 window.deleteCourseFromBasket = deleteCourseFromBasket;
 window.addEventListener("load", async () => {
   deleteTittle();
-  showCountCourses();
+  showInfoHeader();
   getThemeFromLocalStorage("background");
   getUser(false);
   showCourseBasket();

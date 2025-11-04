@@ -19,6 +19,7 @@ import {
   showCourseBasket,
   deleteCourseFromBasket,
   rigesterToCourses,
+  checkCodeOff,
 } from "./helper.js";
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
 const partCourseElem = document.querySelector("#part-course");
@@ -213,6 +214,7 @@ showbasketBtns.forEach((showbasketBtn) => {
   showbasketBtn.addEventListener("click", showInfoBasket);
 });
 closeBasket.addEventListener("click", showInfoBasket);
+window.checkCodeOff = checkCodeOff;
 window.rigesterToCourses = rigesterToCourses;
 window.deleteCourseFromBasket = deleteCourseFromBasket;
 window.addEventListener("load", async () => {
@@ -222,5 +224,5 @@ window.addEventListener("load", async () => {
   const _ = await getSessions();
   changeScrollBarSessions();
   showHeaderLinks();
-  showCourseBasket()
+  showCourseBasket();
 });

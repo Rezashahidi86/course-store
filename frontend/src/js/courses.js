@@ -23,6 +23,7 @@ import {
   showCourseBasket,
   deleteCourseFromBasket,
   rigesterToCourses,
+  checkCodeOff,
 } from "./helper.js";
 
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
@@ -457,9 +458,7 @@ const addCoursesToBasket = (courseInfo) => {
         const newBasket = [courseInfo, ...antiquatedBasket];
         setInToLocalStorage("basket", newBasket);
         showToastBox("دوره به سبد خرید شما اضافه شد", "successful");
-        setTimeout(() => {
-          location.reload();
-        }, 2000);
+        showCourseBasket();
       }
     } else {
       const newBasket = [courseInfo];
@@ -531,10 +530,11 @@ closeBasket.addEventListener("click", showInfoBasket);
 window.addCoursesToBasket = addCoursesToBasket;
 window.rigesterToCourses = rigesterToCourses;
 window.deleteCourseFromBasket = deleteCourseFromBasket;
+window.checkCodeOff = checkCodeOff;
 window.addEventListener("load", () => {
   getThemeFromLocalStorage("text-dark");
   getUser(true);
   getNavbar();
   showInfoCourses();
-  showCourseBasket()
+  showCourseBasket();
 });

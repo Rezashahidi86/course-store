@@ -26,7 +26,7 @@
             src="src/img/index/آرم شرکت تجارت_لب.png"
             alt="logo"
           />
-          <button class="show-basket-btn">
+          <button class="relative show-basket-btn">
             <i
               class="fa fa-shopping-cart text-3xl p-4 max-2sm:p-2 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
             ></i>
@@ -104,7 +104,7 @@
           >
             <i class="fa fa-moon text-2xl text-text-dark"></i>
           </div>
-          <button class="show-basket-btn">
+          <button class="relative show-basket-btn">
             <i
               class="fa fa-shopping-cart text-2xl p-4 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
             ></i>
@@ -654,14 +654,14 @@
     <!-- toast box -->
     <!-- Start Basket -->
     <div
-      class="fixed top-0 z-50 -right-[620px] w-[310px] h-full overflow-y-auto bg-background dark:bg-background-dark duration-300 px-2"
+      class="fixed top-0 z-40 -right-[620px] w-[600px] h-full overflow-y-auto bg-background dark:bg-background-dark duration-300 px-2 max-sm:w-[300px]"
       id="basket-container"
     >
       <div
         class="fixed inset-0 -z-10 backdrop-blur-xs hidden"
         id="close-basket"
       ></div>
-      <div class="gap-4" id="basket-courses-container">
+      <div class="gap-4 grid grid-cols-2 max-md:grid-cols-1 overflow-y-auto" id="basket-courses-container">
         <!-- Data Loaded From JS -->
       </div>
     </div>

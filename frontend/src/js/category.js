@@ -17,6 +17,7 @@ import {
   showCourseBasket,
   deleteCourseFromBasket,
   rigesterToCourses,
+  checkCodeOff,
 } from "./helper.js";
 const nameCategotyCourse = document.querySelector("#name-categoty-course");
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
@@ -191,6 +192,7 @@ showbasketBtns.forEach((showbasketBtn) => {
 closeBasket.addEventListener("click", showInfoBasket);
 window.rigesterToCourses = rigesterToCourses;
 window.deleteCourseFromBasket = deleteCourseFromBasket;
+window.checkCodeOff = checkCodeOff
 window.addEventListener("load", async () => {
   getThemeFromLocalStorage("text-dark");
   getUser(true);

@@ -26,7 +26,7 @@
             src="src/img/index/آرم شرکت تجارت_لب.png"
             alt="logo"
           />
-          <button class="show-basket-btn">
+          <button class="relative show-basket-btn">
             <i
               class="fa fa-shopping-cart text-3xl p-4 max-2sm:p-2 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
             ></i>
@@ -104,7 +104,7 @@
           >
             <i class="fa fa-moon text-2xl text-text-dark"></i>
           </div>
-          <button class="show-basket-btn">
+          <button class="relative show-basket-btn">
             <i
               class="fa fa-shopping-cart text-2xl p-4 rounded-full dark:bg-text bg-title-dark text-text-dark cursor-pointer"
             ></i>
@@ -194,22 +194,242 @@
     </header>
     <!-- Finish Header -->
     <!-- Start Main -->
-    <main>
-      <!-- Start Courses -->
-      <section class="container mt-12">
-        <span class="text-2xl text-title dark:text-title-dark"
-          >دوره های من</span
-        >
-      </section>
-      <section class="container">
+    <main
+      class="grid grid-cols-12 mt-12 max-lg:grid-cols-1 max-lg:container max-lg:mx-auto"
+    >
+      <aside
+        class="rounded-md overflow-y-auto h-full fixed w-[320px] scrollbar-aside-my-acount max-lg:w-[280px] max-lg:-right-[320px] z-50 duration-400 max-lg:top-0"
+        id="menu-fast"
+      >
         <div
-          class="grid grid-cols-4 gap-12 mt-8 max-xl:grid-cols-3 max-sm:grid-cols-1"
-          id="courses-container"
+          class="fixed backdrop-blur-md inset-0 -z-10 hidden"
+          id="close-menu-fast"
+        ></div>
+        <div
+          class="bg-cart/50 dark:bg-cart-dark/50 p-4 border-2 border-cart dark:border-cart-dark z-50 max-lg:bg-cart max-lg:dark:bg-cart-dark max-lg:h-full"
         >
-          <!-- Loaded Data From JS -->
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-x-2">
+              <img
+                src="src/img/index/forex.png"
+                alt="profile"
+                class="rounded-full size-12"
+              />
+              <div class="text-sm flex flex-col">
+                <span class="text-title dark:text-title-dark">RezaShahidi</span>
+                <span class="text-[0.6rem] text-text dark:text-text-dark"
+                  >09135326786</span
+                >
+              </div>
+            </div>
+            <div class="text-sm text-text dark:text-text-dark">
+              <span>1403/12/22</span>
+            </div>
+          </div>
+          <div
+            class="mt-8 border-t-[1px] border-text-dark dark:border-text flex flex-col gap-8"
+          >
+            <span class="text-text dark:text-text-dark text-[0.7rem] mt-4"
+              >دسترسی سریع</span
+            >
+            <ul class="flex flex-col gap-8">
+              <li
+                class="relative text-button1 after:absolute after:bg-button1 after:h-full after:w-1 after:-right-5 duration-200 mr-5 gap-x-2 flex items-center cursor-pointer now-mode" data-mode="home"
+              >
+                <i class="fa fa-home"></i>
+                <span>خانه</span>
+              </li>
+              <li
+                class="relative text-text dark:text-text-dark hover:text-button1 duration-200 mr-5 cursor-pointer gap-x-2 flex items-center" data-mode="mycourses"
+              >
+                <i class="fa fa-folder-open"></i>
+                <span>دوره های من</span>
+              </li>
+              <li
+                class="relative text-text dark:text-text-dark hover:text-button1 duration-200 mr-5 cursor-pointer gap-x-2 flex items-center" data-mode="support"
+              >
+                <i class="fa fa-user-edit"></i>
+                <span>پشتیبانی</span>
+              </li>
+              <li
+                class="relative text-text dark:text-text-dark hover:text-button1 duration-200 mr-5 cursor-pointer gap-x-2 flex items-center" data-mode="qestions"
+              >
+                <i class="fa fa-clipboard-question"></i>
+                <span>پرسش و پاسخ</span>
+              </li>
+              <li
+                class="relative text-text dark:text-text-dark hover:text-button1 duration-200 mr-5 cursor-pointer gap-x-2 flex items-center" data-mode="setting"
+              >
+                <i class="fa fa-user-cog"></i>
+                <span>اطلاعات حساب کاربری</span>
+              </li>
+              <li
+                class="relative text-text dark:text-text-dark hover:text-red-700 duration-200 mr-5 cursor-pointer gap-x-2 flex items-center" data-mode="logout"
+              >
+                <i class="fa fa-sign-out"></i>
+                <span>خروج</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+      <section class="col-span-9 col-start-5 max-lg:col-span-1" id="page-container">
+        <div
+          class="flex items-center justify-between flex-wrap bg-cart/50 dark:bg-cart-dark/50 rounded-md p-4 border-2 dark:border-cart-dark border-cart gap-4"
+        >
+          <div class="lg:hidden cursor-pointer" id="open-modal-fast">
+            <i
+              class="fa fa-bars text-4xl text-background-dark dark:text-background"
+            ></i>
+          </div>
+          <div class="flex items-center gap-x-2">
+            <i
+              class="fa fa-book-bookmark text-4xl text-text-dark dark:text-text"
+            ></i>
+            <div class="flex flex-col text-text dark:text-text-dark">
+              <span class="text-lg" id="count-mycourses"></span>
+              <span class="text-sm">دوره های من</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-x-2">
+            <i
+              class="fa fa-question-circle text-4xl text-text-dark dark:text-text"
+            ></i>
+            <div class="flex flex-col text-text dark:text-text-dark">
+              <span class="text-lg">12 سوال</span>
+              <span class="text-sm">پرسش و پاسخ</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-x-2">
+            <i
+              class="fa fa-envelope text-4xl text-text-dark dark:text-text"
+            ></i>
+            <div class="flex flex-col text-text dark:text-text-dark">
+              <span class="text-lg">12 تیکت</span>
+              <span class="text-sm">تیکت ها</span>
+            </div>
+          </div>
+        </div>
+        <!-- Start Courses -->
+        <div
+          class="bg-cart/50 dark:bg-cart-dark/50 rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-8"
+        >
+          <div class="flex text-center justify-between">
+            <span class="text-title dark:text-title-dark">آخرین دوره ها</span>
+            <a
+              class="bg-background dark:bg-background-dark px-4 py-2 rounded-sm text-text dark:text-text-dark"
+            >
+              <i class="fa fa-arrow-left text-sm"></i>
+            </a>
+          </div>
+          <div>
+            <div
+              class="grid grid-cols-4 max-sm:grid-cols-2 mt-4 gap-4"
+              id="courses-container"
+            >
+              <!-- Date Loaded From JS -->
+            </div>
+          </div>
+        </div>
+        <!-- Finish Courses -->
+        <div class="flex gap-4 max-sm:flex-col">
+          <div
+            class="w-full bg-cart/50 dark:bg-cart-dark/50 rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-8"
+          >
+            <div>
+              <div>
+                <div class="flex text-center justify-between">
+                  <span class="text-title dark:text-title-dark">تیکت ها</span>
+                  <a
+                    class="bg-background dark:bg-background-dark px-4 py-2 rounded-sm text-text dark:text-text-dark"
+                  >
+                    <i class="fa fa-arrow-left text-sm"></i>
+                  </a>
+                </div>
+              </div>
+              <div>
+                <div
+                  class="rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-4 flex items-center justify-between"
+                >
+                  <div class="flex flex-col gap-4 w-2/3">
+                    <span
+                      class="text-sm text-title dark:text-title-dark line-clamp-1"
+                      >Lorem ipsum dolor
+                    </span>
+                    <div class="text-text dark:text-text-dark">
+                      <i class="fa fa-file-alt"></i>
+                      <span class="text-sm">دپارتمان :</span>
+                      <span>پشتیبانی</span>
+                    </div>
+                  </div>
+                  <div class="flex flex-col items-end">
+                    <button
+                      class="text-sm text-text dark:text-text-dark cursor-pointer"
+                    >
+                      <span>مشاهده</span>
+                      <i class="fa fa-arrow-left"></i>
+                    </button>
+                    <div
+                      class="bg-button2 dark:bg-header text-background p-2 rounded-md text-[0.6rem] mt-4"
+                    >
+                      <span>پاسخ داده شده</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="w-full bg-cart/50 dark:bg-cart-dark/50 rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-8"
+          >
+            <div>
+              <div>
+                <div class="flex text-center justify-between">
+                  <span class="text-title dark:text-title-dark"
+                    >پرسش و پاسخ</span
+                  >
+                  <a
+                    class="bg-background dark:bg-background-dark px-4 py-2 rounded-sm text-text dark:text-text-dark"
+                  >
+                    <i class="fa fa-arrow-left text-sm"></i>
+                  </a>
+                </div>
+              </div>
+              <div>
+                <div
+                  class="rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-4 flex items-center justify-between"
+                >
+                  <div class="flex flex-col gap-4 w-2/3">
+                    <span
+                      class="text-sm text-title dark:text-title-dark line-clamp-1"
+                      >Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Aperiam praesentium labore harum.</span
+                    >
+                    <div class="text-text dark:text-text-dark">
+                      <i class="fa fa-file-alt"></i>
+                      <span class="text-sm">دپارتمان :</span>
+                      <span>پشتیبانی</span>
+                    </div>
+                  </div>
+                  <div class="flex flex-col items-end">
+                    <button
+                      class="text-sm text-text dark:text-text-dark cursor-pointer"
+                    >
+                      <span>مشاهده</span>
+                      <i class="fa fa-arrow-left"></i>
+                    </button>
+                    <div
+                      class="bg-button2 dark:bg-header text-background p-2 rounded-md text-[0.6rem] mt-4"
+                    >
+                      <span>پاسخ داده شده</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
-      <!-- Finish Courses -->
     </main>
     <!-- Finish Main -->
     <!-- toast box -->
@@ -228,14 +448,17 @@
     <!-- toast box -->
     <!-- Start Basket -->
     <div
-      class="fixed top-0 z-50 -right-[620px] w-[310px] h-full overflow-y-auto bg-background dark:bg-background-dark duration-300 px-2"
+      class="fixed top-0 z-40 -right-[620px] w-[600px] h-full overflow-y-auto bg-background dark:bg-background-dark duration-300 px-2 max-sm:w-[300px]"
       id="basket-container"
     >
       <div
         class="fixed inset-0 -z-10 backdrop-blur-xs hidden"
         id="close-basket"
       ></div>
-      <div class="gap-4" id="basket-courses-container">
+      <div
+        class="gap-4 grid grid-cols-2 max-md:grid-cols-1 overflow-y-auto"
+        id="basket-courses-container"
+      >
         <!-- Data Loaded From JS -->
       </div>
     </div>

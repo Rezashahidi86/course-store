@@ -146,10 +146,41 @@
 
     <!-- Start Main -->
     <main>
+      <!-- Start Infos -->
+      <section class="container flex items-center gap-x-4 max-sm:flex-col">
+        <div class="relative w-full  mt-12 bg-cart dark:bg-cart-dark p-6 rounded-md after:absolute after:w-0 hover:after:w-full after:duration-400 hover:scale-105 max-sm:hover:scale-100 duration-200 after:h-2 after:bg-button2 dark:after:bg-header after:bottom-0 after:right-0">
+          <div class="flex flex-col text-title dark:text-title-dark text-4xl">
+            <span>دانشجو</span>
+          </div>
+          <div class="flex items-center mt-4 gap-x-8">
+            <i class="fa fa-users text-background-dark dark:text-background text-4xl"></i>
+            <span class="text dark:text-text-dark text-2xl">2</span>
+          </div>
+        </div>
+        <div class="relative w-full mt-12 bg-cart dark:bg-cart-dark p-6 rounded-md after:absolute after:w-0 hover:after:w-full after:duration-400 hover:scale-105 max-sm:hover:scale-100 duration-200 after:h-2 after:bg-button2 dark:after:bg-header after:bottom-0 after:right-0">
+          <div class="flex flex-col text-title dark:text-title-dark text-4xl">
+            <span>دانشجو</span>
+          </div>
+          <div class="flex items-center mt-4 gap-x-8">
+            <i class="fa fa-users text-background-dark dark:text-background text-4xl"></i>
+            <span class="text dark:text-text-dark text-2xl">2</span>
+          </div>
+        </div>
+        <div class="relative w-full mt-12 bg-cart dark:bg-cart-dark p-6 rounded-md after:absolute after:w-0 hover:after:w-full after:duration-400 hover:scale-105 max-sm:hover:scale-100 duration-200 after:h-2 after:bg-button2 dark:after:bg-header after:bottom-0 after:right-0">
+          <div class="flex flex-col text-title dark:text-title-dark text-4xl">
+            <span>دانشجو</span>
+          </div>
+          <div class="flex items-center mt-4 gap-x-8">
+            <i class="fa fa-users text-background-dark dark:text-background text-4xl"></i>
+            <span class="text dark:text-text-dark text-2xl">2</span>
+          </div>
+        </div>
+      </section>
+      <!-- Finish Infos -->
       <section>
         <!-- Start chart -->
         <div
-          class="grid grid-cols-5 gap-x-5 mt-20 max-lg:flex max-lg:flex-col max-lg:gap-y-4"
+          class="grid grid-cols-5 gap-x-5 mt-8 max-lg:flex max-lg:flex-col max-lg:gap-y-4"
         >
           <div class="col-span-3 bg-cart dark:bg-cart-dark cursor-crosshair">
             <div class="swiper chart-slide !pb-4">
@@ -205,20 +236,22 @@
         <!-- Finish chart -->
       </section>
       <!-- Start table -->
-      <section class="flex gap-x-4 max-md:flex-col">
+      <section class="">
         <section
-          class="container bg-cart dark:bg-cart-dark mt-12 py-6 px-4 rounded-md"
+          class="bg-cart dark:bg-cart-dark mt-12 py-6 px-4 rounded-md"
         >
           <div class="mb-8 text-title dark:text-title-dark text-xl">
-            <span>10 کاربر اخیر</span>
+            <span>کاربران اخیر</span>
           </div>
-          <table class="container">
+          <table class="w-full">
             <thead
               class="text-title dark:text-title-dark bg-background dark:bg-background-dark rounded-md"
             >
               <tr>
                 <th class="py-4">شناسه</th>
                 <th class="py-4">نام و نام خانوادگی</th>
+                <th class="py-4 max-md:hidden">نام کاربری</th>
+                <th class="py-4 max-2sm:hidden">ایمیل</th>
                 <th class="py-4">شماره</th>
               </tr>
             </thead>
@@ -228,18 +261,20 @@
           </table>
         </section>
         <section
-          class="container bg-cart dark:bg-cart-dark mt-12 py-6 px-4 rounded-md"
+          class="bg-cart dark:bg-cart-dark mt-12 py-6 px-4 rounded-md"
         >
           <div class="mb-8 text-title dark:text-title-dark text-xl">
-            <span>10 دوره اخیر</span>
+            <span>دورهای اخیر</span>
           </div>
-          <table class="container">
+          <table class="w-full">
             <thead
               class="text-title dark:text-title-dark bg-background dark:bg-background-dark rounded-md"
             >
               <tr>
                 <th class="py-4">شناسه</th>
                 <th class="py-4">نام دوره</th>
+                <th class="py-4 max-sm:hidden">مدرس</th>
+                <th class="py-4 max-2sm:hidden">وضعیت</th>
                 <th class="py-4">دانشجو</th>
               </tr>
             </thead>
