@@ -234,37 +234,43 @@
             >
             <ul class="flex flex-col gap-8">
               <li
-                class="relative text-button1 after:absolute after:bg-button1 after:h-full after:w-1 after:-right-5 duration-200 mr-5 gap-x-2 flex items-center cursor-pointer now-mode" data-mode="home"
+                class="relative text-button1 after:absolute after:bg-button1 after:h-full after:w-1 after:-right-5 duration-200 mr-5 gap-x-2 flex items-center cursor-pointer now-mode"
+                data-mode="home"
               >
                 <i class="fa fa-home"></i>
                 <span>خانه</span>
               </li>
               <li
-                class="relative text-text dark:text-text-dark hover:text-button1 duration-200 mr-5 cursor-pointer gap-x-2 flex items-center" data-mode="mycourses"
+                class="relative text-text dark:text-text-dark hover:text-button1 duration-200 mr-5 cursor-pointer gap-x-2 flex items-center"
+                data-mode="mycourses"
               >
                 <i class="fa fa-folder-open"></i>
                 <span>دوره های من</span>
               </li>
               <li
-                class="relative text-text dark:text-text-dark hover:text-button1 duration-200 mr-5 cursor-pointer gap-x-2 flex items-center" data-mode="support"
+                class="relative text-text dark:text-text-dark hover:text-button1 duration-200 mr-5 cursor-pointer gap-x-2 flex items-center"
+                data-mode="support"
               >
                 <i class="fa fa-user-edit"></i>
                 <span>پشتیبانی</span>
               </li>
               <li
-                class="relative text-text dark:text-text-dark hover:text-button1 duration-200 mr-5 cursor-pointer gap-x-2 flex items-center" data-mode="qestions"
+                class="relative text-text dark:text-text-dark hover:text-button1 duration-200 mr-5 cursor-pointer gap-x-2 flex items-center"
+                data-mode="qestions"
               >
                 <i class="fa fa-clipboard-question"></i>
                 <span>پرسش و پاسخ</span>
               </li>
               <li
-                class="relative text-text dark:text-text-dark hover:text-button1 duration-200 mr-5 cursor-pointer gap-x-2 flex items-center" data-mode="setting"
+                class="relative text-text dark:text-text-dark hover:text-button1 duration-200 mr-5 cursor-pointer gap-x-2 flex items-center"
+                data-mode="setting"
               >
                 <i class="fa fa-user-cog"></i>
                 <span>اطلاعات حساب کاربری</span>
               </li>
               <li
-                class="relative text-text dark:text-text-dark hover:text-red-700 duration-200 mr-5 cursor-pointer gap-x-2 flex items-center" data-mode="logout"
+                class="relative text-text dark:text-text-dark hover:text-red-700 duration-200 mr-5 cursor-pointer gap-x-2 flex items-center"
+                data-mode="logout"
               >
                 <i class="fa fa-sign-out"></i>
                 <span>خروج</span>
@@ -273,7 +279,10 @@
           </div>
         </div>
       </aside>
-      <section class="col-span-9 col-start-5 max-lg:col-span-1" id="page-container">
+      <section
+        class="col-span-9 col-start-5 max-lg:col-span-1"
+        id="page-container"
+      >
         <div
           class="flex items-center justify-between flex-wrap bg-cart/50 dark:bg-cart-dark/50 rounded-md p-4 border-2 dark:border-cart-dark border-cart gap-4"
         >
@@ -296,7 +305,7 @@
               class="fa fa-question-circle text-4xl text-text-dark dark:text-text"
             ></i>
             <div class="flex flex-col text-text dark:text-text-dark">
-              <span class="text-lg">12 سوال</span>
+              <span class="text-lg" id="count-qestions-header"></span>
               <span class="text-sm">پرسش و پاسخ</span>
             </div>
           </div>
@@ -305,7 +314,7 @@
               class="fa fa-envelope text-4xl text-text-dark dark:text-text"
             ></i>
             <div class="flex flex-col text-text dark:text-text-dark">
-              <span class="text-lg">12 تیکت</span>
+              <span class="text-lg" id="count-tickets-header"></span>
               <span class="text-sm">تیکت ها</span>
             </div>
           </div>
@@ -334,53 +343,7 @@
         <!-- Finish Courses -->
         <div class="flex gap-4 max-sm:flex-col">
           <div
-            class="w-full bg-cart/50 dark:bg-cart-dark/50 rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-8"
-          >
-            <div>
-              <div>
-                <div class="flex text-center justify-between">
-                  <span class="text-title dark:text-title-dark">تیکت ها</span>
-                  <a
-                    class="bg-background dark:bg-background-dark px-4 py-2 rounded-sm text-text dark:text-text-dark"
-                  >
-                    <i class="fa fa-arrow-left text-sm"></i>
-                  </a>
-                </div>
-              </div>
-              <div>
-                <div
-                  class="rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-4 flex items-center justify-between"
-                >
-                  <div class="flex flex-col gap-4 w-2/3">
-                    <span
-                      class="text-sm text-title dark:text-title-dark line-clamp-1"
-                      >Lorem ipsum dolor
-                    </span>
-                    <div class="text-text dark:text-text-dark">
-                      <i class="fa fa-file-alt"></i>
-                      <span class="text-sm">دپارتمان :</span>
-                      <span>پشتیبانی</span>
-                    </div>
-                  </div>
-                  <div class="flex flex-col items-end">
-                    <button
-                      class="text-sm text-text dark:text-text-dark cursor-pointer"
-                    >
-                      <span>مشاهده</span>
-                      <i class="fa fa-arrow-left"></i>
-                    </button>
-                    <div
-                      class="bg-button2 dark:bg-header text-background p-2 rounded-md text-[0.6rem] mt-4"
-                    >
-                      <span>پاسخ داده شده</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="w-full bg-cart/50 dark:bg-cart-dark/50 rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-8"
+            class="w-full bg-cart/50 dark:bg-cart-dark/50 rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-8 h-max"
           >
             <div>
               <div>
@@ -395,37 +358,24 @@
                   </a>
                 </div>
               </div>
+              <div id="qestions-container"></div>
+            </div>
+          </div>
+          <div
+            class="w-full bg-cart/50 dark:bg-cart-dark/50 rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-8 h-max"
+          >
+            <div>
               <div>
-                <div
-                  class="rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-4 flex items-center justify-between"
-                >
-                  <div class="flex flex-col gap-4 w-2/3">
-                    <span
-                      class="text-sm text-title dark:text-title-dark line-clamp-1"
-                      >Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Aperiam praesentium labore harum.</span
-                    >
-                    <div class="text-text dark:text-text-dark">
-                      <i class="fa fa-file-alt"></i>
-                      <span class="text-sm">دپارتمان :</span>
-                      <span>پشتیبانی</span>
-                    </div>
-                  </div>
-                  <div class="flex flex-col items-end">
-                    <button
-                      class="text-sm text-text dark:text-text-dark cursor-pointer"
-                    >
-                      <span>مشاهده</span>
-                      <i class="fa fa-arrow-left"></i>
-                    </button>
-                    <div
-                      class="bg-button2 dark:bg-header text-background p-2 rounded-md text-[0.6rem] mt-4"
-                    >
-                      <span>پاسخ داده شده</span>
-                    </div>
-                  </div>
+                <div class="flex text-center justify-between">
+                  <span class="text-title dark:text-title-dark">تیکت ها</span>
+                  <a
+                    class="bg-background dark:bg-background-dark px-4 py-2 rounded-sm text-text dark:text-text-dark"
+                  >
+                    <i class="fa fa-arrow-left text-sm"></i>
+                  </a>
                 </div>
               </div>
+              <div id="tickets-container"></div>
             </div>
           </div>
         </div>
