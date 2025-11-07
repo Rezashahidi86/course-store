@@ -538,13 +538,16 @@ const getCourses = async (container, mode) => {
       },
     });
     const infoUser = await res.json();
-    const countMyCourses = document.querySelector("#count-mycourses");
-    countMyCourses.innerHTML = `${infoUser.length} دوره`;
-    if (mode === "myCourses") {
-      showCourses(container, infoUser, true);
-    } else {
-      showCourses(container, infoUser.reverse().slice(0, 4), true);
+    if (container) {
+      const countMyCourses = document.querySelector("#count-mycourses");
+      countMyCourses.innerHTML = `${infoUser.length} دوره`;
+      if (mode === "myCourses") {
+        showCourses(container, infoUser, true);
+      } else {
+        showCourses(container, infoUser.reverse().slice(0, 4), true);
+      }
     }
+    return infoUser;
   }
 };
 

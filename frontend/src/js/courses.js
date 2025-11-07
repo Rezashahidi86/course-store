@@ -24,6 +24,7 @@ import {
   deleteCourseFromBasket,
   rigesterToCourses,
   checkCodeOff,
+  getCourses,
 } from "./helper.js";
 
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
@@ -64,6 +65,7 @@ const boxSessenionsContainer = document.querySelector(
   "#box-sessions-container"
 );
 let boxCourseParts;
+let courseInfo;
 const numberPercentStatusCourse = document.querySelector(
   "#number-percent-status-course"
 );
@@ -94,11 +96,14 @@ const boxPartsCourseHandler = (event) => {
   });
 };
 
-const headerInfoCourse = (courseInfo) => {
+const headerInfoCourse = async (courseInfo) => {
   courseTitle.innerHTML = courseInfo.name;
-  console.log(courseInfo);
   courseDescription.innerHTML = courseInfo.description;
-  if (courseInfo.isUserRegisteredToThisCourse) {
+  const coursesUser = await getCourses(null, "myCourses");
+  const isUserRegisteredToThisCourse = coursesUser.some((info) => {
+    return info.course._id === courseInfo._id;
+  });
+  if (isUserRegisteredToThisCourse) {
     statusBuyUserContainer.insertAdjacentHTML(
       "beforeend",
       `
@@ -112,7 +117,7 @@ const headerInfoCourse = (courseInfo) => {
           <span class="text-xl max-sm:text-lg">شما دانشجوی دوره هستید</span>
         </div>
         <div
-          class="flex items-center gap-x-2 text-background py-4 px-8 rounded-xl bg-button1 dark:bg-button1-dark max-sm:px-4 max-2sm:px-20 max-2sm:mb-4 cursor-pointer hover:bg-green-700 duration-200"
+          class="flex items-center gap-x-2 text-background py-4 px-8 rounded-xl bg-button1 dark:bg-button1-dark max-sm:px-4 max-2sm:px-20 max-2sm:mb-4"
         >
           <i class="fa fa-book-open text-xl"></i>
           <span>مشاهده دوره</span>
@@ -211,17 +216,21 @@ const description = (courseInfo) => {
   descriptionImg.src = `${baseUrlCover}/${courseInfo.cover}`;
 };
 
-const showSessions = (shortName, sessions) => {
+const showSessions = async (shortName, sessions) => {
   const lastSessions = sessions.length;
+  const coursesUser = await getCourses(null, "myCourses");
+  const isUserRegisteredToThisCourse = coursesUser.some((info) => {
+    return info.course._id === courseInfo._id;
+  });
   if (sessions.length) {
     sessions.forEach((session, index) => {
       boxSessenionsContainer.insertAdjacentHTML(
         "beforeend",
         `
-      <${session.free || session.isUserRegisteredToThisCourse ? "a" : "div"}
+      <${session.free || isUserRegisteredToThisCourse ? "a" : "div"}
         href="sessions.html?name=${shortName}&id=${session._id}"
         class="${
-          session.free || session.isUserRegisteredToThisCourse ? "group" : ""
+          session.free || isUserRegisteredToThisCourse ? "group" : ""
         } bg-gray-500 dark:bg-text-dark flex items-center justify-between p-4 hidden box-course-part hover:border-[1px] border-button1 ${
           lastSessions === index + 1 ? "rounded-b-md" : ""
         }"
@@ -244,12 +253,12 @@ const showSessions = (shortName, sessions) => {
         <span>${session.time}</span>
         <i class="fa fa-play"></i>
         <i class="fa fa-lock ${
-          session.free || session.isUserRegisteredToThisCourse
+          session.free || isUserRegisteredToThisCourse
             ? "opacity-0 absolute"
             : ""
         }"></i>
         </div>
-      </${session.free || session.isUserRegisteredToThisCourse ? "a" : "div"}>
+      </${session.free || isUserRegisteredToThisCourse ? "a" : "div"}>
       `
       );
       boxCourseParts = document.querySelectorAll(".box-course-part");
@@ -437,7 +446,7 @@ const showScoreComment = () => {
 };
 
 const showInfoCourses = async () => {
-  const courseInfo = await getInfoCourse("course");
+  courseInfo = await getInfoCourse("course");
   changeHeaderLinks(courseInfo);
   headerInfoCourse(courseInfo);
   boxesStatusCourse(courseInfo);

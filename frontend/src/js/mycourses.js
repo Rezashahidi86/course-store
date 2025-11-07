@@ -160,11 +160,6 @@ const showPartMenu = (event) => {
         >
           <div class="flex text-center justify-between">
             <span class="text-title dark:text-title-dark">آخرین دوره ها</span>
-            <a
-              class="bg-background dark:bg-background-dark px-4 py-2 rounded-sm text-text dark:text-text-dark"
-            >
-              <i class="fa fa-arrow-left text-sm"></i>
-            </a>
           </div>
           <div>
             <div
@@ -184,11 +179,12 @@ const showPartMenu = (event) => {
               <div>
                 <div class="flex text-center justify-between">
                   <span class="text-title dark:text-title-dark">پرسش و پاسخ</span>
-                  <a
+                  <button
                     class="bg-background dark:bg-background-dark px-4 py-2 rounded-sm text-text dark:text-text-dark"
+                    onclick="showAllTicket()"
                   >
                     <i class="fa fa-arrow-left text-sm"></i>
-                  </a>
+                  </button>
                 </div>
               </div>
               <div id="qestions-container"></div>
@@ -201,11 +197,12 @@ const showPartMenu = (event) => {
               <div>
                 <div class="flex text-center justify-between">
                   <span class="text-title dark:text-title-dark">تیکت ها</span>
-                  <a
+                  <button
                     class="bg-background dark:bg-background-dark px-4 py-2 rounded-sm text-text dark:text-text-dark"
+                    onclick="showAllTicket()"
                   >
                     <i class="fa fa-arrow-left text-sm"></i>
-                  </a>
+                  </button>
                 </div>
               </div>
               <div id="tickets-container"></div>
@@ -319,11 +316,12 @@ const showPartMenu = (event) => {
         >
           <div class="flex text-center items-center justify-between">
             <span class="text-title dark:text-title-dark">ارسال تیکت</span>
-            <a
+            <button
               class="bg-background dark:bg-background-dark px-4 py-2 rounded-sm text-text dark:text-text-dark cursor-pointer"
+              onclick="showAllTicket()"
             >
               همه تیکت ها
-            </a>
+            </button>
           </div>
           <form action="">
             <div>
@@ -438,11 +436,12 @@ const showPartMenu = (event) => {
         >
           <div class="flex text-center items-center justify-between">
             <span class="text-title dark:text-title-dark">ارسال تیکت</span>
-            <a
+            <button
               class="bg-background dark:bg-background-dark px-4 py-2 rounded-sm text-text dark:text-text-dark cursor-pointer"
+              onclick="showAllTicket()"
             >
               همه تیکت ها
-            </a>
+            </button>
           </div>
           <form action="">
             <div>
@@ -670,6 +669,7 @@ const getAndShowInhomeUserTickets = async () => {
                   <div class="flex flex-col items-end">
                     <button
                       class="text-sm text-text dark:text-text-dark cursor-pointer"
+                      onclick="showChatBoxTicket('${ticket._id}')"
                     >
                       <span>مشاهده</span>
                       <i class="fa fa-arrow-left"></i>
@@ -712,6 +712,7 @@ const getAndShowInhomeUserTickets = async () => {
           <div class="flex flex-col items-end">
             <button
               class="text-sm text-text dark:text-text-dark cursor-pointer"
+              onclick="showChatBoxTicket('${ticket._id}')"
             >
               <span>مشاهده</span>
               <i class="fa fa-arrow-left"></i>
@@ -919,6 +920,191 @@ const addTicketsAndQestions = async (event) => {
   }
 };
 
+const showAllTicket = async () => {
+  mode = "";
+  const res = await fetch(`${baseUrl}/tickets/user`, {
+    headers: {
+      Authorization: `Bearer ${getFromLocalStorage("token")}`,
+    },
+  });
+  const tickets = await res.json();
+  console.log(tickets);
+  pageContainer.innerHTML = "";
+  pageContainer.insertAdjacentHTML(
+    "beforeend",
+    `
+        <div
+          class="flex items-center justify-between flex-wrap bg-cart/50 dark:bg-cart-dark/50 rounded-md p-4 border-2 dark:border-cart-dark border-cart gap-4"
+        >
+          <div class="lg:hidden cursor-pointer" id="open-modal-fast">
+            <i
+              class="fa fa-bars text-4xl text-background-dark dark:text-background"
+            ></i>
+          </div>
+          <div class="flex items-center gap-x-2">
+            <i
+              class="fa fa-question-circle text-4xl text-text-dark dark:text-text"
+            ></i>
+            <div class="flex flex-col text-text dark:text-text-dark">
+              <span class="text-lg" id="count-qestions-header"></span>
+              <span class="text-sm">پرسش و پاسخ</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-x-2">
+            <i
+              class="fa fa-envelope text-4xl text-text-dark dark:text-text"
+            ></i>
+            <div class="flex flex-col text-text dark:text-text-dark">
+              <span class="text-lg" id="count-tickets-header"></span
+              <span class="text-sm">تیکت ها</span>
+            </div>
+          </div>
+        </div>
+        <!-- Start Courses -->
+        <div
+          class="bg-cart/50 dark:bg-cart-dark/50 rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-8"
+        >
+          <div class="flex text-center justify-between">
+            <span class="text-title dark:text-title-dark">همه تیکت ها</span>
+          </div>
+          <div>
+            <div
+              class="mt-4 flex-col flex gap-2"
+              id="tickets-container"
+            >
+              <!-- Date Loaded From JS -->
+            </div>
+          </div>
+        </div>
+        <!-- Finish Courses -->
+      `
+  );
+  const countQestionsHeader = document.querySelector("#count-qestions-header");
+  const countTicketsHeader = document.querySelector("#count-tickets-header");
+  countQestionsHeader.innerHTML = `${countQestionsForHeader} پرسش و پاسخ`;
+  countTicketsHeader.innerHTML = `${countTicketForHeader} تیکت`;
+  const ticketsContainer = document.querySelector("#tickets-container");
+  tickets.forEach((ticket) => {
+    ticketsContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+        <div
+          class="rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-4 flex items-center justify-between"
+        >
+          <div class="flex flex-col gap-4 w-2/3">
+            <span
+              class="text-sm text-title dark:text-title-dark line-clamp-1"
+              >${ticket.title}</span
+            >
+            <div class="text-text dark:text-text-dark">
+              <i class="fa fa-file-alt"></i>
+              <span class="text-sm">دپارتمان :</span>
+              <span>${ticket.departmentID}</span>
+              <span class="block">${ticket.departmentSubID}</span>
+            </div>
+          </div>
+          <div class="flex flex-col items-end">
+            <button
+              class="text-sm text-text dark:text-text-dark cursor-pointer"
+              onclick="showChatBoxTicket('${ticket._id}')"
+            >
+              <span>مشاهده</span>
+              <i class="fa fa-arrow-left"></i>
+            </button>
+            <div
+              class="${
+                ticket.answer ? "bg-green-600" : "bg-yellow-500"
+              } text-background p-2 rounded-md text-[0.6rem] mt-4"
+            >
+              <span>${ticket.answer ? "پاسخ داده شده" : "در انتظار پاسخ"}</span>
+            </div>
+          </div>
+        </div>
+      `
+    );
+  });
+};
+
+const showChatBoxTicket = async (ticketID) => {
+  const res = await fetch(`${baseUrl}/tickets/answer/${ticketID}`, {
+    headers: {
+      Authorization: `Bearer ${getFromLocalStorage("token")}`,
+    },
+  });
+  const answer = await res.json();
+  mode = ""
+  pageContainer.innerHTML = "";
+  pageContainer.insertAdjacentHTML(
+    "beforeend",
+    `
+        <div
+          class="flex items-center justify-between flex-wrap bg-cart/50 dark:bg-cart-dark/50 rounded-md p-4 border-2 dark:border-cart-dark border-cart gap-4"
+        >
+          <div class="lg:hidden cursor-pointer" id="open-modal-fast">
+            <i
+              class="fa fa-bars text-4xl text-background-dark dark:text-background"
+            ></i>
+          </div>
+          <div class="flex items-center gap-x-2">
+            <i
+              class="fa fa-question-circle text-4xl text-text-dark dark:text-text"
+            ></i>
+            <div class="flex flex-col text-text dark:text-text-dark">
+              <span class="text-lg" id="count-qestions-header"></span>
+              <span class="text-sm">پرسش و پاسخ</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-x-2">
+            <i
+              class="fa fa-envelope text-4xl text-text-dark dark:text-text"
+            ></i>
+            <div class="flex flex-col text-text dark:text-text-dark">
+              <span class="text-lg" id="count-tickets-header"></span
+              <span class="text-sm">تیکت ها</span>
+            </div>
+          </div>
+        </div>
+        <!-- Start Courses -->
+        <div
+          class="bg-cart/50 dark:bg-cart-dark/50 rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-8"
+        >
+          <div class="flex text-center justify-between">
+            <span class="text-title dark:text-title-dark">همه تیکت ها</span>
+          </div>
+          <div>
+            <div
+              class="mt-4 flex-col flex gap-2"
+              id="tickets-container"
+            >
+              <!-- Date Loaded From JS -->
+            </div>
+          </div>
+        </div>
+        <!-- Finish Courses -->
+      `
+  );
+  const countQestionsHeader = document.querySelector("#count-qestions-header");
+  const countTicketsHeader = document.querySelector("#count-tickets-header");
+  countQestionsHeader.innerHTML = `${countQestionsForHeader} پرسش و پاسخ`;
+  countTicketsHeader.innerHTML = `${countTicketForHeader} تیکت`;
+  const ticketsContainer = document.querySelector("#tickets-container");
+  ticketsContainer.insertAdjacentHTML(
+    "beforeend",
+    `
+        <div
+          class="rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-4 flex"
+        >
+          <div class="p-4 rounded-md text-background block w-full">
+            <P class="bg-button2 dark:bg-header rounded-md w-full p-4">${answer.ticket}</P>
+          </div>
+          <div class="p-4 mt-20 rounded-md w-full ${answer.answer?"":"hidden"}">
+            <P class="w-full bg-yellow-500 text-background rounded-md p-4">${answer.answer}</P>
+          </div>
+        </div>
+      `
+  );
+};
+
 const showInfoUserInInputs = () => {
   const nameUserInput = document.querySelector("#name-user-input");
   const emailUserEmail = document.querySelector("#email-user-email");
@@ -967,9 +1153,9 @@ const updateUserInfo = async (event) => {
       });
       if (res.ok) {
         showToastBox("اطلاعات شما بروز رسانی شد", "successful");
-        const res = await getUser(true,false)
-        infoUser = res
-        showInfoUserInFastMenu()
+        const res = await getUser(true, false);
+        infoUser = res;
+        showInfoUserInFastMenu();
       } else {
         showToastBox("خطای نا شناخته ای رخ داد", "failed");
       }
@@ -1011,6 +1197,8 @@ closeMenuFastBtn.addEventListener("click", closeFastMenu);
 itemFastMenu.forEach((item) => {
   item.addEventListener("click", showPartMenu);
 });
+window.showChatBoxTicket = showChatBoxTicket;
+window.showAllTicket = showAllTicket;
 window.addTicketsAndQestions = addTicketsAndQestions;
 window.showSubDeparments = showSubDeparments;
 window.checkCodeOff = checkCodeOff;

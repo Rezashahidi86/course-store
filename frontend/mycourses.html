@@ -50,7 +50,7 @@
               <i class="fa fa-angle-left"></i>
             </a>
             <a
-              href="#"
+              href="./mycourses.html"
               class="mt-8 flex items-center justify-between text-sm text-text dark:text-text-dark"
             >
               <span class="">تیکت های من</span>
@@ -148,7 +148,7 @@
                   class="hover:bg-button2 dark:hover:bg-header-dark rounded-md duration-200"
                 >
                   <a
-                    href="#"
+                    href="./mycourses.html"
                     class="flex items-center gap-x-4 py-4 px-2 text-xl text-text dark:text-text-dark hover:text-background"
                   >
                     <i class="fa fa-comment"></i>
@@ -159,7 +159,7 @@
                   class="hover:bg-button2 dark:hover:bg-header-dark rounded-md duration-200"
                 >
                   <a
-                    href="#"
+                    href="./mycourses.html"
                     class="flex items-center gap-x-4 py-4 px-2 text-xl text-text dark:text-text-dark hover:text-background"
                   >
                     <i class="fa fa-user"></i>
@@ -198,7 +198,7 @@
       class="grid grid-cols-12 mt-12 max-lg:grid-cols-1 max-lg:container max-lg:mx-auto"
     >
       <aside
-        class="rounded-md overflow-y-auto h-full fixed w-[320px] scrollbar-aside-my-acount max-lg:w-[280px] max-lg:-right-[320px] z-50 duration-400 max-lg:top-0"
+        class="rounded-md overflow-y-auto h-full fixed w-[320px] scrollbar-aside-my-acount max-lg:w-[280px] max-lg:-right-[320px] duration-400 max-lg:top-0"
         id="menu-fast"
       >
         <div
@@ -206,7 +206,7 @@
           id="close-menu-fast"
         ></div>
         <div
-          class="bg-cart/50 dark:bg-cart-dark/50 p-4 border-2 border-cart dark:border-cart-dark z-50 max-lg:bg-cart max-lg:dark:bg-cart-dark max-lg:h-full"
+          class="bg-cart/50 dark:bg-cart-dark/50 p-4 border-2 border-cart dark:border-cart-dark max-lg:bg-cart max-lg:dark:bg-cart-dark max-lg:h-full"
         >
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-x-2">
@@ -325,11 +325,6 @@
         >
           <div class="flex text-center justify-between">
             <span class="text-title dark:text-title-dark">آخرین دوره ها</span>
-            <a
-              class="bg-background dark:bg-background-dark px-4 py-2 rounded-sm text-text dark:text-text-dark"
-            >
-              <i class="fa fa-arrow-left text-sm"></i>
-            </a>
           </div>
           <div>
             <div
@@ -351,11 +346,12 @@
                   <span class="text-title dark:text-title-dark"
                     >پرسش و پاسخ</span
                   >
-                  <a
+                  <button
                     class="bg-background dark:bg-background-dark px-4 py-2 rounded-sm text-text dark:text-text-dark"
+                    onclick="showAllTicket()"
                   >
                     <i class="fa fa-arrow-left text-sm"></i>
-                  </a>
+                  </button>
                 </div>
               </div>
               <div id="qestions-container"></div>
@@ -368,11 +364,12 @@
               <div>
                 <div class="flex text-center justify-between">
                   <span class="text-title dark:text-title-dark">تیکت ها</span>
-                  <a
+                  <button
                     class="bg-background dark:bg-background-dark px-4 py-2 rounded-sm text-text dark:text-text-dark"
+                    onclick="showAllTicket()"
                   >
                     <i class="fa fa-arrow-left text-sm"></i>
-                  </a>
+                  </button>
                 </div>
               </div>
               <div id="tickets-container"></div>

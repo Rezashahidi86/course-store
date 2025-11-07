@@ -105,7 +105,7 @@ const showSissions = (allSessions) => {
       boxSessenionsContainer.insertAdjacentHTML(
         "beforeend",
         `
-      <${session.free ? "a" : "div"}
+      <a
         href="sessions.html?name=${getValueFromUrl("name")}&id=${session._id}"
         class="mt-1 flex items-center justify-between p-4 box-course-part ${
           session.free ? "group" : ""
@@ -140,9 +140,9 @@ const showSissions = (allSessions) => {
           } duration-200 max-2sm:"
         >
         <span>${session.time}</span>
-        <i class="fa fa-lock ${session.free ? "opacity-0 absolute" : ""}"></i>
+        <i class="fa fa-play"></i>
         </div>
-      </${session.free ? "a" : "div"}>
+      </a>
       `
       );
       boxCourseParts = document.querySelectorAll(".box-course-part");
