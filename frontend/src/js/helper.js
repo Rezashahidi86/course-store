@@ -332,6 +332,7 @@ const logoutuser = (style = false) => {
   setInToLocalStorage("token", "");
   getUser(style);
   hideModalInfoAccount();
+  location.href = "/frontend/index.html"
 };
 
 // showCourses
@@ -355,7 +356,7 @@ const showCourses = (container, courses, myCourses = false) => {
               <img
                 src="${baseUrlCover}/${course.course.cover}"
                 alt="course"
-                class="object-cover rounded-md w-50"
+                class="object-cover rounded-md w-50 h-30"
               />
               <p class="line-clamp-2 text-title dark:text-title-dark my-2 h-10 text-sm">
                 ${course.course.name}
@@ -498,8 +499,7 @@ const getCourses = async (container, mode) => {
     const res = await fetch(`${baseUrl}/courses/popular`);
     const resParse = await res.json();
     const courses = await resParse;
-    const popularCourses = courses.slice(courses.length - 7, courses.length);
-    showCourses(container, popularCourses);
+    showCourses(container, courses);
   } else if (mode === "category") {
     const categoryCoursesParams = getValueFromUrl("cat");
     const searchCategoryParams = getValueFromUrl("search");
@@ -836,6 +836,7 @@ const showCourseBasket = () => {
       }
     });
   } else {
+    basketContainer.classList.add("h-max")
     basketCoursesContainer.insertAdjacentHTML(
       "beforeend",
       `

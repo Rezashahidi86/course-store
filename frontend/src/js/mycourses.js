@@ -30,6 +30,7 @@ let closeMenuFastBtn = document.querySelector("#close-menu-fast");
 const menuFast = document.querySelector("#menu-fast");
 const itemFastMenu = document.querySelectorAll("ul li");
 const pageContainer = document.querySelector("#page-container");
+const logoutBtn = document.querySelector("#logout-btn");
 let infoUser;
 let mode = "home";
 let departmentSubID;
@@ -180,7 +181,7 @@ const showPartMenu = (event) => {
                 <div class="flex text-center justify-between">
                   <span class="text-title dark:text-title-dark">پرسش و پاسخ</span>
                   <button
-                    class="bg-background dark:bg-background-dark px-4 py-2 rounded-sm text-text dark:text-text-dark"
+                    class="bg-background dark:bg-background-dark px-4 py-2 rounded-sm text-text dark:text-text-dark cursor-pointer"
                     onclick="showAllTicket()"
                   >
                     <i class="fa fa-arrow-left text-sm"></i>
@@ -198,7 +199,7 @@ const showPartMenu = (event) => {
                 <div class="flex text-center justify-between">
                   <span class="text-title dark:text-title-dark">تیکت ها</span>
                   <button
-                    class="bg-background dark:bg-background-dark px-4 py-2 rounded-sm text-text dark:text-text-dark"
+                    class="bg-background dark:bg-background-dark px-4 py-2 rounded-sm text-text dark:text-text-dark cursor-pointer"
                     onclick="showAllTicket()"
                   >
                     <i class="fa fa-arrow-left text-sm"></i>
@@ -644,14 +645,15 @@ const getAndShowInhomeUserTickets = async () => {
   let handelCountTicketTickets = 0;
   countQestionsForHeader = 0;
   countTicketForHeader = 0;
-  tickets.forEach((ticket) => {
-    if (ticket.course === "634e6b0e1d5142b91afa9bb3") {
-      countTicketForHeader += 1;
-      if (handelCountTicketQestions < 3) {
-        handelCountTicketQestions += 1;
-        ticketsContainer.insertAdjacentHTML(
-          "beforeend",
-          `
+  if (tickets.length) {
+    tickets.forEach((ticket) => {
+      if (ticket.course === "634e6b0e1d5142b91afa9bb3") {
+        countTicketForHeader += 1;
+        if (handelCountTicketQestions < 3) {
+          handelCountTicketQestions += 1;
+          ticketsContainer.insertAdjacentHTML(
+            "beforeend",
+            `
                 <div
                   class="rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-4 flex items-center justify-between"
                 >
@@ -686,15 +688,15 @@ const getAndShowInhomeUserTickets = async () => {
                   </div>
                 </div>
         `
-        );
-      }
-    } else {
-      countQestionsForHeader += 1;
-      if (handelCountTicketTickets < 3) {
-        handelCountTicketTickets += 1;
-        qestionsContainer.insertAdjacentHTML(
-          "beforeend",
-          `
+          );
+        }
+      } else {
+        countQestionsForHeader += 1;
+        if (handelCountTicketTickets < 3) {
+          handelCountTicketTickets += 1;
+          qestionsContainer.insertAdjacentHTML(
+            "beforeend",
+            `
         <div
           class="rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-4 flex items-center justify-between"
         >
@@ -727,10 +729,38 @@ const getAndShowInhomeUserTickets = async () => {
           </div>
         </div>
         `
-        );
+          );
+        }
       }
-    }
-  });
+    });
+  } else {
+    qestionsContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div
+        class="p-3 rounded-lg flex items-center gap-x-2 bg-red-500 dark:bg-red-600 mt-8 w-max"
+      >
+        <i class="text-background fa fa-person-circle-question"></i>
+        <p class="text-background">
+          پرسشی یافت نشد.
+        </p>
+      </div>
+    `
+    );
+    ticketsContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div
+        class="p-3 rounded-lg flex items-center gap-x-2 bg-red-500 dark:bg-red-600 mt-8 w-max"
+      >
+        <i class="text-background fa fa-person-circle-question"></i>
+        <p class="text-background">
+          تیکتی یافت نشد.
+        </p>
+      </div>
+    `
+    );
+  }
   const countQestionsHeader = document.querySelector("#count-qestions-header");
   const countTicketsHeader = document.querySelector("#count-tickets-header");
   countQestionsHeader.innerHTML = `${countQestionsForHeader} پرسش و پاسخ`;
@@ -930,9 +960,10 @@ const showAllTicket = async () => {
   const tickets = await res.json();
   console.log(tickets);
   pageContainer.innerHTML = "";
-  pageContainer.insertAdjacentHTML(
-    "beforeend",
-    `
+  if (tickets.length) {
+    pageContainer.insertAdjacentHTML(
+      "beforeend",
+      `
         <div
           class="flex items-center justify-between flex-wrap bg-cart/50 dark:bg-cart-dark/50 rounded-md p-4 border-2 dark:border-cart-dark border-cart gap-4"
         >
@@ -978,16 +1009,18 @@ const showAllTicket = async () => {
         </div>
         <!-- Finish Courses -->
       `
-  );
-  const countQestionsHeader = document.querySelector("#count-qestions-header");
-  const countTicketsHeader = document.querySelector("#count-tickets-header");
-  countQestionsHeader.innerHTML = `${countQestionsForHeader} پرسش و پاسخ`;
-  countTicketsHeader.innerHTML = `${countTicketForHeader} تیکت`;
-  const ticketsContainer = document.querySelector("#tickets-container");
-  tickets.forEach((ticket) => {
-    ticketsContainer.insertAdjacentHTML(
-      "beforeend",
-      `
+    );
+    const countQestionsHeader = document.querySelector(
+      "#count-qestions-header"
+    );
+    const countTicketsHeader = document.querySelector("#count-tickets-header");
+    countQestionsHeader.innerHTML = `${countQestionsForHeader} پرسش و پاسخ`;
+    countTicketsHeader.innerHTML = `${countTicketForHeader} تیکت`;
+    const ticketsContainer = document.querySelector("#tickets-container");
+    tickets.forEach((ticket) => {
+      ticketsContainer.insertAdjacentHTML(
+        "beforeend",
+        `
         <div
           class="rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-4 flex items-center justify-between"
         >
@@ -1021,8 +1054,22 @@ const showAllTicket = async () => {
           </div>
         </div>
       `
-    );
-  });
+      );
+    });
+  } else{
+    pageContainer.insertAdjacentHTML("beforeend",
+      `
+      <div
+        class="p-3 rounded-lg flex items-center gap-x-2 bg-red-500 dark:bg-red-600 mt-8 w-max"
+      >
+        <i class="text-background fa fa-person-circle-question"></i>
+        <p class="text-background">
+          تیکتی یافت نشد.
+        </p>
+      </div>
+      `
+    )
+  }
 };
 
 const showChatBoxTicket = async (ticketID) => {
@@ -1032,7 +1079,7 @@ const showChatBoxTicket = async (ticketID) => {
     },
   });
   const answer = await res.json();
-  mode = ""
+  mode = "";
   pageContainer.innerHTML = "";
   pageContainer.insertAdjacentHTML(
     "beforeend",
@@ -1095,10 +1142,16 @@ const showChatBoxTicket = async (ticketID) => {
           class="rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-4 flex"
         >
           <div class="p-4 rounded-md text-background block w-full">
-            <P class="bg-button2 dark:bg-header rounded-md w-full p-4">${answer.ticket}</P>
+            <P class="bg-button2 dark:bg-header rounded-md w-full p-4">${
+              answer.ticket
+            }</P>
           </div>
-          <div class="p-4 mt-20 rounded-md w-full ${answer.answer?"":"hidden"}">
-            <P class="w-full bg-yellow-500 text-background rounded-md p-4">${answer.answer}</P>
+          <div class="p-4 mt-20 rounded-md w-full ${
+            answer.answer ? "" : "hidden"
+          }">
+            <P class="w-full bg-yellow-500 text-background rounded-md p-4">${
+              answer.answer
+            }</P>
           </div>
         </div>
       `
@@ -1194,6 +1247,7 @@ backModalInfoAccount.addEventListener("click", hideModalInfoAccount);
 closeBasket.addEventListener("click", showInfoBasket);
 openModalFastBtn.addEventListener("click", showFastMenu);
 closeMenuFastBtn.addEventListener("click", closeFastMenu);
+logoutBtn.addEventListener("click", logoutuser);
 itemFastMenu.forEach((item) => {
   item.addEventListener("click", showPartMenu);
 });

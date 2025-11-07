@@ -18,6 +18,7 @@ import {
   deleteCourseFromBasket,
   rigesterToCourses,
   checkCodeOff,
+  logoutuser
 } from "./helper.js";
 const nameCategotyCourse = document.querySelector("#name-categoty-course");
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
@@ -30,6 +31,7 @@ const countCourses = document.querySelector("#count-courses");
 const paginationContainer = document.querySelector("#pagination-container");
 const showbasketBtns = document.querySelectorAll(".show-basket-btn");
 const closeBasket = document.querySelector("#close-basket");
+const logoutBtn = document.querySelector("#logout-btn");
 window.changePage = changePage;
 let categoryCourses;
 let filters = {
@@ -183,6 +185,7 @@ closeModalBars.addEventListener("click", modalBarsHandeler);
 openModalBtnBars.addEventListener("click", modalBarsHandeler);
 backModalInfoAccount.addEventListener("click", hideModalInfoAccount);
 searchGlobalBtn.addEventListener("click", showSearchGlobal);
+logoutBtn.addEventListener("click", logoutuser);
 searchInput.addEventListener("input", () => {
   showCoursesByFilter(filters);
 });

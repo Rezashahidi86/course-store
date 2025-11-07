@@ -20,6 +20,7 @@ import {
   deleteCourseFromBasket,
   rigesterToCourses,
   checkCodeOff,
+  logoutuser
 } from "./helper.js";
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
 const partCourseElem = document.querySelector("#part-course");
@@ -27,6 +28,7 @@ const nameSessionElem = document.querySelector("#name-session");
 const videoContainer = document.querySelector("#video-container");
 const showbasketBtns = document.querySelectorAll(".show-basket-btn");
 const closeBasket = document.querySelector("#close-basket");
+const logoutBtn = document.querySelector("#logout-btn");
 const boxSessenionsContainer = document.querySelector(
   "#box-sessions-container"
 );
@@ -89,14 +91,12 @@ const boxPartsCourseHandler = (event) => {
 
 const showSissions = (allSessions) => {
   const userSession = allSessions.session;
-  console.log(userSession);
   videoContainer.insertAdjacentHTML(
     "beforeend",
     `
     <video src="${baseUrlCover}/${userSession.video}" controls class="rounded-xl w-full"></video>
     `
   );
-  console.log(videoContainer);
   const sessions = allSessions.sessions;
   const lastSessions = sessions.length;
   if (sessions.length) {
@@ -207,6 +207,7 @@ const getSessions = async () => {
 closeModalBars.addEventListener("click", modalBarsHandeler);
 openModalBtnBars.addEventListener("click", modalBarsHandeler);
 backModalInfoAccount.addEventListener("click", hideModalInfoAccount);
+logoutBtn.addEventListener("click", logoutuser);
 boxesCourseInformation.forEach((boxCourseInformation) => {
   boxCourseInformation.addEventListener("click", boxPartsCourseHandler);
 });

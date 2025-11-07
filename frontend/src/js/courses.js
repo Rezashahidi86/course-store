@@ -25,6 +25,7 @@ import {
   rigesterToCourses,
   checkCodeOff,
   getCourses,
+  logoutuser
 } from "./helper.js";
 
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
@@ -58,6 +59,7 @@ const scoreIcon = document.querySelectorAll(".score-icon");
 const countComments = document.querySelector("#count-comments");
 const showbasketBtns = document.querySelectorAll(".show-basket-btn");
 const closeBasket = document.querySelector("#close-basket");
+const logoutBtn = document.querySelector("#logout-btn");
 const closeTextareaCommentBtn = document.querySelector(
   "#close-textarea-comment"
 );
@@ -101,7 +103,9 @@ const headerInfoCourse = async (courseInfo) => {
   courseDescription.innerHTML = courseInfo.description;
   const coursesUser = await getCourses(null, "myCourses");
   const isUserRegisteredToThisCourse = coursesUser.some((info) => {
-    return info.course._id === courseInfo._id;
+    if(info.course?._id){
+      return info.course._id === courseInfo._id;
+    }
   });
   if (isUserRegisteredToThisCourse) {
     statusBuyUserContainer.insertAdjacentHTML(
@@ -220,7 +224,9 @@ const showSessions = async (shortName, sessions) => {
   const lastSessions = sessions.length;
   const coursesUser = await getCourses(null, "myCourses");
   const isUserRegisteredToThisCourse = coursesUser.some((info) => {
-    return info.course._id === courseInfo._id;
+    if(info.course?._id){
+      return info.course._id === courseInfo._id;
+    }
   });
   if (sessions.length) {
     sessions.forEach((session, index) => {
@@ -503,6 +509,7 @@ closeModalBars.addEventListener("click", modalBarsHandeler);
 openModalBtnBars.addEventListener("click", modalBarsHandeler);
 backModalInfoAccount.addEventListener("click", hideModalInfoAccount);
 postCommentBtn.addEventListener("click", postComments);
+logoutBtn.addEventListener("click", logoutuser);
 rediousScore.addEventListener("click", () => {
   const score = scoreNumber.innerHTML;
   if (score > 1) {
