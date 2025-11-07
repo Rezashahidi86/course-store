@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../src/style/output.css" />
     <link rel="stylesheet" href="../src/style/input.css" />
     <link rel="stylesheet" href="../vendor/fa/all.min.css" />
@@ -72,16 +73,6 @@
             >
               <a href="./comments.html" class="block">کامنت ها</a>
             </li>
-            <li
-              class="py-4 pr-2 text-text-dark cursor-pointer hover:bg-white/10 hover:text-background duration-200"
-            >
-              <a href="./apisodes.html" class="block">جلسات</a>
-            </li>
-            <li
-              class="py-4 pr-2 text-text-dark cursor-pointer hover:bg-white/10 hover:text-background duration-200"
-            >
-              <a href="./tickets.html" class="block">تیکت ها</a>
-            </li>
           </ul>
         </div>
       </section>
@@ -111,7 +102,6 @@
                 class="text-[0.5rem] text-background bg-red-600 px-1 rounded-full"
                 id="count-notif"
               >
-                
               </span>
             </div>
             <i class="relative fa fa-bell cursor-pointer"> </i>
@@ -128,9 +118,10 @@
           </button>
         </div>
         <div class="flex items-center gap-x-4 max-2sm:gap-x-1">
-          <span class="text-background max-sm:text-sm" id="username-admin"
-            >RezaShahidi</span
-          >
+          <span
+            class="text-background max-sm:text-sm"
+            id="username-admin"
+          ></span>
         </div>
       </section>
       <section class="container flex flex-col gap-y-4 mt-4 justify-between">
@@ -153,125 +144,34 @@
       </section>
     </header>
     <!-- Finish Header -->
-
     <!-- Start Main -->
     <main>
-      <!-- Start Infos -->
-      <section class="container flex items-center gap-x-4 max-sm:flex-col" id="infos-container">
-        <!-- Data Loaded From JS -->
-      </section>
-      <!-- Finish Infos -->
-      <section>
-        <!-- Start chart -->
-        <div
-          class="grid grid-cols-5 gap-x-5 mt-8 max-lg:flex max-lg:flex-col max-lg:gap-y-4"
-        >
-          <div class="col-span-3 bg-cart dark:bg-cart-dark cursor-crosshair">
-            <div class="swiper chart-slide !pb-4">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <canvas
-                    class="w-full h-full p-4"
-                    id="chart-studens-course1"
-                  ></canvas>
-                </div>
-                <div class="swiper-slide">
-                  <canvas
-                    class="w-full h-full p-4"
-                    id="chart-studens-course2"
-                  ></canvas>
-                </div>
-                <div class="swiper-slide">
-                  <canvas
-                    class="w-full h-full p-4"
-                    id="chart-studens-course3"
-                  ></canvas>
-                </div>
-              </div>
-              <div class="swiper-pagination"></div>
-            </div>
-          </div>
-          <div
-            class="flex items-center justify-between w-full col-span-2 py-2 px-8 bg-cart dark:bg-cart-dark rounded-sm max-sm:flex-col"
-          >
-            <div
-              class="flex justify-center flex-col gap-y-4 text-text dark:text-text-dark"
-            >
-              <span
-                class="relative after:absolute after:size-4 after:top-1 after:-right-5 after:bg-blue-500 dark:after:bg-header after:rounded-md"
-                id="count-users"
-                ></span
-              >
-              <span
-                class="relative after:absolute after:size-4 after:top-1 after:-right-5 after:bg-orange-500 dark:after:bg-orange-700 after:rounded-md"
-                id="count-admin"
-                ></span
-              >
-            </div>
-            <canvas class="py-2 max-sm:w-64" id="chart-role-users"></canvas>
-          </div>
-        </div>
-        <div>
-          <canvas
-            class="w-full mt-16 bg-cart dark:bg-cart-dark p-8 rounded-md cursor-crosshair"
-            id="chart-count-courses"
-          ></canvas>
-        </div>
-        <!-- Finish chart -->
-      </section>
       <!-- Start table -->
-      <section class="">
-        <section
-          class="bg-cart dark:bg-cart-dark mt-12 py-6 px-4 rounded-md"
-        >
-          <div class="mb-8 text-title dark:text-title-dark text-xl">
-            <span>کاربران اخیر</span>
-          </div>
-          <table class="w-full">
-            <thead
-              class="text-title dark:text-title-dark bg-background dark:bg-background-dark rounded-md"
-            >
-              <tr>
-                <th class="py-4">شناسه</th>
-                <th class="py-4">نام و نام خانوادگی</th>
-                <th class="py-4 max-md:hidden">نام کاربری</th>
-                <th class="py-4 max-2sm:hidden">ایمیل</th>
-                <th class="py-4">شماره</th>
-              </tr>
-            </thead>
-            <tbody class="text-text dark:text-text-dark" id="table-users">
-              <!-- Data Loaded From JS -->
-            </tbody>
-          </table>
-        </section>
-        <section
-          class="bg-cart dark:bg-cart-dark mt-12 py-6 px-4 rounded-md"
-        >
-          <div class="mb-8 text-title dark:text-title-dark text-xl">
-            <span>دورهای اخیر</span>
-          </div>
-          <table class="w-full">
-            <thead
-              class="text-title dark:text-title-dark bg-background dark:bg-background-dark rounded-md"
-            >
-              <tr>
-                <th class="py-4">شناسه</th>
-                <th class="py-4">نام دوره</th>
-                <th class="py-4 max-sm:hidden">مدرس</th>
-                <th class="py-4 max-2sm:hidden">وضعیت</th>
-                <th class="py-4">دانشجو</th>
-              </tr>
-            </thead>
-            <tbody class="text-text dark:text-text-dark" id="table-courses">
-              <!-- Data Loaded From JS -->
-            </tbody>
-          </table>
-        </section>
+      <section class="bg-cart dark:bg-cart-dark mt-24 py-6 px-4 rounded-md">
+        <table class="w-full">
+          <thead
+            class="text-title dark:text-title-dark bg-background dark:bg-background-dark"
+          >
+            <tr>
+              <th class="py-4">شناسه</th>
+              <th class="py-4 max-lg:hidden">فرستنده</th>
+              <th class="py-4 max-md:hidden">سر متن</th>
+              <th class="py-4 max-md:hidden">دوره</th>
+              <th class="py-4 max-lg:hidden">دپارتمان</th>
+              <th class="py-4">بخش</th>
+              <th class="py-4 max-md:hidden max-lg:hidden">ساخت</th>
+              <th class="py-4">مشاهده</th>
+              <th class="py-4">پاسخ</th>
+            </tr>
+          </thead>
+          <tbody class="text-text dark:text-text-dark" id="tickets-table">
+            <!-- Data Loaded From JS -->
+          </tbody>
+        </table>
       </section>
       <!-- Finish table -->
     </main>
     <!-- Finish Main -->
-
     <!-- toast box -->
     <div
       class="fixed top-10 -left-96 flex items-center gap-x-4 bg-background dark:bg-background-dark p-6 rounded-md z-50 after:absolute after:w-[100%] after:h-1 after:bg-button1 after:bottom-0 after:right-0 duration-300"
@@ -286,11 +186,12 @@
       </div>
     </div>
     <!-- toast box -->
-    <script src="../vendor/chart/chart.js"></script>
-    <script src="../vendor/chart/chartjs-plugin-datalabels.js"></script>
+    <section id="modal">
+      <!-- Data Loaded From JS -->
+    </section>
+    <!-- Finish modal -->
     <script src="../vendor/fa/all.min.js"></script>
-    <script src="../vendor/swiper/swiper-bundle.min.js"></script>
     <script src="js/util.js" type="module"></script>
-    <script src="js/homepage.js" type="module"></script>
+    <script src="js/tickets.js" type="module"></script>
   </body>
 </html>

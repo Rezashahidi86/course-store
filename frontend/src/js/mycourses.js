@@ -19,6 +19,7 @@ import {
   getFromLocalStorage,
   showToastBox,
   logoutuser,
+  changeDate,
 } from "./helper.js";
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
 const coursesContainer = document.querySelector("#courses-container");
@@ -29,6 +30,7 @@ let closeMenuFastBtn = document.querySelector("#close-menu-fast");
 const menuFast = document.querySelector("#menu-fast");
 const itemFastMenu = document.querySelectorAll("ul li");
 const pageContainer = document.querySelector("#page-container");
+let infoUser;
 let mode = "home";
 let departmentSubID;
 let departmentID;
@@ -47,6 +49,21 @@ const closeFastMenu = () => {
   menuFast.classList.remove("max-lg:-right-[0px]");
   menuFast.classList.add("max-lg:-right-[320px]");
   closeMenuFastBtn.classList.add("hidden");
+};
+
+const showInfoUserInFastMenu = () => {
+  const usernameElem = document.querySelector("#username-elem");
+  const phoneElem = document.querySelector("#phone-elem");
+  const calenderElem = document.querySelector("#calender-elem");
+  const dateMiladi = new Date();
+  const nowDateShamsi = changeDate(
+    dateMiladi.getFullYear(),
+    dateMiladi.getMonth() + 1,
+    dateMiladi.getDay()
+  ).join("/");
+  usernameElem.innerHTML = infoUser.username;
+  phoneElem.innerHTML = infoUser.phone;
+  calenderElem.innerHTML = nowDateShamsi;
 };
 
 const showPartMenu = (event) => {
@@ -512,6 +529,89 @@ const showPartMenu = (event) => {
         addTicketsBtn.addEventListener("click", addTicketsAndQestions);
         break;
       }
+      case "setting": {
+        pageContainer.insertAdjacentHTML(
+          "beforeend",
+          `
+        <div
+          class="flex items-center justify-between flex-wrap bg-cart/50 dark:bg-cart-dark/50 rounded-md p-4 border-2 dark:border-cart-dark border-cart gap-4"
+        >
+          <div class="lg:hidden cursor-pointer" id="open-modal-fast">
+            <i
+              class="fa fa-bars text-4xl text-background-dark dark:text-background"
+            ></i>
+          </div>
+          <div class="flex items-center gap-x-2">
+            <i
+              class="fa fa-question-circle text-4xl text-text-dark dark:text-text"
+            ></i>
+            <div class="flex flex-col text-text dark:text-text-dark">
+              <span class="text-lg" id="count-qestions-header"></span>
+              <span class="text-sm">پرسش و پاسخ</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-x-2">
+            <i
+              class="fa fa-envelope text-4xl text-text-dark dark:text-text"
+            ></i>
+            <div class="flex flex-col text-text dark:text-text-dark">
+              <span class="text-lg" id="count-tickets-header"></span>
+              <span class="text-sm">تیکت ها</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-4 max-sm:flex-col">
+          <div
+            class="w-full bg-cart/50 dark:bg-cart-dark/50 rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-8"
+          >
+            <form action="#" class="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
+              <div class="col-span-1 flex flex-col gap-4">
+                <input
+                  type="text"
+                  id="name-user-input"
+                  placeholder="نام و نام خانوادگی..."
+                  class="p-3 border-2 border-button2 dark:border-header outline-none text-text dark:text-text-dark w-full rounded-md"
+                />
+                <input
+                  type="text"
+                  id="email-user-email"
+                  placeholder="ایمیل..."
+                  class="p-3 border-2 border-button2 dark:border-header outline-none text-text dark:text-text-dark w-full rounded-md"
+                />
+                <input
+                  type="text"
+                  id="password-user-input"
+                  placeholder="******"
+                  class="p-3 border-2 border-button2 dark:border-header outline-none text-text dark:text-text-dark w-full rounded-md"
+                />
+              </div>
+              <div class="col-span-1 flex flex-col gap-4">
+                <input
+                  type="text"
+                  id="username_user-input"
+                  placeholder="نام کاربری.."
+                  class="p-3 border-2 border-button2 dark:border-header outline-none text-text dark:text-text-dark w-full rounded-md"
+                />
+                <input
+                  type="number"
+                  id="phone-user-input"
+                  placeholder="شماره تلفن..."
+                  class="p-3 border-2 border-button2 dark:border-header outline-none text-text dark:text-text-dark w-full rounded-md"
+                />
+              </div>
+              <div class="flex bg-button2 dark:bg-header hover:bg-blue-600 dark:hover:bg-blue-900 duration-200 text-background p-3 mt-4 rounded-md outline-none w-max cursor-pointer" id="update-user-btn">
+                <button>تغییر اطلاعات</button>
+              </div>
+            </form>
+          </div>
+        </div>
+          `
+        );
+        const updateUserBtn = document.querySelector("#update-user-btn");
+        updateUserBtn.addEventListener("click", updateUserInfo);
+        showInfoUserInInputs();
+        break;
+      }
       case "logout": {
         logoutuser();
         location.href = "/frontend/index.html";
@@ -808,7 +908,7 @@ const addTicketsAndQestions = async (event) => {
         const countTicketsHeader = document.querySelector(
           "#count-tickets-header"
         );
-        countTicketForHeader += 1
+        countTicketForHeader += 1;
         countTicketsHeader.innerHTML = `${countTicketForHeader} تیکت`;
       } else {
         showToastBox("خطای نا شناخته ای رخ داد", "failed");
@@ -816,6 +916,66 @@ const addTicketsAndQestions = async (event) => {
     } else {
       showToastBox("تمامی اطلاعات را وارد کنید", "failed");
     }
+  }
+};
+
+const showInfoUserInInputs = () => {
+  const nameUserInput = document.querySelector("#name-user-input");
+  const emailUserEmail = document.querySelector("#email-user-email");
+  const usernameUserInput = document.querySelector("#username_user-input");
+  const phoneUserInput = document.querySelector("#phone-user-input");
+  const passwordUserInput = document.querySelector("#password-user-input");
+  nameUserInput.value = infoUser.name;
+  emailUserEmail.value = infoUser.email;
+  usernameUserInput.value = infoUser.username;
+  phoneUserInput.value = infoUser.phone;
+};
+
+const updateUserInfo = async (event) => {
+  event.preventDefault();
+  const nameUserInput = document.querySelector("#name-user-input");
+  const emailUserEmail = document.querySelector("#email-user-email");
+  const usernameUserInput = document.querySelector("#username_user-input");
+  const phoneUserInput = document.querySelector("#phone-user-input");
+  const passwordUserInput = document.querySelector("#password-user-input");
+  if (
+    nameUserInput.value.trim() &&
+    emailUserEmail.value.trim() &&
+    usernameUserInput.value.trim() &&
+    phoneUserInput.value.trim() &&
+    passwordUserInput.value.trim()
+  ) {
+    if (passwordUserInput.value.length < 8) {
+      showToastBox("رمز عبور بیش از 8 کاراکتر باشد", "failed");
+    } else if (usernameUserInput.value.length < 4) {
+      showToastBox("نام کاربری حداقل 3 کاراکتر باشد", "failed");
+    } else {
+      const infoNewUser = {
+        name: nameUserInput.value.trim(),
+        email: emailUserEmail.value.trim(),
+        username: usernameUserInput.value.trim(),
+        phone: phoneUserInput.value.trim(),
+        password: passwordUserInput.value.trim(),
+      };
+      const res = await fetch(`${baseUrl}/users`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${getFromLocalStorage("token")}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(infoNewUser),
+      });
+      if (res.ok) {
+        showToastBox("اطلاعات شما بروز رسانی شد", "successful");
+        const res = await getUser(true,false)
+        infoUser = res
+        showInfoUserInFastMenu()
+      } else {
+        showToastBox("خطای نا شناخته ای رخ داد", "failed");
+      }
+    }
+  } else {
+    showToastBox("تمامی اطلاعات را وارد کنید", "failed");
   }
 };
 
@@ -856,9 +1016,11 @@ window.showSubDeparments = showSubDeparments;
 window.checkCodeOff = checkCodeOff;
 window.rigesterToCourses = rigesterToCourses;
 window.deleteCourseFromBasket = deleteCourseFromBasket;
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
   getThemeFromLocalStorage("text-dark");
-  getUser(true);
+  const infoUserParamis = getUser(true);
+  infoUser = await infoUserParamis;
+  showInfoUserInFastMenu();
   getNavbar();
   getCourses(coursesContainer, "lastMyCourses");
   getAndShowInhomeUserTickets();

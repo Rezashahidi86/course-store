@@ -299,7 +299,7 @@ const darkOrLight = () => {
 
 // infoUser
 
-const getUser = async (style = false) => {
+const getUser = async (style = false, userIcon = true) => {
   const accessToken = getFromLocalStorage("token");
 
   if (accessToken) {
@@ -311,14 +311,20 @@ const getUser = async (style = false) => {
     });
     if (res.status === 200) {
       const userInfo = await res.json();
-      showStatusUser(userInfo, style);
+      if (userIcon) {
+        showStatusUser(userInfo, style);
+      }
       return userInfo;
     } else if (res.status === 403) {
       showToastBox("خطایی در دریافت اطلاعات شما رخ داده است", "reject");
-      showStatusUser(false, style);
+      if (userIcon) {
+        showStatusUser(false, style);
+      }
     }
   } else {
-    showStatusUser(false, style);
+    if (userIcon) {
+      showStatusUser(false, style);
+    }
   }
 };
 

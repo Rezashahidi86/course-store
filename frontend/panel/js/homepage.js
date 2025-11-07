@@ -18,6 +18,7 @@ const countUsersElem = document.querySelector("#count-users");
 const countAdminElem = document.querySelector("#count-admin");
 const tableUsersContainer = document.querySelector("#table-users");
 const tableCoursesContainer = document.querySelector("#table-courses");
+const infosContainer = document.querySelector("#infos-container");
 let infoAdmin;
 let countAdmins = 0;
 let countUsers = 0;
@@ -116,7 +117,22 @@ const getAndShowLastUsers = async () => {
     },
   });
   const infos = await res.json();
-  const lastUsers = infos.lastUsers
+  const lastUsers = infos.lastUsers;
+  infos.infos.forEach((info) => {
+    infosContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+        <div class="flex items-center gap-x-4 relative w-full  mt-12 bg-cart dark:bg-cart-dark p-6 rounded-md after:absolute after:w-0 hover:after:w-full after:duration-400 hover:scale-105 max-sm:hover:scale-100 duration-200 after:h-2 after:bg-button2 dark:after:bg-header after:bottom-0 after:right-0">
+          <div class="text-title dark:text-title-dark text-4xl">
+            <span>${info.title} : </span>
+          </div>
+          <div class="">
+            <span class="text dark:text-text-dark text-2xl">${info.count}</span>
+          </div>
+        </div>
+    `
+    );
+  });
   console.log(infos);
   lastUsers.forEach((user, index) => {
     tableUsersContainer.insertAdjacentHTML(
@@ -147,7 +163,9 @@ const getAndShowLastCourses = async () => {
         <th class="py-4 text-sm">${index + 1}</th>
         <th class="py-4 text-sm">${course.name}</th>
         <th class="py-4 text-sm max-sm:hidden">${course.creator}</th>
-        <th class="py-4 text-sm max-2sm:hidden">${course.isComplete?"تکمیل شده":"در حال برگزاری"}</th>
+        <th class="py-4 text-sm max-2sm:hidden">${
+          course.isComplete ? "تکمیل شده" : "در حال برگزاری"
+        }</th>
         <th class="py-4 text-sm">${course.registers}</th>
       </tr>
       `
