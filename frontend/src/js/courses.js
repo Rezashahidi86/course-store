@@ -169,12 +169,11 @@ const headerInfoCourse = async (courseInfo) => {
   videoContainer.insertAdjacentHTML(
     "beforeend",
     `
-    <video
+    <img
       class="rounded-xl w-full h-full"
-      src=""
-      poster="${baseUrlCover}/${courseInfo.cover}"
+      src="${baseUrlCover}/${courseInfo.cover}"
       controls
-    ></video>
+    ></img>
     `
   );
 };

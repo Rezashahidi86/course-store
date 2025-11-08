@@ -409,11 +409,11 @@ const showCourses = (container, courses, myCourses = false) => {
               href="courses.html?name=${course.shortName}"
               >${course.name}</a
             >
-            <p class="line-clamp-2 text-text dark:text-text-dark h-16 px-4">
+            <p class="line-clamp-2 text-text dark:text-text-dark h-12 px-4">
               ${course.description}
             </p>
             <div
-              class="flex justify-between text-text dark:text-text-dark px-1"
+              class="flex justify-between text-text dark:text-text-dark px-1 mt-2"
             >
               <a href="courses.html?name=${course.shortName}">
                 <i class="fa fa-user"></i>
@@ -602,7 +602,7 @@ const changePage = (page) => {
 
 const showNavbar = (sortNavbar) => {
   const navbarDesctap = sortNavbar.slice(
-    sortNavbar.length - 5,
+    sortNavbar.length - 4,
     sortNavbar.length
   );
   navbarDesctap.forEach((nav) => {
@@ -743,11 +743,11 @@ const showCourseBasket = () => {
               href="courses.html?name=${course.shortName}"
               >${course.name}</a
             >
-            <p class="line-clamp-2 text-text dark:text-text-dark h-16 px-4">
+            <p class="line-clamp-2 text-text dark:text-text-dark h-12 px-4">
               ${course.description}
             </p>
             <div
-              class="flex justify-between text-text dark:text-text-dark px-1"
+              class="flex justify-between text-text dark:text-text-dark px-1 mt-2"
             >
               <a href="courses.html?name=${course.shortName}">
                 <i class="fa fa-user"></i>
@@ -882,7 +882,7 @@ const rigesterToCourses = () => {
           showInfoBasket();
           showToastBox("با موفقیت در دوره ثبت نام کردید", "successful");
           setTimeout(() => {
-            location.href = "./frontend/mycourses.html";
+            location.href = "./mycourses.html";
           }, 2000);
         } else if (res.status === 409) {
           showInfoBasket();
@@ -923,7 +923,7 @@ const rigesterToCourses = () => {
             "successful"
           );
           setTimeout(() => {
-            location.href = "/frontend/mycourses.html";
+            location.href = "./mycourses.html";
           }, 2000);
         } else if (res.status === 409) {
           showInfoBasket();

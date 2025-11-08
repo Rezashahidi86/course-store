@@ -63,7 +63,7 @@ const getAndShowAllCourses = async () => {
                 <th class="py-4">${index + 1}</th>
                 <th class="py-4 text-sm">${course.name}</th>
                 <th class="py-4 text-sm max-sm:hidden">${
-                  course.categoryID.name
+                  course.categoryID?.name
                 }</th>
                 <th class="py-4 text-sm max-lg:hidden">${course.creator}</th>
                 <th class="py-4 text-sm max-sm:hidden">${

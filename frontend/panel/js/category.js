@@ -66,7 +66,7 @@ const addCategory = async (event) => {
   } else {
     const infoNewCategory = {
       title: nameCategoryInput.value.trim(),
-      name: nameCategoryInput.value.trim(),
+      name: linkCategoryInput.value.trim(),
     };
     const res = await fetch(`${baseUrl}/category`, {
       method: "POST",

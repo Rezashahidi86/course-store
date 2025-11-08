@@ -31,7 +31,7 @@ const showbasketBtns = document.querySelectorAll(".show-basket-btn");
 const closeBasket = document.querySelector("#close-basket");
 const countUsersElem = document.querySelector("#count-users");
 const countAllCourseElem = document.querySelector("#count-all-course");
-const countAllTimeTeachElem = document.querySelector("#count-all-time-teach")
+const countAllTimeTeachElem = document.querySelector("#count-all-time-teach");
 const typeWriteTitle = () => {
   const text = "ماده برای یادگیری ترید از صفر هستی؟";
   let indexText = 0;
@@ -64,11 +64,40 @@ const showInfoHeader = async () => {
   const res = await fetch(`${baseUrl}/infos/index`);
   const infoHeader = await res.json();
   console.log(infoHeader);
-  countAllCourseElem.innerHTML = infoHeader.coursesCount
-  countUsersElem.innerHTML = infoHeader.usersCount
-  const allTime = Math.ceil(infoHeader.totalTime / 60)
-  countAllTimeTeachElem.innerHTML = allTime
+  countAllCourseElem.innerHTML = infoHeader.coursesCount;
+  countUsersElem.innerHTML = infoHeader.usersCount;
+  const allTime = Math.ceil(infoHeader.totalTime / 60);
+  countAllTimeTeachElem.innerHTML = allTime;
+};
 
+const countCourseRodeMap = async () => {
+  const countRodeMap1 = document.querySelector("#count-rode-map-1");
+  const countRodeMap2 = document.querySelector("#count-rode-map-2");
+  const countRodeMap3 = document.querySelector("#count-rode-map-3");
+  const countRodeMap4 = document.querySelector("#count-rode-map-4");
+  const res = await fetch(`${baseUrl}/courses`);
+  const courses = await res.json();
+  console.log(courses);
+  let countTechnicalanalysisCourse = 0;
+  let countTradingtoolsandplatformsCourse = 0;
+  let countPsychologyandcapitalmanagementCourse = 0;
+  let countTradingstrategiesandsystemsCourse = 0;
+
+  courses.forEach((course) => {
+    if (course.categoryID.name === "technicalanalysis") {
+      countTechnicalanalysisCourse += 1;
+    } else if (course.categoryID.name === "tradingtoolsandplatforms") {
+      countTradingtoolsandplatformsCourse += 1;
+    } else if (course.categoryID.name === "psychologyandcapitalmanagement") {
+      countPsychologyandcapitalmanagementCourse += 1;
+    } else if (course.categoryID.name === "tradingstrategiesandsystems") {
+      countTradingstrategiesandsystemsCourse += 1;
+    }
+  });
+  countRodeMap1.innerHTML = `${countTechnicalanalysisCourse} دوره`;
+  countRodeMap2.innerHTML = `${countTradingstrategiesandsystemsCourse} دوره`;
+  countRodeMap4.innerHTML = `${countTradingtoolsandplatformsCourse} دوره`;
+  countRodeMap3.innerHTML = `${countPsychologyandcapitalmanagementCourse} دوره`;
 };
 
 closeModalBars.addEventListener("click", modalBarsHandeler);
@@ -108,6 +137,7 @@ window.addEventListener("load", async () => {
   getThemeFromLocalStorage("background");
   getUser(false);
   showCourseBasket();
+  countCourseRodeMap();
   let _ = await getCourses(lastCourses, "lastCourses");
   _ = await getCourses(popularCourses, "popularCourses");
   _ = await getCourses(freeCourses, "freeCourses");
