@@ -21,7 +21,6 @@ let infoAdmin;
 const getAndShowComments = async () => {
   const res = await fetch(`${baseUrl}/comments`);
   const comments = await res.json()
-  console.log(comments);
   commentsTable.innerHTML = "";
   comments.reverse().forEach((comment, index) => {
     let arrayDateCreate = comment.createdAt.slice(0, 10).split("-");

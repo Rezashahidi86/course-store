@@ -133,7 +133,6 @@ const getAndShowLastUsers = async () => {
     `
     );
   });
-  console.log(infos);
   lastUsers.forEach((user, index) => {
     tableUsersContainer.insertAdjacentHTML(
       "beforeend",

@@ -638,7 +638,6 @@ const getAndShowInhomeUserTickets = async () => {
     },
   });
   const tickets = await res.json();
-  console.log(tickets);
   const ticketsContainer = document.querySelector("#tickets-container");
   const qestionsContainer = document.querySelector("#qestions-container");
   let handelCountTicketQestions = 0;
@@ -1139,19 +1138,20 @@ const showChatBoxTicket = async (ticketID) => {
     "beforeend",
     `
         <div
-          class="rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-4 flex"
+          class="rounded-md p-4 border-2 dark:border-cart-dark border-cart mt-4 flex flex-col"
         >
-          <div class="p-4 rounded-md text-background block w-full">
-            <P class="bg-button2 dark:bg-header rounded-md w-full p-4">${
+          <div class="p-4 rounded-md text-background block w-full h-max self-start">
+            <p class="bg-button2 dark:bg-header rounded-md w-1/2 p-4 break-words">${
               answer.ticket
-            }</P>
+            }</p>
           </div>
-          <div class="p-4 mt-20 rounded-md w-full ${
+          <div class="p-4 rounded-md w-full self-end flex ${
             answer.answer ? "" : "hidden"
           }">
-            <P class="w-full bg-yellow-500 text-background rounded-md p-4">${
+            <div class="w-1/2"></div>
+            <p class="bg-yellow-500 text-background w-1/2 rounded-md p-4 break-words">${
               answer.answer
-            }</P>
+            }</p>
           </div>
         </div>
       `

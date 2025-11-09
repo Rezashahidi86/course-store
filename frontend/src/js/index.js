@@ -63,7 +63,6 @@ const deleteTittle = () => {
 const showInfoHeader = async () => {
   const res = await fetch(`${baseUrl}/infos/index`);
   const infoHeader = await res.json();
-  console.log(infoHeader);
   countAllCourseElem.innerHTML = infoHeader.coursesCount;
   countUsersElem.innerHTML = infoHeader.usersCount;
   const allTime = Math.ceil(infoHeader.totalTime / 3600);
@@ -77,7 +76,6 @@ const countCourseRodeMap = async () => {
   const countRodeMap4 = document.querySelector("#count-rode-map-4");
   const res = await fetch(`${baseUrl}/courses`);
   const courses = await res.json();
-  console.log(courses);
   let countTechnicalanalysisCourse = 0;
   let countTradingtoolsandplatformsCourse = 0;
   let countPsychologyandcapitalmanagementCourse = 0;

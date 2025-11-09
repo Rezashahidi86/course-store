@@ -585,7 +585,7 @@ const changePage = (page) => {
 
 const showNavbar = (sortNavbar) => {
   const navbarDesctap = sortNavbar.slice(
-    sortNavbar.length - 4,
+    sortNavbar.length - 3,
     sortNavbar.length
   );
   navbarDesctap.forEach((nav) => {

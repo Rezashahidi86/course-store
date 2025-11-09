@@ -25,7 +25,6 @@ let infoAdmin;
 const getAndShowCategoty = async () => {
   const res = await fetch(`${baseUrl}/category`);
   const category = await res.json();
-  console.log(category);
   categoryTableContainer.innerHTML = "";
   category.forEach((cat, index) => {
     let arrayDateCreate = cat.createdAt.slice(0, 10).split("-");
