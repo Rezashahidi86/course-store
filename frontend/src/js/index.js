@@ -66,7 +66,7 @@ const showInfoHeader = async () => {
   console.log(infoHeader);
   countAllCourseElem.innerHTML = infoHeader.coursesCount;
   countUsersElem.innerHTML = infoHeader.usersCount;
-  const allTime = Math.ceil(infoHeader.totalTime / 60);
+  const allTime = Math.ceil(infoHeader.totalTime / 3600);
   countAllTimeTeachElem.innerHTML = allTime;
 };
 

@@ -55,27 +55,10 @@ const plusTime = (sessiones) => {
   });
   let allTimeSecound = 0;
   times.forEach((time) => {
-    if (time.length === 8) {
-      const hourse = +time.slice(0, 2);
-      const min = +time.slice(3, 5);
-      const secound = +time.slice(6, 8);
-      allTimeSecound += hourse * 3600;
-      allTimeSecound += min * 60;
-      allTimeSecound += secound;
-    } else if (time.length === 5) {
-      const min = +time.slice(0, 2);
-      const secound = +time.slice(3, 5);
-      allTimeSecound += min * 60;
-      allTimeSecound += secound;
-    }
+    allTimeSecound += +time;
   });
   if (allTimeSecound < 3600) {
-    const min = Math.floor(allTimeSecound / 60);
-    if (min === 0) {
-      return "تازه اجرا شده";
-    } else {
-      return `${min} دقیقه`;
-    }
+    return "تازه اجرا شده";
   } else {
     const hourse = Math.floor(allTimeSecound / 3600);
     return `${hourse} ساعت`;
@@ -332,7 +315,7 @@ const logoutuser = (style = false) => {
   setInToLocalStorage("token", "");
   getUser(style);
   hideModalInfoAccount();
-  location.href = "/frontend/index.html"
+  location.href = "/frontend/index.html";
 };
 
 // showCourses
@@ -836,7 +819,7 @@ const showCourseBasket = () => {
       }
     });
   } else {
-    basketContainer.classList.add("h-max")
+    basketContainer.classList.add("h-max");
     basketCoursesContainer.insertAdjacentHTML(
       "beforeend",
       `

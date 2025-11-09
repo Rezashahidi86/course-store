@@ -25,7 +25,7 @@ import {
   rigesterToCourses,
   checkCodeOff,
   getCourses,
-  logoutuser
+  logoutuser,
 } from "./helper.js";
 
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
@@ -103,7 +103,7 @@ const headerInfoCourse = async (courseInfo) => {
   courseDescription.innerHTML = courseInfo.description;
   const coursesUser = await getCourses(null, "myCourses");
   const isUserRegisteredToThisCourse = coursesUser.some((info) => {
-    if(info.course?._id){
+    if (info.course?._id) {
       return info.course._id === courseInfo._id;
     }
   });
@@ -223,12 +223,20 @@ const showSessions = async (shortName, sessions) => {
   const lastSessions = sessions.length;
   const coursesUser = await getCourses(null, "myCourses");
   const isUserRegisteredToThisCourse = coursesUser.some((info) => {
-    if(info.course?._id){
+    if (info.course?._id) {
       return info.course._id === courseInfo._id;
     }
   });
   if (sessions.length) {
     sessions.forEach((session, index) => {
+      let timeM = Math.floor(+session.time / 60);
+      if (timeM >= 1&&timeM<60) {
+        timeM = `${timeM}:00`;
+      } else if (timeM >= 60) {
+        timeM = `${Math.floor(timeM/60)}:00:00`;
+      }else{
+        timeM = `00:${session.time}`;
+      }
       boxSessenionsContainer.insertAdjacentHTML(
         "beforeend",
         `
@@ -255,7 +263,7 @@ const showSessions = async (shortName, sessions) => {
         <div
           class="text-background dark:text-background-dark flex items-center gap-x-2 group-hover:text-button1 duration-200"
         >
-        <span>${session.time}</span>
+        <span>${timeM}</span>
         <i class="fa fa-play"></i>
         <i class="fa fa-lock ${
           session.free || isUserRegisteredToThisCourse

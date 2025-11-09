@@ -216,7 +216,9 @@
 
     <!-- Start Mian -->
     <main>
-      <div class="container mt-12" id="video-container"></div>
+      <div class="container mt-12">
+        <video src="" class="rounded-xl w-full" controls id="video-container"></video>
+      </div>
       <div
         class="container grid grid-cols-12 gap-x-4 max-lg:grid-cols-10 max-md:flex max-md:flex-col"
       >
@@ -244,18 +246,11 @@
             <div
               class="border-t-2 border-text dark:border-text-dark mt-10 pt-10 flex items-center justify-between p-4 pb-0 max-2sm:px-2"
             >
-              <button
+              <a href="./mycourses.html"
                 class="py-3 px-8 bg-gray-400/30 rounded-sm dark:text-background text-background-dark cursor-pointer"
               >
                 سوال دارم!
-              </button>
-              <div class="flex gap-x-4 max-lg:flex-col gap-y-2">
-                <button
-                  class="py-3 px-6 rounded-sm bg-button1 text-background cursor-pointer hover:bg-green-700 duration-200"
-                >
-                  دانلود جلسه
-                </button>
-              </div>
+              </a>
             </div>
           </div>
           <div
@@ -351,12 +346,6 @@
               </span>
               <span class="mr-4">مدرس دوره</span>
             </div>
-            <a
-              href="#"
-              class="mt-8 bg-button1 dark:bg-button1-dark hover:bg-hover1 dark:hover:bg-hover1 p-2 border-2 border-button1 dark:border-button1-dark rounded-md hover:border-hover1 duration-200 transition-all"
-            >
-              <span class="text-background">مشاهده پروفایل من</span>
-            </a>
           </div>
           <!-- Finish information teacher -->
         </div>

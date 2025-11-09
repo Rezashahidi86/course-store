@@ -151,7 +151,7 @@ const addSession = async (event) => {
     const resss =  await res.json()
     console.log(resss);
     if (res.ok) {
-      showToastBox("جلسه با موفقیت اضافه شد", "seccessful");
+      showToastBox("جلسه با موفقیت اضافه شد", "successful");
       getAllSessions();
       showSessions();
     } else {

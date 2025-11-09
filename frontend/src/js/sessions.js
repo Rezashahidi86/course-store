@@ -20,7 +20,7 @@ import {
   deleteCourseFromBasket,
   rigesterToCourses,
   checkCodeOff,
-  logoutuser
+  logoutuser,
 } from "./helper.js";
 const openModalBtnBars = document.querySelector("#open-modal-btn-bars");
 const partCourseElem = document.querySelector("#part-course");
@@ -91,16 +91,19 @@ const boxPartsCourseHandler = (event) => {
 
 const showSissions = (allSessions) => {
   const userSession = allSessions.session;
-  videoContainer.insertAdjacentHTML(
-    "beforeend",
-    `
-    <video src="${baseUrlCover}/${userSession.video}" controls class="rounded-xl w-full"></video>
-    `
-  );
+  videoContainer.src = `${baseUrlCover}/${userSession.video}`
   const sessions = allSessions.sessions;
   const lastSessions = sessions.length;
   if (sessions.length) {
     sessions.forEach((session, index) => {
+      let timeM = Math.floor(+session.time / 60);
+      if (timeM >= 1 && timeM < 60) {
+        timeM = `${timeM}:00`;
+      } else if (timeM >= 60) {
+        timeM = `${Math.floor(timeM / 60)}:00:00`;
+      } else {
+        timeM = `00:${session.time}`;
+      }
       const sessionSelect = userSession._id === session._id;
       boxSessenionsContainer.insertAdjacentHTML(
         "beforeend",
@@ -139,7 +142,7 @@ const showSissions = (allSessions) => {
             session.free ? "group-hover:text-button1" : ""
           } duration-200 max-2sm:"
         >
-        <span>${session.time}</span>
+        <span>${timeM}</span>
         <i class="fa fa-play"></i>
         </div>
       </a>
